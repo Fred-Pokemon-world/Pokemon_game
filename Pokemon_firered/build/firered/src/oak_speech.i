@@ -6499,7 +6499,7 @@ static void Task_NewGameScene(u8 taskId)
         ShowBg(1);
         SetVBlankCallback(VBlankCB_NewGameScene);
         PlayBGM(323);
-        gTasks[taskId].func = Task_ControlsGuide_HandleInput;
+        gTasks[taskId].func = Task_PikachuIntro_LoadPage1;
         gMain.state = 0;
         return;
     }
@@ -6953,13 +6953,31 @@ static void Task_OakSpeech_TellMeALittleAboutYourself(u8 taskId)
 static void Task_OakSpeech_FadeOutOak(u8 taskId)
 {
     s16 *data = gTasks[taskId].data;
-
+    const u8 *src;
+    u8 *dest;
+    u8 i;
     if (!IsTextPrinterActive(WIN_INTRO_TEXTBOX))
     {
         ClearDialogWindowAndFrame(WIN_INTRO_TEXTBOX, 1);
         CreateFadeInTask(taskId, 2);
         data[3] = 48;
-        gTasks[taskId].func = Task_OakSpeech_AskPlayerGender;
+        gSaveBlock2Ptr->playerGender = 1;
+
+
+        if (gSaveBlock2Ptr->playerGender == 0)
+            src = sMaleNameChoices[1];
+        else
+            src = sFemaleNameChoices[0];
+        dest = gSaveBlock2Ptr->playerName;
+        for (i = 0; i < 7 && src[i] != 0xFF; i++)
+            dest[i] = src[i];
+        for (; i < 7 + 1; i++)
+            dest[i] = 0xFF;
+
+        gTasks[taskId].func = Task_OakSpeech_LoadPlayerPic;
+
+
+
     }
 }
 
@@ -7036,16 +7054,7 @@ static void Task_OakSpeech_ClearGenderWindows(u8 taskId)
     gTasks[taskId].func = Task_OakSpeech_LoadPlayerPic;
 }
 
-static void Task_OakSpeech_LoadPlayerPic(u8 taskId)
-{
-    if (gSaveBlock2Ptr->playerGender == 0)
-        LoadTrainerPic(MALE_PLAYER_PIC, 0);
-    else
-        LoadTrainerPic(FEMALE_PLAYER_PIC, 0);
-    CreateFadeOutTask(taskId, 2);
-    gTasks[taskId].data[3] = 32;
-    gTasks[taskId].func = Task_OakSpeech_YourNameWhatIsIt;
-}
+
 
 static void Task_OakSpeech_YourNameWhatIsIt(u8 taskId)
 {
@@ -7095,6 +7104,17 @@ static void Task_OakSpeech_MoveRivalDisplayNameOptions(u8 taskId)
             gTasks[taskId].func = Task_OakSpeech_HandleRivalNameInput;
         }
     }
+}
+
+static void Task_OakSpeech_LoadPlayerPic(u8 taskId)
+{
+    if (gSaveBlock2Ptr->playerGender == 0)
+        LoadTrainerPic(MALE_PLAYER_PIC, 0);
+    else
+        LoadTrainerPic(FEMALE_PLAYER_PIC, 0);
+    CreateFadeOutTask(taskId, 2);
+    gTasks[taskId].data[3] = 32;
+    gTasks[taskId].func = Task_OakSpeech_ConfirmName;
 }
 
 static void Task_OakSpeech_RepeatNameQuestion(u8 taskId)
@@ -7389,7 +7409,7 @@ static void Task_OakSpeech_DestroyPlatformSprites(u8 taskId)
         if (data[1] != 0)
         {
             DestroyTask(taskId);
-# 1701 "src/oak_speech.c"
+# 1721 "src/oak_speech.c"
             DestroyPikachuOrPlatformSprites(taskId, SPRITE_TYPE_PLATFORM);
         }
         else
@@ -7399,7 +7419,7 @@ static void Task_OakSpeech_DestroyPlatformSprites(u8 taskId)
         }
     }
 }
-# 1718 "src/oak_speech.c"
+# 1738 "src/oak_speech.c"
 static void Task_OakSpeech_SetUpFadePlayerPicWhite(u8 taskId)
 {
     u8 taskId2 = CreateTask(Task_OakSpeech_FadePlayerPicWhite, 2);
@@ -7819,6 +7839,7 @@ static void PrintNameChoiceOptions(u8 taskId, u8 hasPlayerBeenNamed)
     Menu_InitCursor(data[13], FONT_NORMAL, 0, 1, 16, 5, 0);
     CopyWindowToVram(data[13], COPYWIN_FULL);
 }
+
 
 static void GetDefaultName(u8 hasPlayerBeenNamed, u8 rivalNameChoice)
 {

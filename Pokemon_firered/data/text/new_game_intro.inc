@@ -4,8 +4,9 @@ gOtherText_NewName::
 gNameChoice_Green::
     .string "GREEN$"
 
+
 gNameChoice_Red::
-    .string "RED$"
+    .string "Annabelle$"
 
 gNameChoice_Leaf::
     .string "LEAF$"
@@ -167,25 +168,25 @@ gPikachuIntro_Text_Page3::
     .string "$"
 
 gOakSpeech_Text_WelcomeToTheWorld::
-    .string "Hello, there!\n"
+    .string "Hello, Annabelle!\n"
     .string "Glad to meet you!\p"
-    .string "Welcome to the world of POKéMON!\p"
-    .string "My name is OAK.\p"
-    .string "People affectionately refer to me\n"
-    .string "as the POKéMON PROFESSOR.\p$"
+    .string "I believe you already received your \n"
+    .string "mission message from your phone\p!"
+    .string "Welcome to the world of POKéMON!\n"
+    .string "My name is Kannazuki.\p"
 
 gOakSpeech_Text_ThisWorld::
     .string "This world…$"
 
 gOakSpeech_Text_IsInhabitedFarAndWide::
-    .string "…is inhabited far and wide by\n"
-    .string "creatures called POKéMON.\p$"
+    .string "…is intruded by a comet stone,\n"
+    .string "And POKéMONs are generally worried.\p$"
 
 gOakSpeech_Text_IStudyPokemon::
-    .string "For some people, POKéMON are pets.\n"
-    .string "Others use them for battling.\p"
-    .string "As for myself…\p"
-    .string "I study POKéMON as a profession.\p$"
+    .string "Jigglypuff will accompany you\n"
+    .string "to find the comet, \n"
+    .string "and investigate its true purposes\p"
+
 
 gOakSpeech_Text_TellMeALittleAboutYourself::
     .string "But first, tell me a little about\n"
