@@ -17,7 +17,7 @@
 #include "data.h"
 #include "constants/songs.h"
 
-#define INTRO_SPECIES SPECIES_NIDORAN_F
+#define INTRO_SPECIES SPECIES_JIGGLYPUFF
 
 enum
 {
@@ -695,7 +695,7 @@ void StartNewGameScene(void)
 #define tTrainerPicPosX             data[1]
 #define tTrainerPicFadeState        data[2]
 #define tTimer                      data[3]
-#define tNidoranFSpriteId           data[4]
+#define tJigglypuffSpriteID         data[4]
 #define tTextCursorSpriteId         data[5]
 #define tPokeBallSpriteId           data[6]
 #define tPikachuPlatformSpriteId(i) data[7 + i] // Pikachu and the platform are built of three sprites,
@@ -1171,7 +1171,7 @@ static void Task_OakSpeech_ReleaseNidoranFFromPokeBall(u8 taskId)
     {
         if (tTimer != 0)
             tTimer--;
-        spriteId = gTasks[taskId].tNidoranFSpriteId;
+        spriteId = gTasks[taskId].tJigglypuffSpriteID;
         gSprites[spriteId].invisible = FALSE;
         gSprites[spriteId].tSpriteTimer = 0;
         CreatePokeballSpriteToReleaseMon(spriteId, gSprites[spriteId].oam.paletteNum, 100, 66, 0, 0, 32, 0xFFFF1FFF);
@@ -1214,11 +1214,11 @@ static void Task_OakSpeech_ReturnNidoranFToPokeBall(u8 taskId)
     if (!IsTextPrinterActive(WIN_INTRO_TEXTBOX))
     {
         ClearDialogWindowAndFrame(WIN_INTRO_TEXTBOX, TRUE);
-        spriteId = gTasks[taskId].tNidoranFSpriteId;
+        spriteId = gTasks[taskId].tJigglypuffSpriteID;
         gTasks[taskId].tPokeBallSpriteId = CreateTradePokeballSprite(spriteId, gSprites[spriteId].oam.paletteNum, 100, 66, 0, 0, 32, 0xFFFF1F3F);
         gTasks[taskId].tTimer = 48;
         gTasks[taskId].tSpriteTimer = 64;
-        gTasks[taskId].func = Task_OakSpeech_TellMeALittleAboutYourself;
+        gTasks[taskId].func = Task_OakSpeech_FadeOutOak;
     }
 }
 
@@ -1229,14 +1229,14 @@ static void Task_OakSpeech_TellMeALittleAboutYourself(u8 taskId)
     if (tSpriteTimer != 0)
     {
         if (tSpriteTimer < 24)
-            gSprites[tNidoranFSpriteId].y--;
+            gSprites[tJigglypuffSpriteID].y--;
         tSpriteTimer--;
     }
     else
     {
         if (tTimer == 48)
         {
-            DestroySprite(&gSprites[tNidoranFSpriteId]);
+            DestroySprite(&gSprites[tJigglypuffSpriteID]);
             DestroySprite(&gSprites[tPokeBallSpriteId]);
         }
         if (tTimer != 0)
@@ -1274,8 +1274,15 @@ static void Task_OakSpeech_FadeOutOak(u8 taskId)
             dest[i] = src[i];
         for (; i < PLAYER_NAME_LENGTH + 1; i++)
             dest[i] = EOS;
+
+        src = sMaleNameChoices[1];
+        dest = gSaveBlock1Ptr->rivalName;
+        for (i = 0; i < PLAYER_NAME_LENGTH && src[i] != EOS; i++)
+            dest[i] = src[i];
+        for (; i < PLAYER_NAME_LENGTH + 1; i++)
+            dest[i] = EOS;
         //sOakSpeechResources->hasPlayerBeenNamed = TRUE;
-        gTasks[taskId].func = Task_OakSpeech_LoadPlayerPic;
+        gTasks[taskId].func = Task_OakSpeech_LetsGo;
         //gSaveBlock2Ptr->playerName = Annablle;
         //sOakSpeechResources->hasPlayerBeenNamed = TRUE;
         //gTasks[taskId].func = Task_OakSpeech_AskPlayerGender;
@@ -1911,7 +1918,7 @@ static void CreateNidoranFSprite(u8 taskId)
     gSprites[spriteId].callback = SpriteCallbackDummy;
     gSprites[spriteId].oam.priority = 1;
     gSprites[spriteId].invisible = TRUE;
-    gTasks[taskId].tNidoranFSpriteId = spriteId;
+    gTasks[taskId].tJigglypuffSpriteID = spriteId;
 }
 
 #define sBodySpriteId data[0]
@@ -2184,7 +2191,7 @@ static void GetDefaultName(u8 hasPlayerBeenNamed, u8 rivalNameChoice)
 #undef tTrainerPicPosX
 #undef tTrainerPicFadeState
 #undef tTimer
-#undef tNidoranFSpriteId
+#undef tJigglypuffSpriteID
 #undef tTextCursorSpriteId
 #undef tPokeBallSpriteId
 #undef tMenuWindowId

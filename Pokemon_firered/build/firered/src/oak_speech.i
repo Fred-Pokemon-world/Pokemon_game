@@ -6892,7 +6892,7 @@ static void Task_OakSpeech_IsInhabitedFarAndWide(u8 taskId)
         if (gTasks[taskId].data[3] == 32)
         {
             ({ DrawDialogueFrame(WIN_INTRO_TEXTBOX, 0); if (gOakSpeech_Text_IsInhabitedFarAndWide != gStringVar4) { StringExpandPlaceholders(gStringVar4, gOakSpeech_Text_IsInhabitedFarAndWide); AddTextPrinterParameterized2(WIN_INTRO_TEXTBOX, FONT_MALE, gStringVar4, sOakSpeechResources->textSpeed, ((void *)0), 0x2, 0x1, 0x3); } else { AddTextPrinterParameterized2(WIN_INTRO_TEXTBOX, FONT_MALE, gOakSpeech_Text_IsInhabitedFarAndWide, sOakSpeechResources->textSpeed, ((void *)0), 0x2, 0x1, 0x3); } CopyWindowToVram(WIN_INTRO_TEXTBOX, COPYWIN_FULL); });
-            PlayCry_Normal(29, 0);
+            PlayCry_Normal(39, 0);
         }
     }
 }
@@ -6917,7 +6917,7 @@ static void Task_OakSpeech_ReturnNidoranFToPokeBall(u8 taskId)
         gTasks[taskId].data[6] = CreateTradePokeballSprite(spriteId, gSprites[spriteId].oam.paletteNum, 100, 66, 0, 0, 32, 0xFFFF1F3F);
         gTasks[taskId].data[3] = 48;
         gTasks[taskId].data[0] = 64;
-        gTasks[taskId].func = Task_OakSpeech_TellMeALittleAboutYourself;
+        gTasks[taskId].func = Task_OakSpeech_FadeOutOak;
     }
 }
 
@@ -6974,7 +6974,14 @@ static void Task_OakSpeech_FadeOutOak(u8 taskId)
         for (; i < 7 + 1; i++)
             dest[i] = 0xFF;
 
-        gTasks[taskId].func = Task_OakSpeech_LoadPlayerPic;
+        src = sMaleNameChoices[1];
+        dest = gSaveBlock1Ptr->rivalName;
+        for (i = 0; i < 7 && src[i] != 0xFF; i++)
+            dest[i] = src[i];
+        for (; i < 7 + 1; i++)
+            dest[i] = 0xFF;
+
+        gTasks[taskId].func = Task_OakSpeech_LetsGo;
 
 
 
@@ -7409,7 +7416,7 @@ static void Task_OakSpeech_DestroyPlatformSprites(u8 taskId)
         if (data[1] != 0)
         {
             DestroyTask(taskId);
-# 1721 "src/oak_speech.c"
+# 1728 "src/oak_speech.c"
             DestroyPikachuOrPlatformSprites(taskId, SPRITE_TYPE_PLATFORM);
         }
         else
@@ -7419,7 +7426,7 @@ static void Task_OakSpeech_DestroyPlatformSprites(u8 taskId)
         }
     }
 }
-# 1738 "src/oak_speech.c"
+# 1745 "src/oak_speech.c"
 static void Task_OakSpeech_SetUpFadePlayerPicWhite(u8 taskId)
 {
     u8 taskId2 = CreateTask(Task_OakSpeech_FadePlayerPicWhite, 2);
@@ -7589,9 +7596,9 @@ static void CreateNidoranFSprite(u8 taskId)
 {
     u8 spriteId;
 
-    DecompressPicFromTable(&gMonFrontPicTable[29], MonSpritesGfxManager_GetSpritePtr(0), 29);
-    LoadCompressedSpritePaletteUsingHeap(&gMonPaletteTable[29]);
-    SetMultiuseSpriteTemplateToPokemon(29, 0);
+    DecompressPicFromTable(&gMonFrontPicTable[39], MonSpritesGfxManager_GetSpritePtr(0), 39);
+    LoadCompressedSpritePaletteUsingHeap(&gMonPaletteTable[39]);
+    SetMultiuseSpriteTemplateToPokemon(39, 0);
     spriteId = CreateSprite(&gMultiuseSpriteTemplate, 96, 96, 1);
     gSprites[spriteId].callback = SpriteCallbackDummy;
     gSprites[spriteId].oam.priority = 1;

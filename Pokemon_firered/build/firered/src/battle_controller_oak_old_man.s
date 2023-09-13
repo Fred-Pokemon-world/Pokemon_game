@@ -1962,15 +1962,12 @@ PrintOakText_ForPetesSake:
 	.word	gPaletteFade
 .L186:
 	ldr	r0, .L209
-	bl	BattleStringExpandPlaceholdersToDisplayedString
-	ldr	r0, .L209+0x4
 	mov	r1, #0x18
 	bl	BattlePutTextOnWindow
 	b	.L202
 .L210:
 	.align	2, 0
 .L209:
-	.word	gText_ForPetesSake
 	.word	gDisplayedStringBattle
 .L187:
 	mov	r0, #0x18
@@ -1978,9 +1975,9 @@ PrintOakText_ForPetesSake:
 	lsl	r0, r0, #0x10
 	lsr	r3, r0, #0x10
 	cmp	r3, #0
-	beq	.LCB2300
+	beq	.LCB2296
 	b	.L181	@long jump
-.LCB2300:
+.LCB2296:
 	ldr	r2, .L211
 	ldr	r4, .L211+0x4
 	ldr	r0, [r4]
@@ -2239,9 +2236,9 @@ PrintOakTextWithMainBgDarkened:
 	ldrb	r0, [r0]
 	add	r5, r1, #0
 	cmp	r0, #0x5
-	bls	.LCB2612
+	bls	.LCB2608
 	b	.L239	@long jump
-.LCB2612:
+.LCB2608:
 	lsl	r0, r0, #0x2
 	ldr	r1, .L257+0x4
 	add	r0, r0, r1
@@ -2402,9 +2399,9 @@ PrintOakText_KeepAnEyeOnHP:
 	ldrb	r0, [r0]
 	add	r5, r1, #0
 	cmp	r0, #0x6
-	bls	.LCB2812
+	bls	.LCB2808
 	b	.L272	@long jump
-.LCB2812:
+.LCB2808:
 	lsl	r0, r0, #0x2
 	ldr	r1, .L290+0x4
 	add	r0, r0, r1
@@ -2433,9 +2430,9 @@ PrintOakText_KeepAnEyeOnHP:
 	lsl	r0, r0, #0x18
 	lsr	r4, r0, #0x18
 	cmp	r4, #0
-	beq	.LCB2839
+	beq	.LCB2835
 	b	.L272	@long jump
-.LCB2839:
+.LCB2835:
 	ldr	r1, [r5]
 	add	r0, r1, #0
 	add	r0, r0, #0x95
@@ -2465,9 +2462,9 @@ PrintOakText_KeepAnEyeOnHP:
 	lsl	r0, r0, #0x18
 	lsr	r3, r0, #0x18
 	cmp	r3, #0
-	beq	.LCB2878
+	beq	.LCB2874
 	b	.L272	@long jump
-.LCB2878:
+.LCB2874:
 	ldr	r2, .L294+0x4
 	ldr	r0, [r5]
 	add	r1, r0, #0
@@ -3057,9 +3054,9 @@ CopyOakOldManMonData:
 	add	r0, r0, r1
 	ldrb	r0, [r0]
 	cmp	r0, #0x3b
-	bls	.LCB3595
+	bls	.LCB3591
 	bl	.L356	@far jump
-.LCB3595:
+.LCB3591:
 	lsl	r0, r0, #0x2
 	ldr	r1, .L444+0x8
 	add	r0, r0, r1
@@ -4157,9 +4154,9 @@ SetOakOldManMonData:
 	ldrb	r0, [r0]
 	add	r7, r2, #0
 	cmp	r0, #0x3b
-	bls	.LCB5012
+	bls	.LCB5008
 	bl	.L559	@far jump
-.LCB5012:
+.LCB5008:
 	lsl	r0, r0, #0x2
 	ldr	r1, .L630+0x8
 	add	r0, r0, r1
@@ -7503,9 +7500,9 @@ OakOldManHandleIntroTrainerBallThrow:
 	mov	r1, #0x10
 	and	r0, r0, r1
 	cmp	r0, #0
-	bne	.LCB8959
+	bne	.LCB8955
 	b	.L948	@long jump
-.LCB8959:
+.LCB8955:
 	ldr	r6, .L952+0x4
 	ldr	r7, .L952+0x8
 	ldrb	r0, [r7]

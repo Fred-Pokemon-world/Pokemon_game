@@ -8577,7 +8577,7 @@ static void PrintOakText_ForPetesSake(void)
         }
         break;
     case 2:
-        BattleStringExpandPlaceholdersToDisplayedString(gText_ForPetesSake);
+
         BattlePutTextOnWindow(gDisplayedStringBattle, 24);
         ++gBattleStruct->simulatedInputState[0];
         break;
