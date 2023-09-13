@@ -6,7 +6,7 @@ gNameChoice_Green::
 
 
 gNameChoice_Red::
-    .string "Annabelle$"
+    .string "Anna$"
 
 gNameChoice_Leaf::
     .string "LEAF$"

@@ -649,7 +649,7 @@ static void PrintOakText_ForPetesSake(void)
         }
         break;
     case 2:
-        BattleStringExpandPlaceholdersToDisplayedString(gText_ForPetesSake);
+        //BattleStringExpandPlaceholdersToDisplayedString(gText_ForPetesSake);
         BattlePutTextOnWindow(gDisplayedStringBattle, B_WIN_OAK_OLD_MAN);
         ++gBattleStruct->simulatedInputState[0];
         break;

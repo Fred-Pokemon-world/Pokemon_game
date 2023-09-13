@@ -5421,7 +5421,7 @@ Task_OakSpeech_IsInhabitedFarAndWide:
 	mov	r0, #0x0
 	mov	r1, #0x3
 	bl	CopyWindowToVram
-	mov	r0, #0x1d
+	mov	r0, #0x27
 	mov	r1, #0x0
 	bl	PlayCry_Normal
 .L193:
@@ -5577,7 +5577,7 @@ Task_OakSpeech_ReturnNidoranFToPokeBall:
 	.word	gTasks
 	.word	gSprites
 	.word	-0xe0c1
-	.word	Task_OakSpeech_TellMeALittleAboutYourself
+	.word	Task_OakSpeech_FadeOutOak
 .Lfe19:
 	.size	 Task_OakSpeech_ReturnNidoranFToPokeBall,.Lfe19-Task_OakSpeech_ReturnNidoranFToPokeBall
 	.align	2, 0
@@ -5727,12 +5727,15 @@ Task_OakSpeech_TellMeALittleAboutYourself:
 	.thumb_func
 Task_OakSpeech_FadeOutOak:
 	push	{r4, r5, r6, r7, lr}
+	mov	r7, r9
+	mov	r6, r8
+	push	{r6, r7}
 	lsl	r0, r0, #0x18
 	lsr	r5, r0, #0x18
 	lsl	r0, r5, #0x2
 	add	r0, r0, r5
 	lsl	r0, r0, #0x3
-	ldr	r1, .L246
+	ldr	r1, .L259
 	add	r4, r0, r1
 	mov	r0, #0x0
 	bl	IsTextPrinterActive
@@ -5747,7 +5750,7 @@ Task_OakSpeech_FadeOutOak:
 	bl	CreateFadeInTask
 	mov	r0, #0x30
 	strh	r0, [r4, #0x6]
-	ldr	r2, .L246+0x4
+	ldr	r2, .L259+0x4
 	ldr	r1, [r2]
 	mov	r0, #0x1
 	strb	r0, [r1, #0x8]
@@ -5755,27 +5758,31 @@ Task_OakSpeech_FadeOutOak:
 	ldrb	r0, [r0, #0x8]
 	cmp	r0, #0
 	bne	.L232	@cond_branch
-	ldr	r0, .L246+0x8
+	ldr	r0, .L259+0x8
 	ldr	r3, [r0, #0x4]
-	b	.L233
-.L247:
+	b	.L258
+.L260:
 	.align	2, 0
-.L246:
+.L259:
 	.word	gTasks+0x8
 	.word	gSaveBlock2Ptr
 	.word	sMaleNameChoices
 .L232:
-	ldr	r0, .L248
+	ldr	r0, .L261
 	ldr	r3, [r0]
-.L233:
-	ldr	r0, .L248+0x4
+	ldr	r0, .L261+0x4
+.L258:
+	mov	ip, r0
+	ldr	r0, .L261+0x8
 	ldr	r4, [r0]
 	mov	r2, #0x0
 	ldrb	r0, [r3]
-	lsl	r6, r5, #0x2
-	ldr	r7, .L248+0x8
-	ldr	r1, .L248+0xc
-	mov	ip, r1
+	lsl	r7, r5, #0x2
+	ldr	r6, .L261+0xc
+	ldr	r1, .L261+0x10
+	mov	r8, r1
+	ldr	r1, .L261+0x14
+	mov	r9, r1
 	cmp	r0, #0xff
 	beq	.L235	@cond_branch
 .L237:
@@ -5794,7 +5801,7 @@ Task_OakSpeech_FadeOutOak:
 	bne	.L237	@cond_branch
 .L235:
 	cmp	r2, #0x7
-	bhi	.L245	@cond_branch
+	bhi	.L256	@cond_branch
 	mov	r1, #0xff
 .L243:
 	add	r0, r4, r2
@@ -5804,23 +5811,65 @@ Task_OakSpeech_FadeOutOak:
 	lsr	r2, r0, #0x18
 	cmp	r2, #0x7
 	bls	.L243	@cond_branch
-.L245:
-	add	r0, r6, r5
+.L256:
+	mov	r0, ip
+	ldr	r3, [r0, #0x4]
+	ldr	r0, [r6]
+	ldr	r1, .L261+0x18
+	add	r4, r0, r1
+	mov	r2, #0x0
+	ldrb	r0, [r3]
+	cmp	r0, #0xff
+	beq	.L246	@cond_branch
+.L248:
+	add	r1, r4, r2
+	add	r0, r3, r2
+	ldrb	r0, [r0]
+	strb	r0, [r1]
+	add	r0, r2, #0x1
+	lsl	r0, r0, #0x18
+	lsr	r2, r0, #0x18
+	cmp	r2, #0x6
+	bhi	.L246	@cond_branch
+	add	r0, r3, r2
+	ldrb	r0, [r0]
+	cmp	r0, #0xff
+	bne	.L248	@cond_branch
+.L246:
+	cmp	r2, #0x7
+	bhi	.L257	@cond_branch
+	mov	r1, #0xff
+.L254:
+	add	r0, r4, r2
+	strb	r1, [r0]
+	add	r0, r2, #0x1
+	lsl	r0, r0, #0x18
+	lsr	r2, r0, #0x18
+	cmp	r2, #0x7
+	bls	.L254	@cond_branch
+.L257:
+	add	r0, r7, r5
 	lsl	r0, r0, #0x3
-	add	r0, r0, r7
-	mov	r1, ip
+	add	r0, r0, r8
+	mov	r1, r9
 	str	r1, [r0]
 .L231:
+	pop	{r3, r4}
+	mov	r8, r3
+	mov	r9, r4
 	pop	{r4, r5, r6, r7}
 	pop	{r0}
 	bx	r0
-.L249:
+.L262:
 	.align	2, 0
-.L248:
+.L261:
 	.word	sFemaleNameChoices
+	.word	sMaleNameChoices
 	.word	gSaveBlock2Ptr
+	.word	gSaveBlock1Ptr
 	.word	gTasks
-	.word	Task_OakSpeech_LoadPlayerPic
+	.word	Task_OakSpeech_LetsGo
+	.word	0x3a4c
 .Lfe21:
 	.size	 Task_OakSpeech_FadeOutOak,.Lfe21-Task_OakSpeech_FadeOutOak
 	.align	2, 0
@@ -5834,25 +5883,25 @@ Task_OakSpeech_AskPlayerGender:
 	lsl	r0, r6, #0x2
 	add	r0, r0, r6
 	lsl	r0, r0, #0x3
-	ldr	r1, .L256
+	ldr	r1, .L269
 	add	r1, r0, r1
 	mov	r2, #0x4
 	ldrsh	r0, [r1, r2]
 	cmp	r0, #0
-	beq	.L251	@cond_branch
+	beq	.L264	@cond_branch
 	ldrh	r0, [r1, #0x6]
 	mov	r2, #0x6
 	ldrsh	r4, [r1, r2]
 	cmp	r4, #0
-	beq	.L252	@cond_branch
+	beq	.L265	@cond_branch
 	sub	r0, r0, #0x1
 	strh	r0, [r1, #0x6]
-	b	.L251
-.L257:
+	b	.L264
+.L270:
 	.align	2, 0
-.L256:
+.L269:
 	.word	gTasks+0x8
-.L252:
+.L265:
 	mov	r2, #0x3c
 	neg	r2, r2
 	add	r0, r2, #0
@@ -5861,14 +5910,14 @@ Task_OakSpeech_AskPlayerGender:
 	mov	r0, #0x0
 	mov	r1, #0x0
 	bl	DrawDialogueFrame
-	ldr	r2, .L258
-	ldr	r5, .L258+0x4
+	ldr	r2, .L271
+	ldr	r5, .L271+0x4
 	cmp	r2, r5
-	beq	.L254	@cond_branch
+	beq	.L267	@cond_branch
 	add	r0, r5, #0
 	add	r1, r2, #0
 	bl	StringExpandPlaceholders
-	ldr	r0, .L258+0x8
+	ldr	r0, .L271+0x8
 	ldr	r0, [r0]
 	ldrb	r3, [r0, #0x1f]
 	str	r4, [sp]
@@ -5882,15 +5931,15 @@ Task_OakSpeech_AskPlayerGender:
 	mov	r1, #0x4
 	add	r2, r5, #0
 	bl	AddTextPrinterParameterized2
-	b	.L255
-.L259:
+	b	.L268
+.L272:
 	.align	2, 0
-.L258:
+.L271:
 	.word	gOakSpeech_Text_AskPlayerGender
 	.word	gStringVar4
 	.word	sOakSpeechResources
-.L254:
-	ldr	r0, .L260
+.L267:
+	ldr	r0, .L273
 	ldr	r0, [r0]
 	ldrb	r3, [r0, #0x1f]
 	str	r4, [sp]
@@ -5903,25 +5952,25 @@ Task_OakSpeech_AskPlayerGender:
 	mov	r0, #0x0
 	mov	r1, #0x4
 	bl	AddTextPrinterParameterized2
-.L255:
+.L268:
 	mov	r0, #0x0
 	mov	r1, #0x3
 	bl	CopyWindowToVram
-	ldr	r0, .L260+0x4
+	ldr	r0, .L273+0x4
 	lsl	r1, r6, #0x2
 	add	r1, r1, r6
 	lsl	r1, r1, #0x3
 	add	r1, r1, r0
-	ldr	r0, .L260+0x8
+	ldr	r0, .L273+0x8
 	str	r0, [r1]
-.L251:
+.L264:
 	add	sp, sp, #0x10
 	pop	{r4, r5, r6}
 	pop	{r0}
 	bx	r0
-.L261:
+.L274:
 	.align	2, 0
-.L260:
+.L273:
 	.word	sOakSpeechResources
 	.word	gTasks
 	.word	Task_OakSpeech_ShowGenderOptions
@@ -5943,10 +5992,10 @@ Task_OakSpeech_ShowGenderOptions:
 	lsl	r0, r0, #0x10
 	lsr	r7, r0, #0x10
 	cmp	r7, #0
-	bne	.L263	@cond_branch
-	ldr	r0, .L264
+	bne	.L276	@cond_branch
+	ldr	r0, .L277
 	bl	AddWindow
-	ldr	r1, .L264+0x4
+	ldr	r1, .L277+0x4
 	lsl	r5, r4, #0x2
 	add	r5, r5, r4
 	lsl	r5, r5, #0x3
@@ -5971,7 +6020,7 @@ Task_OakSpeech_ShowGenderOptions:
 	lsr	r0, r0, #0x18
 	mov	r1, #0x11
 	bl	FillWindowPixelBuffer
-	ldr	r4, .L264+0x8
+	ldr	r4, .L277+0x8
 	ldr	r0, [r4]
 	mov	r1, #0x1
 	mov	r9, r1
@@ -5992,7 +6041,7 @@ Task_OakSpeech_ShowGenderOptions:
 	add	r1, r1, #0x1c
 	str	r1, [sp]
 	str	r7, [sp, #0x4]
-	ldr	r1, .L264+0xc
+	ldr	r1, .L277+0xc
 	str	r1, [sp, #0x8]
 	mov	r1, #0x2
 	mov	r2, #0x8
@@ -6013,7 +6062,7 @@ Task_OakSpeech_ShowGenderOptions:
 	add	r1, r1, #0x1c
 	str	r1, [sp]
 	str	r7, [sp, #0x4]
-	ldr	r1, .L264+0x10
+	ldr	r1, .L277+0x10
 	str	r1, [sp, #0x8]
 	mov	r1, #0x2
 	mov	r2, #0x8
@@ -6041,9 +6090,9 @@ Task_OakSpeech_ShowGenderOptions:
 	lsr	r0, r0, #0x18
 	mov	r1, #0x3
 	bl	CopyWindowToVram
-	ldr	r0, .L264+0x14
+	ldr	r0, .L277+0x14
 	str	r0, [r5]
-.L263:
+.L276:
 	add	sp, sp, #0xc
 	pop	{r3, r4}
 	mov	r8, r3
@@ -6051,9 +6100,9 @@ Task_OakSpeech_ShowGenderOptions:
 	pop	{r4, r5, r6, r7}
 	pop	{r0}
 	bx	r0
-.L265:
+.L278:
 	.align	2, 0
-.L264:
+.L277:
 	.word	sIntro_WindowTemplates+0x8
 	.word	gTasks
 	.word	sOakSpeechResources
@@ -6073,36 +6122,36 @@ Task_OakSpeech_HandleGenderInput:
 	lsl	r0, r0, #0x18
 	asr	r1, r0, #0x18
 	cmp	r1, #0
-	beq	.L268	@cond_branch
+	beq	.L281	@cond_branch
 	cmp	r1, #0
-	bgt	.L274	@cond_branch
+	bgt	.L287	@cond_branch
 	mov	r0, #0x2
 	neg	r0, r0
 	cmp	r1, r0
-	blt	.L267	@cond_branch
-	b	.L266
-.L274:
+	blt	.L280	@cond_branch
+	b	.L279
+.L287:
 	cmp	r1, #0x1
-	bne	.L267	@cond_branch
-.L268:
-	ldr	r0, .L275
+	bne	.L280	@cond_branch
+.L281:
+	ldr	r0, .L288
 	ldr	r0, [r0]
 	strb	r1, [r0, #0x8]
-.L267:
-	ldr	r0, .L275+0x4
+.L280:
+	ldr	r0, .L288+0x4
 	lsl	r1, r4, #0x2
 	add	r1, r1, r4
 	lsl	r1, r1, #0x3
 	add	r1, r1, r0
-	ldr	r0, .L275+0x8
+	ldr	r0, .L288+0x8
 	str	r0, [r1]
-.L266:
+.L279:
 	pop	{r4}
 	pop	{r0}
 	bx	r0
-.L276:
+.L289:
 	.align	2, 0
-.L275:
+.L288:
 	.word	gSaveBlock2Ptr
 	.word	gTasks
 	.word	Task_OakSpeech_ClearGenderWindows
@@ -6119,7 +6168,7 @@ Task_OakSpeech_ClearGenderWindows:
 	lsl	r5, r0, #0x2
 	add	r5, r5, r0
 	lsl	r5, r5, #0x3
-	ldr	r6, .L278
+	ldr	r6, .L291
 	add	r4, r5, r6
 	ldrb	r0, [r4, #0x1a]
 	mov	r1, #0x1
@@ -6144,15 +6193,15 @@ Task_OakSpeech_ClearGenderWindows:
 	bl	CopyBgTilemapBufferToVram
 	sub	r6, r6, #0x8
 	add	r5, r5, r6
-	ldr	r0, .L278+0x4
+	ldr	r0, .L291+0x4
 	str	r0, [r5]
 	add	sp, sp, #0x8
 	pop	{r4, r5, r6}
 	pop	{r0}
 	bx	r0
-.L279:
+.L292:
 	.align	2, 0
-.L278:
+.L291:
 	.word	gTasks+0x8
 	.word	Task_OakSpeech_LoadPlayerPic
 .Lfe25:
@@ -6168,37 +6217,37 @@ Task_OakSpeech_YourNameWhatIsIt:
 	lsl	r0, r6, #0x2
 	add	r0, r0, r6
 	lsl	r0, r0, #0x3
-	ldr	r1, .L286
+	ldr	r1, .L299
 	add	r1, r0, r1
 	mov	r2, #0x4
 	ldrsh	r0, [r1, r2]
 	cmp	r0, #0
-	beq	.L281	@cond_branch
+	beq	.L294	@cond_branch
 	ldrh	r0, [r1, #0x6]
 	mov	r2, #0x6
 	ldrsh	r4, [r1, r2]
 	cmp	r4, #0
-	beq	.L282	@cond_branch
+	beq	.L295	@cond_branch
 	sub	r0, r0, #0x1
 	strh	r0, [r1, #0x6]
-	b	.L281
-.L287:
+	b	.L294
+.L300:
 	.align	2, 0
-.L286:
+.L299:
 	.word	gTasks+0x8
-.L282:
+.L295:
 	strh	r4, [r1, #0x2]
 	mov	r0, #0x0
 	mov	r1, #0x0
 	bl	DrawDialogueFrame
-	ldr	r2, .L288
-	ldr	r5, .L288+0x4
+	ldr	r2, .L301
+	ldr	r5, .L301+0x4
 	cmp	r2, r5
-	beq	.L284	@cond_branch
+	beq	.L297	@cond_branch
 	add	r0, r5, #0
 	add	r1, r2, #0
 	bl	StringExpandPlaceholders
-	ldr	r0, .L288+0x8
+	ldr	r0, .L301+0x8
 	ldr	r0, [r0]
 	ldrb	r3, [r0, #0x1f]
 	str	r4, [sp]
@@ -6212,15 +6261,15 @@ Task_OakSpeech_YourNameWhatIsIt:
 	mov	r1, #0x4
 	add	r2, r5, #0
 	bl	AddTextPrinterParameterized2
-	b	.L285
-.L289:
+	b	.L298
+.L302:
 	.align	2, 0
-.L288:
+.L301:
 	.word	gOakSpeech_Text_YourNameWhatIsIt
 	.word	gStringVar4
 	.word	sOakSpeechResources
-.L284:
-	ldr	r0, .L290
+.L297:
+	ldr	r0, .L303
 	ldr	r0, [r0]
 	ldrb	r3, [r0, #0x1f]
 	str	r4, [sp]
@@ -6233,25 +6282,25 @@ Task_OakSpeech_YourNameWhatIsIt:
 	mov	r0, #0x0
 	mov	r1, #0x4
 	bl	AddTextPrinterParameterized2
-.L285:
+.L298:
 	mov	r0, #0x0
 	mov	r1, #0x3
 	bl	CopyWindowToVram
-	ldr	r0, .L290+0x4
+	ldr	r0, .L303+0x4
 	lsl	r1, r6, #0x2
 	add	r1, r1, r6
 	lsl	r1, r1, #0x3
 	add	r1, r1, r0
-	ldr	r0, .L290+0x8
+	ldr	r0, .L303+0x8
 	str	r0, [r1]
-.L281:
+.L294:
 	add	sp, sp, #0x10
 	pop	{r4, r5, r6}
 	pop	{r0}
 	bx	r0
-.L291:
+.L304:
 	.align	2, 0
-.L290:
+.L303:
 	.word	sOakSpeechResources
 	.word	gTasks
 	.word	Task_OakSpeech_FadeOutForPlayerNamingScreen
@@ -6270,7 +6319,7 @@ Task_OakSpeech_FadeOutForPlayerNamingScreen:
 	lsl	r0, r0, #0x10
 	lsr	r4, r0, #0x10
 	cmp	r4, #0
-	bne	.L293	@cond_branch
+	bne	.L306	@cond_branch
 	mov	r0, #0x1
 	neg	r0, r0
 	str	r4, [sp]
@@ -6278,24 +6327,24 @@ Task_OakSpeech_FadeOutForPlayerNamingScreen:
 	mov	r2, #0x0
 	mov	r3, #0x10
 	bl	BeginNormalPaletteFade
-	ldr	r0, .L294
+	ldr	r0, .L307
 	ldr	r0, [r0]
 	strh	r4, [r0, #0x10]
-	ldr	r1, .L294+0x4
+	ldr	r1, .L307+0x4
 	lsl	r0, r5, #0x2
 	add	r0, r0, r5
 	lsl	r0, r0, #0x3
 	add	r0, r0, r1
-	ldr	r1, .L294+0x8
+	ldr	r1, .L307+0x8
 	str	r1, [r0]
-.L293:
+.L306:
 	add	sp, sp, #0x4
 	pop	{r4, r5}
 	pop	{r0}
 	bx	r0
-.L295:
+.L308:
 	.align	2, 0
-.L294:
+.L307:
 	.word	sOakSpeechResources
 	.word	gTasks
 	.word	Task_OakSpeech_DoNamingScreen
@@ -6312,23 +6361,23 @@ Task_OakSpeech_MoveRivalDisplayNameOptions:
 	lsl	r0, r5, #0x2
 	add	r0, r0, r5
 	lsl	r6, r0, #0x3
-	ldr	r7, .L300
+	ldr	r7, .L313
 	add	r4, r6, r7
 	mov	r0, #0x0
 	bl	IsTextPrinterActive
 	lsl	r0, r0, #0x10
 	cmp	r0, #0
-	bne	.L297	@cond_branch
+	bne	.L310	@cond_branch
 	ldrh	r2, [r4, #0x2]
 	mov	r1, #0x2
 	ldrsh	r0, [r4, r1]
 	mov	r1, #0x3c
 	neg	r1, r1
 	cmp	r0, r1
-	ble	.L298	@cond_branch
+	ble	.L311	@cond_branch
 	sub	r0, r2, #0x2
 	strh	r0, [r4, #0x2]
-	ldr	r1, .L300+0x4
+	ldr	r1, .L313+0x4
 	ldrh	r0, [r1]
 	add	r0, r0, #0x2
 	strh	r0, [r1]
@@ -6337,15 +6386,15 @@ Task_OakSpeech_MoveRivalDisplayNameOptions:
 	mov	r0, #0x2
 	mov	r2, #0x2
 	bl	ChangeBgX
-	b	.L297
-.L301:
+	b	.L310
+.L314:
 	.align	2, 0
-.L300:
+.L313:
 	.word	gTasks+0x8
 	.word	gSpriteCoordOffsetX
-.L298:
+.L311:
 	strh	r1, [r4, #0x2]
-	ldr	r0, .L302
+	ldr	r0, .L315
 	ldr	r0, [r0]
 	ldrb	r1, [r0, #0x10]
 	add	r0, r5, #0
@@ -6353,15 +6402,15 @@ Task_OakSpeech_MoveRivalDisplayNameOptions:
 	add	r0, r7, #0
 	sub	r0, r0, #0x8
 	add	r0, r6, r0
-	ldr	r1, .L302+0x4
+	ldr	r1, .L315+0x4
 	str	r1, [r0]
-.L297:
+.L310:
 	pop	{r4, r5, r6, r7}
 	pop	{r0}
 	bx	r0
-.L303:
+.L316:
 	.align	2, 0
-.L302:
+.L315:
 	.word	sOakSpeechResources
 	.word	Task_OakSpeech_HandleRivalNameInput
 .Lfe28:
@@ -6373,42 +6422,42 @@ Task_OakSpeech_LoadPlayerPic:
 	push	{r4, lr}
 	lsl	r0, r0, #0x18
 	lsr	r4, r0, #0x18
-	ldr	r0, .L307
+	ldr	r0, .L320
 	ldr	r0, [r0]
 	ldrb	r0, [r0, #0x8]
 	cmp	r0, #0
-	bne	.L305	@cond_branch
+	bne	.L318	@cond_branch
 	mov	r0, #0x0
 	mov	r1, #0x0
 	bl	LoadTrainerPic
-	b	.L306
-.L308:
+	b	.L319
+.L321:
 	.align	2, 0
-.L307:
+.L320:
 	.word	gSaveBlock2Ptr
-.L305:
+.L318:
 	mov	r0, #0x1
 	mov	r1, #0x0
 	bl	LoadTrainerPic
-.L306:
+.L319:
 	add	r0, r4, #0
 	mov	r1, #0x2
 	bl	CreateFadeOutTask
-	ldr	r1, .L309
+	ldr	r1, .L322
 	lsl	r0, r4, #0x2
 	add	r0, r0, r4
 	lsl	r0, r0, #0x3
 	add	r0, r0, r1
 	mov	r1, #0x20
 	strh	r1, [r0, #0xe]
-	ldr	r1, .L309+0x4
+	ldr	r1, .L322+0x4
 	str	r1, [r0]
 	pop	{r4}
 	pop	{r0}
 	bx	r0
-.L310:
+.L323:
 	.align	2, 0
-.L309:
+.L322:
 	.word	gTasks
 	.word	Task_OakSpeech_ConfirmName
 .Lfe29:
@@ -6421,7 +6470,7 @@ Task_OakSpeech_RepeatNameQuestion:
 	add	sp, sp, #-0x10
 	lsl	r0, r0, #0x18
 	lsr	r6, r0, #0x18
-	ldr	r4, .L318
+	ldr	r4, .L331
 	ldr	r0, [r4]
 	ldrb	r1, [r0, #0x10]
 	add	r0, r6, #0
@@ -6429,14 +6478,14 @@ Task_OakSpeech_RepeatNameQuestion:
 	ldr	r0, [r4]
 	ldrh	r4, [r0, #0x10]
 	cmp	r4, #0
-	bne	.L312	@cond_branch
+	bne	.L325	@cond_branch
 	mov	r0, #0x0
 	mov	r1, #0x0
 	bl	DrawDialogueFrame
-	ldr	r2, .L318+0x4
-	ldr	r5, .L318+0x8
+	ldr	r2, .L331+0x4
+	ldr	r5, .L331+0x8
 	cmp	r2, r5
-	beq	.L313	@cond_branch
+	beq	.L326	@cond_branch
 	add	r0, r5, #0
 	add	r1, r2, #0
 	bl	StringExpandPlaceholders
@@ -6452,14 +6501,14 @@ Task_OakSpeech_RepeatNameQuestion:
 	add	r2, r5, #0
 	mov	r3, #0x0
 	bl	AddTextPrinterParameterized2
-	b	.L314
-.L319:
+	b	.L327
+.L332:
 	.align	2, 0
-.L318:
+.L331:
 	.word	sOakSpeechResources
 	.word	gOakSpeech_Text_YourNameWhatIsIt
 	.word	gStringVar4
-.L313:
+.L326:
 	str	r4, [sp]
 	mov	r0, #0x2
 	str	r0, [sp, #0x4]
@@ -6471,19 +6520,19 @@ Task_OakSpeech_RepeatNameQuestion:
 	mov	r1, #0x4
 	mov	r3, #0x0
 	bl	AddTextPrinterParameterized2
-.L314:
+.L327:
 	mov	r0, #0x0
 	mov	r1, #0x3
 	bl	CopyWindowToVram
-	b	.L315
-.L312:
+	b	.L328
+.L325:
 	mov	r0, #0x0
 	mov	r1, #0x0
 	bl	DrawDialogueFrame
-	ldr	r2, .L320
-	ldr	r4, .L320+0x4
+	ldr	r2, .L333
+	ldr	r4, .L333+0x4
 	cmp	r2, r4
-	beq	.L316	@cond_branch
+	beq	.L329	@cond_branch
 	add	r0, r4, #0
 	add	r1, r2, #0
 	bl	StringExpandPlaceholders
@@ -6500,13 +6549,13 @@ Task_OakSpeech_RepeatNameQuestion:
 	add	r2, r4, #0
 	mov	r3, #0x0
 	bl	AddTextPrinterParameterized2
-	b	.L317
-.L321:
+	b	.L330
+.L334:
 	.align	2, 0
-.L320:
+.L333:
 	.word	gOakSpeech_Text_YourRivalsNameWhatWasIt
 	.word	gStringVar4
-.L316:
+.L329:
 	mov	r0, #0x0
 	str	r0, [sp]
 	mov	r0, #0x2
@@ -6519,25 +6568,25 @@ Task_OakSpeech_RepeatNameQuestion:
 	mov	r1, #0x4
 	mov	r3, #0x0
 	bl	AddTextPrinterParameterized2
-.L317:
+.L330:
 	mov	r0, #0x0
 	mov	r1, #0x3
 	bl	CopyWindowToVram
-.L315:
-	ldr	r0, .L322
+.L328:
+	ldr	r0, .L335
 	lsl	r1, r6, #0x2
 	add	r1, r1, r6
 	lsl	r1, r1, #0x3
 	add	r1, r1, r0
-	ldr	r0, .L322+0x4
+	ldr	r0, .L335+0x4
 	str	r0, [r1]
 	add	sp, sp, #0x10
 	pop	{r4, r5, r6}
 	pop	{r0}
 	bx	r0
-.L323:
+.L336:
 	.align	2, 0
-.L322:
+.L335:
 	.word	gTasks
 	.word	Task_OakSpeech_HandleRivalNameInput
 .Lfe30:
@@ -6553,17 +6602,17 @@ Task_OakSpeech_HandleRivalNameInput:
 	lsl	r1, r0, #0x2
 	add	r1, r1, r0
 	lsl	r6, r1, #0x3
-	ldr	r7, .L336
+	ldr	r7, .L349
 	add	r5, r6, r7
 	bl	Menu_ProcessInput
 	lsl	r0, r0, #0x18
 	asr	r4, r0, #0x18
 	cmp	r4, #0
-	beq	.L326	@cond_branch
+	beq	.L339	@cond_branch
 	cmp	r4, #0
-	ble	.L325	@cond_branch
+	ble	.L338	@cond_branch
 	cmp	r4, #0x4
-	bgt	.L325	@cond_branch
+	bgt	.L338	@cond_branch
 	mov	r0, #0x5
 	bl	PlaySE
 	ldrb	r0, [r5, #0x1a]
@@ -6571,7 +6620,7 @@ Task_OakSpeech_HandleRivalNameInput:
 	bl	ClearStdWindowAndFrameToTransparent
 	ldrb	r0, [r5, #0x1a]
 	bl	RemoveWindow
-	ldr	r0, .L336+0x4
+	ldr	r0, .L349+0x4
 	ldr	r0, [r0]
 	ldrb	r0, [r0, #0x10]
 	sub	r1, r4, #0x1
@@ -6583,15 +6632,15 @@ Task_OakSpeech_HandleRivalNameInput:
 	add	r0, r7, #0
 	sub	r0, r0, #0x8
 	add	r0, r6, r0
-	ldr	r1, .L336+0x8
-	b	.L335
-.L337:
+	ldr	r1, .L349+0x8
+	b	.L348
+.L350:
 	.align	2, 0
-.L336:
+.L349:
 	.word	gTasks+0x8
 	.word	sOakSpeechResources
 	.word	Task_OakSpeech_ConfirmName
-.L326:
+.L339:
 	mov	r0, #0x5
 	bl	PlaySE
 	mov	r0, #0x1
@@ -6604,17 +6653,17 @@ Task_OakSpeech_HandleRivalNameInput:
 	add	r0, r7, #0
 	sub	r0, r0, #0x8
 	add	r0, r6, r0
-	ldr	r1, .L338
-.L335:
+	ldr	r1, .L351
+.L348:
 	str	r1, [r0]
-.L325:
+.L338:
 	add	sp, sp, #0x4
 	pop	{r4, r5, r6, r7}
 	pop	{r0}
 	bx	r0
-.L339:
+.L352:
 	.align	2, 0
-.L338:
+.L351:
 	.word	Task_OakSpeech_DoNamingScreen
 .Lfe31:
 	.size	 Task_OakSpeech_HandleRivalNameInput,.Lfe31-Task_OakSpeech_HandleRivalNameInput
@@ -6626,15 +6675,15 @@ Task_OakSpeech_DoNamingScreen:
 	add	sp, sp, #-0x8
 	lsl	r0, r0, #0x18
 	lsr	r6, r0, #0x18
-	ldr	r0, .L344
+	ldr	r0, .L357
 	ldrb	r1, [r0, #0x7]
 	mov	r0, #0x80
 	and	r0, r0, r1
 	lsl	r0, r0, #0x18
 	lsr	r5, r0, #0x18
 	cmp	r5, #0
-	bne	.L341	@cond_branch
-	ldr	r4, .L344+0x4
+	bne	.L354	@cond_branch
+	ldr	r4, .L357+0x4
 	ldr	r0, [r4]
 	ldrb	r0, [r0, #0x10]
 	mov	r1, #0x0
@@ -6642,26 +6691,26 @@ Task_OakSpeech_DoNamingScreen:
 	ldr	r0, [r4]
 	ldrh	r0, [r0, #0x10]
 	cmp	r0, #0
-	bne	.L342	@cond_branch
-	ldr	r0, .L344+0x8
+	bne	.L355	@cond_branch
+	ldr	r0, .L357+0x8
 	ldr	r1, [r0]
 	ldrb	r2, [r1, #0x8]
 	str	r5, [sp]
-	ldr	r0, .L344+0xc
+	ldr	r0, .L357+0xc
 	str	r0, [sp, #0x4]
 	mov	r0, #0x0
 	mov	r3, #0x0
 	bl	DoNamingScreen
-	b	.L343
-.L345:
+	b	.L356
+.L358:
 	.align	2, 0
-.L344:
+.L357:
 	.word	gPaletteFade
 	.word	sOakSpeechResources
 	.word	gSaveBlock2Ptr
 	.word	CB2_ReturnFromNamingScreen
-.L342:
-	ldr	r0, .L346
+.L355:
+	ldr	r0, .L359
 	lsl	r4, r6, #0x2
 	add	r4, r4, r6
 	lsl	r4, r4, #0x3
@@ -6675,30 +6724,30 @@ Task_OakSpeech_DoNamingScreen:
 	lsl	r0, r0, #0x18
 	lsr	r0, r0, #0x18
 	bl	RemoveWindow
-	ldr	r0, .L346+0x4
+	ldr	r0, .L359+0x4
 	ldr	r1, [r0]
-	ldr	r0, .L346+0x8
+	ldr	r0, .L359+0x8
 	add	r1, r1, r0
 	str	r5, [sp]
-	ldr	r0, .L346+0xc
+	ldr	r0, .L359+0xc
 	str	r0, [sp, #0x4]
 	mov	r0, #0x4
 	mov	r2, #0x0
 	mov	r3, #0x0
 	bl	DoNamingScreen
-.L343:
+.L356:
 	add	r0, r6, #0
 	mov	r1, #0x1
 	bl	DestroyPikachuOrPlatformSprites
 	bl	FreeAllWindowBuffers
-.L341:
+.L354:
 	add	sp, sp, #0x8
 	pop	{r4, r5, r6}
 	pop	{r0}
 	bx	r0
-.L347:
+.L360:
 	.align	2, 0
-.L346:
+.L359:
 	.word	gTasks
 	.word	gSaveBlock1Ptr
 	.word	0x3a4c
@@ -6716,45 +6765,45 @@ Task_OakSpeech_ConfirmName:
 	lsl	r1, r0, #0x2
 	add	r1, r1, r0
 	lsl	r6, r1, #0x3
-	ldr	r7, .L359
+	ldr	r7, .L372
 	add	r5, r6, r7
-	ldr	r0, .L359+0x4
+	ldr	r0, .L372+0x4
 	ldrb	r1, [r0, #0x7]
 	mov	r0, #0x80
 	and	r0, r0, r1
 	cmp	r0, #0
-	bne	.L349	@cond_branch
+	bne	.L362	@cond_branch
 	mov	r1, #0x1e
 	ldrsh	r0, [r5, r1]
 	cmp	r0, #0x1
-	bne	.L350	@cond_branch
-	ldr	r0, .L359+0x8
+	bne	.L363	@cond_branch
+	ldr	r0, .L372+0x8
 	ldr	r0, [r0]
 	ldrh	r0, [r0, #0x10]
 	cmp	r0, #0
-	bne	.L351	@cond_branch
-	ldr	r0, .L359+0xc
-	ldr	r1, .L359+0x10
+	bne	.L364	@cond_branch
+	ldr	r0, .L372+0xc
+	ldr	r1, .L372+0x10
 	bl	StringExpandPlaceholders
-	b	.L352
-.L360:
+	b	.L365
+.L373:
 	.align	2, 0
-.L359:
+.L372:
 	.word	gTasks+0x8
 	.word	gPaletteFade
 	.word	sOakSpeechResources
 	.word	gStringVar4
 	.word	gOakSpeech_Text_SoYourNameIsPlayer
-.L351:
-	ldr	r0, .L361
-	ldr	r1, .L361+0x4
+.L364:
+	ldr	r0, .L374
+	ldr	r1, .L374+0x4
 	bl	StringExpandPlaceholders
-.L352:
+.L365:
 	mov	r0, #0x0
 	mov	r1, #0x0
 	bl	DrawDialogueFrame
-	ldr	r2, .L361
-	ldr	r0, .L361+0x8
+	ldr	r2, .L374
+	ldr	r0, .L374+0x8
 	ldr	r0, [r0]
 	ldrb	r3, [r0, #0x1f]
 	mov	r4, #0x0
@@ -6774,32 +6823,32 @@ Task_OakSpeech_ConfirmName:
 	strh	r4, [r5, #0x1e]
 	mov	r0, #0x19
 	strh	r0, [r5, #0x6]
-	b	.L349
-.L362:
+	b	.L362
+.L375:
 	.align	2, 0
-.L361:
+.L374:
 	.word	gStringVar4
 	.word	gOakSpeech_Text_ConfirmRivalName
 	.word	sOakSpeechResources
-.L350:
+.L363:
 	mov	r0, #0x0
 	bl	IsTextPrinterActive
 	lsl	r0, r0, #0x10
 	cmp	r0, #0
-	bne	.L349	@cond_branch
+	bne	.L362	@cond_branch
 	ldrh	r0, [r5, #0x6]
 	mov	r1, #0x6
 	ldrsh	r4, [r5, r1]
 	cmp	r4, #0
-	beq	.L357	@cond_branch
+	beq	.L370	@cond_branch
 	sub	r0, r0, #0x1
 	strh	r0, [r5, #0x6]
-	b	.L349
-.L357:
+	b	.L362
+.L370:
 	bl	GetStdWindowBaseTileNum
 	lsl	r0, r0, #0x10
 	lsr	r0, r0, #0x10
-	ldr	r1, .L363
+	ldr	r1, .L376
 	str	r0, [sp]
 	mov	r0, #0xe
 	str	r0, [sp, #0x4]
@@ -6812,16 +6861,16 @@ Task_OakSpeech_ConfirmName:
 	add	r0, r7, #0
 	sub	r0, r0, #0x8
 	add	r0, r6, r0
-	ldr	r1, .L363+0x4
+	ldr	r1, .L376+0x4
 	str	r1, [r0]
-.L349:
+.L362:
 	add	sp, sp, #0x10
 	pop	{r4, r5, r6, r7}
 	pop	{r0}
 	bx	r0
-.L364:
+.L377:
 	.align	2, 0
-.L363:
+.L376:
 	.word	sIntro_WindowTemplates+0x10
 	.word	Task_OakSpeech_HandleConfirmNameInput
 .Lfe33:
@@ -6838,51 +6887,51 @@ Task_OakSpeech_HandleConfirmNameInput:
 	lsl	r0, r0, #0x18
 	asr	r5, r0, #0x18
 	cmp	r5, #0
-	beq	.L367	@cond_branch
+	beq	.L380	@cond_branch
 	cmp	r5, #0
-	bgt	.L378	@cond_branch
+	bgt	.L391	@cond_branch
 	mov	r0, #0x1
 	neg	r0, r0
 	cmp	r5, r0
-	beq	.L373	@cond_branch
-	b	.L366
-.L378:
+	beq	.L386	@cond_branch
+	b	.L379
+.L391:
 	cmp	r5, #0x1
-	beq	.L373	@cond_branch
-	b	.L366
-.L367:
+	beq	.L386	@cond_branch
+	b	.L379
+.L380:
 	mov	r0, #0x5
 	bl	PlaySE
-	ldr	r1, .L380
+	ldr	r1, .L393
 	lsl	r0, r4, #0x2
 	add	r0, r0, r4
 	lsl	r0, r0, #0x3
 	add	r6, r0, r1
 	mov	r0, #0x28
 	strh	r0, [r6, #0xe]
-	ldr	r7, .L380+0x4
+	ldr	r7, .L393+0x4
 	ldr	r0, [r7]
 	ldrh	r0, [r0, #0x10]
 	cmp	r0, #0
-	bne	.L368	@cond_branch
+	bne	.L381	@cond_branch
 	mov	r0, #0x0
 	mov	r1, #0x1
 	bl	ClearDialogWindowAndFrame
 	add	r0, r4, #0
 	mov	r1, #0x2
 	bl	CreateFadeInTask
-	ldr	r0, .L380+0x8
+	ldr	r0, .L393+0x8
 	str	r0, [r6]
-	b	.L366
-.L381:
+	b	.L379
+.L394:
 	.align	2, 0
-.L380:
+.L393:
 	.word	gTasks
 	.word	sOakSpeechResources
 	.word	Task_OakSpeech_FadeOutPlayerPic
-.L368:
-	ldr	r4, .L382
-	ldr	r1, .L382+0x4
+.L381:
+	ldr	r4, .L395
+	ldr	r1, .L395+0x4
 	add	r0, r4, #0
 	bl	StringExpandPlaceholders
 	mov	r0, #0x0
@@ -6904,53 +6953,53 @@ Task_OakSpeech_HandleConfirmNameInput:
 	mov	r0, #0x0
 	mov	r1, #0x3
 	bl	CopyWindowToVram
-	ldr	r0, .L382+0x8
+	ldr	r0, .L395+0x8
 	str	r0, [r6]
-	b	.L366
-.L383:
+	b	.L379
+.L396:
 	.align	2, 0
-.L382:
+.L395:
 	.word	gStringVar4
 	.word	gOakSpeech_Text_RememberRivalsName
 	.word	Task_OakSpeech_FadeOutRivalPic
-.L373:
+.L386:
 	mov	r0, #0x5
 	bl	PlaySE
-	ldr	r0, .L384
+	ldr	r0, .L397
 	ldr	r0, [r0]
 	ldrh	r0, [r0, #0x10]
 	cmp	r0, #0
-	bne	.L374	@cond_branch
-	ldr	r0, .L384+0x4
+	bne	.L387	@cond_branch
+	ldr	r0, .L397+0x4
 	lsl	r1, r4, #0x2
 	add	r1, r1, r4
 	lsl	r1, r1, #0x3
 	add	r1, r1, r0
-	ldr	r0, .L384+0x8
-	b	.L379
-.L385:
+	ldr	r0, .L397+0x8
+	b	.L392
+.L398:
 	.align	2, 0
-.L384:
+.L397:
 	.word	sOakSpeechResources
 	.word	gTasks
 	.word	Task_OakSpeech_FadeOutForPlayerNamingScreen
-.L374:
-	ldr	r0, .L386
+.L387:
+	ldr	r0, .L399
 	lsl	r1, r4, #0x2
 	add	r1, r1, r4
 	lsl	r1, r1, #0x3
 	add	r1, r1, r0
-	ldr	r0, .L386+0x4
-.L379:
+	ldr	r0, .L399+0x4
+.L392:
 	str	r0, [r1]
-.L366:
+.L379:
 	add	sp, sp, #0x10
 	pop	{r4, r5, r6, r7}
 	pop	{r0}
 	bx	r0
-.L387:
+.L400:
 	.align	2, 0
-.L386:
+.L399:
 	.word	gTasks
 	.word	Task_OakSpeech_RepeatNameQuestion
 .Lfe34:
@@ -6965,38 +7014,38 @@ Task_OakSpeech_FadeOutPlayerPic:
 	lsl	r1, r0, #0x2
 	add	r1, r1, r0
 	lsl	r5, r1, #0x3
-	ldr	r6, .L392
+	ldr	r6, .L405
 	add	r4, r5, r6
 	mov	r1, #0x4
 	ldrsh	r0, [r4, r1]
 	cmp	r0, #0
-	beq	.L389	@cond_branch
+	beq	.L402	@cond_branch
 	bl	ClearTrainerPic
 	ldrh	r1, [r4, #0x6]
 	mov	r2, #0x6
 	ldrsh	r0, [r4, r2]
 	cmp	r0, #0
-	beq	.L390	@cond_branch
+	beq	.L403	@cond_branch
 	sub	r0, r1, #0x1
 	strh	r0, [r4, #0x6]
-	b	.L389
-.L393:
+	b	.L402
+.L406:
 	.align	2, 0
-.L392:
+.L405:
 	.word	gTasks+0x8
-.L390:
+.L403:
 	add	r0, r6, #0
 	sub	r0, r0, #0x8
 	add	r0, r5, r0
-	ldr	r1, .L394
+	ldr	r1, .L407
 	str	r1, [r0]
-.L389:
+.L402:
 	pop	{r4, r5, r6}
 	pop	{r0}
 	bx	r0
-.L395:
+.L408:
 	.align	2, 0
-.L394:
+.L407:
 	.word	Task_OakSpeech_FadeInRivalPic
 .Lfe35:
 	.size	 Task_OakSpeech_FadeOutPlayerPic,.Lfe35-Task_OakSpeech_FadeOutPlayerPic
@@ -7011,27 +7060,27 @@ Task_OakSpeech_FadeOutRivalPic:
 	bl	IsTextPrinterActive
 	lsl	r0, r0, #0x10
 	cmp	r0, #0
-	bne	.L397	@cond_branch
+	bne	.L410	@cond_branch
 	mov	r0, #0x0
 	mov	r1, #0x1
 	bl	ClearDialogWindowAndFrame
 	add	r0, r4, #0
 	mov	r1, #0x2
 	bl	CreateFadeInTask
-	ldr	r0, .L398
+	ldr	r0, .L411
 	lsl	r1, r4, #0x2
 	add	r1, r1, r4
 	lsl	r1, r1, #0x3
 	add	r1, r1, r0
-	ldr	r0, .L398+0x4
+	ldr	r0, .L411+0x4
 	str	r0, [r1]
-.L397:
+.L410:
 	pop	{r4}
 	pop	{r0}
 	bx	r0
-.L399:
+.L412:
 	.align	2, 0
-.L398:
+.L411:
 	.word	gTasks
 	.word	Task_OakSpeech_ReshowPlayersPic
 .Lfe36:
@@ -7048,28 +7097,28 @@ Task_OakSpeech_FadeInRivalPic:
 	mov	r1, #0x0
 	mov	r2, #0x0
 	bl	ChangeBgX
-	ldr	r0, .L401
+	ldr	r0, .L414
 	lsl	r4, r5, #0x2
 	add	r4, r4, r5
 	lsl	r4, r4, #0x3
 	add	r4, r4, r0
 	mov	r1, #0x0
 	strh	r1, [r4, #0xa]
-	ldr	r0, .L401+0x4
+	ldr	r0, .L414+0x4
 	strh	r1, [r0]
 	mov	r0, #0x2
 	bl	LoadTrainerPic
 	add	r0, r5, #0
 	mov	r1, #0x2
 	bl	CreateFadeOutTask
-	ldr	r0, .L401+0x8
+	ldr	r0, .L414+0x8
 	str	r0, [r4]
 	pop	{r4, r5}
 	pop	{r0}
 	bx	r0
-.L402:
+.L415:
 	.align	2, 0
-.L401:
+.L414:
 	.word	gTasks
 	.word	gSpriteCoordOffsetX
 	.word	Task_OakSpeech_AskRivalsName
@@ -7086,23 +7135,23 @@ Task_OakSpeech_AskRivalsName:
 	lsl	r0, r5, #0x2
 	add	r0, r0, r5
 	lsl	r0, r0, #0x3
-	ldr	r1, .L407
+	ldr	r1, .L420
 	add	r0, r0, r1
 	mov	r1, #0x4
 	ldrsh	r0, [r0, r1]
 	cmp	r0, #0
-	beq	.L404	@cond_branch
+	beq	.L417	@cond_branch
 	mov	r0, #0x0
 	mov	r1, #0x0
 	bl	DrawDialogueFrame
-	ldr	r2, .L407+0x4
-	ldr	r4, .L407+0x8
+	ldr	r2, .L420+0x4
+	ldr	r4, .L420+0x8
 	cmp	r2, r4
-	beq	.L405	@cond_branch
+	beq	.L418	@cond_branch
 	add	r0, r4, #0
 	add	r1, r2, #0
 	bl	StringExpandPlaceholders
-	ldr	r0, .L407+0xc
+	ldr	r0, .L420+0xc
 	ldr	r0, [r0]
 	ldrb	r3, [r0, #0x1f]
 	mov	r0, #0x0
@@ -7117,16 +7166,16 @@ Task_OakSpeech_AskRivalsName:
 	mov	r1, #0x4
 	add	r2, r4, #0
 	bl	AddTextPrinterParameterized2
-	b	.L406
-.L408:
+	b	.L419
+.L421:
 	.align	2, 0
-.L407:
+.L420:
 	.word	gTasks+0x8
 	.word	gOakSpeech_Text_WhatWasHisName
 	.word	gStringVar4
 	.word	sOakSpeechResources
-.L405:
-	ldr	r0, .L409
+.L418:
+	ldr	r0, .L422
 	ldr	r0, [r0]
 	ldrb	r3, [r0, #0x1f]
 	mov	r0, #0x0
@@ -7140,29 +7189,29 @@ Task_OakSpeech_AskRivalsName:
 	mov	r0, #0x0
 	mov	r1, #0x4
 	bl	AddTextPrinterParameterized2
-.L406:
+.L419:
 	mov	r0, #0x0
 	mov	r1, #0x3
 	bl	CopyWindowToVram
-	ldr	r0, .L409
+	ldr	r0, .L422
 	ldr	r1, [r0]
 	mov	r0, #0x1
 	strh	r0, [r1, #0x10]
-	ldr	r1, .L409+0x4
+	ldr	r1, .L422+0x4
 	lsl	r0, r5, #0x2
 	add	r0, r0, r5
 	lsl	r0, r0, #0x3
 	add	r0, r0, r1
-	ldr	r1, .L409+0x8
+	ldr	r1, .L422+0x8
 	str	r1, [r0]
-.L404:
+.L417:
 	add	sp, sp, #0x10
 	pop	{r4, r5}
 	pop	{r0}
 	bx	r0
-.L410:
+.L423:
 	.align	2, 0
-.L409:
+.L422:
 	.word	sOakSpeechResources
 	.word	gTasks
 	.word	Task_OakSpeech_MoveRivalDisplayNameOptions
@@ -7178,52 +7227,52 @@ Task_OakSpeech_ReshowPlayersPic:
 	lsl	r0, r5, #0x2
 	add	r0, r0, r5
 	lsl	r0, r0, #0x3
-	ldr	r1, .L417
+	ldr	r1, .L430
 	add	r4, r0, r1
 	mov	r1, #0x4
 	ldrsh	r0, [r4, r1]
 	cmp	r0, #0
-	beq	.L412	@cond_branch
+	beq	.L425	@cond_branch
 	bl	ClearTrainerPic
 	ldrh	r1, [r4, #0x6]
 	mov	r2, #0x6
 	ldrsh	r0, [r4, r2]
 	cmp	r0, #0
-	beq	.L413	@cond_branch
+	beq	.L426	@cond_branch
 	sub	r0, r1, #0x1
 	strh	r0, [r4, #0x6]
-	b	.L412
-.L418:
+	b	.L425
+.L431:
 	.align	2, 0
-.L417:
+.L430:
 	.word	gTasks+0x8
-.L413:
-	ldr	r0, .L419
+.L426:
+	ldr	r0, .L432
 	ldr	r0, [r0]
 	ldrb	r0, [r0, #0x8]
 	cmp	r0, #0
-	bne	.L415	@cond_branch
+	bne	.L428	@cond_branch
 	mov	r0, #0x0
 	mov	r1, #0x0
 	bl	LoadTrainerPic
-	b	.L416
-.L420:
+	b	.L429
+.L433:
 	.align	2, 0
-.L419:
+.L432:
 	.word	gSaveBlock2Ptr
-.L415:
+.L428:
 	mov	r0, #0x1
 	mov	r1, #0x0
 	bl	LoadTrainerPic
-.L416:
-	ldr	r0, .L421
+.L429:
+	ldr	r0, .L434
 	lsl	r4, r5, #0x2
 	add	r4, r4, r5
 	lsl	r4, r4, #0x3
 	add	r4, r4, r0
 	mov	r1, #0x0
 	strh	r1, [r4, #0xa]
-	ldr	r0, .L421+0x4
+	ldr	r0, .L434+0x4
 	strh	r1, [r0]
 	mov	r0, #0x2
 	mov	r2, #0x0
@@ -7231,15 +7280,15 @@ Task_OakSpeech_ReshowPlayersPic:
 	add	r0, r5, #0
 	mov	r1, #0x2
 	bl	CreateFadeOutTask
-	ldr	r0, .L421+0x8
+	ldr	r0, .L434+0x8
 	str	r0, [r4]
-.L412:
+.L425:
 	pop	{r4, r5}
 	pop	{r0}
 	bx	r0
-.L422:
+.L435:
 	.align	2, 0
-.L421:
+.L434:
 	.word	gTasks
 	.word	gSpriteCoordOffsetX
 	.word	Task_OakSpeech_LetsGo
@@ -7253,7 +7302,7 @@ Task_OakSpeech_LetsGo:
 	add	sp, sp, #-0x10
 	lsl	r0, r0, #0x18
 	lsr	r0, r0, #0x18
-	ldr	r2, .L427
+	ldr	r2, .L440
 	lsl	r1, r0, #0x2
 	add	r1, r1, r0
 	lsl	r1, r1, #0x3
@@ -7261,15 +7310,15 @@ Task_OakSpeech_LetsGo:
 	mov	r1, #0xc
 	ldrsh	r0, [r5, r1]
 	cmp	r0, #0
-	beq	.L424	@cond_branch
-	ldr	r4, .L427+0x4
-	ldr	r1, .L427+0x8
+	beq	.L437	@cond_branch
+	ldr	r4, .L440+0x4
+	ldr	r1, .L440+0x8
 	add	r0, r4, #0
 	bl	StringExpandPlaceholders
 	mov	r0, #0x0
 	mov	r1, #0x0
 	bl	DrawDialogueFrame
-	ldr	r0, .L427+0xc
+	ldr	r0, .L440+0xc
 	ldr	r0, [r0]
 	ldrb	r3, [r0, #0x1f]
 	mov	r0, #0x0
@@ -7289,16 +7338,16 @@ Task_OakSpeech_LetsGo:
 	bl	CopyWindowToVram
 	mov	r0, #0x1e
 	strh	r0, [r5, #0xe]
-	ldr	r0, .L427+0x10
+	ldr	r0, .L440+0x10
 	str	r0, [r5]
-.L424:
+.L437:
 	add	sp, sp, #0x10
 	pop	{r4, r5}
 	pop	{r0}
 	bx	r0
-.L428:
+.L441:
 	.align	2, 0
-.L427:
+.L440:
 	.word	gTasks
 	.word	gStringVar4
 	.word	gOakSpeech_Text_LetsGo
@@ -7317,8 +7366,8 @@ Task_OakSpeech_FadeOutBGM:
 	bl	IsTextPrinterActive
 	lsl	r0, r0, #0x10
 	cmp	r0, #0
-	bne	.L430	@cond_branch
-	ldr	r0, .L433
+	bne	.L443	@cond_branch
+	ldr	r0, .L446
 	lsl	r1, r4, #0x2
 	add	r1, r1, r4
 	lsl	r1, r1, #0x3
@@ -7327,26 +7376,26 @@ Task_OakSpeech_FadeOutBGM:
 	mov	r2, #0xe
 	ldrsh	r0, [r4, r2]
 	cmp	r0, #0
-	beq	.L431	@cond_branch
+	beq	.L444	@cond_branch
 	sub	r0, r1, #0x1
 	strh	r0, [r4, #0xe]
-	b	.L430
-.L434:
+	b	.L443
+.L447:
 	.align	2, 0
-.L433:
+.L446:
 	.word	gTasks
-.L431:
+.L444:
 	mov	r0, #0x4
 	bl	FadeOutBGM
-	ldr	r0, .L435
+	ldr	r0, .L448
 	str	r0, [r4]
-.L430:
+.L443:
 	pop	{r4}
 	pop	{r0}
 	bx	r0
-.L436:
+.L449:
 	.align	2, 0
-.L435:
+.L448:
 	.word	Task_OakSpeech_SetUpExitAnimation
 .Lfe41:
 	.size	 Task_OakSpeech_FadeOutBGM,.Lfe41-Task_OakSpeech_FadeOutBGM
@@ -7358,7 +7407,7 @@ Task_OakSpeech_SetUpExitAnimation:
 	add	r4, r0, #0
 	lsl	r4, r4, #0x18
 	lsr	r4, r4, #0x18
-	ldr	r0, .L438
+	ldr	r0, .L451
 	ldr	r1, [r0]
 	mov	r0, #0x0
 	strh	r0, [r1, #0x12]
@@ -7371,9 +7420,9 @@ Task_OakSpeech_SetUpExitAnimation:
 	pop	{r4}
 	pop	{r0}
 	bx	r0
-.L439:
+.L452:
 	.align	2, 0
-.L438:
+.L451:
 	.word	sOakSpeechResources
 .Lfe42:
 	.size	 Task_OakSpeech_SetUpExitAnimation,.Lfe42-Task_OakSpeech_SetUpExitAnimation
@@ -7387,7 +7436,7 @@ Task_OakSpeech_SetUpShrinkPlayerPic:
 	lsl	r4, r0, #0x2
 	add	r4, r4, r0
 	lsl	r4, r4, #0x3
-	ldr	r6, .L441
+	ldr	r6, .L454
 	add	r5, r4, r6
 	mov	r0, #0x2
 	mov	r1, #0x6
@@ -7403,14 +7452,14 @@ Task_OakSpeech_SetUpShrinkPlayerPic:
 	strh	r1, [r5, #0x1e]
 	sub	r6, r6, #0x8
 	add	r4, r4, r6
-	ldr	r0, .L441+0x4
+	ldr	r0, .L454+0x4
 	str	r0, [r4]
 	pop	{r4, r5, r6}
 	pop	{r0}
 	bx	r0
-.L442:
+.L455:
 	.align	2, 0
-.L441:
+.L454:
 	.word	gTasks+0x8
 	.word	Task_OakSpeech_ShrinkPlayerPic
 .Lfe43:
@@ -7428,10 +7477,10 @@ Task_OakSpeech_ShrinkPlayerPic:
 	lsl	r1, r0, #0x2
 	add	r1, r1, r0
 	lsl	r7, r1, #0x3
-	ldr	r0, .L447
+	ldr	r0, .L460
 	mov	r8, r0
 	add	r5, r7, r0
-	ldr	r0, .L447+0x4
+	ldr	r0, .L460+0x4
 	ldr	r1, [r0]
 	ldrh	r0, [r1, #0x12]
 	add	r0, r0, #0x1
@@ -7443,12 +7492,12 @@ Task_OakSpeech_ShrinkPlayerPic:
 	lsl	r0, r0, #0x10
 	lsr	r6, r0, #0x10
 	cmp	r6, #0
-	bne	.L444	@cond_branch
+	bne	.L457	@cond_branch
 	cmp	r4, #0x28
-	bne	.L445	@cond_branch
+	bne	.L458	@cond_branch
 	mov	r0, #0x27
 	bl	PlaySE
-.L445:
+.L458:
 	ldrh	r0, [r5, #0x4]
 	add	r1, r0, #0
 	sub	r1, r1, #0x20
@@ -7484,7 +7533,7 @@ Task_OakSpeech_ShrinkPlayerPic:
 	mov	r1, #0x4
 	ldrsh	r0, [r5, r1]
 	cmp	r0, #0x60
-	bgt	.L444	@cond_branch
+	bgt	.L457	@cond_branch
 	mov	r0, #0x1
 	strh	r0, [r5, #0x1e]
 	mov	r0, #0x24
@@ -7492,18 +7541,18 @@ Task_OakSpeech_ShrinkPlayerPic:
 	mov	r0, r8
 	sub	r0, r0, #0x8
 	add	r0, r7, r0
-	ldr	r1, .L447+0x8
+	ldr	r1, .L460+0x8
 	str	r1, [r0]
-.L444:
+.L457:
 	add	sp, sp, #0x10
 	pop	{r3}
 	mov	r8, r3
 	pop	{r4, r5, r6, r7}
 	pop	{r0}
 	bx	r0
-.L448:
+.L461:
 	.align	2, 0
-.L447:
+.L460:
 	.word	gTasks+0x8
 	.word	sOakSpeechResources
 	.word	Task_OakSpeech_FadePlayerPicToBlack
@@ -7515,7 +7564,7 @@ Task_OakSpeech_ShrinkPlayerPic:
 Task_OakSpeech_SetUpDestroyPlatformSprites:
 	push	{lr}
 	add	sp, sp, #-0x4
-	ldr	r0, .L450
+	ldr	r0, .L463
 	mov	r1, #0x1
 	bl	CreateTask
 	lsl	r0, r0, #0x18
@@ -7523,14 +7572,14 @@ Task_OakSpeech_SetUpDestroyPlatformSprites:
 	lsl	r1, r0, #0x2
 	add	r1, r1, r0
 	lsl	r1, r1, #0x3
-	ldr	r0, .L450+0x4
+	ldr	r0, .L463+0x4
 	add	r1, r1, r0
 	mov	r0, #0x0
 	strh	r0, [r1]
 	strh	r0, [r1, #0x2]
 	strh	r0, [r1, #0x4]
 	strh	r0, [r1, #0x1e]
-	ldr	r0, .L450+0x8
+	ldr	r0, .L463+0x8
 	mov	r1, #0x0
 	str	r1, [sp]
 	mov	r1, #0x4
@@ -7540,9 +7589,9 @@ Task_OakSpeech_SetUpDestroyPlatformSprites:
 	add	sp, sp, #0x4
 	pop	{r0}
 	bx	r0
-.L451:
+.L464:
 	.align	2, 0
-.L450:
+.L463:
 	.word	Task_OakSpeech_DestroyPlatformSprites
 	.word	gTasks+0x8
 	.word	-0xf031
@@ -7559,31 +7608,31 @@ Task_OakSpeech_DestroyPlatformSprites:
 	lsl	r0, r4, #0x2
 	add	r0, r0, r4
 	lsl	r0, r0, #0x3
-	ldr	r1, .L456
+	ldr	r1, .L469
 	add	r2, r0, r1
-	ldr	r0, .L456+0x4
+	ldr	r0, .L469+0x4
 	ldrb	r1, [r0, #0x7]
 	mov	r0, #0x80
 	and	r0, r0, r1
 	cmp	r0, #0
-	bne	.L453	@cond_branch
+	bne	.L466	@cond_branch
 	ldrh	r0, [r2, #0x2]
 	mov	r3, #0x2
 	ldrsh	r1, [r2, r3]
 	cmp	r1, #0
-	beq	.L454	@cond_branch
+	beq	.L467	@cond_branch
 	add	r0, r4, #0
 	bl	DestroyTask
 	add	r0, r4, #0
 	mov	r1, #0x1
 	bl	DestroyPikachuOrPlatformSprites
-	b	.L453
-.L457:
+	b	.L466
+.L470:
 	.align	2, 0
-.L456:
+.L469:
 	.word	gTasks+0x8
 	.word	gPaletteFade
-.L454:
+.L467:
 	add	r0, r0, #0x1
 	strh	r0, [r2, #0x2]
 	mov	r0, #0xf0
@@ -7593,7 +7642,7 @@ Task_OakSpeech_DestroyPlatformSprites:
 	mov	r2, #0x0
 	mov	r3, #0x10
 	bl	BeginNormalPaletteFade
-.L453:
+.L466:
 	add	sp, sp, #0x4
 	pop	{r4}
 	pop	{r0}
@@ -7605,7 +7654,7 @@ Task_OakSpeech_DestroyPlatformSprites:
 	.thumb_func
 Task_OakSpeech_SetUpFadePlayerPicWhite:
 	push	{lr}
-	ldr	r0, .L459
+	ldr	r0, .L472
 	mov	r1, #0x2
 	bl	CreateTask
 	lsl	r0, r0, #0x18
@@ -7613,7 +7662,7 @@ Task_OakSpeech_SetUpFadePlayerPicWhite:
 	lsl	r1, r0, #0x2
 	add	r1, r1, r0
 	lsl	r1, r1, #0x3
-	ldr	r0, .L459+0x4
+	ldr	r0, .L472+0x4
 	add	r1, r1, r0
 	mov	r2, #0x8
 	strh	r2, [r1]
@@ -7624,9 +7673,9 @@ Task_OakSpeech_SetUpFadePlayerPicWhite:
 	strh	r0, [r1, #0x1e]
 	pop	{r0}
 	bx	r0
-.L460:
+.L473:
 	.align	2, 0
-.L459:
+.L472:
 	.word	Task_OakSpeech_FadePlayerPicWhite
 	.word	gTasks+0x8
 .Lfe47:
@@ -7641,35 +7690,35 @@ Task_OakSpeech_FadePlayerPicWhite:
 	lsl	r0, r5, #0x2
 	add	r0, r0, r5
 	lsl	r0, r0, #0x3
-	ldr	r1, .L471
+	ldr	r1, .L484
 	add	r4, r0, r1
 	ldrh	r1, [r4]
 	mov	r2, #0x0
 	ldrsh	r0, [r4, r2]
 	cmp	r0, #0
-	beq	.L462	@cond_branch
+	beq	.L475	@cond_branch
 	sub	r0, r1, #0x1
 	strh	r0, [r4]
-	b	.L463
-.L472:
+	b	.L476
+.L485:
 	.align	2, 0
-.L471:
+.L484:
 	.word	gTasks+0x8
-.L462:
+.L475:
 	mov	r1, #0x2
 	ldrsh	r0, [r4, r1]
 	cmp	r0, #0
-	bgt	.L464	@cond_branch
+	bgt	.L477	@cond_branch
 	ldrh	r1, [r4, #0x4]
 	mov	r2, #0x4
 	ldrsh	r0, [r4, r2]
 	cmp	r0, #0
-	beq	.L464	@cond_branch
+	beq	.L477	@cond_branch
 	sub	r0, r1, #0x1
 	strh	r0, [r4, #0x4]
-.L464:
+.L477:
 	ldrb	r2, [r4, #0x1c]
-	ldr	r7, .L473
+	ldr	r7, .L486
 	mov	r0, #0x40
 	mov	r1, #0x20
 	add	r3, r7, #0
@@ -7685,12 +7734,12 @@ Task_OakSpeech_FadePlayerPicWhite:
 	lsl	r1, r1, #0x10
 	asr	r1, r1, #0x10
 	cmp	r1, #0xe
-	ble	.L463	@cond_branch
+	ble	.L476	@cond_branch
 	mov	r2, #0x0
-	ldr	r6, .L473+0x4
+	ldr	r6, .L486+0x4
 	add	r3, r7, #0
-	ldr	r4, .L473+0x8
-.L469:
+	ldr	r4, .L486+0x8
+.L482:
 	add	r0, r2, #0
 	add	r0, r0, #0x40
 	lsl	r0, r0, #0x1
@@ -7702,16 +7751,16 @@ Task_OakSpeech_FadePlayerPicWhite:
 	lsl	r0, r0, #0x18
 	lsr	r2, r0, #0x18
 	cmp	r2, #0x1f
-	bls	.L469	@cond_branch
+	bls	.L482	@cond_branch
 	add	r0, r5, #0
 	bl	DestroyTask
-.L463:
+.L476:
 	pop	{r4, r5, r6, r7}
 	pop	{r0}
 	bx	r0
-.L474:
+.L487:
 	.align	2, 0
-.L473:
+.L486:
 	.word	0x7fff
 	.word	gPlttBufferFaded
 	.word	gPlttBufferUnfaded
@@ -7725,7 +7774,7 @@ Task_OakSpeech_FadePlayerPicToBlack:
 	add	sp, sp, #-0x4
 	lsl	r0, r0, #0x18
 	lsr	r0, r0, #0x18
-	ldr	r2, .L478
+	ldr	r2, .L491
 	lsl	r1, r0, #0x2
 	add	r1, r1, r0
 	lsl	r1, r1, #0x3
@@ -7734,31 +7783,31 @@ Task_OakSpeech_FadePlayerPicToBlack:
 	mov	r2, #0x8
 	ldrsh	r1, [r4, r2]
 	cmp	r1, #0
-	beq	.L476	@cond_branch
+	beq	.L489	@cond_branch
 	sub	r0, r0, #0x1
 	strh	r0, [r4, #0x8]
-	b	.L477
-.L479:
+	b	.L490
+.L492:
 	.align	2, 0
-.L478:
+.L491:
 	.word	gTasks
-.L476:
+.L489:
 	str	r1, [sp]
 	mov	r0, #0x30
 	mov	r1, #0x2
 	mov	r2, #0x0
 	mov	r3, #0x10
 	bl	BeginNormalPaletteFade
-	ldr	r0, .L480
+	ldr	r0, .L493
 	str	r0, [r4]
-.L477:
+.L490:
 	add	sp, sp, #0x4
 	pop	{r4}
 	pop	{r0}
 	bx	r0
-.L481:
+.L494:
 	.align	2, 0
-.L480:
+.L493:
 	.word	Task_OakSpeech_WaitForFade
 .Lfe49:
 	.size	 Task_OakSpeech_FadePlayerPicToBlack,.Lfe49-Task_OakSpeech_FadePlayerPicToBlack
@@ -7769,25 +7818,25 @@ Task_OakSpeech_WaitForFade:
 	push	{lr}
 	lsl	r0, r0, #0x18
 	lsr	r2, r0, #0x18
-	ldr	r0, .L484
+	ldr	r0, .L497
 	ldrb	r1, [r0, #0x7]
 	mov	r0, #0x80
 	and	r0, r0, r1
 	cmp	r0, #0
-	bne	.L483	@cond_branch
-	ldr	r0, .L484+0x4
+	bne	.L496	@cond_branch
+	ldr	r0, .L497+0x4
 	lsl	r1, r2, #0x2
 	add	r1, r1, r2
 	lsl	r1, r1, #0x3
 	add	r1, r1, r0
-	ldr	r0, .L484+0x8
+	ldr	r0, .L497+0x8
 	str	r0, [r1]
-.L483:
+.L496:
 	pop	{r0}
 	bx	r0
-.L485:
+.L498:
 	.align	2, 0
-.L484:
+.L497:
 	.word	gPaletteFade
 	.word	gTasks
 	.word	Task_OakSpeech_FreeResources
@@ -7803,26 +7852,26 @@ Task_OakSpeech_FreeResources:
 	lsr	r4, r4, #0x18
 	bl	FreeAllWindowBuffers
 	bl	DestroyMonSpritesGfxManager
-	ldr	r5, .L487
+	ldr	r5, .L500
 	ldr	r0, [r5]
 	bl	Free
 	mov	r0, #0x0
 	str	r0, [r5]
-	ldr	r2, .L487+0x4
+	ldr	r2, .L500+0x4
 	ldrb	r1, [r2]
 	sub	r0, r0, #0x2
 	and	r0, r0, r1
 	strb	r0, [r2]
-	ldr	r0, .L487+0x8
+	ldr	r0, .L500+0x8
 	bl	SetMainCallback2
 	add	r0, r4, #0
 	bl	DestroyTask
 	pop	{r4, r5}
 	pop	{r0}
 	bx	r0
-.L488:
+.L501:
 	.align	2, 0
-.L487:
+.L500:
 	.word	sOakSpeechResources
 	.word	gTextFlags
 	.word	CB2_NewGame
@@ -7834,49 +7883,49 @@ Task_OakSpeech_FreeResources:
 CB2_ReturnFromNamingScreen:
 	push	{r4, r5, lr}
 	add	sp, sp, #-0x10
-	ldr	r0, .L507
+	ldr	r0, .L520
 	mov	r1, #0x87
 	lsl	r1, r1, #0x3
 	add	r0, r0, r1
 	ldrb	r0, [r0]
 	cmp	r0, #0x7
-	bls	.LCB5444
-	b	.L490	@long jump
-.LCB5444:
+	bls	.LCB5504
+	b	.L503	@long jump
+.LCB5504:
 	lsl	r0, r0, #0x2
-	ldr	r1, .L507+0x4
+	ldr	r1, .L520+0x4
 	add	r0, r0, r1
 	ldr	r0, [r0]
 	mov	pc, r0
-.L508:
+.L521:
 	.align	2, 0
-.L507:
+.L520:
 	.word	gMain
+	.word	.L517
+	.align	2, 0
+	.align	2, 0
+.L517:
 	.word	.L504
-	.align	2, 0
-	.align	2, 0
+	.word	.L505
+	.word	.L506
+	.word	.L507
+	.word	.L508
+	.word	.L509
+	.word	.L511
+	.word	.L516
 .L504:
-	.word	.L491
-	.word	.L492
-	.word	.L493
-	.word	.L494
-	.word	.L495
-	.word	.L496
-	.word	.L498
-	.word	.L503
-.L491:
 	mov	r0, #0x0
 	bl	SetVBlankCallback
 	add	r1, sp, #0x8
 	mov	r0, #0x0
 	strh	r0, [r1]
-	ldr	r1, .L509
+	ldr	r1, .L522
 	add	r0, sp, #0x8
 	str	r0, [r1]
 	mov	r0, #0xc0
 	lsl	r0, r0, #0x13
 	str	r0, [r1, #0x4]
-	ldr	r0, .L509+0x4
+	ldr	r0, .L522+0x4
 	str	r0, [r1, #0x8]
 	ldr	r0, [r1, #0x8]
 	mov	r2, #0x0
@@ -7886,15 +7935,15 @@ CB2_ReturnFromNamingScreen:
 	mov	r0, #0xe0
 	lsl	r0, r0, #0x13
 	str	r0, [r1, #0x4]
-	ldr	r0, .L509+0x8
+	ldr	r0, .L522+0x8
 	str	r0, [r1, #0x8]
 	ldr	r0, [r1, #0x8]
 	add	r0, sp, #0x8
 	strh	r2, [r0]
 	str	r0, [r1]
-	ldr	r0, .L509+0xc
+	ldr	r0, .L522+0xc
 	str	r0, [r1, #0x4]
-	ldr	r0, .L509+0x10
+	ldr	r0, .L522+0x10
 	str	r0, [r1, #0x8]
 	ldr	r0, [r1, #0x8]
 	bl	ResetPaletteFade
@@ -7902,23 +7951,23 @@ CB2_ReturnFromNamingScreen:
 	bl	ResetSpriteData
 	bl	FreeAllSpritePalettes
 	bl	ResetTempTileDataBuffers
-	b	.L490
-.L510:
+	b	.L503
+.L523:
 	.align	2, 0
-.L509:
+.L522:
 	.word	0x40000d4
 	.word	-0x7eff4000
 	.word	-0x7affff00
 	.word	0x5000002
 	.word	-0x7efffe01
-.L492:
+.L505:
 	mov	r0, #0x0
 	bl	ResetBgsAndClearDma3BusyFlags
-	ldr	r1, .L511
+	ldr	r1, .L524
 	mov	r0, #0x1
 	mov	r2, #0x3
 	bl	InitBgsFromTemplates
-	ldr	r4, .L511+0x4
+	ldr	r4, .L524+0x4
 	ldr	r1, [r4]
 	mov	r0, #0xe1
 	lsl	r0, r0, #0x5
@@ -7947,13 +7996,13 @@ CB2_ReturnFromNamingScreen:
 	mov	r1, #0x0
 	mov	r2, #0x0
 	bl	ChangeBgY
-	b	.L490
-.L512:
+	b	.L503
+.L525:
 	.align	2, 0
-.L511:
+.L524:
 	.word	sBgTemplates
 	.word	sOakSpeechResources
-.L493:
+.L506:
 	mov	r0, #0x40
 	mov	r1, #0x0
 	bl	SetGpuReg
@@ -7975,40 +8024,40 @@ CB2_ReturnFromNamingScreen:
 	mov	r0, #0x54
 	mov	r1, #0x0
 	bl	SetGpuReg
-	b	.L490
-.L494:
+	b	.L503
+.L507:
 	bl	FreeAllWindowBuffers
 	bl	InitStandardTextBoxWindows
 	bl	InitTextBoxGfxAndPrinters
-	ldr	r0, .L513
+	ldr	r0, .L526
 	mov	r1, #0x0
 	mov	r2, #0xe0
 	bl	LoadPalette
-	b	.L490
-.L514:
+	b	.L503
+.L527:
 	.align	2, 0
-.L513:
+.L526:
 	.word	sOakSpeech_Background_Pals
-.L495:
-	ldr	r1, .L515
+.L508:
+	ldr	r1, .L528
 	mov	r0, #0x0
 	str	r0, [sp]
 	mov	r0, #0x1
 	mov	r2, #0x0
 	mov	r3, #0x0
 	bl	DecompressAndCopyTileDataToVram
-	b	.L490
-.L516:
+	b	.L503
+.L529:
 	.align	2, 0
-.L515:
+.L528:
 	.word	sOakSpeech_Background_Tiles
-.L496:
+.L509:
 	bl	FreeTempTileDataBuffersIfPossible
 	lsl	r0, r0, #0x18
 	cmp	r0, #0
-	beq	.LCB5639
-	b	.L489	@long jump
-.LCB5639:
+	beq	.LCB5699
+	b	.L502	@long jump
+.LCB5699:
 	mov	r5, #0x1e
 	str	r5, [sp]
 	mov	r4, #0x14
@@ -8018,7 +8067,7 @@ CB2_ReturnFromNamingScreen:
 	mov	r2, #0x0
 	mov	r3, #0x0
 	bl	FillBgTilemapBufferRect_Palette0
-	ldr	r1, .L517
+	ldr	r1, .L530
 	mov	r0, #0x1
 	mov	r2, #0x0
 	mov	r3, #0x0
@@ -8034,58 +8083,58 @@ CB2_ReturnFromNamingScreen:
 	bl	CopyBgTilemapBufferToVram
 	mov	r0, #0x2
 	bl	CopyBgTilemapBufferToVram
-	b	.L490
-.L518:
+	b	.L503
+.L531:
 	.align	2, 0
-.L517:
+.L530:
 	.word	sOakSpeech_Background_Tilemap
-.L498:
-	ldr	r0, .L519
+.L511:
+	ldr	r0, .L532
 	mov	r1, #0x0
 	bl	CreateTask
 	lsl	r0, r0, #0x18
 	lsr	r5, r0, #0x18
-	ldr	r0, .L519+0x4
+	ldr	r0, .L532+0x4
 	ldr	r0, [r0]
 	ldrh	r0, [r0, #0x10]
 	cmp	r0, #0
-	bne	.L499	@cond_branch
-	ldr	r0, .L519+0x8
+	bne	.L512	@cond_branch
+	ldr	r0, .L532+0x8
 	ldr	r0, [r0]
 	ldrb	r0, [r0, #0x8]
 	cmp	r0, #0
-	bne	.L500	@cond_branch
+	bne	.L513	@cond_branch
 	mov	r0, #0x0
-	b	.L506
-.L520:
+	b	.L519
+.L533:
 	.align	2, 0
-.L519:
+.L532:
 	.word	Task_OakSpeech_ConfirmName
 	.word	sOakSpeechResources
 	.word	gSaveBlock2Ptr
-.L500:
+.L513:
 	mov	r0, #0x1
-.L506:
+.L519:
 	mov	r1, #0x0
 	bl	LoadTrainerPic
-	b	.L502
-.L499:
+	b	.L515
+.L512:
 	mov	r0, #0x2
 	mov	r1, #0x0
 	bl	LoadTrainerPic
-.L502:
-	ldr	r0, .L521
+.L515:
+	ldr	r0, .L534
 	lsl	r4, r5, #0x2
 	add	r4, r4, r5
 	lsl	r4, r4, #0x3
 	add	r4, r4, r0
-	ldr	r0, .L521+0x4
+	ldr	r0, .L534+0x4
 	strh	r0, [r4, #0xa]
-	ldr	r1, .L521+0x8
+	ldr	r1, .L534+0x8
 	ldrh	r0, [r1]
 	add	r0, r0, #0x3c
 	strh	r0, [r1]
-	ldr	r1, .L521+0xc
+	ldr	r1, .L534+0xc
 	mov	r0, #0x2
 	mov	r2, #0x0
 	bl	ChangeBgX
@@ -8094,15 +8143,15 @@ CB2_ReturnFromNamingScreen:
 	bl	CreatePikachuOrPlatformSprites
 	mov	r0, #0x1
 	strh	r0, [r4, #0x26]
-	b	.L490
-.L522:
+	b	.L503
+.L535:
 	.align	2, 0
-.L521:
+.L534:
 	.word	gTasks
 	.word	0xffc4
 	.word	gSpriteCoordOffsetX
 	.word	-0x3c00
-.L503:
+.L516:
 	mov	r0, #0x1
 	neg	r0, r0
 	mov	r1, #0x0
@@ -8122,38 +8171,38 @@ CB2_ReturnFromNamingScreen:
 	bl	ShowBg
 	mov	r0, #0x1
 	bl	EnableInterrupts
-	ldr	r0, .L523
+	ldr	r0, .L536
 	bl	SetVBlankCallback
-	ldr	r2, .L523+0x4
+	ldr	r2, .L536+0x4
 	ldrb	r0, [r2]
 	mov	r1, #0x1
 	orr	r0, r0, r1
 	strb	r0, [r2]
-	ldr	r0, .L523+0x8
+	ldr	r0, .L536+0x8
 	bl	SetMainCallback2
-	b	.L489
-.L524:
+	b	.L502
+.L537:
 	.align	2, 0
-.L523:
+.L536:
 	.word	VBlankCB_NewGameScene
 	.word	gTextFlags
 	.word	CB2_NewGameScene
-.L490:
-	ldr	r1, .L525
+.L503:
+	ldr	r1, .L538
 	mov	r0, #0x87
 	lsl	r0, r0, #0x3
 	add	r1, r1, r0
 	ldrb	r0, [r1]
 	add	r0, r0, #0x1
 	strb	r0, [r1]
-.L489:
+.L502:
 	add	sp, sp, #0x10
 	pop	{r4, r5}
 	pop	{r0}
 	bx	r0
-.L526:
+.L539:
 	.align	2, 0
-.L525:
+.L538:
 	.word	gMain
 .Lfe52:
 	.size	 CB2_ReturnFromNamingScreen,.Lfe52-CB2_ReturnFromNamingScreen
@@ -8165,33 +8214,33 @@ CreateNidoranFSprite:
 	add	r5, r0, #0
 	lsl	r5, r5, #0x18
 	lsr	r5, r5, #0x18
-	ldr	r4, .L528
+	ldr	r4, .L541
 	mov	r0, #0x0
 	bl	MonSpritesGfxManager_GetSpritePtr
 	add	r1, r0, #0
 	add	r0, r4, #0
-	mov	r2, #0x1d
+	mov	r2, #0x27
 	bl	DecompressPicFromTable
-	ldr	r0, .L528+0x4
+	ldr	r0, .L541+0x4
 	bl	LoadCompressedSpritePaletteUsingHeap
-	mov	r0, #0x1d
+	mov	r0, #0x27
 	mov	r1, #0x0
 	bl	SetMultiuseSpriteTemplateToPokemon
-	ldr	r0, .L528+0x8
+	ldr	r0, .L541+0x8
 	mov	r1, #0x60
 	mov	r2, #0x60
 	mov	r3, #0x1
 	bl	CreateSprite
 	lsl	r0, r0, #0x18
 	lsr	r0, r0, #0x18
-	ldr	r4, .L528+0xc
+	ldr	r4, .L541+0xc
 	lsl	r2, r0, #0x4
 	add	r2, r2, r0
 	lsl	r2, r2, #0x2
 	add	r1, r4, #0
 	add	r1, r1, #0x1c
 	add	r1, r2, r1
-	ldr	r3, .L528+0x10
+	ldr	r3, .L541+0x10
 	str	r3, [r1]
 	add	r2, r2, r4
 	ldrb	r3, [r2, #0x5]
@@ -8205,7 +8254,7 @@ CreateNidoranFSprite:
 	ldrb	r1, [r2]
 	orr	r1, r1, r3
 	strb	r1, [r2]
-	ldr	r2, .L528+0x14
+	ldr	r2, .L541+0x14
 	lsl	r1, r5, #0x2
 	add	r1, r1, r5
 	lsl	r1, r1, #0x3
@@ -8214,11 +8263,11 @@ CreateNidoranFSprite:
 	pop	{r4, r5}
 	pop	{r0}
 	bx	r0
-.L529:
+.L542:
 	.align	2, 0
-.L528:
-	.word	gMonFrontPicTable+0xe8
-	.word	gMonPaletteTable+0xe8
+.L541:
+	.word	gMonFrontPicTable+0x138
+	.word	gMonPaletteTable+0x138
 	.word	gMultiuseSpriteTemplate
 	.word	gSprites
 	.word	SpriteCallbackDummy
@@ -8229,7 +8278,7 @@ CreateNidoranFSprite:
 	.type	 SpriteCB_Pikachu,function
 	.thumb_func
 SpriteCB_Pikachu:
-	ldr	r3, .L531
+	ldr	r3, .L544
 	mov	r1, #0x2e
 	ldrsh	r2, [r0, r1]
 	lsl	r1, r2, #0x4
@@ -8240,9 +8289,9 @@ SpriteCB_Pikachu:
 	ldrb	r1, [r1]
 	strh	r1, [r0, #0x26]
 	bx	lr
-.L532:
+.L545:
 	.align	2, 0
-.L531:
+.L544:
 	.word	gSprites
 .Lfe54:
 	.size	 SpriteCB_Pikachu,.Lfe54-SpriteCB_Pikachu
@@ -8262,12 +8311,12 @@ CreatePikachuOrPlatformSprites:
 	lsr	r1, r1, #0x18
 	mov	r4, #0x0
 	cmp	r1, #0
-	beq	.L535	@cond_branch
+	beq	.L548	@cond_branch
 	cmp	r1, #0x1
-	beq	.L536	@cond_branch
-	b	.L534
-.L535:
-	ldr	r4, .L544
+	beq	.L549	@cond_branch
+	b	.L547
+.L548:
+	ldr	r4, .L557
 	add	r0, r4, #0
 	bl	LoadCompressedSpriteSheet
 	add	r0, r4, #0
@@ -8276,9 +8325,9 @@ CreatePikachuOrPlatformSprites:
 	add	r4, r4, #0x10
 	add	r0, r4, #0
 	bl	LoadCompressedSpriteSheet
-	ldr	r0, .L544+0x4
+	ldr	r0, .L557+0x4
 	bl	LoadSpritePalette
-	ldr	r0, .L544+0x8
+	ldr	r0, .L557+0x8
 	mov	r8, r0
 	mov	r1, #0x10
 	mov	r2, #0x11
@@ -8286,7 +8335,7 @@ CreatePikachuOrPlatformSprites:
 	bl	CreateSprite
 	lsl	r0, r0, #0x18
 	lsr	r7, r0, #0x18
-	ldr	r6, .L544+0xc
+	ldr	r6, .L557+0xc
 	lsl	r1, r7, #0x4
 	add	r1, r1, r7
 	lsl	r1, r1, #0x2
@@ -8297,7 +8346,7 @@ CreatePikachuOrPlatformSprites:
 	add	r0, r5, #0
 	and	r0, r0, r2
 	strb	r0, [r1, #0x5]
-	ldr	r0, .L544+0x10
+	ldr	r0, .L557+0x10
 	mov	r1, r9
 	lsl	r4, r1, #0x2
 	add	r4, r4, r9
@@ -8326,7 +8375,7 @@ CreatePikachuOrPlatformSprites:
 	add	r2, r2, r6
 	mov	sl, r2
 	add	r1, r1, sl
-	ldr	r3, .L544+0x14
+	ldr	r3, .L557+0x14
 	mov	r9, r3
 	str	r3, [r1]
 	strh	r7, [r4, #0x18]
@@ -8352,31 +8401,31 @@ CreatePikachuOrPlatformSprites:
 	mov	r1, r9
 	str	r1, [r0]
 	strh	r7, [r4, #0x1a]
-	b	.L534
-.L545:
+	b	.L547
+.L558:
 	.align	2, 0
-.L544:
+.L557:
 	.word	sPikachuIntro_Pikachu_SpriteSheets
 	.word	sPikachuIntro_Pikachu_SpritePalette
 	.word	sPikachuIntro_Pikachu_SpriteTemplates
 	.word	gSprites
 	.word	gTasks
 	.word	SpriteCB_Pikachu
-.L536:
-	ldr	r0, .L546
+.L549:
+	ldr	r0, .L559
 	bl	LoadCompressedSpriteSheet
-	ldr	r0, .L546+0x4
+	ldr	r0, .L559+0x4
 	bl	LoadSpritePalette
 	mov	r2, r9
 	lsl	r5, r2, #0x2
-	ldr	r3, .L546+0x8
+	ldr	r3, .L559+0x8
 	mov	r8, r3
-	ldr	r6, .L546+0xc
-.L540:
+	ldr	r6, .L559+0xc
+.L553:
 	lsl	r0, r4, #0x1
 	add	r0, r0, r4
 	lsl	r0, r0, #0x3
-	ldr	r1, .L546+0x10
+	ldr	r1, .L559+0x10
 	add	r0, r0, r1
 	lsl	r1, r4, #0x15
 	mov	r2, #0xb0
@@ -8423,8 +8472,8 @@ CreatePikachuOrPlatformSprites:
 	lsl	r0, r0, #0x18
 	lsr	r4, r0, #0x18
 	cmp	r4, #0x2
-	bls	.L540	@cond_branch
-.L534:
+	bls	.L553	@cond_branch
+.L547:
 	pop	{r3, r4, r5}
 	mov	r8, r3
 	mov	r9, r4
@@ -8432,9 +8481,9 @@ CreatePikachuOrPlatformSprites:
 	pop	{r4, r5, r6, r7}
 	pop	{r0}
 	bx	r0
-.L547:
+.L560:
 	.align	2, 0
-.L546:
+.L559:
 	.word	sOakSpeech_Platform_SpriteSheet
 	.word	sOakSpeech_Platform_SpritePalette
 	.word	gTasks+0x8
@@ -8455,8 +8504,8 @@ DestroyPikachuOrPlatformSprites:
 	lsl	r1, r0, #0x2
 	add	r1, r1, r0
 	lsl	r5, r1, #0x3
-	ldr	r7, .L559
-.L552:
+	ldr	r7, .L572
+.L565:
 	add	r0, r4, #0x7
 	lsl	r0, r0, #0x1
 	add	r0, r0, r5
@@ -8466,49 +8515,49 @@ DestroyPikachuOrPlatformSprites:
 	lsl	r0, r1, #0x4
 	add	r0, r0, r1
 	lsl	r0, r0, #0x2
-	ldr	r1, .L559+0x4
+	ldr	r1, .L572+0x4
 	add	r0, r0, r1
 	bl	DestroySprite
 	add	r0, r4, #0x1
 	lsl	r0, r0, #0x18
 	lsr	r4, r0, #0x18
 	cmp	r4, #0x2
-	bls	.L552	@cond_branch
+	bls	.L565	@cond_branch
 	cmp	r6, #0
-	beq	.L555	@cond_branch
+	beq	.L568	@cond_branch
 	cmp	r6, #0x1
-	beq	.L556	@cond_branch
-	b	.L554
-.L560:
+	beq	.L569	@cond_branch
+	b	.L567
+.L573:
 	.align	2, 0
-.L559:
+.L572:
 	.word	gTasks+0x8
 	.word	gSprites
-.L555:
-	ldr	r0, .L561
+.L568:
+	ldr	r0, .L574
 	bl	FreeSpriteTilesByTag
-	ldr	r0, .L561+0x4
+	ldr	r0, .L574+0x4
 	bl	FreeSpriteTilesByTag
-	ldr	r4, .L561+0x8
+	ldr	r4, .L574+0x8
 	add	r0, r4, #0
 	bl	FreeSpriteTilesByTag
 	add	r0, r4, #0
 	bl	FreeSpritePaletteByTag
-	b	.L554
-.L562:
+	b	.L567
+.L575:
 	.align	2, 0
-.L561:
+.L574:
 	.word	0x1003
 	.word	0x1002
 	.word	0x1001
-.L556:
+.L569:
 	mov	r4, #0x80
 	lsl	r4, r4, #0x5
 	add	r0, r4, #0
 	bl	FreeSpriteTilesByTag
 	add	r0, r4, #0
 	bl	FreeSpritePaletteByTag
-.L554:
+.L567:
 	pop	{r4, r5, r6, r7}
 	pop	{r0}
 	bx	r0
@@ -8526,84 +8575,84 @@ LoadTrainerPic:
 	lsl	r1, r1, #0x10
 	lsr	r4, r1, #0x10
 	cmp	r0, #0x1
-	beq	.L566	@cond_branch
+	beq	.L579	@cond_branch
 	cmp	r0, #0x1
-	bgt	.L571	@cond_branch
+	bgt	.L584	@cond_branch
 	cmp	r0, #0
-	beq	.L565	@cond_branch
-	b	.L563
-.L571:
+	beq	.L578	@cond_branch
+	b	.L576
+.L584:
 	cmp	r2, #0x2
-	beq	.L567	@cond_branch
+	beq	.L580	@cond_branch
 	cmp	r2, #0x3
-	beq	.L568	@cond_branch
-	b	.L563
-.L565:
-	ldr	r0, .L578
+	beq	.L581	@cond_branch
+	b	.L576
+.L578:
+	ldr	r0, .L591
 	mov	r1, #0x40
 	mov	r2, #0x40
 	bl	LoadPalette
-	ldr	r0, .L578+0x4
-	b	.L577
-.L579:
+	ldr	r0, .L591+0x4
+	b	.L590
+.L592:
 	.align	2, 0
-.L578:
+.L591:
 	.word	sOakSpeech_Red_Pal
 	.word	sOakSpeech_Red_Tiles
-.L566:
-	ldr	r0, .L580
+.L579:
+	ldr	r0, .L593
 	mov	r1, #0x40
 	mov	r2, #0x40
 	bl	LoadPalette
-	ldr	r0, .L580+0x4
-	b	.L577
-.L581:
+	ldr	r0, .L593+0x4
+	b	.L590
+.L594:
 	.align	2, 0
-.L580:
+.L593:
 	.word	sOakSpeech_Leaf_Pal
 	.word	sOakSpeech_Leaf_Tiles
-.L567:
-	ldr	r0, .L582
+.L580:
+	ldr	r0, .L595
 	mov	r1, #0x60
 	mov	r2, #0x40
 	bl	LoadPalette
-	ldr	r0, .L582+0x4
-.L577:
-	ldr	r2, .L582+0x8
+	ldr	r0, .L595+0x4
+.L590:
+	ldr	r2, .L595+0x8
 	add	r1, r4, r2
 	bl	LZ77UnCompVram
-	b	.L564
-.L583:
+	b	.L577
+.L596:
 	.align	2, 0
-.L582:
+.L595:
 	.word	sOakSpeech_Rival_Pal
 	.word	sOakSpeech_Rival_Tiles
 	.word	0x6000600
-.L568:
-	ldr	r0, .L584
+.L581:
+	ldr	r0, .L597
 	mov	r1, #0x60
 	mov	r2, #0x40
 	bl	LoadPalette
-	ldr	r0, .L584+0x4
-	ldr	r2, .L584+0x8
+	ldr	r0, .L597+0x4
+	ldr	r2, .L597+0x8
 	add	r1, r4, r2
 	bl	LZ77UnCompVram
-.L564:
+.L577:
 	mov	r0, #0x60
 	bl	AllocZeroed
-	ldr	r2, .L584+0xc
+	ldr	r2, .L597+0xc
 	ldr	r1, [r2]
 	str	r0, [r1, #0x4]
 	mov	r1, #0x0
 	lsr	r6, r4, #0x6
-.L575:
+.L588:
 	ldr	r0, [r2]
 	ldr	r0, [r0, #0x4]
 	add	r0, r0, r1
 	strb	r1, [r0]
 	add	r1, r1, #0x1
 	cmp	r1, #0x5f
-	bls	.L575	@cond_branch
+	bls	.L588	@cond_branch
 	mov	r0, #0x20
 	str	r0, [sp]
 	str	r0, [sp, #0x4]
@@ -8614,7 +8663,7 @@ LoadTrainerPic:
 	mov	r2, #0x0
 	mov	r3, #0x0
 	bl	FillBgTilemapBufferRect
-	ldr	r4, .L584+0xc
+	ldr	r4, .L597+0xc
 	ldr	r0, [r4]
 	ldr	r1, [r0, #0x4]
 	mov	r3, #0x8
@@ -8644,14 +8693,14 @@ LoadTrainerPic:
 	bl	Free
 	ldr	r0, [r4]
 	str	r5, [r0, #0x4]
-.L563:
+.L576:
 	add	sp, sp, #0x24
 	pop	{r4, r5, r6}
 	pop	{r0}
 	bx	r0
-.L585:
+.L598:
 	.align	2, 0
-.L584:
+.L597:
 	.word	sOakSpeech_Oak_Pal
 	.word	sOakSpeech_Oak_Tiles
 	.word	0x6000600
@@ -8694,7 +8743,7 @@ Task_SlowFadeIn:
 	lsl	r0, r0, #0x18
 	lsr	r6, r0, #0x18
 	mov	r4, #0x0
-	ldr	r1, .L603
+	ldr	r1, .L616
 	lsl	r0, r6, #0x2
 	mov	r9, r0
 	add	r0, r0, r6
@@ -8705,7 +8754,7 @@ Task_SlowFadeIn:
 	ldrsh	r0, [r2, r7]
 	mov	r8, r1
 	cmp	r0, #0
-	bne	.L588	@cond_branch
+	bne	.L601	@cond_branch
 	mov	r1, #0x8
 	ldrsh	r0, [r2, r1]
 	lsl	r1, r0, #0x2
@@ -8716,12 +8765,12 @@ Task_SlowFadeIn:
 	strh	r0, [r1, #0xc]
 	add	r0, r6, #0
 	bl	DestroyTask
-	ldr	r6, .L603+0x4
+	ldr	r6, .L616+0x4
 	add	r2, r5, #0
 	mov	r5, r8
 	add	r5, r5, #0x8
 	mov	r3, #0x4
-.L592:
+.L605:
 	add	r0, r4, #0x7
 	lsl	r0, r0, #0x1
 	add	r0, r0, r2
@@ -8740,23 +8789,23 @@ Task_SlowFadeIn:
 	lsl	r0, r0, #0x18
 	lsr	r4, r0, #0x18
 	cmp	r4, #0x2
-	bls	.L592	@cond_branch
-	b	.L594
-.L604:
+	bls	.L605	@cond_branch
+	b	.L607
+.L617:
 	.align	2, 0
-.L603:
+.L616:
 	.word	gTasks
 	.word	gSprites
-.L588:
+.L601:
 	ldrh	r1, [r2, #0x10]
 	mov	r7, #0x10
 	ldrsh	r0, [r2, r7]
 	cmp	r0, #0
-	beq	.L595	@cond_branch
+	beq	.L608	@cond_branch
 	sub	r0, r1, #0x1
 	strh	r0, [r2, #0x10]
-	b	.L594
-.L595:
+	b	.L607
+.L608:
 	ldrh	r0, [r2, #0xe]
 	strh	r0, [r2, #0x10]
 	sub	r1, r3, #0x1
@@ -8768,7 +8817,7 @@ Task_SlowFadeIn:
 	asr	r1, r1, #0x10
 	mov	ip, r9
 	cmp	r1, #0x8
-	bne	.L597	@cond_branch
+	bne	.L610	@cond_branch
 	add	r7, r5, #0
 	mov	r0, #0x8
 	add	r0, r0, r8
@@ -8777,7 +8826,7 @@ Task_SlowFadeIn:
 	mov	r1, #0x5
 	neg	r1, r1
 	mov	r9, r1
-.L601:
+.L614:
 	add	r0, r4, #0x7
 	lsl	r0, r0, #0x1
 	add	r0, r0, r7
@@ -8787,7 +8836,7 @@ Task_SlowFadeIn:
 	lsl	r2, r0, #0x4
 	add	r2, r2, r0
 	lsl	r2, r2, #0x2
-	ldr	r0, .L605
+	ldr	r0, .L618
 	add	r2, r2, r0
 	add	r2, r2, #0x3e
 	ldrb	r3, [r2]
@@ -8804,8 +8853,8 @@ Task_SlowFadeIn:
 	lsl	r0, r0, #0x18
 	lsr	r4, r0, #0x18
 	cmp	r4, #0x2
-	bls	.L601	@cond_branch
-.L597:
+	bls	.L614	@cond_branch
+.L610:
 	mov	r1, ip
 	add	r0, r1, r6
 	lsl	r0, r0, #0x3
@@ -8819,7 +8868,7 @@ Task_SlowFadeIn:
 	lsr	r1, r1, #0x10
 	mov	r0, #0x52
 	bl	SetGpuReg
-.L594:
+.L607:
 	pop	{r3, r4, r5}
 	mov	r8, r3
 	mov	r9, r4
@@ -8827,9 +8876,9 @@ Task_SlowFadeIn:
 	pop	{r4, r5, r6, r7}
 	pop	{r0}
 	bx	r0
-.L606:
+.L619:
 	.align	2, 0
-.L605:
+.L618:
 	.word	gSprites
 .Lfe59:
 	.size	 Task_SlowFadeIn,.Lfe59-Task_SlowFadeIn
@@ -8847,7 +8896,7 @@ CreateFadeInTask:
 	lsl	r6, r6, #0x18
 	lsr	r6, r6, #0x18
 	mov	r7, #0x0
-	ldr	r1, .L613
+	ldr	r1, .L626
 	mov	r0, #0x50
 	bl	SetGpuReg
 	mov	r0, #0x52
@@ -8856,14 +8905,14 @@ CreateFadeInTask:
 	mov	r0, #0x54
 	mov	r1, #0x0
 	bl	SetGpuReg
-	ldr	r0, .L613+0x4
+	ldr	r0, .L626+0x4
 	mov	r8, r0
 	lsl	r5, r4, #0x2
 	add	r5, r5, r4
 	lsl	r5, r5, #0x3
 	add	r0, r5, r0
 	strh	r7, [r0, #0xc]
-	ldr	r0, .L613+0x8
+	ldr	r0, .L626+0x8
 	mov	r1, #0x0
 	bl	CreateTask
 	lsl	r0, r0, #0x18
@@ -8881,7 +8930,7 @@ CreateFadeInTask:
 	strh	r6, [r0, #0x10]
 	mov	r3, r8
 	add	r3, r3, #0x8
-.L611:
+.L624:
 	add	r0, r7, #0x7
 	lsl	r0, r0, #0x1
 	add	r1, r0, r2
@@ -8894,15 +8943,15 @@ CreateFadeInTask:
 	lsl	r0, r0, #0x18
 	lsr	r7, r0, #0x18
 	cmp	r7, #0x2
-	bls	.L611	@cond_branch
+	bls	.L624	@cond_branch
 	pop	{r3}
 	mov	r8, r3
 	pop	{r4, r5, r6, r7}
 	pop	{r0}
 	bx	r0
-.L614:
+.L627:
 	.align	2, 0
-.L613:
+.L626:
 	.word	0x1244
 	.word	gTasks
 	.word	Task_SlowFadeIn
@@ -8920,7 +8969,7 @@ Task_SlowFadeOut:
 	lsl	r0, r0, #0x18
 	lsr	r6, r0, #0x18
 	mov	r4, #0x0
-	ldr	r1, .L627
+	ldr	r1, .L640
 	lsl	r5, r6, #0x2
 	add	r0, r5, r6
 	lsl	r0, r0, #0x3
@@ -8931,13 +8980,13 @@ Task_SlowFadeOut:
 	ldrsh	r0, [r2, r7]
 	mov	ip, r1
 	cmp	r0, #0x10
-	bne	.L616	@cond_branch
-	ldr	r0, .L627+0x4
+	bne	.L629	@cond_branch
+	ldr	r0, .L640+0x4
 	ldrb	r1, [r0, #0x7]
 	mov	r0, #0x80
 	and	r0, r0, r1
 	cmp	r0, #0
-	bne	.L618	@cond_branch
+	bne	.L631	@cond_branch
 	mov	r1, #0x8
 	ldrsh	r0, [r2, r1]
 	lsl	r1, r0, #0x2
@@ -8948,22 +8997,22 @@ Task_SlowFadeOut:
 	strh	r0, [r1, #0xc]
 	add	r0, r6, #0
 	bl	DestroyTask
-	b	.L618
-.L628:
+	b	.L631
+.L641:
 	.align	2, 0
-.L627:
+.L640:
 	.word	gTasks
 	.word	gPaletteFade
-.L616:
+.L629:
 	ldrh	r1, [r2, #0x10]
 	mov	r7, #0x10
 	ldrsh	r0, [r2, r7]
 	cmp	r0, #0
-	beq	.L619	@cond_branch
+	beq	.L632	@cond_branch
 	sub	r0, r1, #0x1
 	strh	r0, [r2, #0x10]
-	b	.L618
-.L619:
+	b	.L631
+.L632:
 	ldrh	r0, [r2, #0xe]
 	strh	r0, [r2, #0x10]
 	add	r1, r3, #0x2
@@ -8975,7 +9024,7 @@ Task_SlowFadeOut:
 	asr	r1, r1, #0x10
 	mov	r8, r5
 	cmp	r1, #0x8
-	bne	.L621	@cond_branch
+	bne	.L634	@cond_branch
 	mov	r7, r9
 	mov	r0, #0x8
 	add	r0, r0, ip
@@ -8984,7 +9033,7 @@ Task_SlowFadeOut:
 	mov	r1, #0x5
 	neg	r1, r1
 	mov	r9, r1
-.L625:
+.L638:
 	add	r0, r4, #0x7
 	lsl	r0, r0, #0x1
 	add	r0, r0, r7
@@ -8994,7 +9043,7 @@ Task_SlowFadeOut:
 	lsl	r2, r0, #0x4
 	add	r2, r2, r0
 	lsl	r2, r2, #0x2
-	ldr	r0, .L629
+	ldr	r0, .L642
 	add	r2, r2, r0
 	add	r2, r2, #0x3e
 	ldrb	r3, [r2]
@@ -9011,8 +9060,8 @@ Task_SlowFadeOut:
 	lsl	r0, r0, #0x18
 	lsr	r4, r0, #0x18
 	cmp	r4, #0x2
-	bls	.L625	@cond_branch
-.L621:
+	bls	.L638	@cond_branch
+.L634:
 	mov	r1, r8
 	add	r0, r1, r6
 	lsl	r0, r0, #0x3
@@ -9026,7 +9075,7 @@ Task_SlowFadeOut:
 	lsr	r1, r1, #0x10
 	mov	r0, #0x52
 	bl	SetGpuReg
-.L618:
+.L631:
 	pop	{r3, r4, r5}
 	mov	r8, r3
 	mov	r9, r4
@@ -9034,9 +9083,9 @@ Task_SlowFadeOut:
 	pop	{r4, r5, r6, r7}
 	pop	{r0}
 	bx	r0
-.L630:
+.L643:
 	.align	2, 0
-.L629:
+.L642:
 	.word	gSprites
 .Lfe61:
 	.size	 Task_SlowFadeOut,.Lfe61-Task_SlowFadeOut
@@ -9054,7 +9103,7 @@ CreateFadeOutTask:
 	lsl	r6, r6, #0x18
 	lsr	r6, r6, #0x18
 	mov	r7, #0x0
-	ldr	r1, .L637
+	ldr	r1, .L650
 	mov	r0, #0x50
 	bl	SetGpuReg
 	mov	r1, #0x80
@@ -9064,14 +9113,14 @@ CreateFadeOutTask:
 	mov	r0, #0x54
 	mov	r1, #0x0
 	bl	SetGpuReg
-	ldr	r0, .L637+0x4
+	ldr	r0, .L650+0x4
 	mov	r8, r0
 	lsl	r5, r4, #0x2
 	add	r5, r5, r4
 	lsl	r5, r5, #0x3
 	add	r0, r5, r0
 	strh	r7, [r0, #0xc]
-	ldr	r0, .L637+0x8
+	ldr	r0, .L650+0x8
 	mov	r1, #0x0
 	bl	CreateTask
 	lsl	r0, r0, #0x18
@@ -9089,7 +9138,7 @@ CreateFadeOutTask:
 	strh	r6, [r0, #0x10]
 	mov	r3, r8
 	add	r3, r3, #0x8
-.L635:
+.L648:
 	add	r0, r7, #0x7
 	lsl	r0, r0, #0x1
 	add	r1, r0, r2
@@ -9102,15 +9151,15 @@ CreateFadeOutTask:
 	lsl	r0, r0, #0x18
 	lsr	r7, r0, #0x18
 	cmp	r7, #0x2
-	bls	.L635	@cond_branch
+	bls	.L648	@cond_branch
 	pop	{r3}
 	mov	r8, r3
 	pop	{r4, r5, r6, r7}
 	pop	{r0}
 	bx	r0
-.L638:
+.L651:
 	.align	2, 0
-.L637:
+.L650:
 	.word	0x1244
 	.word	gTasks
 	.word	Task_SlowFadeOut
@@ -9133,9 +9182,9 @@ PrintNameChoiceOptions:
 	lsl	r4, r0, #0x2
 	add	r4, r4, r0
 	lsl	r4, r4, #0x3
-	ldr	r5, .L649
+	ldr	r5, .L662
 	add	r7, r4, r5
-	ldr	r0, .L649+0x4
+	ldr	r0, .L662+0x4
 	bl	AddWindow
 	strh	r0, [r7, #0x1a]
 	lsl	r0, r0, #0x18
@@ -9155,7 +9204,7 @@ PrintNameChoiceOptions:
 	mov	r1, #0x11
 	bl	FillWindowPixelBuffer
 	ldrb	r0, [r7, #0x1a]
-	ldr	r2, .L649+0x8
+	ldr	r2, .L662+0x8
 	mov	r1, #0x1
 	str	r1, [sp]
 	mov	r1, #0x0
@@ -9166,30 +9215,30 @@ PrintNameChoiceOptions:
 	bl	AddTextPrinterParameterized
 	mov	r0, r8
 	cmp	r0, #0
-	bne	.L640	@cond_branch
-	ldr	r0, .L649+0xc
+	bne	.L653	@cond_branch
+	ldr	r0, .L662+0xc
 	ldr	r0, [r0]
 	ldrb	r0, [r0, #0x8]
-	ldr	r6, .L649+0x10
+	ldr	r6, .L662+0x10
 	cmp	r0, #0
-	bne	.L643	@cond_branch
-	ldr	r6, .L649+0x14
-	b	.L643
-.L650:
+	bne	.L656	@cond_branch
+	ldr	r6, .L662+0x14
+	b	.L656
+.L663:
 	.align	2, 0
-.L649:
+.L662:
 	.word	gTasks+0x8
 	.word	sIntro_WindowTemplates+0x18
 	.word	gOtherText_NewName
 	.word	gSaveBlock2Ptr
 	.word	sFemaleNameChoices
 	.word	sMaleNameChoices
-.L640:
-	ldr	r6, .L651
-.L643:
+.L653:
+	ldr	r6, .L664
+.L656:
 	mov	r4, #0x0
 	mov	r5, #0x0
-.L647:
+.L660:
 	ldrb	r0, [r7, #0x1a]
 	lsl	r1, r4, #0x2
 	add	r1, r1, r6
@@ -9208,7 +9257,7 @@ PrintNameChoiceOptions:
 	lsl	r4, r4, #0x18
 	lsr	r4, r4, #0x18
 	cmp	r4, #0x3
-	bls	.L647	@cond_branch
+	bls	.L660	@cond_branch
 	ldrb	r0, [r7, #0x1a]
 	mov	r1, #0x10
 	str	r1, [sp]
@@ -9229,9 +9278,9 @@ PrintNameChoiceOptions:
 	pop	{r4, r5, r6, r7}
 	pop	{r0}
 	bx	r0
-.L652:
+.L665:
 	.align	2, 0
-.L651:
+.L664:
 	.word	sRivalNameChoices
 .Lfe63:
 	.size	 PrintNameChoiceOptions,.Lfe63-PrintNameChoiceOptions
@@ -9244,22 +9293,22 @@ GetDefaultName:
 	lsl	r1, r1, #0x18
 	lsr	r2, r1, #0x18
 	cmp	r0, #0
-	bne	.L654	@cond_branch
-	ldr	r0, .L671
+	bne	.L667	@cond_branch
+	ldr	r0, .L684
 	ldr	r0, [r0]
 	ldrb	r0, [r0, #0x8]
 	cmp	r0, #0
-	bne	.L655	@cond_branch
-	ldr	r4, .L671+0x4
-	b	.L670
-.L672:
+	bne	.L668	@cond_branch
+	ldr	r4, .L684+0x4
+	b	.L683
+.L685:
 	.align	2, 0
-.L671:
+.L684:
 	.word	gSaveBlock2Ptr
 	.word	sMaleNameChoices
-.L655:
-	ldr	r4, .L673
-.L670:
+.L668:
+	ldr	r4, .L686
+.L683:
 	bl	Random
 	lsl	r0, r0, #0x10
 	lsr	r0, r0, #0x10
@@ -9269,29 +9318,29 @@ GetDefaultName:
 	lsr	r0, r0, #0xe
 	add	r0, r0, r4
 	ldr	r3, [r0]
-	ldr	r0, .L673+0x4
+	ldr	r0, .L686+0x4
 	ldr	r4, [r0]
-	b	.L657
-.L674:
+	b	.L670
+.L687:
 	.align	2, 0
-.L673:
+.L686:
 	.word	sFemaleNameChoices
 	.word	gSaveBlock2Ptr
-.L654:
-	ldr	r1, .L675
+.L667:
+	ldr	r1, .L688
 	lsl	r0, r2, #0x2
 	add	r0, r0, r1
 	ldr	r3, [r0]
-	ldr	r0, .L675+0x4
+	ldr	r0, .L688+0x4
 	ldr	r0, [r0]
-	ldr	r1, .L675+0x8
+	ldr	r1, .L688+0x8
 	add	r4, r0, r1
-.L657:
+.L670:
 	mov	r2, #0x0
 	ldrb	r0, [r3]
 	cmp	r0, #0xff
-	beq	.L659	@cond_branch
-.L661:
+	beq	.L672	@cond_branch
+.L674:
 	add	r1, r4, r2
 	add	r0, r3, r2
 	ldrb	r0, [r0]
@@ -9300,30 +9349,30 @@ GetDefaultName:
 	lsl	r0, r0, #0x18
 	lsr	r2, r0, #0x18
 	cmp	r2, #0x6
-	bhi	.L659	@cond_branch
+	bhi	.L672	@cond_branch
 	add	r0, r3, r2
 	ldrb	r0, [r0]
 	cmp	r0, #0xff
-	bne	.L661	@cond_branch
-.L659:
+	bne	.L674	@cond_branch
+.L672:
 	cmp	r2, #0x7
-	bhi	.L669	@cond_branch
+	bhi	.L682	@cond_branch
 	mov	r1, #0xff
-.L667:
+.L680:
 	add	r0, r4, r2
 	strb	r1, [r0]
 	add	r0, r2, #0x1
 	lsl	r0, r0, #0x18
 	lsr	r2, r0, #0x18
 	cmp	r2, #0x7
-	bls	.L667	@cond_branch
-.L669:
+	bls	.L680	@cond_branch
+.L682:
 	pop	{r4}
 	pop	{r0}
 	bx	r0
-.L676:
+.L689:
 	.align	2, 0
-.L675:
+.L688:
 	.word	sRivalNameChoices
 	.word	gSaveBlock1Ptr
 	.word	0x3a4c
