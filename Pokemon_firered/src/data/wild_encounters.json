@@ -8305,10 +8305,6 @@
           }
         },
         {
-          "map": "MAP_MT_EMBER_RUBY_PATH_B2F",
-          "base_label": "sMtEmberRubyPathB2F_LeafGreen"
-        },
-        {
           "map": "MAP_MT_EMBER_RUBY_PATH_B3F",
           "base_label": "sMtEmberRubyPathB3F_FireRed",
           "land_mons": {

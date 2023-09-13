@@ -11532,6 +11532,7 @@ script_data     0x0815fa7c    0x7c1cc
                 0x0816a02b                ViridianCity_Gym_EventScript_GiveTM26
                 0x0816a06c                ViridianCity_Gym_EventScript_NoRoomForTM26
                 0x0816a076                ViridianCity_Gym_EventScript_Jason
+                0x0816a079                MtEmber_RubyPath_B2F_EventScript_YW
                 0x0816a08d                ViridianCity_Gym_EventScript_Cole
                 0x0816a0a4                ViridianCity_Gym_EventScript_Atsushi
                 0x0816a0bb                ViridianCity_Gym_EventScript_Kiyo
