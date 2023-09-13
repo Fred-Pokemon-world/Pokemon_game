@@ -1087,6 +1087,14 @@ PalletTown_ProfessorOaksLab_EventScript_BulbasaurBall::
 	release
 	end
 
+PalletTown_ProfessorOaksLab_EventScript_jigglypuff::
+	faceplayer
+	finditem ITEM_PARALYZE_HEAL
+	setvar PLAYER_STARTER_NUM, 0
+	setvar PLAYER_STARTER_SPECIES, SPECIES_JIGGLYPUFF
+	end
+
+
 PalletTown_ProfessorOaksLab_EventScript_ConfirmStarterChoice::
 	applymovement LOCALID_PROF_OAK, Common_Movement_FaceRight
 	waitmovement 0
