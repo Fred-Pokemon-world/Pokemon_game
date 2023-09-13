@@ -3080,83 +3080,6 @@ sMtEmberRubyPathB1F_FireRed_RockSmashMonsInfo:
 	.byte	0x32
 	.space	3
 	.word	sMtEmberRubyPathB1F_FireRed_RockSmashMons
-	.globl	sMtEmberRubyPathB2F_FireRed_LandMons
-	.align	2, 0
-	.type	 sMtEmberRubyPathB2F_FireRed_LandMons,object
-sMtEmberRubyPathB2F_FireRed_LandMons:
-	.byte	0x28
-	.byte	0x28
-	.short	0x4a
-	.byte	0x1a
-	.byte	0x1a
-	.short	0xda
-	.byte	0x2a
-	.byte	0x2a
-	.short	0x4a
-	.byte	0x18
-	.byte	0x18
-	.short	0xda
-	.byte	0x1c
-	.byte	0x1c
-	.short	0xda
-	.byte	0x1e
-	.byte	0x1e
-	.short	0xda
-	.byte	0x2c
-	.byte	0x2c
-	.short	0x4a
-	.byte	0x20
-	.byte	0x20
-	.short	0xda
-	.byte	0x2c
-	.byte	0x2c
-	.short	0x4a
-	.byte	0x16
-	.byte	0x16
-	.short	0xda
-	.byte	0x2c
-	.byte	0x2c
-	.short	0x4a
-	.byte	0x16
-	.byte	0x16
-	.short	0xda
-	.size	 sMtEmberRubyPathB2F_FireRed_LandMons,48
-	.globl	sMtEmberRubyPathB2F_FireRed_LandMonsInfo
-	.align	2, 0
-	.type	 sMtEmberRubyPathB2F_FireRed_LandMonsInfo,object
-	.size	 sMtEmberRubyPathB2F_FireRed_LandMonsInfo,8
-sMtEmberRubyPathB2F_FireRed_LandMonsInfo:
-	.byte	0x7
-	.space	3
-	.word	sMtEmberRubyPathB2F_FireRed_LandMons
-	.globl	sMtEmberRubyPathB2F_FireRed_RockSmashMons
-	.align	2, 0
-	.type	 sMtEmberRubyPathB2F_FireRed_RockSmashMons,object
-sMtEmberRubyPathB2F_FireRed_RockSmashMons:
-	.byte	0x19
-	.byte	0x23
-	.short	0x4a
-	.byte	0x1e
-	.byte	0x2d
-	.short	0x4b
-	.byte	0x23
-	.byte	0x32
-	.short	0x4b
-	.byte	0x1e
-	.byte	0x28
-	.short	0x4a
-	.byte	0x1e
-	.byte	0x28
-	.short	0x4a
-	.size	 sMtEmberRubyPathB2F_FireRed_RockSmashMons,20
-	.globl	sMtEmberRubyPathB2F_FireRed_RockSmashMonsInfo
-	.align	2, 0
-	.type	 sMtEmberRubyPathB2F_FireRed_RockSmashMonsInfo,object
-	.size	 sMtEmberRubyPathB2F_FireRed_RockSmashMonsInfo,8
-sMtEmberRubyPathB2F_FireRed_RockSmashMonsInfo:
-	.byte	0x32
-	.space	3
-	.word	sMtEmberRubyPathB2F_FireRed_RockSmashMons
 	.globl	sMtEmberRubyPathB3F_FireRed_LandMons
 	.align	2, 0
 	.type	 sMtEmberRubyPathB3F_FireRed_LandMons,object
@@ -9818,13 +9741,6 @@ gWildMonHeaders:
 	.word	sMtEmberRubyPathB1F_FireRed_RockSmashMonsInfo
 	.word	0x0
 	.byte	0x1
-	.byte	0x69
-	.space	2
-	.word	sMtEmberRubyPathB2F_FireRed_LandMonsInfo
-	.word	0x0
-	.word	sMtEmberRubyPathB2F_FireRed_RockSmashMonsInfo
-	.word	0x0
-	.byte	0x1
 	.byte	0x6a
 	.space	2
 	.word	sMtEmberRubyPathB3F_FireRed_LandMonsInfo
@@ -10426,7 +10342,7 @@ gWildMonHeaders:
 	.word	0x0
 	.word	0x0
 	.word	0x0
-	.size	 gWildMonHeaders,2660
+	.size	 gWildMonHeaders,2640
 	.type	 sUnownLetterSlots,object
 sUnownLetterSlots:
 	.byte	0x0

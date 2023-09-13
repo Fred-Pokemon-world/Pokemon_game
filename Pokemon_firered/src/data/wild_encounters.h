@@ -2461,66 +2461,6 @@ const struct WildPokemonInfo sMtEmberRubyPathB1F_LeafGreen_RockSmashMonsInfo = {
 #endif
 
 #ifdef FIRERED
-const struct WildPokemon sMtEmberRubyPathB2F_FireRed_LandMons[] =
-{
-    { 40, 40, SPECIES_GEODUDE },
-    { 26, 26, SPECIES_SLUGMA },
-    { 42, 42, SPECIES_GEODUDE },
-    { 24, 24, SPECIES_SLUGMA },
-    { 28, 28, SPECIES_SLUGMA },
-    { 30, 30, SPECIES_SLUGMA },
-    { 44, 44, SPECIES_GEODUDE },
-    { 32, 32, SPECIES_SLUGMA },
-    { 44, 44, SPECIES_GEODUDE },
-    { 22, 22, SPECIES_SLUGMA },
-    { 44, 44, SPECIES_GEODUDE },
-    { 22, 22, SPECIES_SLUGMA },
-};
-
-const struct WildPokemonInfo sMtEmberRubyPathB2F_FireRed_LandMonsInfo = { 7, sMtEmberRubyPathB2F_FireRed_LandMons };
-const struct WildPokemon sMtEmberRubyPathB2F_FireRed_RockSmashMons[] =
-{
-    { 25, 35, SPECIES_GEODUDE },
-    { 30, 45, SPECIES_GRAVELER },
-    { 35, 50, SPECIES_GRAVELER },
-    { 30, 40, SPECIES_GEODUDE },
-    { 30, 40, SPECIES_GEODUDE },
-};
-
-const struct WildPokemonInfo sMtEmberRubyPathB2F_FireRed_RockSmashMonsInfo = { 50, sMtEmberRubyPathB2F_FireRed_RockSmashMons };
-#endif
-
-#ifdef LEAFGREEN
-const struct WildPokemon sMtEmberRubyPathB2F_LeafGreen_LandMons[] =
-{
-    { 40, 40, SPECIES_GEODUDE },
-    { 26, 26, SPECIES_SLUGMA },
-    { 42, 42, SPECIES_GEODUDE },
-    { 24, 24, SPECIES_SLUGMA },
-    { 28, 28, SPECIES_SLUGMA },
-    { 30, 30, SPECIES_SLUGMA },
-    { 44, 44, SPECIES_GEODUDE },
-    { 32, 32, SPECIES_SLUGMA },
-    { 44, 44, SPECIES_GEODUDE },
-    { 22, 22, SPECIES_SLUGMA },
-    { 44, 44, SPECIES_GEODUDE },
-    { 22, 22, SPECIES_SLUGMA },
-};
-
-const struct WildPokemonInfo sMtEmberRubyPathB2F_LeafGreen_LandMonsInfo = { 7, sMtEmberRubyPathB2F_LeafGreen_LandMons };
-const struct WildPokemon sMtEmberRubyPathB2F_LeafGreen_RockSmashMons[] =
-{
-    { 25, 35, SPECIES_GEODUDE },
-    { 30, 45, SPECIES_GRAVELER },
-    { 35, 50, SPECIES_GRAVELER },
-    { 30, 40, SPECIES_GEODUDE },
-    { 30, 40, SPECIES_GEODUDE },
-};
-
-const struct WildPokemonInfo sMtEmberRubyPathB2F_LeafGreen_RockSmashMonsInfo = { 50, sMtEmberRubyPathB2F_LeafGreen_RockSmashMons };
-#endif
-
-#ifdef FIRERED
 const struct WildPokemon sMtEmberRubyPathB3F_FireRed_LandMons[] =
 {
     { 26, 26, SPECIES_SLUGMA },
@@ -8378,26 +8318,6 @@ const struct WildPokemonHeader gWildMonHeaders[] =
         .landMonsInfo = &sMtEmberRubyPathB1F_LeafGreen_LandMonsInfo,
         .waterMonsInfo = NULL,
         .rockSmashMonsInfo = &sMtEmberRubyPathB1F_LeafGreen_RockSmashMonsInfo,
-        .fishingMonsInfo = NULL,
-    },
-#endif
-#ifdef FIRERED
-    {
-        .mapGroup = MAP_GROUP(MT_EMBER_RUBY_PATH_B2F),
-        .mapNum = MAP_NUM(MT_EMBER_RUBY_PATH_B2F),
-        .landMonsInfo = &sMtEmberRubyPathB2F_FireRed_LandMonsInfo,
-        .waterMonsInfo = NULL,
-        .rockSmashMonsInfo = &sMtEmberRubyPathB2F_FireRed_RockSmashMonsInfo,
-        .fishingMonsInfo = NULL,
-    },
-#endif
-#ifdef LEAFGREEN
-    {
-        .mapGroup = MAP_GROUP(MT_EMBER_RUBY_PATH_B2F),
-        .mapNum = MAP_NUM(MT_EMBER_RUBY_PATH_B2F),
-        .landMonsInfo = &sMtEmberRubyPathB2F_LeafGreen_LandMonsInfo,
-        .waterMonsInfo = NULL,
-        .rockSmashMonsInfo = &sMtEmberRubyPathB2F_LeafGreen_RockSmashMonsInfo,
         .fishingMonsInfo = NULL,
     },
 #endif

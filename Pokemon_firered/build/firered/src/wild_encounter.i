@@ -6674,34 +6674,6 @@ const struct WildPokemon sMtEmberRubyPathB1F_FireRed_RockSmashMons[] =
 
 const struct WildPokemonInfo sMtEmberRubyPathB1F_FireRed_RockSmashMonsInfo = { 50, sMtEmberRubyPathB1F_FireRed_RockSmashMons };
 # 2464 "src/data/wild_encounters.h"
-const struct WildPokemon sMtEmberRubyPathB2F_FireRed_LandMons[] =
-{
-    { 40, 40, 74 },
-    { 26, 26, 218 },
-    { 42, 42, 74 },
-    { 24, 24, 218 },
-    { 28, 28, 218 },
-    { 30, 30, 218 },
-    { 44, 44, 74 },
-    { 32, 32, 218 },
-    { 44, 44, 74 },
-    { 22, 22, 218 },
-    { 44, 44, 74 },
-    { 22, 22, 218 },
-};
-
-const struct WildPokemonInfo sMtEmberRubyPathB2F_FireRed_LandMonsInfo = { 7, sMtEmberRubyPathB2F_FireRed_LandMons };
-const struct WildPokemon sMtEmberRubyPathB2F_FireRed_RockSmashMons[] =
-{
-    { 25, 35, 74 },
-    { 30, 45, 75 },
-    { 35, 50, 75 },
-    { 30, 40, 74 },
-    { 30, 40, 74 },
-};
-
-const struct WildPokemonInfo sMtEmberRubyPathB2F_FireRed_RockSmashMonsInfo = { 50, sMtEmberRubyPathB2F_FireRed_RockSmashMons };
-# 2524 "src/data/wild_encounters.h"
 const struct WildPokemon sMtEmberRubyPathB3F_FireRed_LandMons[] =
 {
     { 26, 26, 218 },
@@ -6729,7 +6701,7 @@ const struct WildPokemon sMtEmberRubyPathB3F_FireRed_RockSmashMons[] =
 };
 
 const struct WildPokemonInfo sMtEmberRubyPathB3F_FireRed_RockSmashMonsInfo = { 50, sMtEmberRubyPathB3F_FireRed_RockSmashMons };
-# 2584 "src/data/wild_encounters.h"
+# 2524 "src/data/wild_encounters.h"
 const struct WildPokemon sMtEmberRubyPathB1FStairs_FireRed_LandMons[] =
 {
     { 40, 40, 74 },
@@ -6757,7 +6729,7 @@ const struct WildPokemon sMtEmberRubyPathB1FStairs_FireRed_RockSmashMons[] =
 };
 
 const struct WildPokemonInfo sMtEmberRubyPathB1FStairs_FireRed_RockSmashMonsInfo = { 50, sMtEmberRubyPathB1FStairs_FireRed_RockSmashMons };
-# 2644 "src/data/wild_encounters.h"
+# 2584 "src/data/wild_encounters.h"
 const struct WildPokemon sMtEmberRubyPathB2FStairs_FireRed_LandMons[] =
 {
     { 38, 38, 74 },
@@ -6785,7 +6757,7 @@ const struct WildPokemon sMtEmberRubyPathB2FStairs_FireRed_RockSmashMons[] =
 };
 
 const struct WildPokemonInfo sMtEmberRubyPathB2FStairs_FireRed_RockSmashMonsInfo = { 50, sMtEmberRubyPathB2FStairs_FireRed_RockSmashMons };
-# 2704 "src/data/wild_encounters.h"
+# 2644 "src/data/wild_encounters.h"
 const struct WildPokemon sThreeIslandBerryForest_FireRed_LandMons[] =
 {
     { 37, 37, 17 },
@@ -6828,7 +6800,7 @@ const struct WildPokemon sThreeIslandBerryForest_FireRed_FishingMons[] =
 };
 
 const struct WildPokemonInfo sThreeIslandBerryForest_FireRed_FishingMonsInfo = { 20, sThreeIslandBerryForest_FireRed_FishingMons };
-# 2794 "src/data/wild_encounters.h"
+# 2734 "src/data/wild_encounters.h"
 const struct WildPokemon sFourIslandIcefallCaveEntrance_FireRed_LandMons[] =
 {
     { 43, 43, 86 },
@@ -6871,7 +6843,7 @@ const struct WildPokemon sFourIslandIcefallCaveEntrance_FireRed_FishingMons[] =
 };
 
 const struct WildPokemonInfo sFourIslandIcefallCaveEntrance_FireRed_FishingMonsInfo = { 20, sFourIslandIcefallCaveEntrance_FireRed_FishingMons };
-# 2884 "src/data/wild_encounters.h"
+# 2824 "src/data/wild_encounters.h"
 const struct WildPokemon sFourIslandIcefallCave1F_FireRed_LandMons[] =
 {
     { 25, 25, 220 },
@@ -6889,7 +6861,7 @@ const struct WildPokemon sFourIslandIcefallCave1F_FireRed_LandMons[] =
 };
 
 const struct WildPokemonInfo sFourIslandIcefallCave1F_FireRed_LandMonsInfo = { 7, sFourIslandIcefallCave1F_FireRed_LandMons };
-# 2924 "src/data/wild_encounters.h"
+# 2864 "src/data/wild_encounters.h"
 const struct WildPokemon sFourIslandIcefallCaveB1F_FireRed_LandMons[] =
 {
     { 25, 25, 220 },
@@ -6907,7 +6879,7 @@ const struct WildPokemon sFourIslandIcefallCaveB1F_FireRed_LandMons[] =
 };
 
 const struct WildPokemonInfo sFourIslandIcefallCaveB1F_FireRed_LandMonsInfo = { 7, sFourIslandIcefallCaveB1F_FireRed_LandMons };
-# 2964 "src/data/wild_encounters.h"
+# 2904 "src/data/wild_encounters.h"
 const struct WildPokemon sFourIslandIcefallCaveBack_FireRed_LandMons[] =
 {
     { 43, 43, 86 },
@@ -6950,7 +6922,7 @@ const struct WildPokemon sFourIslandIcefallCaveBack_FireRed_FishingMons[] =
 };
 
 const struct WildPokemonInfo sFourIslandIcefallCaveBack_FireRed_FishingMonsInfo = { 20, sFourIslandIcefallCaveBack_FireRed_FishingMons };
-# 3054 "src/data/wild_encounters.h"
+# 2994 "src/data/wild_encounters.h"
 const struct WildPokemon sSixIslandPatternBush_FireRed_LandMons[] =
 {
     { 9, 9, 167 },
@@ -6968,7 +6940,7 @@ const struct WildPokemon sSixIslandPatternBush_FireRed_LandMons[] =
 };
 
 const struct WildPokemonInfo sSixIslandPatternBush_FireRed_LandMonsInfo = { 21, sSixIslandPatternBush_FireRed_LandMons };
-# 3094 "src/data/wild_encounters.h"
+# 3034 "src/data/wild_encounters.h"
 const struct WildPokemon sFiveIslandLostCaveRoom1_FireRed_LandMons[] =
 {
     { 40, 40, 92 },
@@ -6986,7 +6958,7 @@ const struct WildPokemon sFiveIslandLostCaveRoom1_FireRed_LandMons[] =
 };
 
 const struct WildPokemonInfo sFiveIslandLostCaveRoom1_FireRed_LandMonsInfo = { 1, sFiveIslandLostCaveRoom1_FireRed_LandMons };
-# 3134 "src/data/wild_encounters.h"
+# 3074 "src/data/wild_encounters.h"
 const struct WildPokemon sFiveIslandLostCaveRoom2_FireRed_LandMons[] =
 {
     { 40, 40, 92 },
@@ -7004,7 +6976,7 @@ const struct WildPokemon sFiveIslandLostCaveRoom2_FireRed_LandMons[] =
 };
 
 const struct WildPokemonInfo sFiveIslandLostCaveRoom2_FireRed_LandMonsInfo = { 2, sFiveIslandLostCaveRoom2_FireRed_LandMons };
-# 3174 "src/data/wild_encounters.h"
+# 3114 "src/data/wild_encounters.h"
 const struct WildPokemon sFiveIslandLostCaveRoom3_FireRed_LandMons[] =
 {
     { 40, 40, 92 },
@@ -7022,7 +6994,7 @@ const struct WildPokemon sFiveIslandLostCaveRoom3_FireRed_LandMons[] =
 };
 
 const struct WildPokemonInfo sFiveIslandLostCaveRoom3_FireRed_LandMonsInfo = { 3, sFiveIslandLostCaveRoom3_FireRed_LandMons };
-# 3214 "src/data/wild_encounters.h"
+# 3154 "src/data/wild_encounters.h"
 const struct WildPokemon sFiveIslandLostCaveRoom4_FireRed_LandMons[] =
 {
     { 40, 40, 92 },
@@ -7040,7 +7012,7 @@ const struct WildPokemon sFiveIslandLostCaveRoom4_FireRed_LandMons[] =
 };
 
 const struct WildPokemonInfo sFiveIslandLostCaveRoom4_FireRed_LandMonsInfo = { 4, sFiveIslandLostCaveRoom4_FireRed_LandMons };
-# 3254 "src/data/wild_encounters.h"
+# 3194 "src/data/wild_encounters.h"
 const struct WildPokemon sFiveIslandLostCaveRoom5_FireRed_LandMons[] =
 {
     { 40, 40, 92 },
@@ -7058,7 +7030,7 @@ const struct WildPokemon sFiveIslandLostCaveRoom5_FireRed_LandMons[] =
 };
 
 const struct WildPokemonInfo sFiveIslandLostCaveRoom5_FireRed_LandMonsInfo = { 5, sFiveIslandLostCaveRoom5_FireRed_LandMons };
-# 3294 "src/data/wild_encounters.h"
+# 3234 "src/data/wild_encounters.h"
 const struct WildPokemon sFiveIslandLostCaveRoom6_FireRed_LandMons[] =
 {
     { 40, 40, 92 },
@@ -7076,7 +7048,7 @@ const struct WildPokemon sFiveIslandLostCaveRoom6_FireRed_LandMons[] =
 };
 
 const struct WildPokemonInfo sFiveIslandLostCaveRoom6_FireRed_LandMonsInfo = { 6, sFiveIslandLostCaveRoom6_FireRed_LandMons };
-# 3334 "src/data/wild_encounters.h"
+# 3274 "src/data/wild_encounters.h"
 const struct WildPokemon sFiveIslandLostCaveRoom7_FireRed_LandMons[] =
 {
     { 40, 40, 92 },
@@ -7094,7 +7066,7 @@ const struct WildPokemon sFiveIslandLostCaveRoom7_FireRed_LandMons[] =
 };
 
 const struct WildPokemonInfo sFiveIslandLostCaveRoom7_FireRed_LandMonsInfo = { 7, sFiveIslandLostCaveRoom7_FireRed_LandMons };
-# 3374 "src/data/wild_encounters.h"
+# 3314 "src/data/wild_encounters.h"
 const struct WildPokemon sFiveIslandLostCaveRoom8_FireRed_LandMons[] =
 {
     { 40, 40, 92 },
@@ -7112,7 +7084,7 @@ const struct WildPokemon sFiveIslandLostCaveRoom8_FireRed_LandMons[] =
 };
 
 const struct WildPokemonInfo sFiveIslandLostCaveRoom8_FireRed_LandMonsInfo = { 8, sFiveIslandLostCaveRoom8_FireRed_LandMons };
-# 3414 "src/data/wild_encounters.h"
+# 3354 "src/data/wild_encounters.h"
 const struct WildPokemon sFiveIslandLostCaveRoom9_FireRed_LandMons[] =
 {
     { 40, 40, 92 },
@@ -7130,7 +7102,7 @@ const struct WildPokemon sFiveIslandLostCaveRoom9_FireRed_LandMons[] =
 };
 
 const struct WildPokemonInfo sFiveIslandLostCaveRoom9_FireRed_LandMonsInfo = { 9, sFiveIslandLostCaveRoom9_FireRed_LandMons };
-# 3454 "src/data/wild_encounters.h"
+# 3394 "src/data/wild_encounters.h"
 const struct WildPokemon sFiveIslandLostCaveRoom10_FireRed_LandMons[] =
 {
     { 40, 40, 92 },
@@ -7148,7 +7120,7 @@ const struct WildPokemon sFiveIslandLostCaveRoom10_FireRed_LandMons[] =
 };
 
 const struct WildPokemonInfo sFiveIslandLostCaveRoom10_FireRed_LandMonsInfo = { 10, sFiveIslandLostCaveRoom10_FireRed_LandMons };
-# 3494 "src/data/wild_encounters.h"
+# 3434 "src/data/wild_encounters.h"
 const struct WildPokemon sFiveIslandLostCaveRoom11_FireRed_LandMons[] =
 {
     { 40, 40, 92 },
@@ -7166,7 +7138,7 @@ const struct WildPokemon sFiveIslandLostCaveRoom11_FireRed_LandMons[] =
 };
 
 const struct WildPokemonInfo sFiveIslandLostCaveRoom11_FireRed_LandMonsInfo = { 5, sFiveIslandLostCaveRoom11_FireRed_LandMons };
-# 3534 "src/data/wild_encounters.h"
+# 3474 "src/data/wild_encounters.h"
 const struct WildPokemon sFiveIslandLostCaveRoom12_FireRed_LandMons[] =
 {
     { 40, 40, 92 },
@@ -7184,7 +7156,7 @@ const struct WildPokemon sFiveIslandLostCaveRoom12_FireRed_LandMons[] =
 };
 
 const struct WildPokemonInfo sFiveIslandLostCaveRoom12_FireRed_LandMonsInfo = { 5, sFiveIslandLostCaveRoom12_FireRed_LandMons };
-# 3574 "src/data/wild_encounters.h"
+# 3514 "src/data/wild_encounters.h"
 const struct WildPokemon sFiveIslandLostCaveRoom13_FireRed_LandMons[] =
 {
     { 40, 40, 92 },
@@ -7202,7 +7174,7 @@ const struct WildPokemon sFiveIslandLostCaveRoom13_FireRed_LandMons[] =
 };
 
 const struct WildPokemonInfo sFiveIslandLostCaveRoom13_FireRed_LandMonsInfo = { 5, sFiveIslandLostCaveRoom13_FireRed_LandMons };
-# 3614 "src/data/wild_encounters.h"
+# 3554 "src/data/wild_encounters.h"
 const struct WildPokemon sFiveIslandLostCaveRoom14_FireRed_LandMons[] =
 {
     { 40, 40, 92 },
@@ -7220,7 +7192,7 @@ const struct WildPokemon sFiveIslandLostCaveRoom14_FireRed_LandMons[] =
 };
 
 const struct WildPokemonInfo sFiveIslandLostCaveRoom14_FireRed_LandMonsInfo = { 5, sFiveIslandLostCaveRoom14_FireRed_LandMons };
-# 3654 "src/data/wild_encounters.h"
+# 3594 "src/data/wild_encounters.h"
 const struct WildPokemon sOneIslandKindleRoad_FireRed_LandMons[] =
 {
     { 32, 32, 21 },
@@ -7273,7 +7245,7 @@ const struct WildPokemon sOneIslandKindleRoad_FireRed_FishingMons[] =
 };
 
 const struct WildPokemonInfo sOneIslandKindleRoad_FireRed_FishingMonsInfo = { 20, sOneIslandKindleRoad_FireRed_FishingMons };
-# 3764 "src/data/wild_encounters.h"
+# 3704 "src/data/wild_encounters.h"
 const struct WildPokemon sOneIslandTreasureBeach_FireRed_LandMons[] =
 {
     { 32, 32, 21 },
@@ -7316,7 +7288,7 @@ const struct WildPokemon sOneIslandTreasureBeach_FireRed_FishingMons[] =
 };
 
 const struct WildPokemonInfo sOneIslandTreasureBeach_FireRed_FishingMonsInfo = { 20, sOneIslandTreasureBeach_FireRed_FishingMons };
-# 3854 "src/data/wild_encounters.h"
+# 3794 "src/data/wild_encounters.h"
 const struct WildPokemon sTwoIslandCapeBrink_FireRed_LandMons[] =
 {
     { 31, 31, 21 },
@@ -7359,7 +7331,7 @@ const struct WildPokemon sTwoIslandCapeBrink_FireRed_FishingMons[] =
 };
 
 const struct WildPokemonInfo sTwoIslandCapeBrink_FireRed_FishingMonsInfo = { 20, sTwoIslandCapeBrink_FireRed_FishingMons };
-# 3944 "src/data/wild_encounters.h"
+# 3884 "src/data/wild_encounters.h"
 const struct WildPokemon sThreeIslandBondBridge_FireRed_LandMons[] =
 {
     { 32, 32, 16 },
@@ -7402,7 +7374,7 @@ const struct WildPokemon sThreeIslandBondBridge_FireRed_FishingMons[] =
 };
 
 const struct WildPokemonInfo sThreeIslandBondBridge_FireRed_FishingMonsInfo = { 20, sThreeIslandBondBridge_FireRed_FishingMons };
-# 4034 "src/data/wild_encounters.h"
+# 3974 "src/data/wild_encounters.h"
 const struct WildPokemon sThreeIslandPort_FireRed_LandMons[] =
 {
     { 15, 15, 206 },
@@ -7420,7 +7392,7 @@ const struct WildPokemon sThreeIslandPort_FireRed_LandMons[] =
 };
 
 const struct WildPokemonInfo sThreeIslandPort_FireRed_LandMonsInfo = { 1, sThreeIslandPort_FireRed_LandMons };
-# 4074 "src/data/wild_encounters.h"
+# 4014 "src/data/wild_encounters.h"
 const struct WildPokemon sFiveIslandResortGorgeous_FireRed_WaterMons[] =
 {
     { 5, 35, 72 },
@@ -7446,7 +7418,7 @@ const struct WildPokemon sFiveIslandResortGorgeous_FireRed_FishingMons[] =
 };
 
 const struct WildPokemonInfo sFiveIslandResortGorgeous_FireRed_FishingMonsInfo = { 20, sFiveIslandResortGorgeous_FireRed_FishingMons };
-# 4130 "src/data/wild_encounters.h"
+# 4070 "src/data/wild_encounters.h"
 const struct WildPokemon sFiveIslandWaterLabyrinth_FireRed_WaterMons[] =
 {
     { 5, 20, 72 },
@@ -7472,7 +7444,7 @@ const struct WildPokemon sFiveIslandWaterLabyrinth_FireRed_FishingMons[] =
 };
 
 const struct WildPokemonInfo sFiveIslandWaterLabyrinth_FireRed_FishingMonsInfo = { 20, sFiveIslandWaterLabyrinth_FireRed_FishingMons };
-# 4186 "src/data/wild_encounters.h"
+# 4126 "src/data/wild_encounters.h"
 const struct WildPokemon sFiveIslandMeadow_FireRed_LandMons[] =
 {
     { 44, 44, 16 },
@@ -7515,7 +7487,7 @@ const struct WildPokemon sFiveIslandMeadow_FireRed_FishingMons[] =
 };
 
 const struct WildPokemonInfo sFiveIslandMeadow_FireRed_FishingMonsInfo = { 20, sFiveIslandMeadow_FireRed_FishingMons };
-# 4276 "src/data/wild_encounters.h"
+# 4216 "src/data/wild_encounters.h"
 const struct WildPokemon sFiveIslandMemorialPillar_FireRed_LandMons[] =
 {
     { 10, 10, 187 },
@@ -7558,7 +7530,7 @@ const struct WildPokemon sFiveIslandMemorialPillar_FireRed_FishingMons[] =
 };
 
 const struct WildPokemonInfo sFiveIslandMemorialPillar_FireRed_FishingMonsInfo = { 20, sFiveIslandMemorialPillar_FireRed_FishingMons };
-# 4366 "src/data/wild_encounters.h"
+# 4306 "src/data/wild_encounters.h"
 const struct WildPokemon sSixIslandOutcastIsland_FireRed_WaterMons[] =
 {
     { 5, 20, 72 },
@@ -7584,7 +7556,7 @@ const struct WildPokemon sSixIslandOutcastIsland_FireRed_FishingMons[] =
 };
 
 const struct WildPokemonInfo sSixIslandOutcastIsland_FireRed_FishingMonsInfo = { 20, sSixIslandOutcastIsland_FireRed_FishingMons };
-# 4422 "src/data/wild_encounters.h"
+# 4362 "src/data/wild_encounters.h"
 const struct WildPokemon sSixIslandGreenPath_FireRed_WaterMons[] =
 {
     { 5, 20, 72 },
@@ -7610,7 +7582,7 @@ const struct WildPokemon sSixIslandGreenPath_FireRed_FishingMons[] =
 };
 
 const struct WildPokemonInfo sSixIslandGreenPath_FireRed_FishingMonsInfo = { 20, sSixIslandGreenPath_FireRed_FishingMons };
-# 4478 "src/data/wild_encounters.h"
+# 4418 "src/data/wild_encounters.h"
 const struct WildPokemon sSixIslandWaterPath_FireRed_LandMons[] =
 {
     { 44, 44, 21 },
@@ -7653,7 +7625,7 @@ const struct WildPokemon sSixIslandWaterPath_FireRed_FishingMons[] =
 };
 
 const struct WildPokemonInfo sSixIslandWaterPath_FireRed_FishingMonsInfo = { 20, sSixIslandWaterPath_FireRed_FishingMons };
-# 4568 "src/data/wild_encounters.h"
+# 4508 "src/data/wild_encounters.h"
 const struct WildPokemon sSixIslandRuinValley_FireRed_LandMons[] =
 {
     { 15, 15, 177 },
@@ -7696,7 +7668,7 @@ const struct WildPokemon sSixIslandRuinValley_FireRed_FishingMons[] =
 };
 
 const struct WildPokemonInfo sSixIslandRuinValley_FireRed_FishingMonsInfo = { 20, sSixIslandRuinValley_FireRed_FishingMons };
-# 4658 "src/data/wild_encounters.h"
+# 4598 "src/data/wild_encounters.h"
 const struct WildPokemon sSevenIslandTrainerTower_FireRed_WaterMons[] =
 {
     { 5, 20, 72 },
@@ -7722,7 +7694,7 @@ const struct WildPokemon sSevenIslandTrainerTower_FireRed_FishingMons[] =
 };
 
 const struct WildPokemonInfo sSevenIslandTrainerTower_FireRed_FishingMonsInfo = { 20, sSevenIslandTrainerTower_FireRed_FishingMons };
-# 4714 "src/data/wild_encounters.h"
+# 4654 "src/data/wild_encounters.h"
 const struct WildPokemon sSevenIslandSevaultCanyonEntrance_FireRed_LandMons[] =
 {
     { 44, 44, 21 },
@@ -7740,7 +7712,7 @@ const struct WildPokemon sSevenIslandSevaultCanyonEntrance_FireRed_LandMons[] =
 };
 
 const struct WildPokemonInfo sSevenIslandSevaultCanyonEntrance_FireRed_LandMonsInfo = { 21, sSevenIslandSevaultCanyonEntrance_FireRed_LandMons };
-# 4754 "src/data/wild_encounters.h"
+# 4694 "src/data/wild_encounters.h"
 const struct WildPokemon sSevenIslandSevaultCanyon_FireRed_LandMons[] =
 {
     { 46, 46, 74 },
@@ -7768,7 +7740,7 @@ const struct WildPokemon sSevenIslandSevaultCanyon_FireRed_RockSmashMons[] =
 };
 
 const struct WildPokemonInfo sSevenIslandSevaultCanyon_FireRed_RockSmashMonsInfo = { 25, sSevenIslandSevaultCanyon_FireRed_RockSmashMons };
-# 4814 "src/data/wild_encounters.h"
+# 4754 "src/data/wild_encounters.h"
 const struct WildPokemon sSevenIslandTanobyRuins_FireRed_WaterMons[] =
 {
     { 5, 20, 72 },
@@ -7794,7 +7766,7 @@ const struct WildPokemon sSevenIslandTanobyRuins_FireRed_FishingMons[] =
 };
 
 const struct WildPokemonInfo sSevenIslandTanobyRuins_FireRed_FishingMonsInfo = { 20, sSevenIslandTanobyRuins_FireRed_FishingMons };
-# 4870 "src/data/wild_encounters.h"
+# 4810 "src/data/wild_encounters.h"
 const struct WildPokemon sRoute1_FireRed_LandMons[] =
 {
     { 3, 3, 16 },
@@ -7812,7 +7784,7 @@ const struct WildPokemon sRoute1_FireRed_LandMons[] =
 };
 
 const struct WildPokemonInfo sRoute1_FireRed_LandMonsInfo = { 21, sRoute1_FireRed_LandMons };
-# 4910 "src/data/wild_encounters.h"
+# 4850 "src/data/wild_encounters.h"
 const struct WildPokemon sRoute2_FireRed_LandMons[] =
 {
     { 3, 3, 19 },
@@ -7830,7 +7802,7 @@ const struct WildPokemon sRoute2_FireRed_LandMons[] =
 };
 
 const struct WildPokemonInfo sRoute2_FireRed_LandMonsInfo = { 21, sRoute2_FireRed_LandMons };
-# 4950 "src/data/wild_encounters.h"
+# 4890 "src/data/wild_encounters.h"
 const struct WildPokemon sRoute3_FireRed_LandMons[] =
 {
     { 6, 6, 21 },
@@ -7848,7 +7820,7 @@ const struct WildPokemon sRoute3_FireRed_LandMons[] =
 };
 
 const struct WildPokemonInfo sRoute3_FireRed_LandMonsInfo = { 21, sRoute3_FireRed_LandMons };
-# 4990 "src/data/wild_encounters.h"
+# 4930 "src/data/wild_encounters.h"
 const struct WildPokemon sRoute4_FireRed_LandMons[] =
 {
     { 10, 10, 21 },
@@ -7891,7 +7863,7 @@ const struct WildPokemon sRoute4_FireRed_FishingMons[] =
 };
 
 const struct WildPokemonInfo sRoute4_FireRed_FishingMonsInfo = { 20, sRoute4_FireRed_FishingMons };
-# 5080 "src/data/wild_encounters.h"
+# 5020 "src/data/wild_encounters.h"
 const struct WildPokemon sRoute5_FireRed_LandMons[] =
 {
     { 10, 10, 52 },
@@ -7909,7 +7881,7 @@ const struct WildPokemon sRoute5_FireRed_LandMons[] =
 };
 
 const struct WildPokemonInfo sRoute5_FireRed_LandMonsInfo = { 21, sRoute5_FireRed_LandMons };
-# 5120 "src/data/wild_encounters.h"
+# 5060 "src/data/wild_encounters.h"
 const struct WildPokemon sRoute6_FireRed_LandMons[] =
 {
     { 10, 10, 52 },
@@ -7952,7 +7924,7 @@ const struct WildPokemon sRoute6_FireRed_FishingMons[] =
 };
 
 const struct WildPokemonInfo sRoute6_FireRed_FishingMonsInfo = { 20, sRoute6_FireRed_FishingMons };
-# 5210 "src/data/wild_encounters.h"
+# 5150 "src/data/wild_encounters.h"
 const struct WildPokemon sRoute7_FireRed_LandMons[] =
 {
     { 19, 19, 16 },
@@ -7970,7 +7942,7 @@ const struct WildPokemon sRoute7_FireRed_LandMons[] =
 };
 
 const struct WildPokemonInfo sRoute7_FireRed_LandMonsInfo = { 21, sRoute7_FireRed_LandMons };
-# 5250 "src/data/wild_encounters.h"
+# 5190 "src/data/wild_encounters.h"
 const struct WildPokemon sRoute8_FireRed_LandMons[] =
 {
     { 18, 18, 16 },
@@ -7988,7 +7960,7 @@ const struct WildPokemon sRoute8_FireRed_LandMons[] =
 };
 
 const struct WildPokemonInfo sRoute8_FireRed_LandMonsInfo = { 21, sRoute8_FireRed_LandMons };
-# 5290 "src/data/wild_encounters.h"
+# 5230 "src/data/wild_encounters.h"
 const struct WildPokemon sRoute9_FireRed_LandMons[] =
 {
     { 16, 16, 21 },
@@ -8006,7 +7978,7 @@ const struct WildPokemon sRoute9_FireRed_LandMons[] =
 };
 
 const struct WildPokemonInfo sRoute9_FireRed_LandMonsInfo = { 21, sRoute9_FireRed_LandMons };
-# 5330 "src/data/wild_encounters.h"
+# 5270 "src/data/wild_encounters.h"
 const struct WildPokemon sRoute10_FireRed_LandMons[] =
 {
     { 16, 16, 21 },
@@ -8049,7 +8021,7 @@ const struct WildPokemon sRoute10_FireRed_FishingMons[] =
 };
 
 const struct WildPokemonInfo sRoute10_FireRed_FishingMonsInfo = { 20, sRoute10_FireRed_FishingMons };
-# 5420 "src/data/wild_encounters.h"
+# 5360 "src/data/wild_encounters.h"
 const struct WildPokemon sRoute11_FireRed_LandMons[] =
 {
     { 14, 14, 23 },
@@ -8092,7 +8064,7 @@ const struct WildPokemon sRoute11_FireRed_FishingMons[] =
 };
 
 const struct WildPokemonInfo sRoute11_FireRed_FishingMonsInfo = { 20, sRoute11_FireRed_FishingMons };
-# 5510 "src/data/wild_encounters.h"
+# 5450 "src/data/wild_encounters.h"
 const struct WildPokemon sRoute12_FireRed_LandMons[] =
 {
     { 24, 24, 43 },
@@ -8135,7 +8107,7 @@ const struct WildPokemon sRoute12_FireRed_FishingMons[] =
 };
 
 const struct WildPokemonInfo sRoute12_FireRed_FishingMonsInfo = { 60, sRoute12_FireRed_FishingMons };
-# 5600 "src/data/wild_encounters.h"
+# 5540 "src/data/wild_encounters.h"
 const struct WildPokemon sRoute13_FireRed_LandMons[] =
 {
     { 24, 24, 43 },
@@ -8178,7 +8150,7 @@ const struct WildPokemon sRoute13_FireRed_FishingMons[] =
 };
 
 const struct WildPokemonInfo sRoute13_FireRed_FishingMonsInfo = { 20, sRoute13_FireRed_FishingMons };
-# 5690 "src/data/wild_encounters.h"
+# 5630 "src/data/wild_encounters.h"
 const struct WildPokemon sRoute14_FireRed_LandMons[] =
 {
     { 24, 24, 43 },
@@ -8196,7 +8168,7 @@ const struct WildPokemon sRoute14_FireRed_LandMons[] =
 };
 
 const struct WildPokemonInfo sRoute14_FireRed_LandMonsInfo = { 21, sRoute14_FireRed_LandMons };
-# 5730 "src/data/wild_encounters.h"
+# 5670 "src/data/wild_encounters.h"
 const struct WildPokemon sRoute15_FireRed_LandMons[] =
 {
     { 24, 24, 43 },
@@ -8214,7 +8186,7 @@ const struct WildPokemon sRoute15_FireRed_LandMons[] =
 };
 
 const struct WildPokemonInfo sRoute15_FireRed_LandMonsInfo = { 21, sRoute15_FireRed_LandMons };
-# 5770 "src/data/wild_encounters.h"
+# 5710 "src/data/wild_encounters.h"
 const struct WildPokemon sRoute16_FireRed_LandMons[] =
 {
     { 20, 20, 21 },
@@ -8232,7 +8204,7 @@ const struct WildPokemon sRoute16_FireRed_LandMons[] =
 };
 
 const struct WildPokemonInfo sRoute16_FireRed_LandMonsInfo = { 21, sRoute16_FireRed_LandMons };
-# 5810 "src/data/wild_encounters.h"
+# 5750 "src/data/wild_encounters.h"
 const struct WildPokemon sRoute17_FireRed_LandMons[] =
 {
     { 20, 20, 21 },
@@ -8250,7 +8222,7 @@ const struct WildPokemon sRoute17_FireRed_LandMons[] =
 };
 
 const struct WildPokemonInfo sRoute17_FireRed_LandMonsInfo = { 21, sRoute17_FireRed_LandMons };
-# 5850 "src/data/wild_encounters.h"
+# 5790 "src/data/wild_encounters.h"
 const struct WildPokemon sRoute18_FireRed_LandMons[] =
 {
     { 20, 20, 21 },
@@ -8268,7 +8240,7 @@ const struct WildPokemon sRoute18_FireRed_LandMons[] =
 };
 
 const struct WildPokemonInfo sRoute18_FireRed_LandMonsInfo = { 21, sRoute18_FireRed_LandMons };
-# 5890 "src/data/wild_encounters.h"
+# 5830 "src/data/wild_encounters.h"
 const struct WildPokemon sRoute19_FireRed_WaterMons[] =
 {
     { 5, 10, 72 },
@@ -8294,7 +8266,7 @@ const struct WildPokemon sRoute19_FireRed_FishingMons[] =
 };
 
 const struct WildPokemonInfo sRoute19_FireRed_FishingMonsInfo = { 20, sRoute19_FireRed_FishingMons };
-# 5946 "src/data/wild_encounters.h"
+# 5886 "src/data/wild_encounters.h"
 const struct WildPokemon sRoute20_FireRed_WaterMons[] =
 {
     { 5, 10, 72 },
@@ -8320,7 +8292,7 @@ const struct WildPokemon sRoute20_FireRed_FishingMons[] =
 };
 
 const struct WildPokemonInfo sRoute20_FireRed_FishingMonsInfo = { 20, sRoute20_FireRed_FishingMons };
-# 6002 "src/data/wild_encounters.h"
+# 5942 "src/data/wild_encounters.h"
 const struct WildPokemon sRoute21North_FireRed_LandMons[] =
 {
     { 22, 22, 114 },
@@ -8363,7 +8335,7 @@ const struct WildPokemon sRoute21North_FireRed_FishingMons[] =
 };
 
 const struct WildPokemonInfo sRoute21North_FireRed_FishingMonsInfo = { 20, sRoute21North_FireRed_FishingMons };
-# 6092 "src/data/wild_encounters.h"
+# 6032 "src/data/wild_encounters.h"
 const struct WildPokemon sRoute21South_FireRed_LandMons[] =
 {
     { 22, 22, 114 },
@@ -8406,7 +8378,7 @@ const struct WildPokemon sRoute21South_FireRed_FishingMons[] =
 };
 
 const struct WildPokemonInfo sRoute21South_FireRed_FishingMonsInfo = { 20, sRoute21South_FireRed_FishingMons };
-# 6182 "src/data/wild_encounters.h"
+# 6122 "src/data/wild_encounters.h"
 const struct WildPokemon sRoute22_FireRed_LandMons[] =
 {
     { 3, 3, 19 },
@@ -8449,7 +8421,7 @@ const struct WildPokemon sRoute22_FireRed_FishingMons[] =
 };
 
 const struct WildPokemonInfo sRoute22_FireRed_FishingMonsInfo = { 20, sRoute22_FireRed_FishingMons };
-# 6272 "src/data/wild_encounters.h"
+# 6212 "src/data/wild_encounters.h"
 const struct WildPokemon sRoute23_FireRed_LandMons[] =
 {
     { 32, 32, 56 },
@@ -8492,7 +8464,7 @@ const struct WildPokemon sRoute23_FireRed_FishingMons[] =
 };
 
 const struct WildPokemonInfo sRoute23_FireRed_FishingMonsInfo = { 20, sRoute23_FireRed_FishingMons };
-# 6362 "src/data/wild_encounters.h"
+# 6302 "src/data/wild_encounters.h"
 const struct WildPokemon sRoute24_FireRed_LandMons[] =
 {
     { 7, 7, 13 },
@@ -8535,7 +8507,7 @@ const struct WildPokemon sRoute24_FireRed_FishingMons[] =
 };
 
 const struct WildPokemonInfo sRoute24_FireRed_FishingMonsInfo = { 20, sRoute24_FireRed_FishingMons };
-# 6452 "src/data/wild_encounters.h"
+# 6392 "src/data/wild_encounters.h"
 const struct WildPokemon sRoute25_FireRed_LandMons[] =
 {
     { 8, 8, 13 },
@@ -8578,7 +8550,7 @@ const struct WildPokemon sRoute25_FireRed_FishingMons[] =
 };
 
 const struct WildPokemonInfo sRoute25_FireRed_FishingMonsInfo = { 20, sRoute25_FireRed_FishingMons };
-# 6542 "src/data/wild_encounters.h"
+# 6482 "src/data/wild_encounters.h"
 const struct WildPokemon sPalletTown_FireRed_WaterMons[] =
 {
     { 5, 10, 72 },
@@ -8604,7 +8576,7 @@ const struct WildPokemon sPalletTown_FireRed_FishingMons[] =
 };
 
 const struct WildPokemonInfo sPalletTown_FireRed_FishingMonsInfo = { 10, sPalletTown_FireRed_FishingMons };
-# 6598 "src/data/wild_encounters.h"
+# 6538 "src/data/wild_encounters.h"
 const struct WildPokemon sViridianCity_FireRed_WaterMons[] =
 {
     { 20, 25, 54 },
@@ -8630,7 +8602,7 @@ const struct WildPokemon sViridianCity_FireRed_FishingMons[] =
 };
 
 const struct WildPokemonInfo sViridianCity_FireRed_FishingMonsInfo = { 10, sViridianCity_FireRed_FishingMons };
-# 6654 "src/data/wild_encounters.h"
+# 6594 "src/data/wild_encounters.h"
 const struct WildPokemon sCeruleanCity_FireRed_WaterMons[] =
 {
     { 5, 10, 72 },
@@ -8656,7 +8628,7 @@ const struct WildPokemon sCeruleanCity_FireRed_FishingMons[] =
 };
 
 const struct WildPokemonInfo sCeruleanCity_FireRed_FishingMonsInfo = { 10, sCeruleanCity_FireRed_FishingMons };
-# 6710 "src/data/wild_encounters.h"
+# 6650 "src/data/wild_encounters.h"
 const struct WildPokemon sVermilionCity_FireRed_WaterMons[] =
 {
     { 5, 10, 72 },
@@ -8682,7 +8654,7 @@ const struct WildPokemon sVermilionCity_FireRed_FishingMons[] =
 };
 
 const struct WildPokemonInfo sVermilionCity_FireRed_FishingMonsInfo = { 10, sVermilionCity_FireRed_FishingMons };
-# 6766 "src/data/wild_encounters.h"
+# 6706 "src/data/wild_encounters.h"
 const struct WildPokemon sCeladonCity_FireRed_WaterMons[] =
 {
     { 5, 10, 54 },
@@ -8708,7 +8680,7 @@ const struct WildPokemon sCeladonCity_FireRed_FishingMons[] =
 };
 
 const struct WildPokemonInfo sCeladonCity_FireRed_FishingMonsInfo = { 10, sCeladonCity_FireRed_FishingMons };
-# 6822 "src/data/wild_encounters.h"
+# 6762 "src/data/wild_encounters.h"
 const struct WildPokemon sFuchsiaCity_FireRed_WaterMons[] =
 {
     { 20, 25, 54 },
@@ -8734,7 +8706,7 @@ const struct WildPokemon sFuchsiaCity_FireRed_FishingMons[] =
 };
 
 const struct WildPokemonInfo sFuchsiaCity_FireRed_FishingMonsInfo = { 10, sFuchsiaCity_FireRed_FishingMons };
-# 6878 "src/data/wild_encounters.h"
+# 6818 "src/data/wild_encounters.h"
 const struct WildPokemon sCinnabarIsland_FireRed_WaterMons[] =
 {
     { 5, 10, 72 },
@@ -8760,7 +8732,7 @@ const struct WildPokemon sCinnabarIsland_FireRed_FishingMons[] =
 };
 
 const struct WildPokemonInfo sCinnabarIsland_FireRed_FishingMonsInfo = { 10, sCinnabarIsland_FireRed_FishingMons };
-# 6934 "src/data/wild_encounters.h"
+# 6874 "src/data/wild_encounters.h"
 const struct WildPokemon sOneIsland_FireRed_WaterMons[] =
 {
     { 5, 20, 72 },
@@ -8786,7 +8758,7 @@ const struct WildPokemon sOneIsland_FireRed_FishingMons[] =
 };
 
 const struct WildPokemonInfo sOneIsland_FireRed_FishingMonsInfo = { 10, sOneIsland_FireRed_FishingMons };
-# 6990 "src/data/wild_encounters.h"
+# 6930 "src/data/wild_encounters.h"
 const struct WildPokemon sFourIsland_FireRed_WaterMons[] =
 {
     { 5, 15, 194 },
@@ -8812,7 +8784,7 @@ const struct WildPokemon sFourIsland_FireRed_FishingMons[] =
 };
 
 const struct WildPokemonInfo sFourIsland_FireRed_FishingMonsInfo = { 20, sFourIsland_FireRed_FishingMons };
-# 7046 "src/data/wild_encounters.h"
+# 6986 "src/data/wild_encounters.h"
 const struct WildPokemon sFiveIsland_FireRed_WaterMons[] =
 {
     { 5, 35, 72 },
@@ -8838,7 +8810,7 @@ const struct WildPokemon sFiveIsland_FireRed_FishingMons[] =
 };
 
 const struct WildPokemonInfo sFiveIsland_FireRed_FishingMonsInfo = { 10, sFiveIsland_FireRed_FishingMons };
-# 7102 "src/data/wild_encounters.h"
+# 7042 "src/data/wild_encounters.h"
 const struct WildPokemon sSixIslandAlteringCave_FireRed_LandMons[] =
 {
     { 10, 10, 41 },
@@ -9016,7 +8988,7 @@ const struct WildPokemon sSixIslandAlteringCave_9_FireRed_LandMons[] =
 };
 
 const struct WildPokemonInfo sSixIslandAlteringCave_9_FireRed_LandMonsInfo = { 5, sSixIslandAlteringCave_9_FireRed_LandMons };
-# 7462 "src/data/wild_encounters.h"
+# 7402 "src/data/wild_encounters.h"
 const struct WildPokemonHeader gWildMonHeaders[] =
 {
 
@@ -9028,7 +9000,7 @@ const struct WildPokemonHeader gWildMonHeaders[] =
         .rockSmashMonsInfo = ((void *)0),
         .fishingMonsInfo = ((void *)0),
     },
-# 7485 "src/data/wild_encounters.h"
+# 7425 "src/data/wild_encounters.h"
     {
         .mapGroup = ((28 | (2 << 8)) >> 8),
         .mapNum = ((28 | (2 << 8)) & 0xFF),
@@ -9037,7 +9009,7 @@ const struct WildPokemonHeader gWildMonHeaders[] =
         .rockSmashMonsInfo = ((void *)0),
         .fishingMonsInfo = ((void *)0),
     },
-# 7505 "src/data/wild_encounters.h"
+# 7445 "src/data/wild_encounters.h"
     {
         .mapGroup = ((29 | (2 << 8)) >> 8),
         .mapNum = ((29 | (2 << 8)) & 0xFF),
@@ -9046,7 +9018,7 @@ const struct WildPokemonHeader gWildMonHeaders[] =
         .rockSmashMonsInfo = ((void *)0),
         .fishingMonsInfo = ((void *)0),
     },
-# 7525 "src/data/wild_encounters.h"
+# 7465 "src/data/wild_encounters.h"
     {
         .mapGroup = ((30 | (2 << 8)) >> 8),
         .mapNum = ((30 | (2 << 8)) & 0xFF),
@@ -9055,7 +9027,7 @@ const struct WildPokemonHeader gWildMonHeaders[] =
         .rockSmashMonsInfo = ((void *)0),
         .fishingMonsInfo = ((void *)0),
     },
-# 7545 "src/data/wild_encounters.h"
+# 7485 "src/data/wild_encounters.h"
     {
         .mapGroup = ((31 | (2 << 8)) >> 8),
         .mapNum = ((31 | (2 << 8)) & 0xFF),
@@ -9064,7 +9036,7 @@ const struct WildPokemonHeader gWildMonHeaders[] =
         .rockSmashMonsInfo = ((void *)0),
         .fishingMonsInfo = ((void *)0),
     },
-# 7565 "src/data/wild_encounters.h"
+# 7505 "src/data/wild_encounters.h"
     {
         .mapGroup = ((32 | (2 << 8)) >> 8),
         .mapNum = ((32 | (2 << 8)) & 0xFF),
@@ -9073,7 +9045,7 @@ const struct WildPokemonHeader gWildMonHeaders[] =
         .rockSmashMonsInfo = ((void *)0),
         .fishingMonsInfo = ((void *)0),
     },
-# 7585 "src/data/wild_encounters.h"
+# 7525 "src/data/wild_encounters.h"
     {
         .mapGroup = ((33 | (2 << 8)) >> 8),
         .mapNum = ((33 | (2 << 8)) & 0xFF),
@@ -9082,7 +9054,7 @@ const struct WildPokemonHeader gWildMonHeaders[] =
         .rockSmashMonsInfo = ((void *)0),
         .fishingMonsInfo = ((void *)0),
     },
-# 7605 "src/data/wild_encounters.h"
+# 7545 "src/data/wild_encounters.h"
     {
         .mapGroup = ((0 | (1 << 8)) >> 8),
         .mapNum = ((0 | (1 << 8)) & 0xFF),
@@ -9091,7 +9063,7 @@ const struct WildPokemonHeader gWildMonHeaders[] =
         .rockSmashMonsInfo = ((void *)0),
         .fishingMonsInfo = ((void *)0),
     },
-# 7625 "src/data/wild_encounters.h"
+# 7565 "src/data/wild_encounters.h"
     {
         .mapGroup = ((1 | (1 << 8)) >> 8),
         .mapNum = ((1 | (1 << 8)) & 0xFF),
@@ -9100,7 +9072,7 @@ const struct WildPokemonHeader gWildMonHeaders[] =
         .rockSmashMonsInfo = ((void *)0),
         .fishingMonsInfo = ((void *)0),
     },
-# 7645 "src/data/wild_encounters.h"
+# 7585 "src/data/wild_encounters.h"
     {
         .mapGroup = ((2 | (1 << 8)) >> 8),
         .mapNum = ((2 | (1 << 8)) & 0xFF),
@@ -9109,7 +9081,7 @@ const struct WildPokemonHeader gWildMonHeaders[] =
         .rockSmashMonsInfo = ((void *)0),
         .fishingMonsInfo = ((void *)0),
     },
-# 7665 "src/data/wild_encounters.h"
+# 7605 "src/data/wild_encounters.h"
     {
         .mapGroup = ((3 | (1 << 8)) >> 8),
         .mapNum = ((3 | (1 << 8)) & 0xFF),
@@ -9118,7 +9090,7 @@ const struct WildPokemonHeader gWildMonHeaders[] =
         .rockSmashMonsInfo = ((void *)0),
         .fishingMonsInfo = ((void *)0),
     },
-# 7685 "src/data/wild_encounters.h"
+# 7625 "src/data/wild_encounters.h"
     {
         .mapGroup = ((4 | (1 << 8)) >> 8),
         .mapNum = ((4 | (1 << 8)) & 0xFF),
@@ -9127,7 +9099,7 @@ const struct WildPokemonHeader gWildMonHeaders[] =
         .rockSmashMonsInfo = ((void *)0),
         .fishingMonsInfo = &sSSAnneExterior_FireRed_FishingMonsInfo,
     },
-# 7705 "src/data/wild_encounters.h"
+# 7645 "src/data/wild_encounters.h"
     {
         .mapGroup = ((37 | (1 << 8)) >> 8),
         .mapNum = ((37 | (1 << 8)) & 0xFF),
@@ -9136,7 +9108,7 @@ const struct WildPokemonHeader gWildMonHeaders[] =
         .rockSmashMonsInfo = ((void *)0),
         .fishingMonsInfo = ((void *)0),
     },
-# 7725 "src/data/wild_encounters.h"
+# 7665 "src/data/wild_encounters.h"
     {
         .mapGroup = ((39 | (1 << 8)) >> 8),
         .mapNum = ((39 | (1 << 8)) & 0xFF),
@@ -9145,7 +9117,7 @@ const struct WildPokemonHeader gWildMonHeaders[] =
         .rockSmashMonsInfo = ((void *)0),
         .fishingMonsInfo = ((void *)0),
     },
-# 7745 "src/data/wild_encounters.h"
+# 7685 "src/data/wild_encounters.h"
     {
         .mapGroup = ((40 | (1 << 8)) >> 8),
         .mapNum = ((40 | (1 << 8)) & 0xFF),
@@ -9154,7 +9126,7 @@ const struct WildPokemonHeader gWildMonHeaders[] =
         .rockSmashMonsInfo = ((void *)0),
         .fishingMonsInfo = ((void *)0),
     },
-# 7765 "src/data/wild_encounters.h"
+# 7705 "src/data/wild_encounters.h"
     {
         .mapGroup = ((41 | (1 << 8)) >> 8),
         .mapNum = ((41 | (1 << 8)) & 0xFF),
@@ -9163,7 +9135,7 @@ const struct WildPokemonHeader gWildMonHeaders[] =
         .rockSmashMonsInfo = ((void *)0),
         .fishingMonsInfo = ((void *)0),
     },
-# 7785 "src/data/wild_encounters.h"
+# 7725 "src/data/wild_encounters.h"
     {
         .mapGroup = ((59 | (1 << 8)) >> 8),
         .mapNum = ((59 | (1 << 8)) & 0xFF),
@@ -9172,7 +9144,7 @@ const struct WildPokemonHeader gWildMonHeaders[] =
         .rockSmashMonsInfo = ((void *)0),
         .fishingMonsInfo = ((void *)0),
     },
-# 7805 "src/data/wild_encounters.h"
+# 7745 "src/data/wild_encounters.h"
     {
         .mapGroup = ((60 | (1 << 8)) >> 8),
         .mapNum = ((60 | (1 << 8)) & 0xFF),
@@ -9181,7 +9153,7 @@ const struct WildPokemonHeader gWildMonHeaders[] =
         .rockSmashMonsInfo = ((void *)0),
         .fishingMonsInfo = ((void *)0),
     },
-# 7825 "src/data/wild_encounters.h"
+# 7765 "src/data/wild_encounters.h"
     {
         .mapGroup = ((61 | (1 << 8)) >> 8),
         .mapNum = ((61 | (1 << 8)) & 0xFF),
@@ -9190,7 +9162,7 @@ const struct WildPokemonHeader gWildMonHeaders[] =
         .rockSmashMonsInfo = ((void *)0),
         .fishingMonsInfo = ((void *)0),
     },
-# 7845 "src/data/wild_encounters.h"
+# 7785 "src/data/wild_encounters.h"
     {
         .mapGroup = ((62 | (1 << 8)) >> 8),
         .mapNum = ((62 | (1 << 8)) & 0xFF),
@@ -9199,7 +9171,7 @@ const struct WildPokemonHeader gWildMonHeaders[] =
         .rockSmashMonsInfo = ((void *)0),
         .fishingMonsInfo = ((void *)0),
     },
-# 7865 "src/data/wild_encounters.h"
+# 7805 "src/data/wild_encounters.h"
     {
         .mapGroup = ((63 | (1 << 8)) >> 8),
         .mapNum = ((63 | (1 << 8)) & 0xFF),
@@ -9208,7 +9180,7 @@ const struct WildPokemonHeader gWildMonHeaders[] =
         .rockSmashMonsInfo = ((void *)0),
         .fishingMonsInfo = &sSafariZoneCenter_FireRed_FishingMonsInfo,
     },
-# 7885 "src/data/wild_encounters.h"
+# 7825 "src/data/wild_encounters.h"
     {
         .mapGroup = ((64 | (1 << 8)) >> 8),
         .mapNum = ((64 | (1 << 8)) & 0xFF),
@@ -9217,7 +9189,7 @@ const struct WildPokemonHeader gWildMonHeaders[] =
         .rockSmashMonsInfo = ((void *)0),
         .fishingMonsInfo = &sSafariZoneEast_FireRed_FishingMonsInfo,
     },
-# 7905 "src/data/wild_encounters.h"
+# 7845 "src/data/wild_encounters.h"
     {
         .mapGroup = ((65 | (1 << 8)) >> 8),
         .mapNum = ((65 | (1 << 8)) & 0xFF),
@@ -9226,7 +9198,7 @@ const struct WildPokemonHeader gWildMonHeaders[] =
         .rockSmashMonsInfo = ((void *)0),
         .fishingMonsInfo = &sSafariZoneNorth_FireRed_FishingMonsInfo,
     },
-# 7925 "src/data/wild_encounters.h"
+# 7865 "src/data/wild_encounters.h"
     {
         .mapGroup = ((66 | (1 << 8)) >> 8),
         .mapNum = ((66 | (1 << 8)) & 0xFF),
@@ -9235,7 +9207,7 @@ const struct WildPokemonHeader gWildMonHeaders[] =
         .rockSmashMonsInfo = ((void *)0),
         .fishingMonsInfo = &sSafariZoneWest_FireRed_FishingMonsInfo,
     },
-# 7945 "src/data/wild_encounters.h"
+# 7885 "src/data/wild_encounters.h"
     {
         .mapGroup = ((72 | (1 << 8)) >> 8),
         .mapNum = ((72 | (1 << 8)) & 0xFF),
@@ -9244,7 +9216,7 @@ const struct WildPokemonHeader gWildMonHeaders[] =
         .rockSmashMonsInfo = &sCeruleanCave1F_FireRed_RockSmashMonsInfo,
         .fishingMonsInfo = &sCeruleanCave1F_FireRed_FishingMonsInfo,
     },
-# 7965 "src/data/wild_encounters.h"
+# 7905 "src/data/wild_encounters.h"
     {
         .mapGroup = ((73 | (1 << 8)) >> 8),
         .mapNum = ((73 | (1 << 8)) & 0xFF),
@@ -9253,7 +9225,7 @@ const struct WildPokemonHeader gWildMonHeaders[] =
         .rockSmashMonsInfo = &sCeruleanCave2F_FireRed_RockSmashMonsInfo,
         .fishingMonsInfo = ((void *)0),
     },
-# 7985 "src/data/wild_encounters.h"
+# 7925 "src/data/wild_encounters.h"
     {
         .mapGroup = ((74 | (1 << 8)) >> 8),
         .mapNum = ((74 | (1 << 8)) & 0xFF),
@@ -9262,7 +9234,7 @@ const struct WildPokemonHeader gWildMonHeaders[] =
         .rockSmashMonsInfo = &sCeruleanCaveB1F_FireRed_RockSmashMonsInfo,
         .fishingMonsInfo = &sCeruleanCaveB1F_FireRed_FishingMonsInfo,
     },
-# 8005 "src/data/wild_encounters.h"
+# 7945 "src/data/wild_encounters.h"
     {
         .mapGroup = ((81 | (1 << 8)) >> 8),
         .mapNum = ((81 | (1 << 8)) & 0xFF),
@@ -9271,7 +9243,7 @@ const struct WildPokemonHeader gWildMonHeaders[] =
         .rockSmashMonsInfo = ((void *)0),
         .fishingMonsInfo = ((void *)0),
     },
-# 8025 "src/data/wild_encounters.h"
+# 7965 "src/data/wild_encounters.h"
     {
         .mapGroup = ((82 | (1 << 8)) >> 8),
         .mapNum = ((82 | (1 << 8)) & 0xFF),
@@ -9280,7 +9252,7 @@ const struct WildPokemonHeader gWildMonHeaders[] =
         .rockSmashMonsInfo = &sRockTunnelB1F_FireRed_RockSmashMonsInfo,
         .fishingMonsInfo = ((void *)0),
     },
-# 8045 "src/data/wild_encounters.h"
+# 7985 "src/data/wild_encounters.h"
     {
         .mapGroup = ((83 | (1 << 8)) >> 8),
         .mapNum = ((83 | (1 << 8)) & 0xFF),
@@ -9289,7 +9261,7 @@ const struct WildPokemonHeader gWildMonHeaders[] =
         .rockSmashMonsInfo = ((void *)0),
         .fishingMonsInfo = ((void *)0),
     },
-# 8065 "src/data/wild_encounters.h"
+# 8005 "src/data/wild_encounters.h"
     {
         .mapGroup = ((84 | (1 << 8)) >> 8),
         .mapNum = ((84 | (1 << 8)) & 0xFF),
@@ -9298,7 +9270,7 @@ const struct WildPokemonHeader gWildMonHeaders[] =
         .rockSmashMonsInfo = ((void *)0),
         .fishingMonsInfo = ((void *)0),
     },
-# 8085 "src/data/wild_encounters.h"
+# 8025 "src/data/wild_encounters.h"
     {
         .mapGroup = ((85 | (1 << 8)) >> 8),
         .mapNum = ((85 | (1 << 8)) & 0xFF),
@@ -9307,7 +9279,7 @@ const struct WildPokemonHeader gWildMonHeaders[] =
         .rockSmashMonsInfo = ((void *)0),
         .fishingMonsInfo = ((void *)0),
     },
-# 8105 "src/data/wild_encounters.h"
+# 8045 "src/data/wild_encounters.h"
     {
         .mapGroup = ((86 | (1 << 8)) >> 8),
         .mapNum = ((86 | (1 << 8)) & 0xFF),
@@ -9316,7 +9288,7 @@ const struct WildPokemonHeader gWildMonHeaders[] =
         .rockSmashMonsInfo = ((void *)0),
         .fishingMonsInfo = &sSeafoamIslandsB3F_FireRed_FishingMonsInfo,
     },
-# 8125 "src/data/wild_encounters.h"
+# 8065 "src/data/wild_encounters.h"
     {
         .mapGroup = ((87 | (1 << 8)) >> 8),
         .mapNum = ((87 | (1 << 8)) & 0xFF),
@@ -9325,7 +9297,7 @@ const struct WildPokemonHeader gWildMonHeaders[] =
         .rockSmashMonsInfo = ((void *)0),
         .fishingMonsInfo = &sSeafoamIslandsB4F_FireRed_FishingMonsInfo,
     },
-# 8145 "src/data/wild_encounters.h"
+# 8085 "src/data/wild_encounters.h"
     {
         .mapGroup = ((90 | (1 << 8)) >> 8),
         .mapNum = ((90 | (1 << 8)) & 0xFF),
@@ -9334,7 +9306,7 @@ const struct WildPokemonHeader gWildMonHeaders[] =
         .rockSmashMonsInfo = ((void *)0),
         .fishingMonsInfo = ((void *)0),
     },
-# 8165 "src/data/wild_encounters.h"
+# 8105 "src/data/wild_encounters.h"
     {
         .mapGroup = ((91 | (1 << 8)) >> 8),
         .mapNum = ((91 | (1 << 8)) & 0xFF),
@@ -9343,7 +9315,7 @@ const struct WildPokemonHeader gWildMonHeaders[] =
         .rockSmashMonsInfo = ((void *)0),
         .fishingMonsInfo = ((void *)0),
     },
-# 8185 "src/data/wild_encounters.h"
+# 8125 "src/data/wild_encounters.h"
     {
         .mapGroup = ((92 | (1 << 8)) >> 8),
         .mapNum = ((92 | (1 << 8)) & 0xFF),
@@ -9352,7 +9324,7 @@ const struct WildPokemonHeader gWildMonHeaders[] =
         .rockSmashMonsInfo = ((void *)0),
         .fishingMonsInfo = ((void *)0),
     },
-# 8205 "src/data/wild_encounters.h"
+# 8145 "src/data/wild_encounters.h"
     {
         .mapGroup = ((93 | (1 << 8)) >> 8),
         .mapNum = ((93 | (1 << 8)) & 0xFF),
@@ -9361,7 +9333,7 @@ const struct WildPokemonHeader gWildMonHeaders[] =
         .rockSmashMonsInfo = ((void *)0),
         .fishingMonsInfo = ((void *)0),
     },
-# 8225 "src/data/wild_encounters.h"
+# 8165 "src/data/wild_encounters.h"
     {
         .mapGroup = ((94 | (1 << 8)) >> 8),
         .mapNum = ((94 | (1 << 8)) & 0xFF),
@@ -9370,7 +9342,7 @@ const struct WildPokemonHeader gWildMonHeaders[] =
         .rockSmashMonsInfo = ((void *)0),
         .fishingMonsInfo = ((void *)0),
     },
-# 8245 "src/data/wild_encounters.h"
+# 8185 "src/data/wild_encounters.h"
     {
         .mapGroup = ((95 | (1 << 8)) >> 8),
         .mapNum = ((95 | (1 << 8)) & 0xFF),
@@ -9379,7 +9351,7 @@ const struct WildPokemonHeader gWildMonHeaders[] =
         .rockSmashMonsInfo = ((void *)0),
         .fishingMonsInfo = ((void *)0),
     },
-# 8265 "src/data/wild_encounters.h"
+# 8205 "src/data/wild_encounters.h"
     {
         .mapGroup = ((97 | (1 << 8)) >> 8),
         .mapNum = ((97 | (1 << 8)) & 0xFF),
@@ -9388,7 +9360,7 @@ const struct WildPokemonHeader gWildMonHeaders[] =
         .rockSmashMonsInfo = &sMtEmberExterior_FireRed_RockSmashMonsInfo,
         .fishingMonsInfo = ((void *)0),
     },
-# 8285 "src/data/wild_encounters.h"
+# 8225 "src/data/wild_encounters.h"
     {
         .mapGroup = ((98 | (1 << 8)) >> 8),
         .mapNum = ((98 | (1 << 8)) & 0xFF),
@@ -9397,7 +9369,7 @@ const struct WildPokemonHeader gWildMonHeaders[] =
         .rockSmashMonsInfo = ((void *)0),
         .fishingMonsInfo = ((void *)0),
     },
-# 8305 "src/data/wild_encounters.h"
+# 8245 "src/data/wild_encounters.h"
     {
         .mapGroup = ((99 | (1 << 8)) >> 8),
         .mapNum = ((99 | (1 << 8)) & 0xFF),
@@ -9406,7 +9378,7 @@ const struct WildPokemonHeader gWildMonHeaders[] =
         .rockSmashMonsInfo = &sMtEmberSummitPath2F_FireRed_RockSmashMonsInfo,
         .fishingMonsInfo = ((void *)0),
     },
-# 8325 "src/data/wild_encounters.h"
+# 8265 "src/data/wild_encounters.h"
     {
         .mapGroup = ((100 | (1 << 8)) >> 8),
         .mapNum = ((100 | (1 << 8)) & 0xFF),
@@ -9415,7 +9387,7 @@ const struct WildPokemonHeader gWildMonHeaders[] =
         .rockSmashMonsInfo = ((void *)0),
         .fishingMonsInfo = ((void *)0),
     },
-# 8345 "src/data/wild_encounters.h"
+# 8285 "src/data/wild_encounters.h"
     {
         .mapGroup = ((103 | (1 << 8)) >> 8),
         .mapNum = ((103 | (1 << 8)) & 0xFF),
@@ -9424,7 +9396,7 @@ const struct WildPokemonHeader gWildMonHeaders[] =
         .rockSmashMonsInfo = &sMtEmberRubyPath1F_FireRed_RockSmashMonsInfo,
         .fishingMonsInfo = ((void *)0),
     },
-# 8365 "src/data/wild_encounters.h"
+# 8305 "src/data/wild_encounters.h"
     {
         .mapGroup = ((104 | (1 << 8)) >> 8),
         .mapNum = ((104 | (1 << 8)) & 0xFF),
@@ -9433,16 +9405,7 @@ const struct WildPokemonHeader gWildMonHeaders[] =
         .rockSmashMonsInfo = &sMtEmberRubyPathB1F_FireRed_RockSmashMonsInfo,
         .fishingMonsInfo = ((void *)0),
     },
-# 8385 "src/data/wild_encounters.h"
-    {
-        .mapGroup = ((105 | (1 << 8)) >> 8),
-        .mapNum = ((105 | (1 << 8)) & 0xFF),
-        .landMonsInfo = &sMtEmberRubyPathB2F_FireRed_LandMonsInfo,
-        .waterMonsInfo = ((void *)0),
-        .rockSmashMonsInfo = &sMtEmberRubyPathB2F_FireRed_RockSmashMonsInfo,
-        .fishingMonsInfo = ((void *)0),
-    },
-# 8405 "src/data/wild_encounters.h"
+# 8325 "src/data/wild_encounters.h"
     {
         .mapGroup = ((106 | (1 << 8)) >> 8),
         .mapNum = ((106 | (1 << 8)) & 0xFF),
@@ -9451,7 +9414,7 @@ const struct WildPokemonHeader gWildMonHeaders[] =
         .rockSmashMonsInfo = &sMtEmberRubyPathB3F_FireRed_RockSmashMonsInfo,
         .fishingMonsInfo = ((void *)0),
     },
-# 8425 "src/data/wild_encounters.h"
+# 8345 "src/data/wild_encounters.h"
     {
         .mapGroup = ((107 | (1 << 8)) >> 8),
         .mapNum = ((107 | (1 << 8)) & 0xFF),
@@ -9460,7 +9423,7 @@ const struct WildPokemonHeader gWildMonHeaders[] =
         .rockSmashMonsInfo = &sMtEmberRubyPathB1FStairs_FireRed_RockSmashMonsInfo,
         .fishingMonsInfo = ((void *)0),
     },
-# 8445 "src/data/wild_encounters.h"
+# 8365 "src/data/wild_encounters.h"
     {
         .mapGroup = ((108 | (1 << 8)) >> 8),
         .mapNum = ((108 | (1 << 8)) & 0xFF),
@@ -9469,7 +9432,7 @@ const struct WildPokemonHeader gWildMonHeaders[] =
         .rockSmashMonsInfo = &sMtEmberRubyPathB2FStairs_FireRed_RockSmashMonsInfo,
         .fishingMonsInfo = ((void *)0),
     },
-# 8465 "src/data/wild_encounters.h"
+# 8385 "src/data/wild_encounters.h"
     {
         .mapGroup = ((109 | (1 << 8)) >> 8),
         .mapNum = ((109 | (1 << 8)) & 0xFF),
@@ -9478,7 +9441,7 @@ const struct WildPokemonHeader gWildMonHeaders[] =
         .rockSmashMonsInfo = ((void *)0),
         .fishingMonsInfo = &sThreeIslandBerryForest_FireRed_FishingMonsInfo,
     },
-# 8485 "src/data/wild_encounters.h"
+# 8405 "src/data/wild_encounters.h"
     {
         .mapGroup = ((110 | (1 << 8)) >> 8),
         .mapNum = ((110 | (1 << 8)) & 0xFF),
@@ -9487,7 +9450,7 @@ const struct WildPokemonHeader gWildMonHeaders[] =
         .rockSmashMonsInfo = ((void *)0),
         .fishingMonsInfo = &sFourIslandIcefallCaveEntrance_FireRed_FishingMonsInfo,
     },
-# 8505 "src/data/wild_encounters.h"
+# 8425 "src/data/wild_encounters.h"
     {
         .mapGroup = ((111 | (1 << 8)) >> 8),
         .mapNum = ((111 | (1 << 8)) & 0xFF),
@@ -9496,7 +9459,7 @@ const struct WildPokemonHeader gWildMonHeaders[] =
         .rockSmashMonsInfo = ((void *)0),
         .fishingMonsInfo = ((void *)0),
     },
-# 8525 "src/data/wild_encounters.h"
+# 8445 "src/data/wild_encounters.h"
     {
         .mapGroup = ((112 | (1 << 8)) >> 8),
         .mapNum = ((112 | (1 << 8)) & 0xFF),
@@ -9505,7 +9468,7 @@ const struct WildPokemonHeader gWildMonHeaders[] =
         .rockSmashMonsInfo = ((void *)0),
         .fishingMonsInfo = ((void *)0),
     },
-# 8545 "src/data/wild_encounters.h"
+# 8465 "src/data/wild_encounters.h"
     {
         .mapGroup = ((113 | (1 << 8)) >> 8),
         .mapNum = ((113 | (1 << 8)) & 0xFF),
@@ -9514,7 +9477,7 @@ const struct WildPokemonHeader gWildMonHeaders[] =
         .rockSmashMonsInfo = ((void *)0),
         .fishingMonsInfo = &sFourIslandIcefallCaveBack_FireRed_FishingMonsInfo,
     },
-# 8565 "src/data/wild_encounters.h"
+# 8485 "src/data/wild_encounters.h"
     {
         .mapGroup = ((121 | (1 << 8)) >> 8),
         .mapNum = ((121 | (1 << 8)) & 0xFF),
@@ -9523,7 +9486,7 @@ const struct WildPokemonHeader gWildMonHeaders[] =
         .rockSmashMonsInfo = ((void *)0),
         .fishingMonsInfo = ((void *)0),
     },
-# 8585 "src/data/wild_encounters.h"
+# 8505 "src/data/wild_encounters.h"
     {
         .mapGroup = ((13 | (2 << 8)) >> 8),
         .mapNum = ((13 | (2 << 8)) & 0xFF),
@@ -9532,7 +9495,7 @@ const struct WildPokemonHeader gWildMonHeaders[] =
         .rockSmashMonsInfo = ((void *)0),
         .fishingMonsInfo = ((void *)0),
     },
-# 8605 "src/data/wild_encounters.h"
+# 8525 "src/data/wild_encounters.h"
     {
         .mapGroup = ((14 | (2 << 8)) >> 8),
         .mapNum = ((14 | (2 << 8)) & 0xFF),
@@ -9541,7 +9504,7 @@ const struct WildPokemonHeader gWildMonHeaders[] =
         .rockSmashMonsInfo = ((void *)0),
         .fishingMonsInfo = ((void *)0),
     },
-# 8625 "src/data/wild_encounters.h"
+# 8545 "src/data/wild_encounters.h"
     {
         .mapGroup = ((15 | (2 << 8)) >> 8),
         .mapNum = ((15 | (2 << 8)) & 0xFF),
@@ -9550,7 +9513,7 @@ const struct WildPokemonHeader gWildMonHeaders[] =
         .rockSmashMonsInfo = ((void *)0),
         .fishingMonsInfo = ((void *)0),
     },
-# 8645 "src/data/wild_encounters.h"
+# 8565 "src/data/wild_encounters.h"
     {
         .mapGroup = ((16 | (2 << 8)) >> 8),
         .mapNum = ((16 | (2 << 8)) & 0xFF),
@@ -9559,7 +9522,7 @@ const struct WildPokemonHeader gWildMonHeaders[] =
         .rockSmashMonsInfo = ((void *)0),
         .fishingMonsInfo = ((void *)0),
     },
-# 8665 "src/data/wild_encounters.h"
+# 8585 "src/data/wild_encounters.h"
     {
         .mapGroup = ((17 | (2 << 8)) >> 8),
         .mapNum = ((17 | (2 << 8)) & 0xFF),
@@ -9568,7 +9531,7 @@ const struct WildPokemonHeader gWildMonHeaders[] =
         .rockSmashMonsInfo = ((void *)0),
         .fishingMonsInfo = ((void *)0),
     },
-# 8685 "src/data/wild_encounters.h"
+# 8605 "src/data/wild_encounters.h"
     {
         .mapGroup = ((18 | (2 << 8)) >> 8),
         .mapNum = ((18 | (2 << 8)) & 0xFF),
@@ -9577,7 +9540,7 @@ const struct WildPokemonHeader gWildMonHeaders[] =
         .rockSmashMonsInfo = ((void *)0),
         .fishingMonsInfo = ((void *)0),
     },
-# 8705 "src/data/wild_encounters.h"
+# 8625 "src/data/wild_encounters.h"
     {
         .mapGroup = ((19 | (2 << 8)) >> 8),
         .mapNum = ((19 | (2 << 8)) & 0xFF),
@@ -9586,7 +9549,7 @@ const struct WildPokemonHeader gWildMonHeaders[] =
         .rockSmashMonsInfo = ((void *)0),
         .fishingMonsInfo = ((void *)0),
     },
-# 8725 "src/data/wild_encounters.h"
+# 8645 "src/data/wild_encounters.h"
     {
         .mapGroup = ((20 | (2 << 8)) >> 8),
         .mapNum = ((20 | (2 << 8)) & 0xFF),
@@ -9595,7 +9558,7 @@ const struct WildPokemonHeader gWildMonHeaders[] =
         .rockSmashMonsInfo = ((void *)0),
         .fishingMonsInfo = ((void *)0),
     },
-# 8745 "src/data/wild_encounters.h"
+# 8665 "src/data/wild_encounters.h"
     {
         .mapGroup = ((21 | (2 << 8)) >> 8),
         .mapNum = ((21 | (2 << 8)) & 0xFF),
@@ -9604,7 +9567,7 @@ const struct WildPokemonHeader gWildMonHeaders[] =
         .rockSmashMonsInfo = ((void *)0),
         .fishingMonsInfo = ((void *)0),
     },
-# 8765 "src/data/wild_encounters.h"
+# 8685 "src/data/wild_encounters.h"
     {
         .mapGroup = ((22 | (2 << 8)) >> 8),
         .mapNum = ((22 | (2 << 8)) & 0xFF),
@@ -9613,7 +9576,7 @@ const struct WildPokemonHeader gWildMonHeaders[] =
         .rockSmashMonsInfo = ((void *)0),
         .fishingMonsInfo = ((void *)0),
     },
-# 8785 "src/data/wild_encounters.h"
+# 8705 "src/data/wild_encounters.h"
     {
         .mapGroup = ((23 | (2 << 8)) >> 8),
         .mapNum = ((23 | (2 << 8)) & 0xFF),
@@ -9622,7 +9585,7 @@ const struct WildPokemonHeader gWildMonHeaders[] =
         .rockSmashMonsInfo = ((void *)0),
         .fishingMonsInfo = ((void *)0),
     },
-# 8805 "src/data/wild_encounters.h"
+# 8725 "src/data/wild_encounters.h"
     {
         .mapGroup = ((24 | (2 << 8)) >> 8),
         .mapNum = ((24 | (2 << 8)) & 0xFF),
@@ -9631,7 +9594,7 @@ const struct WildPokemonHeader gWildMonHeaders[] =
         .rockSmashMonsInfo = ((void *)0),
         .fishingMonsInfo = ((void *)0),
     },
-# 8825 "src/data/wild_encounters.h"
+# 8745 "src/data/wild_encounters.h"
     {
         .mapGroup = ((25 | (2 << 8)) >> 8),
         .mapNum = ((25 | (2 << 8)) & 0xFF),
@@ -9640,7 +9603,7 @@ const struct WildPokemonHeader gWildMonHeaders[] =
         .rockSmashMonsInfo = ((void *)0),
         .fishingMonsInfo = ((void *)0),
     },
-# 8845 "src/data/wild_encounters.h"
+# 8765 "src/data/wild_encounters.h"
     {
         .mapGroup = ((26 | (2 << 8)) >> 8),
         .mapNum = ((26 | (2 << 8)) & 0xFF),
@@ -9649,7 +9612,7 @@ const struct WildPokemonHeader gWildMonHeaders[] =
         .rockSmashMonsInfo = ((void *)0),
         .fishingMonsInfo = ((void *)0),
     },
-# 8865 "src/data/wild_encounters.h"
+# 8785 "src/data/wild_encounters.h"
     {
         .mapGroup = ((45 | (3 << 8)) >> 8),
         .mapNum = ((45 | (3 << 8)) & 0xFF),
@@ -9658,7 +9621,7 @@ const struct WildPokemonHeader gWildMonHeaders[] =
         .rockSmashMonsInfo = &sOneIslandKindleRoad_FireRed_RockSmashMonsInfo,
         .fishingMonsInfo = &sOneIslandKindleRoad_FireRed_FishingMonsInfo,
     },
-# 8885 "src/data/wild_encounters.h"
+# 8805 "src/data/wild_encounters.h"
     {
         .mapGroup = ((46 | (3 << 8)) >> 8),
         .mapNum = ((46 | (3 << 8)) & 0xFF),
@@ -9667,7 +9630,7 @@ const struct WildPokemonHeader gWildMonHeaders[] =
         .rockSmashMonsInfo = ((void *)0),
         .fishingMonsInfo = &sOneIslandTreasureBeach_FireRed_FishingMonsInfo,
     },
-# 8905 "src/data/wild_encounters.h"
+# 8825 "src/data/wild_encounters.h"
     {
         .mapGroup = ((47 | (3 << 8)) >> 8),
         .mapNum = ((47 | (3 << 8)) & 0xFF),
@@ -9676,7 +9639,7 @@ const struct WildPokemonHeader gWildMonHeaders[] =
         .rockSmashMonsInfo = ((void *)0),
         .fishingMonsInfo = &sTwoIslandCapeBrink_FireRed_FishingMonsInfo,
     },
-# 8925 "src/data/wild_encounters.h"
+# 8845 "src/data/wild_encounters.h"
     {
         .mapGroup = ((48 | (3 << 8)) >> 8),
         .mapNum = ((48 | (3 << 8)) & 0xFF),
@@ -9685,7 +9648,7 @@ const struct WildPokemonHeader gWildMonHeaders[] =
         .rockSmashMonsInfo = ((void *)0),
         .fishingMonsInfo = &sThreeIslandBondBridge_FireRed_FishingMonsInfo,
     },
-# 8945 "src/data/wild_encounters.h"
+# 8865 "src/data/wild_encounters.h"
     {
         .mapGroup = ((49 | (3 << 8)) >> 8),
         .mapNum = ((49 | (3 << 8)) & 0xFF),
@@ -9694,7 +9657,7 @@ const struct WildPokemonHeader gWildMonHeaders[] =
         .rockSmashMonsInfo = ((void *)0),
         .fishingMonsInfo = ((void *)0),
     },
-# 8965 "src/data/wild_encounters.h"
+# 8885 "src/data/wild_encounters.h"
     {
         .mapGroup = ((54 | (3 << 8)) >> 8),
         .mapNum = ((54 | (3 << 8)) & 0xFF),
@@ -9703,7 +9666,7 @@ const struct WildPokemonHeader gWildMonHeaders[] =
         .rockSmashMonsInfo = ((void *)0),
         .fishingMonsInfo = &sFiveIslandResortGorgeous_FireRed_FishingMonsInfo,
     },
-# 8985 "src/data/wild_encounters.h"
+# 8905 "src/data/wild_encounters.h"
     {
         .mapGroup = ((55 | (3 << 8)) >> 8),
         .mapNum = ((55 | (3 << 8)) & 0xFF),
@@ -9712,7 +9675,7 @@ const struct WildPokemonHeader gWildMonHeaders[] =
         .rockSmashMonsInfo = ((void *)0),
         .fishingMonsInfo = &sFiveIslandWaterLabyrinth_FireRed_FishingMonsInfo,
     },
-# 9005 "src/data/wild_encounters.h"
+# 8925 "src/data/wild_encounters.h"
     {
         .mapGroup = ((56 | (3 << 8)) >> 8),
         .mapNum = ((56 | (3 << 8)) & 0xFF),
@@ -9721,7 +9684,7 @@ const struct WildPokemonHeader gWildMonHeaders[] =
         .rockSmashMonsInfo = ((void *)0),
         .fishingMonsInfo = &sFiveIslandMeadow_FireRed_FishingMonsInfo,
     },
-# 9025 "src/data/wild_encounters.h"
+# 8945 "src/data/wild_encounters.h"
     {
         .mapGroup = ((57 | (3 << 8)) >> 8),
         .mapNum = ((57 | (3 << 8)) & 0xFF),
@@ -9730,7 +9693,7 @@ const struct WildPokemonHeader gWildMonHeaders[] =
         .rockSmashMonsInfo = ((void *)0),
         .fishingMonsInfo = &sFiveIslandMemorialPillar_FireRed_FishingMonsInfo,
     },
-# 9045 "src/data/wild_encounters.h"
+# 8965 "src/data/wild_encounters.h"
     {
         .mapGroup = ((58 | (3 << 8)) >> 8),
         .mapNum = ((58 | (3 << 8)) & 0xFF),
@@ -9739,7 +9702,7 @@ const struct WildPokemonHeader gWildMonHeaders[] =
         .rockSmashMonsInfo = ((void *)0),
         .fishingMonsInfo = &sSixIslandOutcastIsland_FireRed_FishingMonsInfo,
     },
-# 9065 "src/data/wild_encounters.h"
+# 8985 "src/data/wild_encounters.h"
     {
         .mapGroup = ((59 | (3 << 8)) >> 8),
         .mapNum = ((59 | (3 << 8)) & 0xFF),
@@ -9748,7 +9711,7 @@ const struct WildPokemonHeader gWildMonHeaders[] =
         .rockSmashMonsInfo = ((void *)0),
         .fishingMonsInfo = &sSixIslandGreenPath_FireRed_FishingMonsInfo,
     },
-# 9085 "src/data/wild_encounters.h"
+# 9005 "src/data/wild_encounters.h"
     {
         .mapGroup = ((60 | (3 << 8)) >> 8),
         .mapNum = ((60 | (3 << 8)) & 0xFF),
@@ -9757,7 +9720,7 @@ const struct WildPokemonHeader gWildMonHeaders[] =
         .rockSmashMonsInfo = ((void *)0),
         .fishingMonsInfo = &sSixIslandWaterPath_FireRed_FishingMonsInfo,
     },
-# 9105 "src/data/wild_encounters.h"
+# 9025 "src/data/wild_encounters.h"
     {
         .mapGroup = ((61 | (3 << 8)) >> 8),
         .mapNum = ((61 | (3 << 8)) & 0xFF),
@@ -9766,7 +9729,7 @@ const struct WildPokemonHeader gWildMonHeaders[] =
         .rockSmashMonsInfo = ((void *)0),
         .fishingMonsInfo = &sSixIslandRuinValley_FireRed_FishingMonsInfo,
     },
-# 9125 "src/data/wild_encounters.h"
+# 9045 "src/data/wild_encounters.h"
     {
         .mapGroup = ((62 | (3 << 8)) >> 8),
         .mapNum = ((62 | (3 << 8)) & 0xFF),
@@ -9775,7 +9738,7 @@ const struct WildPokemonHeader gWildMonHeaders[] =
         .rockSmashMonsInfo = ((void *)0),
         .fishingMonsInfo = &sSevenIslandTrainerTower_FireRed_FishingMonsInfo,
     },
-# 9145 "src/data/wild_encounters.h"
+# 9065 "src/data/wild_encounters.h"
     {
         .mapGroup = ((63 | (3 << 8)) >> 8),
         .mapNum = ((63 | (3 << 8)) & 0xFF),
@@ -9784,7 +9747,7 @@ const struct WildPokemonHeader gWildMonHeaders[] =
         .rockSmashMonsInfo = ((void *)0),
         .fishingMonsInfo = ((void *)0),
     },
-# 9165 "src/data/wild_encounters.h"
+# 9085 "src/data/wild_encounters.h"
     {
         .mapGroup = ((64 | (3 << 8)) >> 8),
         .mapNum = ((64 | (3 << 8)) & 0xFF),
@@ -9793,7 +9756,7 @@ const struct WildPokemonHeader gWildMonHeaders[] =
         .rockSmashMonsInfo = &sSevenIslandSevaultCanyon_FireRed_RockSmashMonsInfo,
         .fishingMonsInfo = ((void *)0),
     },
-# 9185 "src/data/wild_encounters.h"
+# 9105 "src/data/wild_encounters.h"
     {
         .mapGroup = ((65 | (3 << 8)) >> 8),
         .mapNum = ((65 | (3 << 8)) & 0xFF),
@@ -9802,7 +9765,7 @@ const struct WildPokemonHeader gWildMonHeaders[] =
         .rockSmashMonsInfo = ((void *)0),
         .fishingMonsInfo = &sSevenIslandTanobyRuins_FireRed_FishingMonsInfo,
     },
-# 9205 "src/data/wild_encounters.h"
+# 9125 "src/data/wild_encounters.h"
     {
         .mapGroup = ((19 | (3 << 8)) >> 8),
         .mapNum = ((19 | (3 << 8)) & 0xFF),
@@ -9811,7 +9774,7 @@ const struct WildPokemonHeader gWildMonHeaders[] =
         .rockSmashMonsInfo = ((void *)0),
         .fishingMonsInfo = ((void *)0),
     },
-# 9225 "src/data/wild_encounters.h"
+# 9145 "src/data/wild_encounters.h"
     {
         .mapGroup = ((20 | (3 << 8)) >> 8),
         .mapNum = ((20 | (3 << 8)) & 0xFF),
@@ -9820,7 +9783,7 @@ const struct WildPokemonHeader gWildMonHeaders[] =
         .rockSmashMonsInfo = ((void *)0),
         .fishingMonsInfo = ((void *)0),
     },
-# 9245 "src/data/wild_encounters.h"
+# 9165 "src/data/wild_encounters.h"
     {
         .mapGroup = ((21 | (3 << 8)) >> 8),
         .mapNum = ((21 | (3 << 8)) & 0xFF),
@@ -9829,7 +9792,7 @@ const struct WildPokemonHeader gWildMonHeaders[] =
         .rockSmashMonsInfo = ((void *)0),
         .fishingMonsInfo = ((void *)0),
     },
-# 9265 "src/data/wild_encounters.h"
+# 9185 "src/data/wild_encounters.h"
     {
         .mapGroup = ((22 | (3 << 8)) >> 8),
         .mapNum = ((22 | (3 << 8)) & 0xFF),
@@ -9838,7 +9801,7 @@ const struct WildPokemonHeader gWildMonHeaders[] =
         .rockSmashMonsInfo = ((void *)0),
         .fishingMonsInfo = &sRoute4_FireRed_FishingMonsInfo,
     },
-# 9285 "src/data/wild_encounters.h"
+# 9205 "src/data/wild_encounters.h"
     {
         .mapGroup = ((23 | (3 << 8)) >> 8),
         .mapNum = ((23 | (3 << 8)) & 0xFF),
@@ -9847,7 +9810,7 @@ const struct WildPokemonHeader gWildMonHeaders[] =
         .rockSmashMonsInfo = ((void *)0),
         .fishingMonsInfo = ((void *)0),
     },
-# 9305 "src/data/wild_encounters.h"
+# 9225 "src/data/wild_encounters.h"
     {
         .mapGroup = ((24 | (3 << 8)) >> 8),
         .mapNum = ((24 | (3 << 8)) & 0xFF),
@@ -9856,7 +9819,7 @@ const struct WildPokemonHeader gWildMonHeaders[] =
         .rockSmashMonsInfo = ((void *)0),
         .fishingMonsInfo = &sRoute6_FireRed_FishingMonsInfo,
     },
-# 9325 "src/data/wild_encounters.h"
+# 9245 "src/data/wild_encounters.h"
     {
         .mapGroup = ((25 | (3 << 8)) >> 8),
         .mapNum = ((25 | (3 << 8)) & 0xFF),
@@ -9865,7 +9828,7 @@ const struct WildPokemonHeader gWildMonHeaders[] =
         .rockSmashMonsInfo = ((void *)0),
         .fishingMonsInfo = ((void *)0),
     },
-# 9345 "src/data/wild_encounters.h"
+# 9265 "src/data/wild_encounters.h"
     {
         .mapGroup = ((26 | (3 << 8)) >> 8),
         .mapNum = ((26 | (3 << 8)) & 0xFF),
@@ -9874,7 +9837,7 @@ const struct WildPokemonHeader gWildMonHeaders[] =
         .rockSmashMonsInfo = ((void *)0),
         .fishingMonsInfo = ((void *)0),
     },
-# 9365 "src/data/wild_encounters.h"
+# 9285 "src/data/wild_encounters.h"
     {
         .mapGroup = ((27 | (3 << 8)) >> 8),
         .mapNum = ((27 | (3 << 8)) & 0xFF),
@@ -9883,7 +9846,7 @@ const struct WildPokemonHeader gWildMonHeaders[] =
         .rockSmashMonsInfo = ((void *)0),
         .fishingMonsInfo = ((void *)0),
     },
-# 9385 "src/data/wild_encounters.h"
+# 9305 "src/data/wild_encounters.h"
     {
         .mapGroup = ((28 | (3 << 8)) >> 8),
         .mapNum = ((28 | (3 << 8)) & 0xFF),
@@ -9892,7 +9855,7 @@ const struct WildPokemonHeader gWildMonHeaders[] =
         .rockSmashMonsInfo = ((void *)0),
         .fishingMonsInfo = &sRoute10_FireRed_FishingMonsInfo,
     },
-# 9405 "src/data/wild_encounters.h"
+# 9325 "src/data/wild_encounters.h"
     {
         .mapGroup = ((29 | (3 << 8)) >> 8),
         .mapNum = ((29 | (3 << 8)) & 0xFF),
@@ -9901,7 +9864,7 @@ const struct WildPokemonHeader gWildMonHeaders[] =
         .rockSmashMonsInfo = ((void *)0),
         .fishingMonsInfo = &sRoute11_FireRed_FishingMonsInfo,
     },
-# 9425 "src/data/wild_encounters.h"
+# 9345 "src/data/wild_encounters.h"
     {
         .mapGroup = ((30 | (3 << 8)) >> 8),
         .mapNum = ((30 | (3 << 8)) & 0xFF),
@@ -9910,7 +9873,7 @@ const struct WildPokemonHeader gWildMonHeaders[] =
         .rockSmashMonsInfo = ((void *)0),
         .fishingMonsInfo = &sRoute12_FireRed_FishingMonsInfo,
     },
-# 9445 "src/data/wild_encounters.h"
+# 9365 "src/data/wild_encounters.h"
     {
         .mapGroup = ((31 | (3 << 8)) >> 8),
         .mapNum = ((31 | (3 << 8)) & 0xFF),
@@ -9919,7 +9882,7 @@ const struct WildPokemonHeader gWildMonHeaders[] =
         .rockSmashMonsInfo = ((void *)0),
         .fishingMonsInfo = &sRoute13_FireRed_FishingMonsInfo,
     },
-# 9465 "src/data/wild_encounters.h"
+# 9385 "src/data/wild_encounters.h"
     {
         .mapGroup = ((32 | (3 << 8)) >> 8),
         .mapNum = ((32 | (3 << 8)) & 0xFF),
@@ -9928,7 +9891,7 @@ const struct WildPokemonHeader gWildMonHeaders[] =
         .rockSmashMonsInfo = ((void *)0),
         .fishingMonsInfo = ((void *)0),
     },
-# 9485 "src/data/wild_encounters.h"
+# 9405 "src/data/wild_encounters.h"
     {
         .mapGroup = ((33 | (3 << 8)) >> 8),
         .mapNum = ((33 | (3 << 8)) & 0xFF),
@@ -9937,7 +9900,7 @@ const struct WildPokemonHeader gWildMonHeaders[] =
         .rockSmashMonsInfo = ((void *)0),
         .fishingMonsInfo = ((void *)0),
     },
-# 9505 "src/data/wild_encounters.h"
+# 9425 "src/data/wild_encounters.h"
     {
         .mapGroup = ((34 | (3 << 8)) >> 8),
         .mapNum = ((34 | (3 << 8)) & 0xFF),
@@ -9946,7 +9909,7 @@ const struct WildPokemonHeader gWildMonHeaders[] =
         .rockSmashMonsInfo = ((void *)0),
         .fishingMonsInfo = ((void *)0),
     },
-# 9525 "src/data/wild_encounters.h"
+# 9445 "src/data/wild_encounters.h"
     {
         .mapGroup = ((35 | (3 << 8)) >> 8),
         .mapNum = ((35 | (3 << 8)) & 0xFF),
@@ -9955,7 +9918,7 @@ const struct WildPokemonHeader gWildMonHeaders[] =
         .rockSmashMonsInfo = ((void *)0),
         .fishingMonsInfo = ((void *)0),
     },
-# 9545 "src/data/wild_encounters.h"
+# 9465 "src/data/wild_encounters.h"
     {
         .mapGroup = ((36 | (3 << 8)) >> 8),
         .mapNum = ((36 | (3 << 8)) & 0xFF),
@@ -9964,7 +9927,7 @@ const struct WildPokemonHeader gWildMonHeaders[] =
         .rockSmashMonsInfo = ((void *)0),
         .fishingMonsInfo = ((void *)0),
     },
-# 9565 "src/data/wild_encounters.h"
+# 9485 "src/data/wild_encounters.h"
     {
         .mapGroup = ((37 | (3 << 8)) >> 8),
         .mapNum = ((37 | (3 << 8)) & 0xFF),
@@ -9973,7 +9936,7 @@ const struct WildPokemonHeader gWildMonHeaders[] =
         .rockSmashMonsInfo = ((void *)0),
         .fishingMonsInfo = &sRoute19_FireRed_FishingMonsInfo,
     },
-# 9585 "src/data/wild_encounters.h"
+# 9505 "src/data/wild_encounters.h"
     {
         .mapGroup = ((38 | (3 << 8)) >> 8),
         .mapNum = ((38 | (3 << 8)) & 0xFF),
@@ -9982,7 +9945,7 @@ const struct WildPokemonHeader gWildMonHeaders[] =
         .rockSmashMonsInfo = ((void *)0),
         .fishingMonsInfo = &sRoute20_FireRed_FishingMonsInfo,
     },
-# 9605 "src/data/wild_encounters.h"
+# 9525 "src/data/wild_encounters.h"
     {
         .mapGroup = ((39 | (3 << 8)) >> 8),
         .mapNum = ((39 | (3 << 8)) & 0xFF),
@@ -9991,7 +9954,7 @@ const struct WildPokemonHeader gWildMonHeaders[] =
         .rockSmashMonsInfo = ((void *)0),
         .fishingMonsInfo = &sRoute21North_FireRed_FishingMonsInfo,
     },
-# 9625 "src/data/wild_encounters.h"
+# 9545 "src/data/wild_encounters.h"
     {
         .mapGroup = ((40 | (3 << 8)) >> 8),
         .mapNum = ((40 | (3 << 8)) & 0xFF),
@@ -10000,7 +9963,7 @@ const struct WildPokemonHeader gWildMonHeaders[] =
         .rockSmashMonsInfo = ((void *)0),
         .fishingMonsInfo = &sRoute21South_FireRed_FishingMonsInfo,
     },
-# 9645 "src/data/wild_encounters.h"
+# 9565 "src/data/wild_encounters.h"
     {
         .mapGroup = ((41 | (3 << 8)) >> 8),
         .mapNum = ((41 | (3 << 8)) & 0xFF),
@@ -10009,7 +9972,7 @@ const struct WildPokemonHeader gWildMonHeaders[] =
         .rockSmashMonsInfo = ((void *)0),
         .fishingMonsInfo = &sRoute22_FireRed_FishingMonsInfo,
     },
-# 9665 "src/data/wild_encounters.h"
+# 9585 "src/data/wild_encounters.h"
     {
         .mapGroup = ((42 | (3 << 8)) >> 8),
         .mapNum = ((42 | (3 << 8)) & 0xFF),
@@ -10018,7 +9981,7 @@ const struct WildPokemonHeader gWildMonHeaders[] =
         .rockSmashMonsInfo = ((void *)0),
         .fishingMonsInfo = &sRoute23_FireRed_FishingMonsInfo,
     },
-# 9685 "src/data/wild_encounters.h"
+# 9605 "src/data/wild_encounters.h"
     {
         .mapGroup = ((43 | (3 << 8)) >> 8),
         .mapNum = ((43 | (3 << 8)) & 0xFF),
@@ -10027,7 +9990,7 @@ const struct WildPokemonHeader gWildMonHeaders[] =
         .rockSmashMonsInfo = ((void *)0),
         .fishingMonsInfo = &sRoute24_FireRed_FishingMonsInfo,
     },
-# 9705 "src/data/wild_encounters.h"
+# 9625 "src/data/wild_encounters.h"
     {
         .mapGroup = ((44 | (3 << 8)) >> 8),
         .mapNum = ((44 | (3 << 8)) & 0xFF),
@@ -10036,7 +9999,7 @@ const struct WildPokemonHeader gWildMonHeaders[] =
         .rockSmashMonsInfo = ((void *)0),
         .fishingMonsInfo = &sRoute25_FireRed_FishingMonsInfo,
     },
-# 9725 "src/data/wild_encounters.h"
+# 9645 "src/data/wild_encounters.h"
     {
         .mapGroup = ((0 | (3 << 8)) >> 8),
         .mapNum = ((0 | (3 << 8)) & 0xFF),
@@ -10045,7 +10008,7 @@ const struct WildPokemonHeader gWildMonHeaders[] =
         .rockSmashMonsInfo = ((void *)0),
         .fishingMonsInfo = &sPalletTown_FireRed_FishingMonsInfo,
     },
-# 9745 "src/data/wild_encounters.h"
+# 9665 "src/data/wild_encounters.h"
     {
         .mapGroup = ((1 | (3 << 8)) >> 8),
         .mapNum = ((1 | (3 << 8)) & 0xFF),
@@ -10054,7 +10017,7 @@ const struct WildPokemonHeader gWildMonHeaders[] =
         .rockSmashMonsInfo = ((void *)0),
         .fishingMonsInfo = &sViridianCity_FireRed_FishingMonsInfo,
     },
-# 9765 "src/data/wild_encounters.h"
+# 9685 "src/data/wild_encounters.h"
     {
         .mapGroup = ((3 | (3 << 8)) >> 8),
         .mapNum = ((3 | (3 << 8)) & 0xFF),
@@ -10063,7 +10026,7 @@ const struct WildPokemonHeader gWildMonHeaders[] =
         .rockSmashMonsInfo = ((void *)0),
         .fishingMonsInfo = &sCeruleanCity_FireRed_FishingMonsInfo,
     },
-# 9785 "src/data/wild_encounters.h"
+# 9705 "src/data/wild_encounters.h"
     {
         .mapGroup = ((5 | (3 << 8)) >> 8),
         .mapNum = ((5 | (3 << 8)) & 0xFF),
@@ -10072,7 +10035,7 @@ const struct WildPokemonHeader gWildMonHeaders[] =
         .rockSmashMonsInfo = ((void *)0),
         .fishingMonsInfo = &sVermilionCity_FireRed_FishingMonsInfo,
     },
-# 9805 "src/data/wild_encounters.h"
+# 9725 "src/data/wild_encounters.h"
     {
         .mapGroup = ((6 | (3 << 8)) >> 8),
         .mapNum = ((6 | (3 << 8)) & 0xFF),
@@ -10081,7 +10044,7 @@ const struct WildPokemonHeader gWildMonHeaders[] =
         .rockSmashMonsInfo = ((void *)0),
         .fishingMonsInfo = &sCeladonCity_FireRed_FishingMonsInfo,
     },
-# 9825 "src/data/wild_encounters.h"
+# 9745 "src/data/wild_encounters.h"
     {
         .mapGroup = ((7 | (3 << 8)) >> 8),
         .mapNum = ((7 | (3 << 8)) & 0xFF),
@@ -10090,7 +10053,7 @@ const struct WildPokemonHeader gWildMonHeaders[] =
         .rockSmashMonsInfo = ((void *)0),
         .fishingMonsInfo = &sFuchsiaCity_FireRed_FishingMonsInfo,
     },
-# 9845 "src/data/wild_encounters.h"
+# 9765 "src/data/wild_encounters.h"
     {
         .mapGroup = ((8 | (3 << 8)) >> 8),
         .mapNum = ((8 | (3 << 8)) & 0xFF),
@@ -10099,7 +10062,7 @@ const struct WildPokemonHeader gWildMonHeaders[] =
         .rockSmashMonsInfo = ((void *)0),
         .fishingMonsInfo = &sCinnabarIsland_FireRed_FishingMonsInfo,
     },
-# 9865 "src/data/wild_encounters.h"
+# 9785 "src/data/wild_encounters.h"
     {
         .mapGroup = ((12 | (3 << 8)) >> 8),
         .mapNum = ((12 | (3 << 8)) & 0xFF),
@@ -10108,7 +10071,7 @@ const struct WildPokemonHeader gWildMonHeaders[] =
         .rockSmashMonsInfo = ((void *)0),
         .fishingMonsInfo = &sOneIsland_FireRed_FishingMonsInfo,
     },
-# 9885 "src/data/wild_encounters.h"
+# 9805 "src/data/wild_encounters.h"
     {
         .mapGroup = ((15 | (3 << 8)) >> 8),
         .mapNum = ((15 | (3 << 8)) & 0xFF),
@@ -10117,7 +10080,7 @@ const struct WildPokemonHeader gWildMonHeaders[] =
         .rockSmashMonsInfo = ((void *)0),
         .fishingMonsInfo = &sFourIsland_FireRed_FishingMonsInfo,
     },
-# 9905 "src/data/wild_encounters.h"
+# 9825 "src/data/wild_encounters.h"
     {
         .mapGroup = ((16 | (3 << 8)) >> 8),
         .mapNum = ((16 | (3 << 8)) & 0xFF),
@@ -10126,7 +10089,7 @@ const struct WildPokemonHeader gWildMonHeaders[] =
         .rockSmashMonsInfo = ((void *)0),
         .fishingMonsInfo = &sFiveIsland_FireRed_FishingMonsInfo,
     },
-# 9925 "src/data/wild_encounters.h"
+# 9845 "src/data/wild_encounters.h"
     {
         .mapGroup = ((122 | (1 << 8)) >> 8),
         .mapNum = ((122 | (1 << 8)) & 0xFF),
@@ -10215,7 +10178,7 @@ const struct WildPokemonHeader gWildMonHeaders[] =
         .rockSmashMonsInfo = ((void *)0),
         .fishingMonsInfo = ((void *)0),
     },
-# 10104 "src/data/wild_encounters.h"
+# 10024 "src/data/wild_encounters.h"
     {
         .mapGroup = ((0xFF | (0xFF << 8)) >> 8),
         .mapNum = ((0xFF | (0xFF << 8)) & 0xFF),
