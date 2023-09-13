@@ -15222,6 +15222,9 @@ script_data     0x0815fa7c    0x7c128
                 0x0818f8d3                ViridianCity_Gym_Text_JasonIntro
                 0x0818f904                ViridianCity_Gym_Text_JasonDefeat
                 0x0818f920                ViridianCity_Gym_Text_JasonPostBattle
+                0x0818f922                MtEmber_RubyPath_B2F_Text_YWIntro
+                0x0818f924                MtEmber_RubyPath_B2F_Text_YWDefeat
+                0x0818f926                MtEmber_RubyPath_B2F_Text_YWPostBattle
                 0x0818f94c                ViridianCity_Gym_Text_KiyoIntro
                 0x0818f979                ViridianCity_Gym_Text_KiyoDefeat
                 0x0818f980                ViridianCity_Gym_Text_KiyoPostBattle
