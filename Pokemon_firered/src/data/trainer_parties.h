@@ -3786,6 +3786,15 @@ static const struct TrainerMonNoItemCustomMoves sParty_RivalRoute22EarlyCharmand
     },
 };
 
+static const struct TrainerMonNoItemCustomMoves sParty_YWMtEmber[] = {
+    {
+        .iv = 100,
+        .lvl = 21,
+        .species = SPECIES_MEOWTH,
+        .moves = {MOVE_CRUNCH, MOVE_GROWL, MOVE_NONE, MOVE_NONE},
+    },
+};
+
 static const struct TrainerMonNoItemCustomMoves sParty_RivalCeruleanSquirtle[] = {
     {
         .iv = 50,
