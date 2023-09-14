@@ -180,7 +180,7 @@ static const struct TrainerMonNoItemDefaultMoves sParty_YoungsterDan[] = {
     {
         .iv = 0,
         .lvl = 17,
-        .species = SPECIES_SLOWPOKE,
+        .species = SPECIES_MEOWTH,
     },
 };
 
