@@ -3253,13 +3253,13 @@ const struct Trainer gTrainers[] = {
         .party = ITEM_DEFAULT_MOVES(sParty_BlackBeltDaisuke),
     },
     [TRAINER_YW] = {
-        .trainerClass = TRAINER_CLASS_RIVAL_EARLY,
+        .trainerClass = TRAINER_CLASS_TAMER,
         .encounterMusic_gender = TRAINER_ENCOUNTER_MUSIC_MALE,
         .trainerPic = TRAINER_PIC_RIVAL_EARLY,
         .trainerName = _("WYX"),
         .items = {},
         .doubleBattle = FALSE,
-        .aiFlags = AI_SCRIPT_CHECK_BAD_MOVE | AI_SCRIPT_TRY_TO_FAINT | AI_SCRIPT_CHECK_VIABILITY,
+        .aiFlags = AI_SCRIPT_CHECK_BAD_MOVE,
         .party = NO_ITEM_CUSTOM_MOVES(sParty_YWMtEmber),
     },
     [TRAINER_RIVAL_OAKS_LAB_SQUIRTLE] = {
