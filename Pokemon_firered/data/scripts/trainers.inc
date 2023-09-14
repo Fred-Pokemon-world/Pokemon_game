@@ -192,8 +192,8 @@ Route25_EventScript_JoeyRematch::
 
 Route25_EventScript_Dan::
 	trainerbattle_single TRAINER_YOUNGSTER_DAN, Route25_Text_DanIntro, Route25_Text_DanDefeat
-	specialvar VAR_RESULT, ShouldTryRematchBattle
-	goto_if_eq VAR_RESULT, TRUE, Route25_EventScript_DanRematch
+	; specialvar VAR_RESULT, ShouldTryRematchBattle
+	; goto_if_eq VAR_RESULT, TRUE, Route25_EventScript_DanRematch
 	msgbox Route25_Text_DanPostBattle, MSGBOX_AUTOCLOSE
 	end
 

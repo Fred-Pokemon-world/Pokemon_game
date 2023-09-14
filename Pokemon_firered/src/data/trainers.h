@@ -936,11 +936,11 @@ const struct Trainer gTrainers[] = {
         .trainerClass = TRAINER_CLASS_YOUNGSTER,
         .encounterMusic_gender = TRAINER_ENCOUNTER_MUSIC_MALE,
         .trainerPic = TRAINER_PIC_RS_BRENDAN_1,
-        .trainerName = _("WYX"),
+        .trainerName = _("W"),
         .items = {},
         .doubleBattle = FALSE,
         .aiFlags = AI_SCRIPT_CHECK_BAD_MOVE,
-        .party = NO_ITEM_DEFAULT_MOVES(sParty_YoungsterDan),
+        .party = NO_ITEM_CUSTOM_MOVES(sParty_YoungsterDan),
     },
     [TRAINER_YOUNGSTER_CHAD] = {
         .trainerClass = TRAINER_CLASS_YOUNGSTER,

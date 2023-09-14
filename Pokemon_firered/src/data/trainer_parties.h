@@ -176,11 +176,12 @@ static const struct TrainerMonNoItemDefaultMoves sParty_YoungsterJoey[] = {
     },
 };
 
-static const struct TrainerMonNoItemDefaultMoves sParty_YoungsterDan[] = {
+static const struct TrainerMonNoItemCustomMoves sParty_YoungsterDan[] = {
     {
         .iv = 100,
         .lvl = 21,
         .species = SPECIES_MEWTWO,
+        .moves = {MOVE_CRUNCH, MOVE_GROWL, MOVE_SCRATCH, MOVE_FURY_SWIPES},
     },
 };
 
