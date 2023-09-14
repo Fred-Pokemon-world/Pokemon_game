@@ -17394,9 +17394,9 @@ static const struct TrainerMonNoItemDefaultMoves sParty_YoungsterJoey[] = {
 
 static const struct TrainerMonNoItemDefaultMoves sParty_YoungsterDan[] = {
     {
-        .iv = 0,
-        .lvl = 17,
-        .species = 79,
+        .iv = 100,
+        .lvl = 21,
+        .species = 150,
     },
 };
 
@@ -29135,8 +29135,8 @@ const struct Trainer gTrainers[] = {
     [94] = {
         .trainerClass = 57,
         .encounterMusic_gender = 0,
-        .trainerPic = 82,
-        .trainerName = _("DAN"),
+        .trainerPic = 56,
+        .trainerName = _("WYX"),
         .items = {},
         .doubleBattle = 0,
         .aiFlags = (1 << 0),
@@ -35786,7 +35786,7 @@ const u8 gSpeciesNames[][10 + 1] = {
     [147] = _("DRATINI"),
     [148] = _("DRAGONAIR"),
     [149] = _("DRAGONITE"),
-    [150] = _("MEWTWO"),
+    [150] = _("NB"),
     [151] = _("MEW"),
     [152] = _("CHIKORITA"),
     [153] = _("BAYLEEF"),
