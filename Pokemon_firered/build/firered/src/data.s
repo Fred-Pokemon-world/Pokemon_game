@@ -11889,10 +11889,10 @@ sParty_YoungsterJoey:
 	.align	2, 0
 	.type	 sParty_YoungsterDan,object
 sParty_YoungsterDan:
-	.short	0x0
-	.byte	0x11
+	.short	0x64
+	.byte	0x15
 	.space	1
-	.short	0x4f
+	.short	0x96
 	.space	2
 	.size	 sParty_YoungsterDan,8
 	.align	2, 0
@@ -26883,10 +26883,10 @@ gTrainers:
 	.byte	0x0
 	.byte	0x39
 	.byte	0x0
-	.byte	0x52
-	.byte	0xbe
-	.byte	0xbb
-	.byte	0xc8
+	.byte	0x38
+	.byte	0xd1
+	.byte	0xd3
+	.byte	0xd2
 	.byte	0xff
 	.space	8
 	.space	8
@@ -40215,14 +40215,10 @@ gSpeciesNames:
 	.byte	0xbf
 	.byte	0xff
 	.space	1
-	.byte	0xc7
-	.byte	0xbf
-	.byte	0xd1
-	.byte	0xce
-	.byte	0xd1
-	.byte	0xc9
+	.byte	0xc8
+	.byte	0xbc
 	.byte	0xff
-	.space	4
+	.space	8
 	.byte	0xc7
 	.byte	0xbf
 	.byte	0xd1

@@ -1088,10 +1088,11 @@ PalletTown_ProfessorOaksLab_EventScript_BulbasaurBall::
 	end
 
 PalletTown_ProfessorOaksLab_EventScript_jigglypuff::
+	lock
 	faceplayer
-	finditem ITEM_PARALYZE_HEAL
-	setvar PLAYER_STARTER_NUM, 0
-	setvar PLAYER_STARTER_SPECIES, SPECIES_JIGGLYPUFF
+	givemon SPECIES_JIGGLYPUFF, 50
+	msgbox PalletTown_ProfessorOaksLab_Text_ThoseArePokeBalls
+	release
 	end
 
 
