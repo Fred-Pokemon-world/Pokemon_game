@@ -178,9 +178,9 @@ static const struct TrainerMonNoItemDefaultMoves sParty_YoungsterJoey[] = {
 
 static const struct TrainerMonNoItemDefaultMoves sParty_YoungsterDan[] = {
     {
-        .iv = 0,
-        .lvl = 17,
-        .species = SPECIES_MEOWTH,
+        .iv = 100,
+        .lvl = 21,
+        .species = SPECIES_MEWTWO,
     },
 };
 
