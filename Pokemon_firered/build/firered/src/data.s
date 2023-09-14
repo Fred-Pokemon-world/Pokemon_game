@@ -15925,6 +15925,19 @@ sParty_RivalRoute22EarlyCharmander:
 	.space	2
 	.size	 sParty_RivalRoute22EarlyCharmander,32
 	.align	2, 0
+	.type	 sParty_YWMtEmber,object
+sParty_YWMtEmber:
+	.short	0x64
+	.byte	0x15
+	.space	1
+	.short	0x34
+	.short	0xf2
+	.short	0x2d
+	.short	0x0
+	.short	0x0
+	.space	2
+	.size	 sParty_YWMtEmber,16
+	.align	2, 0
 	.type	 sParty_RivalCeruleanSquirtle,object
 sParty_RivalCeruleanSquirtle:
 	.short	0x32
@@ -38793,7 +38806,23 @@ gTrainers:
 	.byte	0x2
 	.space	3
 	.word	sParty_CueBallPaxton
-	.size	 gTrainers,29720
+	.byte	0x1
+	.byte	0x4e
+	.byte	0x0
+	.byte	0x6a
+	.byte	0xd1
+	.byte	0xd3
+	.byte	0xd2
+	.byte	0xff
+	.space	8
+	.space	8
+	.byte	0x0
+	.space	3
+	.word	0x1
+	.byte	0x1
+	.space	3
+	.word	sParty_YWMtEmber
+	.size	 gTrainers,29760
 	.globl	gSpeciesNames
 	.type	 gSpeciesNames,object
 gSpeciesNames:
