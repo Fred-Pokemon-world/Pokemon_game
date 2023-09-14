@@ -21002,6 +21002,15 @@ static const struct TrainerMonNoItemCustomMoves sParty_RivalRoute22EarlyCharmand
     },
 };
 
+static const struct TrainerMonNoItemCustomMoves sParty_YWMtEmber[] = {
+    {
+        .iv = 100,
+        .lvl = 21,
+        .species = 52,
+        .moves = {242, 45, 0, 0},
+    },
+};
+
 static const struct TrainerMonNoItemCustomMoves sParty_RivalCeruleanSquirtle[] = {
     {
         .iv = 50,
@@ -31442,6 +31451,16 @@ const struct Trainer gTrainers[] = {
         .doubleBattle = 0,
         .aiFlags = (1 << 0),
         .party = { .ItemDefaultMoves = sParty_BlackBeltDaisuke }, .partySize = (sizeof(sParty_BlackBeltDaisuke) / sizeof((sParty_BlackBeltDaisuke)[0])), .partyFlags = (1 << 1),
+    },
+    [743] = {
+        .trainerClass = 78,
+        .encounterMusic_gender = 0,
+        .trainerPic = 106,
+        .trainerName = _("WYX"),
+        .items = {},
+        .doubleBattle = 0,
+        .aiFlags = (1 << 0),
+        .party = { .NoItemCustomMoves = sParty_YWMtEmber }, .partySize = (sizeof(sParty_YWMtEmber) / sizeof((sParty_YWMtEmber)[0])), .partyFlags = (1 << 0),
     },
     [326] = {
         .trainerClass = 81,
