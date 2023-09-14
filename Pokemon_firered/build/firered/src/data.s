@@ -11893,8 +11893,12 @@ sParty_YoungsterDan:
 	.byte	0x15
 	.space	1
 	.short	0x96
+	.short	0xf2
+	.short	0x2d
+	.short	0xa
+	.short	0x9a
 	.space	2
-	.size	 sParty_YoungsterDan,8
+	.size	 sParty_YoungsterDan,16
 	.align	2, 0
 	.type	 sParty_YoungsterChad,object
 sParty_YoungsterChad:
@@ -26880,15 +26884,13 @@ gTrainers:
 	.byte	0x2
 	.space	3
 	.word	sParty_YoungsterJoey
-	.byte	0x0
+	.byte	0x1
 	.byte	0x39
 	.byte	0x0
 	.byte	0x38
 	.byte	0xd1
-	.byte	0xd3
-	.byte	0xd2
 	.byte	0xff
-	.space	8
+	.space	10
 	.space	8
 	.byte	0x0
 	.space	3
