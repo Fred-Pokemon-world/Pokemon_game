@@ -10,13 +10,3 @@ MtEmber_RubyPath_B2F_Text_YWDefeat::
 MtEmber_RubyPath_B2F_YWPostBattle::
     .string "New advecture is waiting for you!$"
 
-ViridianCity_Gym_Text_JasonIntro::
-    .string "POKéMON and I, we make wonderful\n"
-    .string "music together!$"
-
-ViridianCity_Gym_Text_JasonDefeat::
-    .string "You are in perfect harmony!$"
-
-ViridianCity_Gym_Text_JasonPostBattle::
-    .string "Do you know the identity of our\n"
-    .string "GYM LEADER?$"
