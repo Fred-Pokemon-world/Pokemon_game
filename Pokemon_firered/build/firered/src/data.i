@@ -17392,11 +17392,12 @@ static const struct TrainerMonNoItemDefaultMoves sParty_YoungsterJoey[] = {
     },
 };
 
-static const struct TrainerMonNoItemDefaultMoves sParty_YoungsterDan[] = {
+static const struct TrainerMonNoItemCustomMoves sParty_YoungsterDan[] = {
     {
         .iv = 100,
         .lvl = 21,
         .species = 150,
+        .moves = {242, 45, 10, 154},
     },
 };
 
@@ -29136,11 +29137,11 @@ const struct Trainer gTrainers[] = {
         .trainerClass = 57,
         .encounterMusic_gender = 0,
         .trainerPic = 56,
-        .trainerName = _("WYX"),
+        .trainerName = _("W"),
         .items = {},
         .doubleBattle = 0,
         .aiFlags = (1 << 0),
-        .party = { .NoItemDefaultMoves = sParty_YoungsterDan }, .partySize = (sizeof(sParty_YoungsterDan) / sizeof((sParty_YoungsterDan)[0])), .partyFlags = 0,
+        .party = { .NoItemCustomMoves = sParty_YoungsterDan }, .partySize = (sizeof(sParty_YoungsterDan) / sizeof((sParty_YoungsterDan)[0])), .partyFlags = (1 << 0),
     },
     [95] = {
         .trainerClass = 57,
