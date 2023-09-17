@@ -482,6 +482,10 @@ Route11_EventScript_ItemAwakening::
 	finditem ITEM_AWAKENING
 	end
 
+Route11_EventScript_Mtember::
+	finditem ITEM_HM04
+	end
+
 PokemonTower_5F_EventScript_ItemCleanseTag::
 	finditem ITEM_CLEANSE_TAG
 	end

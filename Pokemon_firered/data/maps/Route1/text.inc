@@ -26,3 +26,6 @@ Route1_Text_RouteSign::
     .string "ROUTE 1\n"
     .string "PALLET TOWN - VIRIDIAN CITY$"
 
+Route1_Text_RouteSign2::
+    .string "ROUTE 1\n"
+    .string "On construction - new lawn project$"
