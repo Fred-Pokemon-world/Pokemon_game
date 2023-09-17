@@ -1,0 +1,142 @@
+<!--
+
+GBA ONLINE;  GBA.JS.ORG;  "Online GameBoy Advance Emulator"
+Copyright (C) 2021-present AYVACS
+Licensed under the MIT License (view LICENSE.md for more information)
+
+-->
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+	<link rel="stylesheet" href="https://use.typekit.net/ccv3kiu.css">
+    <link rel="stylesheet" href="stylesheets/index.css">
+    <link rel="stylesheet" href="stylesheets/collapsible.css">
+    <link rel="stylesheet" href="stylesheets/particles-js.css">
+
+    <link href="assets/macos-11x/Icon-MacOS-512x512@2x.png" type="image/png" rel="shortcut icon">
+    <link href="assets/macos-11x/apple-touch-icon.png" type="image/png" rel="apple-touch-icon">
+
+    <meta charset="UTF-8">
+    <meta name="google-site-verification" content="EQgtqgYpirWekvBNi5Vi9re6ruqv6WL0MYnzG9b9-lc" />
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+
+    <!-- Primary Meta Tags -->
+    <title>GBA Online</title>
+    <meta name="title" content="GBA Online">
+    <meta name="description" content="A free, online, and lightweight GameBoy Advance emulator.">
+
+    <!-- Open Graph / Facebook -->
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://metatags.io/">
+    <meta property="og:title" content="GBA Online">
+    <meta property="og:description" content="A free, online, and lightweight GameBoy Advance emulator.">
+    <meta property="og:image" content="https://raw.githubusercontent.com/ayvacs/gba.js.org/gh-pages/assets/repo-card.png">
+
+    <!-- Twitter -->
+    <meta property="twitter:card" content="summary_large_image">
+    <meta property="twitter:url" content="https://metatags.io/">
+    <meta property="twitter:title" content="GBA Online">
+    <meta property="twitter:description" content="A free, online, and lightweight GameBoy Advance emulator.">
+    <meta property="twitter:image" content="https://raw.githubusercontent.com/ayvacs/gba.js.org/gh-pages/assets/repo-card.png">
+</head>
+
+<body>
+    <div id="particles-js"></div>
+    <!-- Add Particles -->
+
+
+    <br><br><br>
+    <img id="repo-card" src="assets/logo-small.png" width="682" height="120px" alt="Website header">
+    <p id="version-card" style="font-size:20px">v1.4.4</p>
+
+    <p>Easily emulate GameBoy Advance games for free in your browser. Completely open source!</p>
+
+    <button type="collapsible-button" class="collapsible-collapsible">
+        Keybinds
+    </button>
+    <div class="collapsible-content">
+        <p class="collapsible-text">
+            <img src="assets/controls-gba-diagram.png" width="611" height="344" alt="Controls diagram"></img><br>
+            <b><u>Emulator Keybinds</u></b><br>
+            <b>Reset Game:</b> R<br>
+            <b>Play/Pause:</b> P
+        </p>
+    </div><br>
+
+    <a target="_blank" href="https://github.com/ayvacs/gba.js.org"><button type="collapsible-button" class="collapsible-collapsible">
+        Source Code
+    </button></a><br><br><hr><br>
+
+    <h1>Select a Game</h1>
+	<p>
+		<a class="playerLink" href="./player#pokefirered">Fred's Pokemon</a><br>
+	</p><br><hr><br>
+
+    <button type="collapsible-button" class="collapsible-collapsible">
+        Debug Files
+    </button>
+    <div class="collapsible-content">
+        <p class="collapsible-text">
+            <a class="playerLink" href="./player#-DEBUG-AGB-buttontest">AGB-buttontest</a><br>
+            <a class="playerLink" href="./player#-DEBUG-gbaframetest">gbaframetest</a><br>
+            <a class="playerLink" href="./player#-DEBUG-suite">suite</a><br>
+
+            <br>
+            
+            <a class="playerLink" href="./player#-DEBUG-arm">arm</a><br>
+            <a class="playerLink" href="./player#-DEBUG-bios">bios</a><br>
+            <a class="playerLink" href="./player#-DEBUG-flash64">flash64</a><br>
+            <a class="playerLink" href="./player#-DEBUG-flash128">flash128</a><br>
+            <a class="playerLink" href="./player#-DEBUG-hello">hello</a><br>
+            <a class="playerLink" href="./player#-DEBUG-memory">memory</a><br>
+            <a class="playerLink" href="./player#-DEBUG-nes">nes</a><br>
+            <a class="playerLink" href="./player#-DEBUG-none">none</a><br>
+            <a class="playerLink" href="./player#-DEBUG-shades">shades</a><br>
+            <a class="playerLink" href="./player#-DEBUG-sram">sram</a><br>
+            <a class="playerLink" href="./player#-DEBUG-stripes">stripes</a><br>
+            <a class="playerLink" href="./player#-DEBUG-thumb">thumb</a><br>
+        </p>
+    </div><br><br><br><br><br><br>
+
+    <!-- Enable collapsible menus -->
+    <script>
+        var divs = document.getElementsByClassName("collapsible-collapsible");
+
+        for (i = 0; i < divs.length; i++) {
+            divs[i].addEventListener("click", function() {
+                this.classList.toggle("active");
+                var content = this.nextElementSibling;
+                if (content.style.maxHeight) {
+                    content.style.maxHeight = null;
+                } else {
+                    content.style.maxHeight = content.scrollHeight + "px";
+                };
+            });
+        };
+    </script>
+
+    <!-- Fix links while hosting locally -->
+    <script>
+        var url = document.location.hostname;
+        if (url == "localhost" || url == "127.0.0.1") {
+            // Locally hosted; change urls from /player to /player.html
+            var elems = document.getElementsByClassName("playerLink");
+            for (var i = 0; i < elems.length; i++) {
+                var elem = elems[i];
+                console.log("[LINKFIX] Fixed \"" + elem.innerHTML + "\"");
+                elem.href = elem.href.replace("player#", "player.html#");
+            };
+        };
+    </script>
+
+    <!-- Run particles -->
+    <script src="modules/particles/particles@2.0.0.min.js"></script>
+    <script>
+        particlesJS.load("particles-js", "modules/particles/shapes.json");
+    </script>
+</body>
+
+</html>
