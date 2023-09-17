@@ -211,10 +211,10 @@ static void AppendToStartMenuItems(u8 newEntry)
 
 static void SetUpStartMenu_NormalField(void)
 {
-    if (FlagGet(FLAG_SYS_POKEDEX_GET) == TRUE)
-        AppendToStartMenuItems(STARTMENU_POKEDEX);
-    if (FlagGet(FLAG_SYS_POKEMON_GET) == TRUE)
-        AppendToStartMenuItems(STARTMENU_POKEMON);
+    // if (FlagGet(FLAG_SYS_POKEDEX_GET) == TRUE)
+    AppendToStartMenuItems(STARTMENU_POKEDEX);
+    // if (FlagGet(FLAG_SYS_POKEMON_GET) == TRUE)
+    AppendToStartMenuItems(STARTMENU_POKEMON);
     AppendToStartMenuItems(STARTMENU_BAG);
     AppendToStartMenuItems(STARTMENU_PLAYER);
     AppendToStartMenuItems(STARTMENU_SAVE);
