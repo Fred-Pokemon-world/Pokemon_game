@@ -7530,8 +7530,8 @@ static bool8 TryPushBoulder(s16 x, s16 y, u8 direction)
 {
     u8 objectEventId;
     u8 direction_ = direction;
-    if (!FlagGet(((((0x4FF + 1) + 768 - 1) + 1) + 0x5)))
-        return 0;
+
+
 
     objectEventId = GetObjectEventIdByXY(x, y);
     if (objectEventId == 16)

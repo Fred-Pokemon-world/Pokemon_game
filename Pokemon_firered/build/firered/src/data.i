@@ -17396,8 +17396,10 @@ static const struct TrainerMonNoItemCustomMoves sParty_YoungsterDan[] = {
     {
         .iv = 100,
         .lvl = 21,
-        .species = 150,
-        .moves = {242, 45, 10, 154},
+
+
+        .species = 84,
+        .moves = {10, 353},
     },
 };
 
@@ -36406,7 +36408,8 @@ const u8 gMoveNames[355][12 + 1] = {
     [350] = _("ROCK BLAST"),
     [351] = _("SHOCK WAVE"),
     [352] = _("WATER PULSE"),
-    [353] = _("DOOM DESIRE"),
+
+    [353] = _("A PROMISE"),
     [354] = _("PSYCHO BOOST")
 };
 # 306 "src/data.c" 2

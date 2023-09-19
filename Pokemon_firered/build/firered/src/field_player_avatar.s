@@ -1532,40 +1532,38 @@ TryPushBoulder:
 	add	sp, sp, #-0x4
 	mov	r3, sp
 	strh	r0, [r3]
+	lsl	r1, r1, #0x10
+	lsr	r1, r1, #0x10
 	mov	r5, sp
 	add	r5, r5, #0x2
 	strh	r1, [r5]
 	lsl	r2, r2, #0x18
-	lsr	r7, r2, #0x18
-	ldr	r0, .L216
-	bl	FlagGet
-	lsl	r0, r0, #0x18
-	cmp	r0, #0
-	beq	.L212	@cond_branch
+	lsr	r6, r2, #0x18
 	mov	r0, sp
-	mov	r1, #0x0
-	ldrsh	r0, [r0, r1]
 	mov	r2, #0x0
-	ldrsh	r1, [r5, r2]
+	ldrsh	r0, [r0, r2]
+	lsl	r1, r1, #0x10
+	asr	r1, r1, #0x10
 	bl	GetObjectEventIdByXY
 	lsl	r0, r0, #0x18
-	lsr	r6, r0, #0x18
-	cmp	r6, #0x10
-	beq	.L212	@cond_branch
-	ldr	r0, .L216+0x4
-	lsl	r1, r6, #0x3
-	add	r1, r1, r6
+	lsr	r2, r0, #0x18
+	add	r7, r2, #0
+	cmp	r2, #0x10
+	beq	.L211	@cond_branch
+	ldr	r0, .L215
+	lsl	r1, r2, #0x3
+	add	r1, r1, r2
 	lsl	r1, r1, #0x2
 	add	r4, r1, r0
 	ldrb	r0, [r4, #0x5]
 	cmp	r0, #0x61
-	bne	.L212	@cond_branch
+	bne	.L211	@cond_branch
 	ldrh	r1, [r4, #0x10]
 	mov	r0, sp
 	strh	r1, [r0]
 	ldrh	r0, [r4, #0x12]
 	strh	r0, [r5]
-	add	r0, r7, #0
+	add	r0, r6, #0
 	mov	r1, sp
 	add	r2, r5, #0
 	bl	MoveCoords
@@ -1576,18 +1574,18 @@ TryPushBoulder:
 	ldrsh	r1, [r5, r2]
 	bl	MapGridGetMetatileBehaviorAt
 	cmp	r0, #0x66
-	beq	.L213	@cond_branch
+	beq	.L212	@cond_branch
 	mov	r0, sp
 	mov	r2, #0x0
 	ldrsh	r1, [r0, r2]
 	mov	r0, #0x0
 	ldrsh	r2, [r5, r0]
 	add	r0, r4, #0
-	add	r3, r7, #0
+	add	r3, r6, #0
 	bl	GetCollisionAtCoords
 	lsl	r0, r0, #0x18
 	cmp	r0, #0
-	bne	.L212	@cond_branch
+	bne	.L211	@cond_branch
 	mov	r0, sp
 	mov	r1, #0x0
 	ldrsh	r0, [r0, r1]
@@ -1599,21 +1597,20 @@ TryPushBoulder:
 	bl	MetatileBehavior_IsNonAnimDoor
 	lsl	r0, r0, #0x18
 	cmp	r0, #0
-	bne	.L212	@cond_branch
-.L213:
-	add	r0, r6, #0
-	add	r1, r7, #0
+	bne	.L211	@cond_branch
+.L212:
+	add	r0, r7, #0
+	add	r1, r6, #0
 	bl	StartStrengthAnim
 	mov	r0, #0x1
-	b	.L215
-.L217:
-	.align	2, 0
+	b	.L214
 .L216:
-	.word	0x805
-	.word	gObjectEvents
-.L212:
-	mov	r0, #0x0
+	.align	2, 0
 .L215:
+	.word	gObjectEvents
+.L211:
+	mov	r0, #0x0
+.L214:
 	add	sp, sp, #0x4
 	pop	{r4, r5, r6, r7}
 	pop	{r1}
@@ -1648,8 +1645,8 @@ CheckAcroBikeCollision:
 	lsl	r2, r2, #0x18
 	lsr	r5, r2, #0x18
 	mov	r4, #0x0
-	ldr	r7, .L225
-.L222:
+	ldr	r7, .L224
+.L221:
 	lsl	r0, r4, #0x2
 	add	r0, r0, r7
 	ldr	r1, [r0]
@@ -1657,24 +1654,24 @@ CheckAcroBikeCollision:
 	bl	_call_via_r1
 	lsl	r0, r0, #0x18
 	cmp	r0, #0
-	beq	.L221	@cond_branch
-	ldr	r0, .L225+0x4
+	beq	.L220	@cond_branch
+	ldr	r0, .L224+0x4
 	add	r0, r4, r0
 	ldrb	r0, [r0]
 	strb	r0, [r6]
-	b	.L218
-.L226:
-	.align	2, 0
+	b	.L217
 .L225:
+	.align	2, 0
+.L224:
 	.word	sAcroBikeTrickMetatiles
 	.word	sAcroBikeTrickCollisionTypes
-.L221:
+.L220:
 	add	r0, r4, #0x1
 	lsl	r0, r0, #0x18
 	lsr	r4, r0, #0x18
 	cmp	r4, #0x4
-	bls	.L222	@cond_branch
-.L218:
+	bls	.L221	@cond_branch
+.L217:
 	pop	{r4, r5, r6, r7}
 	pop	{r0}
 	bx	r0
@@ -1688,16 +1685,16 @@ SetPlayerAvatarTransitionFlags:
 	push	{lr}
 	lsl	r0, r0, #0x10
 	lsr	r0, r0, #0x10
-	ldr	r2, .L228
+	ldr	r2, .L227
 	ldrb	r1, [r2, #0x1]
 	orr	r0, r0, r1
 	strb	r0, [r2, #0x1]
 	bl	DoPlayerAvatarTransition
 	pop	{r0}
 	bx	r0
-.L229:
-	.align	2, 0
 .L228:
+	.align	2, 0
+.L227:
 	.word	gPlayerAvatar
 .Lfe46:
 	.size	 SetPlayerAvatarTransitionFlags,.Lfe46-SetPlayerAvatarTransitionFlags
@@ -1720,45 +1717,45 @@ sPlayerAvatarTransitionFuncs:
 	.thumb_func
 DoPlayerAvatarTransition:
 	push	{r4, r5, lr}
-	ldr	r0, .L238
+	ldr	r0, .L237
 	ldrb	r4, [r0, #0x1]
 	cmp	r4, #0
-	beq	.L231	@cond_branch
+	beq	.L230	@cond_branch
 	mov	r5, #0x0
-.L235:
+.L234:
 	mov	r0, #0x1
 	and	r0, r0, r4
 	cmp	r0, #0
-	beq	.L234	@cond_branch
-	ldr	r0, .L238+0x4
+	beq	.L233	@cond_branch
+	ldr	r0, .L237+0x4
 	lsl	r2, r5, #0x2
 	add	r2, r2, r0
-	ldr	r0, .L238
+	ldr	r0, .L237
 	ldrb	r1, [r0, #0x5]
 	lsl	r0, r1, #0x3
 	add	r0, r0, r1
 	lsl	r0, r0, #0x2
-	ldr	r1, .L238+0x8
+	ldr	r1, .L237+0x8
 	add	r0, r0, r1
 	ldr	r1, [r2]
 	bl	_call_via_r1
-.L234:
+.L233:
 	add	r0, r5, #0x1
 	lsl	r0, r0, #0x18
 	lsr	r5, r0, #0x18
 	lsr	r4, r4, #0x1
 	cmp	r5, #0x7
-	bls	.L235	@cond_branch
-	ldr	r1, .L238
+	bls	.L234	@cond_branch
+	ldr	r1, .L237
 	mov	r0, #0x0
 	strb	r0, [r1, #0x1]
-.L231:
+.L230:
 	pop	{r4, r5}
 	pop	{r0}
 	bx	r0
-.L239:
-	.align	2, 0
 .L238:
+	.align	2, 0
+.L237:
 	.word	gPlayerAvatar
 	.word	sPlayerAvatarTransitionFuncs
 	.word	gObjectEvents
@@ -1824,15 +1821,15 @@ PlayerAvatarTransition_Underwater:
 	.type	 PlayerAvatarTransition_ReturnToField,function
 	.thumb_func
 PlayerAvatarTransition_ReturnToField:
-	ldr	r2, .L246
+	ldr	r2, .L245
 	ldrb	r1, [r2]
 	mov	r0, #0x20
 	orr	r0, r0, r1
 	strb	r0, [r2]
 	bx	lr
-.L247:
-	.align	2, 0
 .L246:
+	.align	2, 0
+.L245:
 	.word	gPlayerAvatar
 .Lfe53:
 	.size	 PlayerAvatarTransition_ReturnToField,.Lfe53-PlayerAvatarTransition_ReturnToField
@@ -1842,36 +1839,36 @@ PlayerAvatarTransition_ReturnToField:
 	.thumb_func
 UpdatePlayerAvatarTransitionState:
 	push	{r4, lr}
-	ldr	r4, .L255
+	ldr	r4, .L254
 	mov	r0, #0x0
 	strb	r0, [r4, #0x3]
 	bl	PlayerIsAnimActive
 	lsl	r0, r0, #0x18
 	cmp	r0, #0
-	beq	.L249	@cond_branch
+	beq	.L248	@cond_branch
 	bl	PlayerCheckIfAnimFinishedOrInactive
 	lsl	r0, r0, #0x18
 	cmp	r0, #0
-	bne	.L250	@cond_branch
+	bne	.L249	@cond_branch
 	bl	PlayerAnimIsMultiFrameStationary
 	lsl	r0, r0, #0x18
 	cmp	r0, #0
-	bne	.L249	@cond_branch
+	bne	.L248	@cond_branch
 	mov	r0, #0x1
-	b	.L254
-.L256:
-	.align	2, 0
+	b	.L253
 .L255:
+	.align	2, 0
+.L254:
 	.word	gPlayerAvatar
-.L250:
+.L249:
 	bl	PlayerAnimIsMultiFrameStationaryAndStateNotTurning
 	lsl	r0, r0, #0x18
 	cmp	r0, #0
-	bne	.L249	@cond_branch
+	bne	.L248	@cond_branch
 	mov	r0, #0x2
-.L254:
+.L253:
 	strb	r0, [r4, #0x3]
-.L249:
+.L248:
 	pop	{r4}
 	pop	{r0}
 	bx	r0
@@ -1882,8 +1879,8 @@ UpdatePlayerAvatarTransitionState:
 	.thumb_func
 PlayerAnimIsMultiFrameStationary:
 	push	{lr}
-	ldr	r2, .L262
-	ldr	r0, .L262+0x4
+	ldr	r2, .L261
+	ldr	r0, .L261+0x4
 	ldrb	r1, [r0, #0x5]
 	lsl	r0, r1, #0x3
 	add	r0, r0, r1
@@ -1891,42 +1888,42 @@ PlayerAnimIsMultiFrameStationary:
 	add	r0, r0, r2
 	ldrb	r1, [r0, #0x1c]
 	cmp	r1, #0x7
-	bls	.L259	@cond_branch
+	bls	.L258	@cond_branch
 	add	r0, r1, #0
 	sub	r0, r0, #0x18
 	lsl	r0, r0, #0x18
 	lsr	r0, r0, #0x18
 	cmp	r0, #0x4
-	bls	.L259	@cond_branch
+	bls	.L258	@cond_branch
 	add	r0, r1, #0
 	sub	r0, r0, #0x21
 	lsl	r0, r0, #0x18
 	lsr	r0, r0, #0x18
 	cmp	r0, #0xf
-	bls	.L259	@cond_branch
+	bls	.L258	@cond_branch
 	add	r0, r1, #0
 	sub	r0, r0, #0x70
 	lsl	r0, r0, #0x18
 	lsr	r0, r0, #0x18
 	cmp	r0, #0xb
-	bls	.L259	@cond_branch
+	bls	.L258	@cond_branch
 	add	r0, r1, #0
 	add	r0, r0, #0x78
 	lsl	r0, r0, #0x18
 	lsr	r0, r0, #0x18
 	cmp	r0, #0x3
-	bhi	.L258	@cond_branch
-.L259:
+	bhi	.L257	@cond_branch
+.L258:
 	mov	r0, #0x1
-	b	.L261
-.L263:
-	.align	2, 0
+	b	.L260
 .L262:
+	.align	2, 0
+.L261:
 	.word	gObjectEvents
 	.word	gPlayerAvatar
-.L258:
+.L257:
 	mov	r0, #0x0
-.L261:
+.L260:
 	pop	{r1}
 	bx	r1
 .Lfe55:
@@ -1939,20 +1936,20 @@ PlayerAnimIsMultiFrameStationaryAndStateNotTurning:
 	bl	PlayerAnimIsMultiFrameStationary
 	lsl	r0, r0, #0x18
 	cmp	r0, #0
-	beq	.L265	@cond_branch
-	ldr	r0, .L268
+	beq	.L264	@cond_branch
+	ldr	r0, .L267
 	ldrb	r0, [r0, #0x2]
 	cmp	r0, #0x1
-	beq	.L265	@cond_branch
+	beq	.L264	@cond_branch
 	mov	r0, #0x1
-	b	.L267
-.L269:
-	.align	2, 0
+	b	.L266
 .L268:
-	.word	gPlayerAvatar
-.L265:
-	mov	r0, #0x0
+	.align	2, 0
 .L267:
+	.word	gPlayerAvatar
+.L264:
+	mov	r0, #0x0
+.L266:
 	pop	{r1}
 	bx	r1
 .Lfe56:
@@ -1962,21 +1959,21 @@ PlayerAnimIsMultiFrameStationaryAndStateNotTurning:
 	.thumb_func
 PlayerIsAnimActive:
 	push	{lr}
-	ldr	r0, .L271
+	ldr	r0, .L270
 	ldrb	r1, [r0, #0x5]
 	lsl	r0, r1, #0x3
 	add	r0, r0, r1
 	lsl	r0, r0, #0x2
-	ldr	r1, .L271+0x4
+	ldr	r1, .L270+0x4
 	add	r0, r0, r1
 	bl	ObjectEventIsMovementOverridden
 	lsl	r0, r0, #0x18
 	lsr	r0, r0, #0x18
 	pop	{r1}
 	bx	r1
-.L272:
-	.align	2, 0
 .L271:
+	.align	2, 0
+.L270:
 	.word	gPlayerAvatar
 	.word	gObjectEvents
 .Lfe57:
@@ -1986,21 +1983,21 @@ PlayerIsAnimActive:
 	.thumb_func
 PlayerCheckIfAnimFinishedOrInactive:
 	push	{lr}
-	ldr	r0, .L274
+	ldr	r0, .L273
 	ldrb	r1, [r0, #0x5]
 	lsl	r0, r1, #0x3
 	add	r0, r0, r1
 	lsl	r0, r0, #0x2
-	ldr	r1, .L274+0x4
+	ldr	r1, .L273+0x4
 	add	r0, r0, r1
 	bl	ObjectEventCheckHeldMovementStatus
 	lsl	r0, r0, #0x18
 	lsr	r0, r0, #0x18
 	pop	{r1}
 	bx	r1
-.L275:
-	.align	2, 0
 .L274:
+	.align	2, 0
+.L273:
 	.word	gPlayerAvatar
 	.word	gObjectEvents
 .Lfe58:
@@ -2009,8 +2006,8 @@ PlayerCheckIfAnimFinishedOrInactive:
 	.type	 PlayerSetCopyableMovement,function
 	.thumb_func
 PlayerSetCopyableMovement:
-	ldr	r3, .L277
-	ldr	r1, .L277+0x4
+	ldr	r3, .L276
+	ldr	r1, .L276+0x4
 	ldrb	r2, [r1, #0x5]
 	lsl	r1, r2, #0x3
 	add	r1, r1, r2
@@ -2019,9 +2016,9 @@ PlayerSetCopyableMovement:
 	add	r1, r1, #0x22
 	strb	r0, [r1]
 	bx	lr
-.L278:
-	.align	2, 0
 .L277:
+	.align	2, 0
+.L276:
 	.word	gObjectEvents
 	.word	gPlayerAvatar
 .Lfe59:
@@ -2031,8 +2028,8 @@ PlayerSetCopyableMovement:
 	.type	 PlayerGetCopyableMovement,function
 	.thumb_func
 PlayerGetCopyableMovement:
-	ldr	r2, .L280
-	ldr	r0, .L280+0x4
+	ldr	r2, .L279
+	ldr	r0, .L279+0x4
 	ldrb	r1, [r0, #0x5]
 	lsl	r0, r1, #0x3
 	add	r0, r0, r1
@@ -2041,9 +2038,9 @@ PlayerGetCopyableMovement:
 	add	r0, r0, #0x22
 	ldrb	r0, [r0]
 	bx	lr
-.L281:
-	.align	2, 0
 .L280:
+	.align	2, 0
+.L279:
 	.word	gObjectEvents
 	.word	gPlayerAvatar
 .Lfe60:
@@ -2056,19 +2053,19 @@ PlayerForceSetHeldMovement:
 	add	r1, r0, #0
 	lsl	r1, r1, #0x18
 	lsr	r1, r1, #0x18
-	ldr	r0, .L283
+	ldr	r0, .L282
 	ldrb	r2, [r0, #0x5]
 	lsl	r0, r2, #0x3
 	add	r0, r0, r2
 	lsl	r0, r0, #0x2
-	ldr	r2, .L283+0x4
+	ldr	r2, .L282+0x4
 	add	r0, r0, r2
 	bl	ObjectEventForceSetHeldMovement
 	pop	{r0}
 	bx	r0
-.L284:
-	.align	2, 0
 .L283:
+	.align	2, 0
+.L282:
 	.word	gPlayerAvatar
 	.word	gObjectEvents
 .Lfe61:
@@ -2085,30 +2082,30 @@ PlayerSetAnimId:
 	bl	PlayerIsAnimActive
 	lsl	r0, r0, #0x18
 	cmp	r0, #0
-	bne	.L286	@cond_branch
+	bne	.L285	@cond_branch
 	add	r0, r4, #0
 	bl	PlayerSetCopyableMovement
-	ldr	r0, .L288
+	ldr	r0, .L287
 	ldrb	r1, [r0, #0x5]
 	lsl	r0, r1, #0x3
 	add	r0, r0, r1
 	lsl	r0, r0, #0x2
-	ldr	r1, .L288+0x4
+	ldr	r1, .L287+0x4
 	add	r0, r0, r1
 	add	r1, r5, #0
 	bl	ObjectEventSetHeldMovement
 	lsl	r0, r0, #0x18
 	cmp	r0, #0
-	bne	.L286	@cond_branch
+	bne	.L285	@cond_branch
 	add	r0, r5, #0
 	bl	QuestLogRecordPlayerStep
-.L286:
+.L285:
 	pop	{r4, r5}
 	pop	{r0}
 	bx	r0
-.L289:
-	.align	2, 0
 .L288:
+	.align	2, 0
+.L287:
 	.word	gPlayerAvatar
 	.word	gObjectEvents
 .Lfe62:
@@ -2120,28 +2117,28 @@ QL_TryRecordPlayerStepWithDuration0:
 	push	{r4, lr}
 	lsl	r1, r1, #0x18
 	lsr	r4, r1, #0x18
-	ldr	r0, .L292
+	ldr	r0, .L291
 	ldrb	r1, [r0, #0x5]
 	lsl	r0, r1, #0x3
 	add	r0, r0, r1
 	lsl	r0, r0, #0x2
-	ldr	r1, .L292+0x4
+	ldr	r1, .L291+0x4
 	add	r0, r0, r1
 	add	r1, r4, #0
 	bl	ObjectEventSetHeldMovement
 	lsl	r0, r0, #0x18
 	cmp	r0, #0
-	bne	.L291	@cond_branch
+	bne	.L290	@cond_branch
 	add	r0, r4, #0
 	mov	r1, #0x0
 	bl	QuestLogRecordPlayerStepWithDuration
-.L291:
+.L290:
 	pop	{r4}
 	pop	{r0}
 	bx	r0
-.L293:
-	.align	2, 0
 .L292:
+	.align	2, 0
+.L291:
 	.word	gPlayerAvatar
 	.word	gObjectEvents
 .Lfe63:
@@ -2159,7 +2156,7 @@ QL_TryRecordNPCStepWithDuration32:
 	bl	ObjectEventSetHeldMovement
 	lsl	r0, r0, #0x18
 	cmp	r0, #0
-	bne	.L295	@cond_branch
+	bne	.L294	@cond_branch
 	ldrb	r0, [r4, #0x8]
 	ldrb	r1, [r4, #0x9]
 	ldrb	r2, [r4, #0xa]
@@ -2167,7 +2164,7 @@ QL_TryRecordNPCStepWithDuration32:
 	str	r3, [sp]
 	add	r3, r5, #0
 	bl	QuestLogRecordNPCStepWithDuration
-.L295:
+.L294:
 	add	sp, sp, #0x4
 	pop	{r4, r5}
 	pop	{r0}
@@ -2463,18 +2460,18 @@ PlayerShakeHeadOrWalkInPlace:
 	.thumb_func
 HandleEnforcedLookDirectionOnPlayerStopMoving:
 	push	{r4, lr}
-	ldr	r4, .L316
+	ldr	r4, .L315
 	ldrb	r0, [r4, #0x3]
 	cmp	r0, #0x2
-	beq	.L314	@cond_branch
+	beq	.L313	@cond_branch
 	cmp	r0, #0
-	bne	.L313	@cond_branch
-.L314:
+	bne	.L312	@cond_branch
+.L313:
 	bl	IsPlayerNotUsingAcroBikeOnBumpySlope
 	lsl	r0, r0, #0x18
 	cmp	r0, #0
-	beq	.L313	@cond_branch
-	ldr	r2, .L316+0x4
+	beq	.L312	@cond_branch
+	ldr	r2, .L315+0x4
 	ldrb	r1, [r4, #0x5]
 	lsl	r0, r1, #0x3
 	add	r0, r0, r1
@@ -2487,13 +2484,13 @@ HandleEnforcedLookDirectionOnPlayerStopMoving:
 	lsl	r0, r0, #0x18
 	lsr	r0, r0, #0x18
 	bl	PlayerForceSetHeldMovement
-.L313:
+.L312:
 	pop	{r4}
 	pop	{r0}
 	bx	r0
-.L317:
-	.align	2, 0
 .L316:
+	.align	2, 0
+.L315:
 	.word	gPlayerAvatar
 	.word	gObjectEvents
 .Lfe81:
@@ -2521,37 +2518,37 @@ PlayerApplyTileForcedMovement:
 	push	{r4, r5, r6, r7, lr}
 	lsl	r0, r0, #0x18
 	lsr	r6, r0, #0x18
-	ldr	r1, .L326
+	ldr	r1, .L325
 	ldr	r0, [r1]
 	cmp	r0, #0
-	beq	.L321	@cond_branch
+	beq	.L320	@cond_branch
 	add	r4, r1, #0
 	add	r7, r4, #0
 	mov	r5, #0x0
-.L323:
+.L322:
 	ldr	r1, [r4]
 	add	r0, r6, #0
 	bl	_call_via_r1
 	lsl	r0, r0, #0x18
 	cmp	r0, #0
-	beq	.L322	@cond_branch
+	beq	.L321	@cond_branch
 	add	r0, r7, #0x4
 	add	r0, r5, r0
 	ldr	r0, [r0]
 	bl	_call_via_r0
-.L322:
+.L321:
 	add	r4, r4, #0x8
 	add	r5, r5, #0x8
 	ldr	r0, [r4]
 	cmp	r0, #0
-	bne	.L323	@cond_branch
-.L321:
+	bne	.L322	@cond_branch
+.L320:
 	pop	{r4, r5, r6, r7}
 	pop	{r0}
 	bx	r0
-.L327:
-	.align	2, 0
 .L326:
+	.align	2, 0
+.L325:
 	.word	sForcedMovementFuncs
 .Lfe83:
 	.size	 PlayerApplyTileForcedMovement,.Lfe83-PlayerApplyTileForcedMovement
@@ -2759,15 +2756,15 @@ PlayCollisionSoundIfNotFacingWarp:
 	lsl	r0, r0, #0x18
 	lsr	r5, r0, #0x18
 	add	r6, r5, #0
-	ldr	r2, .L348
-	ldr	r0, .L348+0x4
+	ldr	r2, .L347
+	ldr	r0, .L347+0x4
 	ldrb	r1, [r0, #0x5]
 	lsl	r0, r1, #0x3
 	add	r0, r0, r1
 	lsl	r0, r0, #0x2
 	add	r0, r0, r2
 	ldrb	r4, [r0, #0x1e]
-	ldr	r1, .L348+0x8
+	ldr	r1, .L347+0x8
 	sub	r0, r5, #0x1
 	lsl	r0, r0, #0x2
 	add	r0, r0, r1
@@ -2776,35 +2773,35 @@ PlayCollisionSoundIfNotFacingWarp:
 	bl	_call_via_r1
 	lsl	r0, r0, #0x18
 	cmp	r0, #0
-	bne	.L338	@cond_branch
+	bne	.L337	@cond_branch
 	cmp	r5, #0x3
-	bne	.L340	@cond_branch
+	bne	.L339	@cond_branch
 	add	r0, r4, #0
 	bl	MetatileBehavior_IsDirectionalUpLeftStairWarp
 	lsl	r0, r0, #0x18
 	cmp	r0, #0
-	bne	.L338	@cond_branch
+	bne	.L337	@cond_branch
 	add	r0, r4, #0
 	bl	MetatileBehavior_IsDirectionalDownLeftStairWarp
 	lsl	r0, r0, #0x18
 	cmp	r0, #0
-	bne	.L338	@cond_branch
-.L340:
+	bne	.L337	@cond_branch
+.L339:
 	cmp	r5, #0x4
-	bne	.L343	@cond_branch
+	bne	.L342	@cond_branch
 	add	r0, r4, #0
 	bl	MetatileBehavior_IsDirectionalUpRightStairWarp
 	lsl	r0, r0, #0x18
 	cmp	r0, #0
-	bne	.L338	@cond_branch
+	bne	.L337	@cond_branch
 	add	r0, r4, #0
 	bl	MetatileBehavior_IsDirectionalDownRightStairWarp
 	lsl	r0, r0, #0x18
 	cmp	r0, #0
-	bne	.L338	@cond_branch
-.L343:
+	bne	.L337	@cond_branch
+.L342:
 	cmp	r6, #0x2
-	bne	.L346	@cond_branch
+	bne	.L345	@cond_branch
 	mov	r4, sp
 	add	r4, r4, #0x2
 	mov	r0, sp
@@ -2826,18 +2823,18 @@ PlayCollisionSoundIfNotFacingWarp:
 	bl	MetatileBehavior_IsWarpDoor
 	lsl	r0, r0, #0x18
 	cmp	r0, #0
-	bne	.L338	@cond_branch
-.L346:
+	bne	.L337	@cond_branch
+.L345:
 	mov	r0, #0x7
 	bl	PlaySE
-.L338:
+.L337:
 	add	sp, sp, #0x4
 	pop	{r4, r5, r6}
 	pop	{r0}
 	bx	r0
-.L349:
-	.align	2, 0
 .L348:
+	.align	2, 0
+.L347:
 	.word	gObjectEvents
 	.word	gPlayerAvatar
 	.word	sArrowWarpMetatileBehaviorChecks
@@ -2851,8 +2848,8 @@ GetXYCoordsOneStepInFrontOfPlayer:
 	push	{r4, r5, lr}
 	add	r4, r0, #0
 	add	r5, r1, #0
-	ldr	r3, .L351
-	ldr	r2, .L351+0x4
+	ldr	r3, .L350
+	ldr	r2, .L350+0x4
 	ldrb	r1, [r2, #0x5]
 	lsl	r0, r1, #0x3
 	add	r0, r0, r1
@@ -2876,9 +2873,9 @@ GetXYCoordsOneStepInFrontOfPlayer:
 	pop	{r4, r5}
 	pop	{r0}
 	bx	r0
-.L352:
-	.align	2, 0
 .L351:
+	.align	2, 0
+.L350:
 	.word	gObjectEvents
 	.word	gPlayerAvatar
 .Lfe95:
@@ -2889,8 +2886,8 @@ GetXYCoordsOneStepInFrontOfPlayer:
 	.thumb_func
 PlayerGetDestCoords:
 	push	{r4, r5, lr}
-	ldr	r5, .L354
-	ldr	r4, .L354+0x4
+	ldr	r5, .L353
+	ldr	r4, .L353+0x4
 	ldrb	r3, [r4, #0x5]
 	lsl	r2, r3, #0x3
 	add	r2, r2, r3
@@ -2908,9 +2905,9 @@ PlayerGetDestCoords:
 	pop	{r4, r5}
 	pop	{r0}
 	bx	r0
-.L355:
-	.align	2, 0
 .L354:
+	.align	2, 0
+.L353:
 	.word	gObjectEvents
 	.word	gPlayerAvatar
 .Lfe96:
@@ -2923,21 +2920,21 @@ player_get_pos_including_state_based_drift:
 	push	{r4, r5, lr}
 	add	r4, r0, #0
 	add	r5, r1, #0
-	ldr	r0, .L372
+	ldr	r0, .L371
 	ldrb	r1, [r0, #0x5]
 	lsl	r0, r1, #0x3
 	add	r0, r0, r1
 	lsl	r0, r0, #0x2
-	ldr	r1, .L372+0x4
+	ldr	r1, .L371+0x4
 	add	r3, r0, r1
 	ldrb	r1, [r3]
 	mov	r0, #0xc0
 	and	r0, r0, r1
 	cmp	r0, #0x40
-	beq	.LCB3526
-	b	.L357	@long jump
-.LCB3526:
-	ldr	r2, .L372+0x8
+	beq	.LCB3517
+	b	.L356	@long jump
+.LCB3517:
+	ldr	r2, .L371+0x8
 	ldrb	r1, [r3, #0x4]
 	lsl	r0, r1, #0x4
 	add	r0, r0, r1
@@ -2946,9 +2943,9 @@ player_get_pos_including_state_based_drift:
 	mov	r1, #0x32
 	ldrsh	r0, [r0, r1]
 	cmp	r0, #0
-	beq	.LCB3537
-	b	.L357	@long jump
-.LCB3537:
+	beq	.LCB3528
+	b	.L356	@long jump
+.LCB3528:
 	ldrh	r0, [r3, #0x10]
 	strh	r0, [r4]
 	ldrh	r0, [r3, #0x12]
@@ -2956,103 +2953,103 @@ player_get_pos_including_state_based_drift:
 	ldrb	r0, [r3, #0x1c]
 	sub	r0, r0, #0x10
 	cmp	r0, #0x30
-	bls	.LCB3547
-	b	.L357	@long jump
-.LCB3547:
+	bls	.LCB3538
+	b	.L356	@long jump
+.LCB3538:
 	lsl	r0, r0, #0x2
-	ldr	r1, .L372+0xc
+	ldr	r1, .L371+0xc
 	add	r0, r0, r1
 	ldr	r0, [r0]
 	mov	pc, r0
-.L373:
-	.align	2, 0
 .L372:
+	.align	2, 0
+.L371:
 	.word	gPlayerAvatar
 	.word	gObjectEvents
 	.word	gSprites
-	.word	.L367
+	.word	.L366
 	.align	2, 0
 	.align	2, 0
-.L367:
-	.word	.L360
-	.word	.L362
-	.word	.L364
-	.word	.L366
-	.word	.L357
-	.word	.L357
-	.word	.L357
-	.word	.L357
-	.word	.L357
-	.word	.L357
-	.word	.L357
-	.word	.L357
-	.word	.L357
-	.word	.L357
-	.word	.L357
-	.word	.L357
-	.word	.L357
-	.word	.L357
-	.word	.L357
-	.word	.L357
-	.word	.L357
-	.word	.L357
-	.word	.L357
-	.word	.L357
-	.word	.L357
-	.word	.L357
-	.word	.L357
-	.word	.L357
-	.word	.L357
-	.word	.L357
-	.word	.L357
-	.word	.L357
-	.word	.L357
-	.word	.L357
-	.word	.L357
-	.word	.L357
-	.word	.L357
-	.word	.L357
-	.word	.L357
-	.word	.L357
-	.word	.L357
-	.word	.L357
-	.word	.L357
-	.word	.L357
-	.word	.L357
-	.word	.L360
-	.word	.L362
-	.word	.L364
-	.word	.L366
-.L360:
+.L366:
+	.word	.L359
+	.word	.L361
+	.word	.L363
+	.word	.L365
+	.word	.L356
+	.word	.L356
+	.word	.L356
+	.word	.L356
+	.word	.L356
+	.word	.L356
+	.word	.L356
+	.word	.L356
+	.word	.L356
+	.word	.L356
+	.word	.L356
+	.word	.L356
+	.word	.L356
+	.word	.L356
+	.word	.L356
+	.word	.L356
+	.word	.L356
+	.word	.L356
+	.word	.L356
+	.word	.L356
+	.word	.L356
+	.word	.L356
+	.word	.L356
+	.word	.L356
+	.word	.L356
+	.word	.L356
+	.word	.L356
+	.word	.L356
+	.word	.L356
+	.word	.L356
+	.word	.L356
+	.word	.L356
+	.word	.L356
+	.word	.L356
+	.word	.L356
+	.word	.L356
+	.word	.L356
+	.word	.L356
+	.word	.L356
+	.word	.L356
+	.word	.L356
+	.word	.L359
+	.word	.L361
+	.word	.L363
+	.word	.L365
+.L359:
 	ldrh	r0, [r5]
 	add	r0, r0, #0x1
-	b	.L370
-.L362:
+	b	.L369
+.L361:
 	ldrh	r0, [r5]
 	sub	r0, r0, #0x1
-.L370:
+.L369:
 	strh	r0, [r5]
 	mov	r0, #0x1
-	b	.L369
-.L364:
+	b	.L368
+.L363:
 	ldrh	r0, [r4]
 	sub	r0, r0, #0x1
-	b	.L371
-.L366:
+	b	.L370
+.L365:
 	ldrh	r0, [r4]
 	add	r0, r0, #0x1
-.L371:
+.L370:
 	strh	r0, [r4]
 	mov	r0, #0x1
-	b	.L369
-.L357:
+	b	.L368
+.L356:
 	mov	r1, #0x1
 	neg	r1, r1
 	add	r0, r1, #0
 	strh	r0, [r4]
 	strh	r0, [r5]
 	mov	r0, #0x0
-.L369:
+.L368:
 	pop	{r4, r5}
 	pop	{r1}
 	bx	r1
@@ -3063,8 +3060,8 @@ player_get_pos_including_state_based_drift:
 	.type	 GetPlayerFacingDirection,function
 	.thumb_func
 GetPlayerFacingDirection:
-	ldr	r2, .L375
-	ldr	r0, .L375+0x4
+	ldr	r2, .L374
+	ldr	r0, .L374+0x4
 	ldrb	r1, [r0, #0x5]
 	lsl	r0, r1, #0x3
 	add	r0, r0, r1
@@ -3074,9 +3071,9 @@ GetPlayerFacingDirection:
 	lsl	r0, r0, #0x1c
 	lsr	r0, r0, #0x1c
 	bx	lr
-.L376:
-	.align	2, 0
 .L375:
+	.align	2, 0
+.L374:
 	.word	gObjectEvents
 	.word	gPlayerAvatar
 .Lfe98:
@@ -3086,8 +3083,8 @@ GetPlayerFacingDirection:
 	.type	 GetPlayerMovementDirection,function
 	.thumb_func
 GetPlayerMovementDirection:
-	ldr	r2, .L378
-	ldr	r0, .L378+0x4
+	ldr	r2, .L377
+	ldr	r0, .L377+0x4
 	ldrb	r1, [r0, #0x5]
 	lsl	r0, r1, #0x3
 	add	r0, r0, r1
@@ -3096,9 +3093,9 @@ GetPlayerMovementDirection:
 	ldrb	r0, [r0, #0x18]
 	lsr	r0, r0, #0x4
 	bx	lr
-.L379:
-	.align	2, 0
 .L378:
+	.align	2, 0
+.L377:
 	.word	gObjectEvents
 	.word	gPlayerAvatar
 .Lfe99:
@@ -3108,8 +3105,8 @@ GetPlayerMovementDirection:
 	.type	 PlayerGetElevation,function
 	.thumb_func
 PlayerGetElevation:
-	ldr	r2, .L381
-	ldr	r0, .L381+0x4
+	ldr	r2, .L380
+	ldr	r0, .L380+0x4
 	ldrb	r1, [r0, #0x5]
 	lsl	r0, r1, #0x3
 	add	r0, r0, r1
@@ -3118,9 +3115,9 @@ PlayerGetElevation:
 	ldrb	r0, [r0, #0xb]
 	lsr	r0, r0, #0x4
 	bx	lr
-.L382:
-	.align	2, 0
 .L381:
+	.align	2, 0
+.L380:
 	.word	gObjectEvents
 	.word	gPlayerAvatar
 .Lfe100:
@@ -3133,12 +3130,12 @@ MovePlayerToMapCoords:
 	push	{lr}
 	add	r3, r0, #0
 	add	r2, r1, #0
-	ldr	r0, .L384
+	ldr	r0, .L383
 	ldrb	r1, [r0, #0x5]
 	lsl	r0, r1, #0x3
 	add	r0, r0, r1
 	lsl	r0, r0, #0x2
-	ldr	r1, .L384+0x4
+	ldr	r1, .L383+0x4
 	add	r0, r0, r1
 	lsl	r3, r3, #0x10
 	asr	r3, r3, #0x10
@@ -3148,9 +3145,9 @@ MovePlayerToMapCoords:
 	bl	MoveObjectEventToMapCoords
 	pop	{r0}
 	bx	r0
-.L385:
-	.align	2, 0
 .L384:
+	.align	2, 0
+.L383:
 	.word	gPlayerAvatar
 	.word	gObjectEvents
 .Lfe101:
@@ -3160,14 +3157,14 @@ MovePlayerToMapCoords:
 	.type	 TestPlayerAvatarFlags,function
 	.thumb_func
 TestPlayerAvatarFlags:
-	ldr	r1, .L387
+	ldr	r1, .L386
 	ldrb	r1, [r1]
 	and	r1, r1, r0
 	add	r0, r1, #0
 	bx	lr
-.L388:
-	.align	2, 0
 .L387:
+	.align	2, 0
+.L386:
 	.word	gPlayerAvatar
 .Lfe102:
 	.size	 TestPlayerAvatarFlags,.Lfe102-TestPlayerAvatarFlags
@@ -3176,12 +3173,12 @@ TestPlayerAvatarFlags:
 	.type	 GetPlayerAvatarFlags,function
 	.thumb_func
 GetPlayerAvatarFlags:
-	ldr	r0, .L390
+	ldr	r0, .L389
 	ldrb	r0, [r0]
 	bx	lr
-.L391:
-	.align	2, 0
 .L390:
+	.align	2, 0
+.L389:
 	.word	gPlayerAvatar
 .Lfe103:
 	.size	 GetPlayerAvatarFlags,.Lfe103-GetPlayerAvatarFlags
@@ -3190,12 +3187,12 @@ GetPlayerAvatarFlags:
 	.type	 GetPlayerAvatarObjectId,function
 	.thumb_func
 GetPlayerAvatarObjectId:
-	ldr	r0, .L393
+	ldr	r0, .L392
 	ldrb	r0, [r0, #0x4]
 	bx	lr
-.L394:
-	.align	2, 0
 .L393:
+	.align	2, 0
+.L392:
 	.word	gPlayerAvatar
 .Lfe104:
 	.size	 GetPlayerAvatarObjectId,.Lfe104-GetPlayerAvatarObjectId
@@ -3216,12 +3213,12 @@ CancelPlayerForcedMovement:
 	.thumb_func
 StopPlayerAvatar:
 	push	{r4, lr}
-	ldr	r0, .L398
+	ldr	r0, .L397
 	ldrb	r0, [r0, #0x5]
 	lsl	r4, r0, #0x3
 	add	r4, r4, r0
 	lsl	r4, r4, #0x2
-	ldr	r0, .L398+0x4
+	ldr	r0, .L397+0x4
 	add	r4, r4, r0
 	add	r0, r4, #0
 	bl	npc_clear_strange_bits
@@ -3234,17 +3231,17 @@ StopPlayerAvatar:
 	bl	TestPlayerAvatarFlags
 	lsl	r0, r0, #0x18
 	cmp	r0, #0
-	beq	.L397	@cond_branch
+	beq	.L396	@cond_branch
 	bl	Bike_HandleBumpySlopeJump
 	mov	r0, #0x0
 	bl	Bike_UpdateBikeCounterSpeed
-.L397:
+.L396:
 	pop	{r4}
 	pop	{r0}
 	bx	r0
-.L399:
-	.align	2, 0
 .L398:
+	.align	2, 0
+.L397:
 	.word	gPlayerAvatar
 	.word	gObjectEvents
 .Lfe106:
@@ -3296,15 +3293,15 @@ GetPlayerAvatarGraphicsIdByStateIdAndGender:
 	lsl	r0, r0, #0x18
 	lsl	r1, r1, #0x18
 	lsr	r1, r1, #0x18
-	ldr	r2, .L402
+	ldr	r2, .L401
 	lsr	r0, r0, #0x17
 	add	r1, r1, r0
 	add	r1, r1, r2
 	ldrb	r0, [r1]
 	bx	lr
-.L403:
-	.align	2, 0
 .L402:
+	.align	2, 0
+.L401:
 	.word	sPlayerAvatarGfxIds
 .Lfe108:
 	.size	 GetPlayerAvatarGraphicsIdByStateIdAndGender,.Lfe108-GetPlayerAvatarGraphicsIdByStateIdAndGender
@@ -3315,13 +3312,13 @@ GetPlayerAvatarGraphicsIdByStateIdAndGender:
 GetRSAvatarGraphicsIdByGender:
 	lsl	r0, r0, #0x18
 	lsr	r0, r0, #0x18
-	ldr	r1, .L405
+	ldr	r1, .L404
 	add	r0, r0, r1
 	ldrb	r0, [r0]
 	bx	lr
-.L406:
-	.align	2, 0
 .L405:
+	.align	2, 0
+.L404:
 	.word	sHoennLinkPartnerGfxIds
 .Lfe109:
 	.size	 GetRSAvatarGraphicsIdByGender,.Lfe109-GetRSAvatarGraphicsIdByGender
@@ -3333,16 +3330,16 @@ GetPlayerAvatarGraphicsIdByStateId:
 	push	{lr}
 	lsl	r0, r0, #0x18
 	lsr	r0, r0, #0x18
-	ldr	r1, .L408
+	ldr	r1, .L407
 	ldrb	r1, [r1, #0x7]
 	bl	GetPlayerAvatarGraphicsIdByStateIdAndGender
 	lsl	r0, r0, #0x18
 	lsr	r0, r0, #0x18
 	pop	{r1}
 	bx	r1
-.L409:
-	.align	2, 0
 .L408:
+	.align	2, 0
+.L407:
 	.word	gPlayerAvatar
 .Lfe110:
 	.size	 GetPlayerAvatarGraphicsIdByStateId,.Lfe110-GetPlayerAvatarGraphicsIdByStateId
@@ -3355,14 +3352,14 @@ GetPlayerAvatarGenderByGraphicsId:
 	lsl	r0, r0, #0x18
 	lsr	r0, r0, #0x18
 	cmp	r0, #0xb
-	bgt	.L417	@cond_branch
+	bgt	.L416	@cond_branch
 	cmp	r0, #0x7
-	blt	.L417	@cond_branch
+	blt	.L416	@cond_branch
 	mov	r0, #0x1
-	b	.L419
-.L417:
+	b	.L418
+.L416:
 	mov	r0, #0x0
-.L419:
+.L418:
 	pop	{r1}
 	bx	r1
 .Lfe111:
@@ -3377,44 +3374,44 @@ PartyHasMonWithSurf:
 	bl	TestPlayerAvatarFlags
 	lsl	r0, r0, #0x18
 	cmp	r0, #0
-	bne	.L421	@cond_branch
+	bne	.L420	@cond_branch
 	mov	r5, #0x0
-	b	.L422
-.L426:
+	b	.L421
+.L425:
 	add	r0, r4, #0
 	mov	r1, #0x39
 	bl	MonKnowsMove
 	lsl	r0, r0, #0x18
 	cmp	r0, #0
-	beq	.L424	@cond_branch
+	beq	.L423	@cond_branch
 	mov	r0, #0x1
-	b	.L429
-.L424:
+	b	.L428
+.L423:
 	add	r0, r5, #0x1
 	lsl	r0, r0, #0x18
 	lsr	r5, r0, #0x18
-.L422:
+.L421:
 	cmp	r5, #0x5
-	bhi	.L421	@cond_branch
+	bhi	.L420	@cond_branch
 	mov	r0, #0x64
 	mov	r1, r5
 	mul	r1, r1, r0
-	ldr	r0, .L430
+	ldr	r0, .L429
 	add	r4, r1, r0
 	add	r0, r4, #0
 	mov	r1, #0xb
 	bl	GetMonData
 	cmp	r0, #0
-	bne	.L426	@cond_branch
-.L421:
+	bne	.L425	@cond_branch
+.L420:
 	mov	r0, #0x0
-.L429:
+.L428:
 	pop	{r4, r5}
 	pop	{r1}
 	bx	r1
-.L431:
-	.align	2, 0
 .L430:
+	.align	2, 0
+.L429:
 	.word	gPlayerParty
 .Lfe112:
 	.size	 PartyHasMonWithSurf,.Lfe112-PartyHasMonWithSurf
@@ -3428,17 +3425,17 @@ IsPlayerSurfingNorth:
 	lsl	r0, r0, #0x18
 	lsr	r0, r0, #0x18
 	cmp	r0, #0x2
-	bne	.L433	@cond_branch
+	bne	.L432	@cond_branch
 	mov	r0, #0x8
 	bl	TestPlayerAvatarFlags
 	lsl	r0, r0, #0x18
 	cmp	r0, #0
-	beq	.L433	@cond_branch
+	beq	.L432	@cond_branch
 	mov	r0, #0x1
-	b	.L435
-.L433:
+	b	.L434
+.L432:
 	mov	r0, #0x0
-.L435:
+.L434:
 	pop	{r1}
 	bx	r1
 .Lfe113:
@@ -3450,12 +3447,12 @@ IsPlayerSurfingNorth:
 IsPlayerFacingSurfableFishableWater:
 	push	{r4, r5, lr}
 	add	sp, sp, #-0x4
-	ldr	r0, .L440
+	ldr	r0, .L439
 	ldrb	r0, [r0, #0x5]
 	lsl	r4, r0, #0x3
 	add	r4, r4, r0
 	lsl	r4, r4, #0x2
-	ldr	r0, .L440+0x4
+	ldr	r0, .L439+0x4
 	add	r4, r4, r0
 	ldrh	r1, [r4, #0x10]
 	mov	r0, sp
@@ -3483,12 +3480,12 @@ IsPlayerFacingSurfableFishableWater:
 	lsl	r0, r0, #0x18
 	lsr	r0, r0, #0x18
 	cmp	r0, #0x3
-	bne	.L437	@cond_branch
+	bne	.L436	@cond_branch
 	bl	PlayerGetElevation
 	lsl	r0, r0, #0x18
 	lsr	r0, r0, #0x18
 	cmp	r0, #0x3
-	bne	.L437	@cond_branch
+	bne	.L436	@cond_branch
 	mov	r0, sp
 	mov	r1, #0x0
 	ldrsh	r0, [r0, r1]
@@ -3498,17 +3495,17 @@ IsPlayerFacingSurfableFishableWater:
 	lsl	r0, r0, #0x18
 	lsr	r0, r0, #0x18
 	cmp	r0, #0x1
-	bne	.L437	@cond_branch
+	bne	.L436	@cond_branch
 	mov	r0, #0x1
-	b	.L439
-.L441:
-	.align	2, 0
+	b	.L438
 .L440:
+	.align	2, 0
+.L439:
 	.word	gPlayerAvatar
 	.word	gObjectEvents
-.L437:
+.L436:
 	mov	r0, #0x0
-.L439:
+.L438:
 	add	sp, sp, #0x4
 	pop	{r4, r5}
 	pop	{r1}
@@ -3542,15 +3539,15 @@ MetatileAtCoordsIsWaterTile:
 	.thumb_func
 ClearPlayerAvatarInfo:
 	push	{lr}
-	ldr	r0, .L444
+	ldr	r0, .L443
 	mov	r1, #0x0
 	mov	r2, #0x20
 	bl	memset
 	pop	{r0}
 	bx	r0
-.L445:
-	.align	2, 0
 .L444:
+	.align	2, 0
+.L443:
 	.word	gPlayerAvatar
 .Lfe116:
 	.size	 ClearPlayerAvatarInfo,.Lfe116-ClearPlayerAvatarInfo
@@ -3561,16 +3558,16 @@ ClearPlayerAvatarInfo:
 SetPlayerAvatarStateMask:
 	lsl	r0, r0, #0x18
 	lsr	r0, r0, #0x18
-	ldr	r3, .L447
+	ldr	r3, .L446
 	ldrb	r2, [r3]
 	mov	r1, #0xe0
 	and	r1, r1, r2
 	orr	r0, r0, r1
 	strb	r0, [r3]
 	bx	lr
-.L448:
-	.align	2, 0
 .L447:
+	.align	2, 0
+.L446:
 	.word	gPlayerAvatar
 .Lfe117:
 	.size	 SetPlayerAvatarStateMask,.Lfe117-SetPlayerAvatarStateMask
@@ -3602,33 +3599,33 @@ GetPlayerAvatarStateTransitionByGraphicsId:
 	lsl	r1, r1, #0x18
 	lsr	r1, r1, #0x18
 	mov	r2, #0x0
-	ldr	r3, .L457
+	ldr	r3, .L456
 	lsl	r0, r1, #0x1
 	add	r0, r0, r1
 	lsl	r4, r0, #0x1
 	add	r6, r3, #0x1
-.L453:
+.L452:
 	lsl	r0, r2, #0x1
 	add	r1, r0, r4
 	add	r0, r1, r3
 	ldrb	r0, [r0]
 	cmp	r0, r5
-	bne	.L452	@cond_branch
+	bne	.L451	@cond_branch
 	add	r0, r1, r6
 	ldrb	r0, [r0]
-	b	.L456
-.L458:
-	.align	2, 0
+	b	.L455
 .L457:
+	.align	2, 0
+.L456:
 	.word	sPlayerAvatarGfxToStateFlag
-.L452:
+.L451:
 	add	r0, r2, #0x1
 	lsl	r0, r0, #0x18
 	lsr	r2, r0, #0x18
 	cmp	r2, #0x2
-	bls	.L453	@cond_branch
+	bls	.L452	@cond_branch
 	mov	r0, #0x1
-.L456:
+.L455:
 	pop	{r4, r5, r6}
 	pop	{r1}
 	bx	r1
@@ -3640,39 +3637,39 @@ GetPlayerAvatarStateTransitionByGraphicsId:
 	.thumb_func
 GetPlayerAvatarGraphicsIdByCurrentState:
 	push	{r4, r5, r6, lr}
-	ldr	r0, .L467
+	ldr	r0, .L466
 	ldrb	r5, [r0]
 	mov	r2, #0x0
-	ldr	r3, .L467+0x4
+	ldr	r3, .L466+0x4
 	ldrb	r1, [r0, #0x7]
 	lsl	r0, r1, #0x1
 	add	r0, r0, r1
 	lsl	r4, r0, #0x1
 	add	r6, r3, #0x1
-.L463:
+.L462:
 	lsl	r0, r2, #0x1
 	add	r1, r0, r4
 	add	r0, r1, r6
 	ldrb	r0, [r0]
 	and	r0, r0, r5
 	cmp	r0, #0
-	beq	.L462	@cond_branch
+	beq	.L461	@cond_branch
 	add	r0, r1, r3
 	ldrb	r0, [r0]
-	b	.L466
-.L468:
-	.align	2, 0
+	b	.L465
 .L467:
+	.align	2, 0
+.L466:
 	.word	gPlayerAvatar
 	.word	sPlayerAvatarGfxToStateFlag
-.L462:
+.L461:
 	add	r0, r2, #0x1
 	lsl	r0, r0, #0x18
 	lsr	r2, r0, #0x18
 	cmp	r2, #0x2
-	bls	.L463	@cond_branch
+	bls	.L462	@cond_branch
 	mov	r0, #0x0
-.L466:
+.L465:
 	pop	{r4, r5, r6}
 	pop	{r1}
 	bx	r1
@@ -3689,7 +3686,7 @@ SetPlayerAvatarExtraStateTransition:
 	lsr	r0, r0, #0x18
 	lsl	r4, r4, #0x18
 	lsr	r4, r4, #0x18
-	ldr	r5, .L470
+	ldr	r5, .L469
 	ldrb	r1, [r5, #0x7]
 	bl	GetPlayerAvatarStateTransitionByGraphicsId
 	lsl	r0, r0, #0x18
@@ -3702,9 +3699,9 @@ SetPlayerAvatarExtraStateTransition:
 	pop	{r4, r5}
 	pop	{r0}
 	bx	r0
-.L471:
-	.align	2, 0
 .L470:
+	.align	2, 0
+.L469:
 	.word	gPlayerAvatar
 .Lfe120:
 	.size	 SetPlayerAvatarExtraStateTransition,.Lfe120-SetPlayerAvatarExtraStateTransition
@@ -3774,7 +3771,7 @@ InitPlayerAvatar:
 	lsl	r4, r5, #0x3
 	add	r4, r4, r5
 	lsl	r4, r4, #0x2
-	ldr	r0, .L473
+	ldr	r0, .L472
 	add	r4, r4, r0
 	ldrb	r0, [r4, #0x2]
 	mov	r1, #0x1
@@ -3786,7 +3783,7 @@ InitPlayerAvatar:
 	mov	r1, r9
 	bl	ObjectEventTurn
 	bl	ClearPlayerAvatarInfo
-	ldr	r0, .L473+0x4
+	ldr	r0, .L472+0x4
 	strb	r6, [r0, #0x2]
 	strb	r6, [r0, #0x3]
 	strb	r5, [r0, #0x5]
@@ -3803,9 +3800,9 @@ InitPlayerAvatar:
 	pop	{r4, r5, r6}
 	pop	{r0}
 	bx	r0
-.L474:
-	.align	2, 0
 .L473:
+	.align	2, 0
+.L472:
 	.word	gObjectEvents
 	.word	gPlayerAvatar
 .Lfe121:
@@ -3818,8 +3815,8 @@ SetPlayerInvisibility:
 	push	{r4, r5, r6, lr}
 	lsl	r0, r0, #0x18
 	lsr	r4, r0, #0x18
-	ldr	r6, .L477
-	ldr	r5, .L477+0x4
+	ldr	r6, .L476
+	ldr	r5, .L476+0x4
 	ldrb	r0, [r5, #0x5]
 	lsl	r1, r0, #0x3
 	add	r1, r1, r0
@@ -3838,8 +3835,8 @@ SetPlayerInvisibility:
 	bl	TestPlayerAvatarFlags
 	lsl	r0, r0, #0x18
 	cmp	r0, #0
-	beq	.L476	@cond_branch
-	ldr	r2, .L477+0x8
+	beq	.L475	@cond_branch
+	ldr	r2, .L476+0x8
 	ldrb	r1, [r5, #0x5]
 	lsl	r0, r1, #0x3
 	add	r0, r0, r1
@@ -3858,13 +3855,13 @@ SetPlayerInvisibility:
 	and	r0, r0, r2
 	orr	r0, r0, r3
 	strb	r0, [r1]
-.L476:
+.L475:
 	pop	{r4, r5, r6}
 	pop	{r0}
 	bx	r0
-.L478:
-	.align	2, 0
 .L477:
+	.align	2, 0
+.L476:
 	.word	gObjectEvents
 	.word	gPlayerAvatar
 	.word	gSprites
@@ -3876,12 +3873,12 @@ SetPlayerInvisibility:
 	.thumb_func
 StartPlayerAvatarSummonMonForFieldMoveAnim:
 	push	{r4, r5, lr}
-	ldr	r5, .L480
+	ldr	r5, .L479
 	ldrb	r0, [r5, #0x5]
 	lsl	r4, r0, #0x3
 	add	r4, r4, r0
 	lsl	r4, r4, #0x2
-	ldr	r0, .L480+0x4
+	ldr	r0, .L479+0x4
 	add	r4, r4, r0
 	mov	r0, #0x3
 	bl	GetPlayerAvatarGraphicsIdByStateId
@@ -3894,16 +3891,16 @@ StartPlayerAvatarSummonMonForFieldMoveAnim:
 	lsl	r0, r1, #0x4
 	add	r0, r0, r1
 	lsl	r0, r0, #0x2
-	ldr	r1, .L480+0x8
+	ldr	r1, .L479+0x8
 	add	r0, r0, r1
 	mov	r1, #0x0
 	bl	StartSpriteAnim
 	pop	{r4, r5}
 	pop	{r0}
 	bx	r0
-.L481:
-	.align	2, 0
 .L480:
+	.align	2, 0
+.L479:
 	.word	gPlayerAvatar
 	.word	gObjectEvents
 	.word	gSprites
@@ -3922,32 +3919,32 @@ sPlayerAvatarVsSeekerBikeGfxIds:
 	.thumb_func
 GetPlayerAvatarVsSeekerGfxId:
 	push	{lr}
-	ldr	r2, .L487
+	ldr	r2, .L486
 	ldrb	r1, [r2]
 	mov	r0, #0x6
 	and	r0, r0, r1
 	cmp	r0, #0
-	bne	.L483	@cond_branch
+	bne	.L482	@cond_branch
 	mov	r0, #0x5
 	bl	GetPlayerAvatarGraphicsIdByStateId
 	lsl	r0, r0, #0x18
 	lsr	r0, r0, #0x18
-	b	.L486
-.L488:
-	.align	2, 0
+	b	.L485
 .L487:
+	.align	2, 0
+.L486:
 	.word	gPlayerAvatar
-.L483:
-	ldr	r0, .L489
+.L482:
+	ldr	r0, .L488
 	ldrb	r1, [r2, #0x7]
 	add	r1, r1, r0
 	ldrb	r0, [r1]
-.L486:
+.L485:
 	pop	{r1}
 	bx	r1
-.L490:
-	.align	2, 0
 .L489:
+	.align	2, 0
+.L488:
 	.word	sPlayerAvatarVsSeekerBikeGfxIds
 .Lfe124:
 	.size	 GetPlayerAvatarVsSeekerGfxId,.Lfe124-GetPlayerAvatarVsSeekerGfxId
@@ -3957,12 +3954,12 @@ GetPlayerAvatarVsSeekerGfxId:
 	.thumb_func
 StartPlayerAvatarVsSeekerAnim:
 	push	{r4, r5, lr}
-	ldr	r5, .L492
+	ldr	r5, .L491
 	ldrb	r0, [r5, #0x5]
 	lsl	r4, r0, #0x3
 	add	r4, r4, r0
 	lsl	r4, r4, #0x2
-	ldr	r0, .L492+0x4
+	ldr	r0, .L491+0x4
 	add	r4, r4, r0
 	bl	GetPlayerAvatarVsSeekerGfxId
 	add	r1, r0, #0
@@ -3974,16 +3971,16 @@ StartPlayerAvatarVsSeekerAnim:
 	lsl	r0, r1, #0x4
 	add	r0, r0, r1
 	lsl	r0, r0, #0x2
-	ldr	r1, .L492+0x8
+	ldr	r1, .L491+0x8
 	add	r0, r0, r1
 	mov	r1, #0x0
 	bl	StartSpriteAnim
 	pop	{r4, r5}
 	pop	{r0}
 	bx	r0
-.L493:
-	.align	2, 0
 .L492:
+	.align	2, 0
+.L491:
 	.word	gPlayerAvatar
 	.word	gObjectEvents
 	.word	gSprites
@@ -4042,12 +4039,12 @@ HandleWarpArrowSpriteHideShow:
 	mov	r0, sp
 	strh	r1, [r0]
 	mov	r6, #0x1
-	ldr	r1, .L504
+	ldr	r1, .L503
 	mov	r9, r1
 	mov	r4, sp
 	mov	r7, sp
 	add	r7, r7, #0x2
-.L501:
+.L500:
 	mov	r1, #0x0
 	ldrsh	r0, [r4, r1]
 	lsl	r0, r0, #0x2
@@ -4057,11 +4054,11 @@ HandleWarpArrowSpriteHideShow:
 	bl	_call_via_r1
 	lsl	r0, r0, #0x18
 	cmp	r0, #0
-	beq	.L500	@cond_branch
+	beq	.L499	@cond_branch
 	ldrb	r0, [r5, #0x18]
 	lsr	r0, r0, #0x4
 	cmp	r6, r0
-	bne	.L500	@cond_branch
+	bne	.L499	@cond_branch
 	ldrh	r0, [r5, #0x10]
 	strh	r0, [r4]
 	ldrh	r0, [r5, #0x12]
@@ -4077,12 +4074,12 @@ HandleWarpArrowSpriteHideShow:
 	ldrsh	r3, [r7, r1]
 	add	r1, r6, #0
 	bl	ShowWarpArrowSprite
-	b	.L497
-.L505:
-	.align	2, 0
+	b	.L496
 .L504:
+	.align	2, 0
+.L503:
 	.word	sArrowWarpMetatileBehaviorChecks2
-.L500:
+.L499:
 	ldrh	r1, [r4]
 	add	r1, r1, #0x1
 	strh	r1, [r4]
@@ -4092,10 +4089,10 @@ HandleWarpArrowSpriteHideShow:
 	lsl	r1, r1, #0x10
 	asr	r1, r1, #0x10
 	cmp	r1, #0x3
-	ble	.L501	@cond_branch
+	ble	.L500	@cond_branch
 	ldrb	r0, [r5, #0x1b]
 	bl	SetSpriteInvisible
-.L497:
+.L496:
 	add	sp, sp, #0x4
 	pop	{r3, r4}
 	mov	r8, r3
@@ -4125,13 +4122,13 @@ StartStrengthAnim:
 	lsr	r4, r4, #0x18
 	lsl	r5, r5, #0x18
 	lsr	r5, r5, #0x18
-	ldr	r6, .L507
+	ldr	r6, .L506
 	add	r0, r6, #0
 	mov	r1, #0xff
 	bl	CreateTask
 	lsl	r0, r0, #0x18
 	lsr	r0, r0, #0x18
-	ldr	r2, .L507+0x4
+	ldr	r2, .L506+0x4
 	lsl	r1, r0, #0x2
 	add	r1, r1, r0
 	lsl	r1, r1, #0x3
@@ -4142,9 +4139,9 @@ StartStrengthAnim:
 	pop	{r4, r5, r6}
 	pop	{r0}
 	bx	r0
-.L508:
-	.align	2, 0
 .L507:
+	.align	2, 0
+.L506:
 	.word	Task_BumpBoulder
 	.word	gTasks
 .Lfe130:
@@ -4156,19 +4153,19 @@ Task_BumpBoulder:
 	push	{r4, r5, r6, lr}
 	lsl	r0, r0, #0x18
 	lsr	r0, r0, #0x18
-	ldr	r6, .L514
-	ldr	r2, .L514+0x4
-	ldr	r5, .L514+0x8
+	ldr	r6, .L513
+	ldr	r2, .L513+0x4
+	ldr	r5, .L513+0x8
 	lsl	r1, r0, #0x2
 	add	r1, r1, r0
 	lsl	r1, r1, #0x3
 	add	r4, r1, r2
-.L510:
+.L509:
 	mov	r0, #0x8
 	ldrsh	r3, [r4, r0]
 	lsl	r3, r3, #0x2
 	add	r3, r3, r6
-	ldr	r0, .L514+0xc
+	ldr	r0, .L513+0xc
 	ldrb	r0, [r0, #0x5]
 	lsl	r1, r0, #0x3
 	add	r1, r1, r0
@@ -4185,13 +4182,13 @@ Task_BumpBoulder:
 	bl	_call_via_r3
 	lsl	r0, r0, #0x18
 	cmp	r0, #0
-	bne	.L510	@cond_branch
+	bne	.L509	@cond_branch
 	pop	{r4, r5, r6}
 	pop	{r0}
 	bx	r0
-.L515:
-	.align	2, 0
 .L514:
+	.align	2, 0
+.L513:
 	.word	sBoulderTaskSteps
 	.word	gTasks
 	.word	gObjectEvents
@@ -4205,7 +4202,7 @@ DoBoulderInit:
 	push	{r4, lr}
 	add	r4, r0, #0
 	bl	LockPlayerFieldControls
-	ldr	r1, .L517
+	ldr	r1, .L516
 	mov	r0, #0x1
 	strb	r0, [r1, #0x6]
 	ldrh	r0, [r4, #0x8]
@@ -4215,9 +4212,9 @@ DoBoulderInit:
 	pop	{r4}
 	pop	{r1}
 	bx	r1
-.L518:
-	.align	2, 0
 .L517:
+	.align	2, 0
+.L516:
 	.word	gPlayerAvatar
 .Lfe132:
 	.size	 DoBoulderInit,.Lfe132-DoBoulderInit
@@ -4233,12 +4230,12 @@ DoBoulderDust:
 	bl	ObjectEventIsMovementOverridden
 	lsl	r0, r0, #0x18
 	cmp	r0, #0
-	bne	.L520	@cond_branch
+	bne	.L519	@cond_branch
 	add	r0, r4, #0
 	bl	ObjectEventIsMovementOverridden
 	lsl	r0, r0, #0x18
 	cmp	r0, #0
-	bne	.L520	@cond_branch
+	bne	.L519	@cond_branch
 	add	r0, r5, #0
 	bl	ObjectEventClearHeldMovementIfFinished
 	add	r0, r4, #0
@@ -4257,7 +4254,7 @@ DoBoulderDust:
 	lsr	r1, r1, #0x18
 	add	r0, r4, #0
 	bl	QL_TryRecordNPCStepWithDuration32
-	ldr	r2, .L521
+	ldr	r2, .L520
 	mov	r1, #0x10
 	ldrsh	r0, [r4, r1]
 	str	r0, [r2]
@@ -4267,7 +4264,7 @@ DoBoulderDust:
 	ldrb	r0, [r4, #0xb]
 	lsr	r0, r0, #0x4
 	str	r0, [r2, #0x8]
-	ldr	r3, .L521+0x4
+	ldr	r3, .L520+0x4
 	ldrb	r1, [r4, #0x4]
 	lsl	r0, r1, #0x4
 	add	r0, r0, r1
@@ -4284,14 +4281,14 @@ DoBoulderDust:
 	ldrh	r0, [r6, #0x8]
 	add	r0, r0, #0x1
 	strh	r0, [r6, #0x8]
-.L520:
+.L519:
 	mov	r0, #0x0
 	pop	{r4, r5, r6}
 	pop	{r1}
 	bx	r1
-.L522:
-	.align	2, 0
 .L521:
+	.align	2, 0
+.L520:
 	.word	gFieldEffectArguments
 	.word	gSprites
 .Lfe133:
@@ -4307,12 +4304,12 @@ DoBoulderFinish:
 	bl	ObjectEventCheckHeldMovementStatus
 	lsl	r0, r0, #0x18
 	cmp	r0, #0
-	beq	.L524	@cond_branch
+	beq	.L523	@cond_branch
 	add	r0, r4, #0
 	bl	ObjectEventCheckHeldMovementStatus
 	lsl	r0, r0, #0x18
 	cmp	r0, #0
-	beq	.L524	@cond_branch
+	beq	.L523	@cond_branch
 	add	r0, r5, #0
 	bl	ObjectEventClearHeldMovementIfFinished
 	add	r0, r4, #0
@@ -4322,23 +4319,23 @@ DoBoulderFinish:
 	ldrh	r0, [r4, #0x10]
 	ldrh	r1, [r4, #0x12]
 	bl	HandleBoulderActivateVictoryRoadSwitch
-	ldr	r1, .L525
+	ldr	r1, .L524
 	mov	r0, #0x0
 	strb	r0, [r1, #0x6]
 	bl	UnlockPlayerFieldControls
-	ldr	r0, .L525+0x4
+	ldr	r0, .L524+0x4
 	bl	FindTaskIdByFunc
 	lsl	r0, r0, #0x18
 	lsr	r0, r0, #0x18
 	bl	DestroyTask
-.L524:
+.L523:
 	mov	r0, #0x0
 	pop	{r4, r5}
 	pop	{r1}
 	bx	r1
-.L526:
-	.align	2, 0
 .L525:
+	.align	2, 0
+.L524:
 	.word	gPlayerAvatar
 	.word	Task_BumpBoulder
 .Lfe134:
@@ -4355,7 +4352,7 @@ sPlayerAvatarSecretBaseMatJump:
 	.thumb_func
 DoPlayerMatJump:
 	push	{r4, lr}
-	ldr	r4, .L528
+	ldr	r4, .L527
 	add	r0, r4, #0
 	mov	r1, #0xff
 	bl	CreateTask
@@ -4365,9 +4362,9 @@ DoPlayerMatJump:
 	pop	{r4}
 	pop	{r0}
 	bx	r0
-.L529:
-	.align	2, 0
 .L528:
+	.align	2, 0
+.L527:
 	.word	DoPlayerAvatarSecretBaseMatJump
 .Lfe135:
 	.size	 DoPlayerMatJump,.Lfe135-DoPlayerMatJump
@@ -4378,36 +4375,36 @@ DoPlayerAvatarSecretBaseMatJump:
 	push	{r4, r5, lr}
 	lsl	r0, r0, #0x18
 	lsr	r0, r0, #0x18
-	ldr	r5, .L535
-	ldr	r2, .L535+0x4
+	ldr	r5, .L534
+	ldr	r2, .L534+0x4
 	lsl	r1, r0, #0x2
 	add	r1, r1, r0
 	lsl	r1, r1, #0x3
 	add	r4, r1, r2
-.L531:
+.L530:
 	mov	r0, #0x8
 	ldrsh	r2, [r4, r0]
 	lsl	r2, r2, #0x2
 	add	r2, r2, r5
-	ldr	r0, .L535+0x8
+	ldr	r0, .L534+0x8
 	ldrb	r0, [r0, #0x5]
 	lsl	r1, r0, #0x3
 	add	r1, r1, r0
 	lsl	r1, r1, #0x2
-	ldr	r0, .L535+0xc
+	ldr	r0, .L534+0xc
 	add	r1, r1, r0
 	ldr	r2, [r2]
 	add	r0, r4, #0
 	bl	_call_via_r2
 	lsl	r0, r0, #0x18
 	cmp	r0, #0
-	bne	.L531	@cond_branch
+	bne	.L530	@cond_branch
 	pop	{r4, r5}
 	pop	{r0}
 	bx	r0
-.L536:
-	.align	2, 0
 .L535:
+	.align	2, 0
+.L534:
 	.word	sPlayerAvatarSecretBaseMatJump
 	.word	gTasks
 	.word	gPlayerAvatar
@@ -4421,14 +4418,14 @@ PlayerAvatar_DoSecretBaseMatJump:
 	push	{r4, r5, r6, lr}
 	add	r6, r0, #0
 	add	r4, r1, #0
-	ldr	r5, .L540
+	ldr	r5, .L539
 	mov	r0, #0x1
 	strb	r0, [r5, #0x6]
 	add	r0, r4, #0
 	bl	ObjectEventClearHeldMovementIfFinished
 	lsl	r0, r0, #0x18
 	cmp	r0, #0
-	beq	.L538	@cond_branch
+	beq	.L537	@cond_branch
 	mov	r0, #0xa
 	bl	PlaySE
 	ldrb	r0, [r4, #0x18]
@@ -4446,26 +4443,26 @@ PlayerAvatar_DoSecretBaseMatJump:
 	lsl	r0, r0, #0x10
 	asr	r0, r0, #0x10
 	cmp	r0, #0x1
-	ble	.L538	@cond_branch
+	ble	.L537	@cond_branch
 	mov	r0, #0x0
 	strb	r0, [r5, #0x6]
 	ldrb	r0, [r5, #0x1]
 	mov	r1, #0x20
 	orr	r0, r0, r1
 	strb	r0, [r5, #0x1]
-	ldr	r0, .L540+0x4
+	ldr	r0, .L539+0x4
 	bl	FindTaskIdByFunc
 	lsl	r0, r0, #0x18
 	lsr	r0, r0, #0x18
 	bl	DestroyTask
-.L538:
+.L537:
 	mov	r0, #0x0
 	pop	{r4, r5, r6}
 	pop	{r1}
 	bx	r1
-.L541:
-	.align	2, 0
 .L540:
+	.align	2, 0
+.L539:
 	.word	gPlayerAvatar
 	.word	DoPlayerAvatarSecretBaseMatJump
 .Lfe137:
@@ -4485,7 +4482,7 @@ sPlayerAvatarSecretBaseMatSpin:
 	.thumb_func
 DoPlayerMatSpin:
 	push	{r4, lr}
-	ldr	r4, .L543
+	ldr	r4, .L542
 	add	r0, r4, #0
 	mov	r1, #0xff
 	bl	CreateTask
@@ -4495,9 +4492,9 @@ DoPlayerMatSpin:
 	pop	{r4}
 	pop	{r0}
 	bx	r0
-.L544:
-	.align	2, 0
 .L543:
+	.align	2, 0
+.L542:
 	.word	PlayerAvatar_DoSecretBaseMatSpin
 .Lfe138:
 	.size	 DoPlayerMatSpin,.Lfe138-DoPlayerMatSpin
@@ -4508,36 +4505,36 @@ PlayerAvatar_DoSecretBaseMatSpin:
 	push	{r4, r5, lr}
 	lsl	r0, r0, #0x18
 	lsr	r0, r0, #0x18
-	ldr	r5, .L550
-	ldr	r2, .L550+0x4
+	ldr	r5, .L549
+	ldr	r2, .L549+0x4
 	lsl	r1, r0, #0x2
 	add	r1, r1, r0
 	lsl	r1, r1, #0x3
 	add	r4, r1, r2
-.L546:
+.L545:
 	mov	r0, #0x8
 	ldrsh	r2, [r4, r0]
 	lsl	r2, r2, #0x2
 	add	r2, r2, r5
-	ldr	r0, .L550+0x8
+	ldr	r0, .L549+0x8
 	ldrb	r0, [r0, #0x5]
 	lsl	r1, r0, #0x3
 	add	r1, r1, r0
 	lsl	r1, r1, #0x2
-	ldr	r0, .L550+0xc
+	ldr	r0, .L549+0xc
 	add	r1, r1, r0
 	ldr	r2, [r2]
 	add	r0, r4, #0
 	bl	_call_via_r2
 	lsl	r0, r0, #0x18
 	cmp	r0, #0
-	bne	.L546	@cond_branch
+	bne	.L545	@cond_branch
 	pop	{r4, r5}
 	pop	{r0}
 	bx	r0
-.L551:
-	.align	2, 0
 .L550:
+	.align	2, 0
+.L549:
 	.word	sPlayerAvatarSecretBaseMatSpin
 	.word	gTasks
 	.word	gPlayerAvatar
@@ -4555,7 +4552,7 @@ PlayerAvatar_SecretBaseMatSpinStep0:
 	ldrb	r1, [r1, #0x18]
 	lsr	r1, r1, #0x4
 	strh	r1, [r0, #0xa]
-	ldr	r1, .L553
+	ldr	r1, .L552
 	mov	r0, #0x1
 	strb	r0, [r1, #0x6]
 	bl	LockPlayerFieldControls
@@ -4564,9 +4561,9 @@ PlayerAvatar_SecretBaseMatSpinStep0:
 	mov	r0, #0x1
 	pop	{r1}
 	bx	r1
-.L554:
-	.align	2, 0
 .L553:
+	.align	2, 0
+.L552:
 	.word	gPlayerAvatar
 .Lfe140:
 	.size	 PlayerAvatar_SecretBaseMatSpinStep0,.Lfe140-PlayerAvatar_SecretBaseMatSpinStep0
@@ -4585,7 +4582,7 @@ PlayerAvatar_SecretBaseMatSpinStep1:
 	add	sp, sp, #-0x4
 	add	r4, r0, #0
 	add	r5, r1, #0
-	ldr	r1, .L559
+	ldr	r1, .L558
 	mov	r0, sp
 	mov	r2, #0x4
 	bl	memcpy
@@ -4593,7 +4590,7 @@ PlayerAvatar_SecretBaseMatSpinStep1:
 	bl	ObjectEventClearHeldMovementIfFinished
 	lsl	r0, r0, #0x18
 	cmp	r0, #0
-	beq	.L556	@cond_branch
+	beq	.L555	@cond_branch
 	ldrb	r0, [r5, #0x18]
 	lsr	r0, r0, #0x4
 	sub	r0, r0, #0x1
@@ -4608,36 +4605,36 @@ PlayerAvatar_SecretBaseMatSpinStep1:
 	bl	QL_TryRecordPlayerStepWithDuration0
 	ldrb	r0, [r4, #0xa]
 	cmp	r6, r0
-	bne	.L557	@cond_branch
+	bne	.L556	@cond_branch
 	ldrh	r0, [r4, #0xc]
 	add	r0, r0, #0x1
 	strh	r0, [r4, #0xc]
-.L557:
+.L556:
 	ldrh	r0, [r4, #0x8]
 	add	r0, r0, #0x1
 	strh	r0, [r4, #0x8]
 	mov	r1, #0xc
 	ldrsh	r0, [r4, r1]
 	cmp	r0, #0x3
-	ble	.L556	@cond_branch
+	ble	.L555	@cond_branch
 	ldrb	r0, [r4, #0xa]
 	bl	GetOppositeDirection
 	lsl	r0, r0, #0x18
 	lsr	r0, r0, #0x18
 	cmp	r6, r0
-	bne	.L556	@cond_branch
+	bne	.L555	@cond_branch
 	ldrh	r0, [r4, #0x8]
 	add	r0, r0, #0x1
 	strh	r0, [r4, #0x8]
-.L556:
+.L555:
 	mov	r0, #0x0
 	add	sp, sp, #0x4
 	pop	{r4, r5, r6}
 	pop	{r1}
 	bx	r1
-.L560:
-	.align	2, 0
 .L559:
+	.align	2, 0
+.L558:
 	.word	.LC221
 .Lfe141:
 	.size	 PlayerAvatar_SecretBaseMatSpinStep1,.Lfe141-PlayerAvatar_SecretBaseMatSpinStep1
@@ -4657,7 +4654,7 @@ PlayerAvatar_SecretBaseMatSpinStep2:
 	add	sp, sp, #-0x8
 	add	r5, r0, #0
 	add	r4, r1, #0
-	ldr	r1, .L563
+	ldr	r1, .L562
 	mov	r0, sp
 	mov	r2, #0x5
 	bl	memcpy
@@ -4665,7 +4662,7 @@ PlayerAvatar_SecretBaseMatSpinStep2:
 	bl	ObjectEventClearHeldMovementIfFinished
 	lsl	r0, r0, #0x18
 	cmp	r0, #0
-	beq	.L562	@cond_branch
+	beq	.L561	@cond_branch
 	mov	r1, #0xc
 	ldrsh	r0, [r5, r1]
 	add	r0, r0, sp
@@ -4674,15 +4671,15 @@ PlayerAvatar_SecretBaseMatSpinStep2:
 	bl	QL_TryRecordPlayerStepWithDuration0
 	mov	r0, #0x1
 	strh	r0, [r5, #0x8]
-.L562:
+.L561:
 	mov	r0, #0x0
 	add	sp, sp, #0x8
 	pop	{r4, r5}
 	pop	{r1}
 	bx	r1
-.L564:
-	.align	2, 0
 .L563:
+	.align	2, 0
+.L562:
 	.word	.LC223
 .Lfe142:
 	.size	 PlayerAvatar_SecretBaseMatSpinStep2,.Lfe142-PlayerAvatar_SecretBaseMatSpinStep2
@@ -4697,7 +4694,7 @@ PlayerAvatar_SecretBaseMatSpinStep3:
 	bl	ObjectEventClearHeldMovementIfFinished
 	lsl	r0, r0, #0x18
 	cmp	r0, #0
-	beq	.L566	@cond_branch
+	beq	.L565	@cond_branch
 	ldrb	r0, [r4, #0xa]
 	bl	GetOppositeDirection
 	lsl	r0, r0, #0x18
@@ -4709,22 +4706,22 @@ PlayerAvatar_SecretBaseMatSpinStep3:
 	add	r0, r5, #0
 	bl	QL_TryRecordPlayerStepWithDuration0
 	bl	UnlockPlayerFieldControls
-	ldr	r1, .L567
+	ldr	r1, .L566
 	mov	r0, #0x0
 	strb	r0, [r1, #0x6]
-	ldr	r0, .L567+0x4
+	ldr	r0, .L566+0x4
 	bl	FindTaskIdByFunc
 	lsl	r0, r0, #0x18
 	lsr	r0, r0, #0x18
 	bl	DestroyTask
-.L566:
+.L565:
 	mov	r0, #0x0
 	pop	{r4, r5}
 	pop	{r1}
 	bx	r1
-.L568:
-	.align	2, 0
 .L567:
+	.align	2, 0
+.L566:
 	.word	gPlayerAvatar
 	.word	PlayerAvatar_DoSecretBaseMatSpin
 .Lfe143:
@@ -4741,7 +4738,7 @@ CreateStopSurfingTask:
 	bl	FreezeObjectEvents
 	bl	Overworld_ClearSavedMusic
 	bl	Overworld_ChangeMusicToDefault
-	ldr	r2, .L570
+	ldr	r2, .L569
 	ldrb	r1, [r2]
 	mov	r0, #0xf7
 	and	r0, r0, r1
@@ -4750,13 +4747,13 @@ CreateStopSurfingTask:
 	strb	r0, [r2]
 	mov	r0, #0x1
 	strb	r0, [r2, #0x6]
-	ldr	r5, .L570+0x4
+	ldr	r5, .L569+0x4
 	add	r0, r5, #0
 	mov	r1, #0xff
 	bl	CreateTask
 	lsl	r0, r0, #0x18
 	lsr	r0, r0, #0x18
-	ldr	r2, .L570+0x8
+	ldr	r2, .L569+0x8
 	lsl	r1, r0, #0x2
 	add	r1, r1, r0
 	lsl	r1, r1, #0x3
@@ -4766,9 +4763,9 @@ CreateStopSurfingTask:
 	pop	{r4, r5}
 	pop	{r0}
 	bx	r0
-.L571:
-	.align	2, 0
 .L570:
+	.align	2, 0
+.L569:
 	.word	gPlayerAvatar
 	.word	Task_StopSurfingInit
 	.word	gTasks
@@ -4785,7 +4782,7 @@ CreateStopSurfingTask_NoMusicChange:
 	lsr	r4, r4, #0x18
 	bl	LockPlayerFieldControls
 	bl	FreezeObjectEvents
-	ldr	r2, .L573
+	ldr	r2, .L572
 	ldrb	r1, [r2]
 	mov	r0, #0xf7
 	and	r0, r0, r1
@@ -4794,13 +4791,13 @@ CreateStopSurfingTask_NoMusicChange:
 	strb	r0, [r2]
 	mov	r0, #0x1
 	strb	r0, [r2, #0x6]
-	ldr	r5, .L573+0x4
+	ldr	r5, .L572+0x4
 	add	r0, r5, #0
 	mov	r1, #0xff
 	bl	CreateTask
 	lsl	r0, r0, #0x18
 	lsr	r0, r0, #0x18
-	ldr	r2, .L573+0x8
+	ldr	r2, .L572+0x8
 	lsl	r1, r0, #0x2
 	add	r1, r1, r0
 	lsl	r1, r1, #0x3
@@ -4810,9 +4807,9 @@ CreateStopSurfingTask_NoMusicChange:
 	pop	{r4, r5}
 	pop	{r0}
 	bx	r0
-.L574:
-	.align	2, 0
 .L573:
+	.align	2, 0
+.L572:
 	.word	gPlayerAvatar
 	.word	Task_StopSurfingInit
 	.word	gTasks
@@ -4824,24 +4821,24 @@ CreateStopSurfingTask_NoMusicChange:
 	.thumb_func
 SeafoamIslandsB4F_CurrentDumpsPlayerOnLand:
 	push	{lr}
-	ldr	r0, .L578
+	ldr	r0, .L577
 	ldrb	r0, [r0]
 	cmp	r0, #0x1
-	beq	.L575	@cond_branch
+	beq	.L574	@cond_branch
 	cmp	r0, #0x3
-	beq	.L575	@cond_branch
-	ldr	r0, .L578+0x4
+	beq	.L574	@cond_branch
+	ldr	r0, .L577+0x4
 	ldrb	r0, [r0, #0x2]
 	mov	r1, #0x10
 	bl	QuestLogRecordPlayerAvatarGfxTransitionWithDuration
 	mov	r0, #0x2
 	bl	CreateStopSurfingTask
-.L575:
+.L574:
 	pop	{r0}
 	bx	r0
-.L579:
-	.align	2, 0
 .L578:
+	.align	2, 0
+.L577:
 	.word	gQuestLogPlaybackState
 	.word	sQuestLogSurfDismountActionIds
 .Lfe146:
@@ -4853,28 +4850,28 @@ Task_StopSurfingInit:
 	push	{r4, r5, r6, lr}
 	lsl	r0, r0, #0x18
 	lsr	r6, r0, #0x18
-	ldr	r0, .L583
+	ldr	r0, .L582
 	ldrb	r1, [r0, #0x5]
 	lsl	r0, r1, #0x3
 	add	r0, r0, r1
 	lsl	r0, r0, #0x2
-	ldr	r1, .L583+0x4
+	ldr	r1, .L582+0x4
 	add	r5, r0, r1
 	add	r0, r5, #0
 	bl	ObjectEventIsMovementOverridden
 	lsl	r0, r0, #0x18
 	cmp	r0, #0
-	beq	.L581	@cond_branch
+	beq	.L580	@cond_branch
 	add	r0, r5, #0
 	bl	ObjectEventClearHeldMovementIfFinished
 	lsl	r0, r0, #0x18
 	cmp	r0, #0
-	beq	.L580	@cond_branch
-.L581:
+	beq	.L579	@cond_branch
+.L580:
 	ldrb	r0, [r5, #0x1a]
 	mov	r1, #0x2
 	bl	SetSurfBlob_BobState
-	ldr	r0, .L583+0x8
+	ldr	r0, .L582+0x8
 	lsl	r4, r6, #0x2
 	add	r4, r4, r6
 	lsl	r4, r4, #0x3
@@ -4886,15 +4883,15 @@ Task_StopSurfingInit:
 	lsr	r1, r1, #0x18
 	add	r0, r5, #0
 	bl	QL_TryRecordPlayerStepWithDuration0
-	ldr	r0, .L583+0xc
+	ldr	r0, .L582+0xc
 	str	r0, [r4]
-.L580:
+.L579:
 	pop	{r4, r5, r6}
 	pop	{r0}
 	bx	r0
-.L584:
-	.align	2, 0
 .L583:
+	.align	2, 0
+.L582:
 	.word	gPlayerAvatar
 	.word	gObjectEvents
 	.word	gTasks
@@ -4908,18 +4905,18 @@ Task_WaitStopSurfing:
 	push	{r4, r5, r6, lr}
 	lsl	r0, r0, #0x18
 	lsr	r5, r0, #0x18
-	ldr	r6, .L587
+	ldr	r6, .L586
 	ldrb	r1, [r6, #0x5]
 	lsl	r0, r1, #0x3
 	add	r0, r0, r1
 	lsl	r0, r0, #0x2
-	ldr	r1, .L587+0x4
+	ldr	r1, .L586+0x4
 	add	r4, r0, r1
 	add	r0, r4, #0
 	bl	ObjectEventClearHeldMovementIfFinished
 	lsl	r0, r0, #0x18
 	cmp	r0, #0
-	beq	.L586	@cond_branch
+	beq	.L585	@cond_branch
 	mov	r0, #0x0
 	bl	GetPlayerAvatarGraphicsIdByStateId
 	add	r1, r0, #0
@@ -4944,19 +4941,19 @@ Task_WaitStopSurfing:
 	lsl	r0, r1, #0x4
 	add	r0, r0, r1
 	lsl	r0, r0, #0x2
-	ldr	r1, .L587+0x8
+	ldr	r1, .L586+0x8
 	add	r0, r0, r1
 	bl	DestroySprite
 	add	r0, r5, #0
 	bl	DestroyTask
 	bl	SetHelpContextForMap
-.L586:
+.L585:
 	pop	{r4, r5, r6}
 	pop	{r0}
 	bx	r0
-.L588:
-	.align	2, 0
 .L587:
+	.align	2, 0
+.L586:
 	.word	gPlayerAvatar
 	.word	gObjectEvents
 	.word	gSprites
@@ -4993,13 +4990,13 @@ StartFishing:
 	add	r4, r0, #0
 	lsl	r4, r4, #0x18
 	lsr	r4, r4, #0x18
-	ldr	r5, .L591
+	ldr	r5, .L590
 	add	r0, r5, #0
 	mov	r1, #0xff
 	bl	CreateTask
 	lsl	r0, r0, #0x18
 	lsr	r0, r0, #0x18
-	ldr	r2, .L591+0x4
+	ldr	r2, .L590+0x4
 	lsl	r1, r0, #0x2
 	add	r1, r1, r0
 	lsl	r1, r1, #0x3
@@ -5009,15 +5006,15 @@ StartFishing:
 	mov	r0, #0x2
 	bl	QuestLogTryRecordPlayerAvatarGfxTransition
 	cmp	r0, #0x1
-	bne	.L590	@cond_branch
+	bne	.L589	@cond_branch
 	bl	QL_AfterRecordFishActionSuccessful
-.L590:
+.L589:
 	pop	{r4, r5}
 	pop	{r0}
 	bx	r0
-.L592:
-	.align	2, 0
 .L591:
+	.align	2, 0
+.L590:
 	.word	Task_Fishing
 	.word	gTasks
 .Lfe149:
@@ -5029,13 +5026,13 @@ Task_Fishing:
 	push	{r4, r5, lr}
 	lsl	r0, r0, #0x18
 	lsr	r0, r0, #0x18
-	ldr	r5, .L598
-	ldr	r2, .L598+0x4
+	ldr	r5, .L597
+	ldr	r2, .L597+0x4
 	lsl	r1, r0, #0x2
 	add	r1, r1, r0
 	lsl	r1, r1, #0x3
 	add	r4, r1, r2
-.L594:
+.L593:
 	mov	r1, #0x8
 	ldrsh	r0, [r4, r1]
 	lsl	r0, r0, #0x2
@@ -5045,13 +5042,13 @@ Task_Fishing:
 	bl	_call_via_r1
 	lsl	r0, r0, #0x18
 	cmp	r0, #0
-	bne	.L594	@cond_branch
+	bne	.L593	@cond_branch
 	pop	{r4, r5}
 	pop	{r0}
 	bx	r0
-.L599:
-	.align	2, 0
 .L598:
+	.align	2, 0
+.L597:
 	.word	sFishingStateFuncs
 	.word	gTasks
 .Lfe150:
@@ -5063,7 +5060,7 @@ Fishing1:
 	push	{r4, lr}
 	add	r4, r0, #0
 	bl	LockPlayerFieldControls
-	ldr	r1, .L601
+	ldr	r1, .L600
 	mov	r0, #0x1
 	strb	r0, [r1, #0x6]
 	ldrh	r0, [r4, #0x8]
@@ -5073,9 +5070,9 @@ Fishing1:
 	pop	{r4}
 	pop	{r1}
 	bx	r1
-.L602:
-	.align	2, 0
 .L601:
+	.align	2, 0
+.L600:
 	.word	gPlayerAvatar
 .Lfe151:
 	.size	 Fishing1,.Lfe151-Fishing1
@@ -5098,12 +5095,12 @@ Fishing2:
 	push	{r4, r5, r6, lr}
 	add	sp, sp, #-0x10
 	add	r5, r0, #0
-	ldr	r1, .L604
+	ldr	r1, .L603
 	mov	r0, sp
 	mov	r2, #0x6
 	bl	memcpy
 	add	r4, sp, #0x8
-	ldr	r1, .L604+0x4
+	ldr	r1, .L603+0x4
 	add	r0, r4, #0
 	mov	r2, #0x6
 	bl	memcpy
@@ -5124,8 +5121,8 @@ Fishing2:
 	ldrh	r1, [r6]
 	add	r1, r1, r0
 	strh	r1, [r5, #0x22]
-	ldr	r3, .L604+0x8
-	ldr	r2, .L604+0xc
+	ldr	r3, .L603+0x8
+	ldr	r2, .L603+0xc
 	ldrb	r1, [r2, #0x5]
 	lsl	r0, r1, #0x3
 	add	r0, r0, r1
@@ -5156,9 +5153,9 @@ Fishing2:
 	pop	{r4, r5, r6}
 	pop	{r1}
 	bx	r1
-.L605:
-	.align	2, 0
 .L604:
+	.align	2, 0
+.L603:
 	.word	.LC255
 	.word	.LC257
 	.word	gObjectEvents
@@ -5171,12 +5168,12 @@ Fishing2:
 Fishing3:
 	push	{r4, lr}
 	add	r4, r0, #0
-	ldr	r0, .L608
+	ldr	r0, .L607
 	ldrb	r1, [r0, #0x4]
 	lsl	r0, r1, #0x4
 	add	r0, r0, r1
 	lsl	r0, r0, #0x2
-	ldr	r1, .L608+0x4
+	ldr	r1, .L607+0x4
 	add	r0, r0, r1
 	bl	AlignFishingAnimationFrames
 	ldrh	r0, [r4, #0xa]
@@ -5185,18 +5182,18 @@ Fishing3:
 	lsl	r0, r0, #0x10
 	asr	r0, r0, #0x10
 	cmp	r0, #0x3b
-	ble	.L607	@cond_branch
+	ble	.L606	@cond_branch
 	ldrh	r0, [r4, #0x8]
 	add	r0, r0, #0x1
 	strh	r0, [r4, #0x8]
-.L607:
+.L606:
 	mov	r0, #0x0
 	pop	{r4}
 	pop	{r1}
 	bx	r1
-.L609:
-	.align	2, 0
 .L608:
+	.align	2, 0
+.L607:
 	.word	gPlayerAvatar
 	.word	gSprites
 .Lfe153:
@@ -5227,17 +5224,17 @@ Fishing4:
 	mov	r2, #0x20
 	ldrsh	r0, [r4, r2]
 	cmp	r0, #0
-	bne	.L611	@cond_branch
+	bne	.L610	@cond_branch
 	add	r0, r1, #0x4
 	strh	r0, [r4, #0xe]
-.L611:
+.L610:
 	mov	r1, #0xe
 	ldrsh	r0, [r4, r1]
 	cmp	r0, #0x9
-	ble	.L612	@cond_branch
+	ble	.L611	@cond_branch
 	mov	r0, #0xa
 	strh	r0, [r4, #0xe]
-.L612:
+.L611:
 	mov	r0, #0x1
 	pop	{r4}
 	pop	{r1}
@@ -5257,12 +5254,12 @@ Fishing5:
 	push	{r4, r5, lr}
 	add	sp, sp, #-0xc
 	add	r4, r0, #0
-	ldr	r0, .L618
+	ldr	r0, .L617
 	ldrb	r1, [r0, #0x4]
 	lsl	r0, r1, #0x4
 	add	r0, r0, r1
 	lsl	r0, r0, #0x2
-	ldr	r1, .L618+0x4
+	ldr	r1, .L617+0x4
 	add	r0, r0, r1
 	bl	AlignFishingAnimationFrames
 	ldrh	r0, [r4, #0xa]
@@ -5272,14 +5269,14 @@ Fishing5:
 	lsl	r0, r0, #0x10
 	asr	r0, r0, #0x10
 	cmp	r0, #0x13
-	ble	.L614	@cond_branch
+	ble	.L613	@cond_branch
 	strh	r5, [r4, #0xa]
 	mov	r0, #0xc
 	ldrsh	r1, [r4, r0]
 	mov	r2, #0xe
 	ldrsh	r0, [r4, r2]
 	cmp	r1, r0
-	blt	.L615	@cond_branch
+	blt	.L614	@cond_branch
 	ldrh	r0, [r4, #0x8]
 	add	r1, r0, #0x1
 	strh	r1, [r4, #0x8]
@@ -5287,20 +5284,20 @@ Fishing5:
 	mov	r3, #0x20
 	ldrsh	r0, [r4, r3]
 	cmp	r0, #0
-	beq	.L616	@cond_branch
+	beq	.L615	@cond_branch
 	add	r0, r1, #0x1
 	strh	r0, [r4, #0x8]
-.L616:
+.L615:
 	add	r0, r2, #0x1
 	strh	r0, [r4, #0x20]
-	b	.L614
-.L619:
-	.align	2, 0
+	b	.L613
 .L618:
+	.align	2, 0
+.L617:
 	.word	gPlayerAvatar
 	.word	gSprites
-.L615:
-	ldr	r2, .L620
+.L614:
+	ldr	r2, .L619
 	mov	r1, #0xc
 	ldrsh	r0, [r4, r1]
 	lsl	r3, r0, #0x1
@@ -5317,15 +5314,15 @@ Fishing5:
 	ldrh	r0, [r4, #0xc]
 	add	r0, r0, #0x1
 	strh	r0, [r4, #0xc]
-.L614:
+.L613:
 	mov	r0, #0x0
 	add	sp, sp, #0xc
 	pop	{r4, r5}
 	pop	{r1}
 	bx	r1
-.L621:
-	.align	2, 0
 .L620:
+	.align	2, 0
+.L619:
 	.word	dot.471
 .Lfe155:
 	.size	 Fishing5,.Lfe155-Fishing5
@@ -5335,12 +5332,12 @@ Fishing5:
 Fishing6:
 	push	{r4, r5, r6, lr}
 	add	r4, r0, #0
-	ldr	r6, .L626
+	ldr	r6, .L625
 	ldrb	r1, [r6, #0x4]
 	lsl	r0, r1, #0x4
 	add	r0, r0, r1
 	lsl	r0, r0, #0x2
-	ldr	r5, .L626+0x4
+	ldr	r5, .L625+0x4
 	add	r0, r0, r5
 	bl	AlignFishingAnimationFrames
 	ldrh	r0, [r4, #0x8]
@@ -5349,22 +5346,22 @@ Fishing6:
 	bl	DoesCurrentMapHaveFishingMons
 	lsl	r0, r0, #0x18
 	cmp	r0, #0
-	beq	.L624	@cond_branch
+	beq	.L623	@cond_branch
 	bl	Random
 	mov	r1, #0x1
 	and	r1, r1, r0
 	cmp	r1, #0
-	beq	.L623	@cond_branch
-.L624:
+	beq	.L622	@cond_branch
+.L623:
 	mov	r0, #0xb
 	strh	r0, [r4, #0x8]
-	b	.L625
-.L627:
-	.align	2, 0
+	b	.L624
 .L626:
+	.align	2, 0
+.L625:
 	.word	gPlayerAvatar
 	.word	gSprites
-.L623:
+.L622:
 	ldrb	r0, [r6, #0x4]
 	lsl	r4, r0, #0x4
 	add	r4, r4, r0
@@ -5379,7 +5376,7 @@ Fishing6:
 	lsr	r1, r1, #0x18
 	add	r0, r4, #0
 	bl	StartSpriteAnim
-.L625:
+.L624:
 	mov	r0, #0x1
 	pop	{r4, r5, r6}
 	pop	{r1}
@@ -5411,16 +5408,16 @@ Fishing8:
 	push	{r4, lr}
 	add	sp, sp, #-0x8
 	add	r4, r0, #0
-	ldr	r1, .L634
+	ldr	r1, .L633
 	mov	r0, sp
 	mov	r2, #0x6
 	bl	memcpy
-	ldr	r0, .L634+0x4
+	ldr	r0, .L633+0x4
 	ldrb	r1, [r0, #0x4]
 	lsl	r0, r1, #0x4
 	add	r0, r0, r1
 	lsl	r0, r0, #0x2
-	ldr	r1, .L634+0x8
+	ldr	r1, .L633+0x8
 	add	r0, r0, r1
 	bl	AlignFishingAnimationFrames
 	ldrh	r1, [r4, #0xa]
@@ -5435,35 +5432,35 @@ Fishing8:
 	mov	r2, #0x0
 	ldrsh	r0, [r0, r2]
 	cmp	r1, r0
-	blt	.L630	@cond_branch
+	blt	.L629	@cond_branch
 	mov	r0, #0xc
-	b	.L633
-.L635:
-	.align	2, 0
+	b	.L632
 .L634:
+	.align	2, 0
+.L633:
 	.word	.LC272
 	.word	gPlayerAvatar
 	.word	gSprites
-.L630:
-	ldr	r0, .L636
+.L629:
+	ldr	r0, .L635
 	ldrh	r1, [r0, #0x2e]
 	mov	r0, #0x1
 	and	r0, r0, r1
 	cmp	r0, #0
-	beq	.L631	@cond_branch
+	beq	.L630	@cond_branch
 	ldrh	r0, [r4, #0x8]
 	add	r0, r0, #0x1
-.L633:
+.L632:
 	strh	r0, [r4, #0x8]
-.L631:
+.L630:
 	mov	r0, #0x0
 	add	sp, sp, #0x8
 	pop	{r4}
 	pop	{r1}
 	bx	r1
-.L637:
-	.align	2, 0
 .L636:
+	.align	2, 0
+.L635:
 	.word	gMain
 .Lfe158:
 	.size	 Fishing8,.Lfe158-Fishing8
@@ -5484,16 +5481,16 @@ Fishing9:
 	push	{r4, lr}
 	add	sp, sp, #-0xc
 	add	r4, r0, #0
-	ldr	r1, .L644
+	ldr	r1, .L643
 	mov	r0, sp
 	mov	r2, #0xc
 	bl	memcpy
-	ldr	r0, .L644+0x4
+	ldr	r0, .L643+0x4
 	ldrb	r1, [r0, #0x4]
 	lsl	r0, r1, #0x4
 	add	r0, r0, r1
 	lsl	r0, r0, #0x2
-	ldr	r1, .L644+0x8
+	ldr	r1, .L643+0x8
 	add	r0, r0, r1
 	bl	AlignFishingAnimationFrames
 	ldrh	r0, [r4, #0x8]
@@ -5504,9 +5501,9 @@ Fishing9:
 	mov	r2, #0x22
 	ldrsh	r0, [r4, r2]
 	cmp	r1, r0
-	blt	.L643	@cond_branch
+	blt	.L642	@cond_branch
 	cmp	r1, #0x1
-	bgt	.L640	@cond_branch
+	bgt	.L639	@cond_branch
 	bl	Random
 	lsl	r0, r0, #0x10
 	lsr	r0, r0, #0x10
@@ -5526,19 +5523,19 @@ Fishing9:
 	lsl	r0, r0, #0x10
 	asr	r0, r0, #0x10
 	cmp	r1, r0
-	ble	.L640	@cond_branch
-.L643:
+	ble	.L639	@cond_branch
+.L642:
 	mov	r0, #0x3
 	strh	r0, [r4, #0x8]
-.L640:
+.L639:
 	mov	r0, #0x0
 	add	sp, sp, #0xc
 	pop	{r4}
 	pop	{r1}
 	bx	r1
-.L645:
-	.align	2, 0
 .L644:
+	.align	2, 0
+.L643:
 	.word	.LC279
 	.word	gPlayerAvatar
 	.word	gSprites
@@ -5551,18 +5548,18 @@ Fishing10:
 	push	{r4, r5, lr}
 	add	sp, sp, #-0x10
 	add	r4, r0, #0
-	ldr	r0, .L647
+	ldr	r0, .L646
 	ldrb	r1, [r0, #0x4]
 	lsl	r0, r1, #0x4
 	add	r0, r0, r1
 	lsl	r0, r0, #0x2
-	ldr	r1, .L647+0x4
+	ldr	r1, .L646+0x4
 	add	r0, r0, r1
 	bl	AlignFishingAnimationFrames
 	mov	r0, #0x0
 	mov	r1, #0x11
 	bl	FillWindowPixelBuffer
-	ldr	r2, .L647+0x8
+	ldr	r2, .L646+0x8
 	mov	r5, #0x0
 	str	r5, [sp]
 	mov	r0, #0x2
@@ -5584,9 +5581,9 @@ Fishing10:
 	pop	{r4, r5}
 	pop	{r1}
 	bx	r1
-.L648:
-	.align	2, 0
 .L647:
+	.align	2, 0
+.L646:
 	.word	gPlayerAvatar
 	.word	gSprites
 	.word	gText_PokemonOnHook
@@ -5603,33 +5600,33 @@ Fishing11:
 	mov	r1, #0xa
 	ldrsh	r0, [r5, r1]
 	cmp	r0, #0
-	bne	.L650	@cond_branch
-	ldr	r0, .L657
+	bne	.L649	@cond_branch
+	ldr	r0, .L656
 	ldrb	r1, [r0, #0x4]
 	lsl	r0, r1, #0x4
 	add	r0, r0, r1
 	lsl	r0, r0, #0x2
-	ldr	r1, .L657+0x4
+	ldr	r1, .L656+0x4
 	add	r0, r0, r1
 	bl	AlignFishingAnimationFrames
-.L650:
+.L649:
 	bl	RunTextPrinters
 	mov	r1, #0xa
 	ldrsh	r0, [r5, r1]
 	cmp	r0, #0
-	bne	.L656	@cond_branch
+	bne	.L655	@cond_branch
 	mov	r0, #0x0
 	bl	IsTextPrinterActive
 	lsl	r0, r0, #0x10
 	lsr	r6, r0, #0x10
 	cmp	r6, #0
-	bne	.L651	@cond_branch
-	ldr	r7, .L657
+	bne	.L650	@cond_branch
+	ldr	r7, .L656
 	ldrb	r0, [r7, #0x5]
 	lsl	r4, r0, #0x3
 	add	r4, r4, r0
 	lsl	r4, r4, #0x2
-	ldr	r0, .L657+0x8
+	ldr	r0, .L656+0x8
 	mov	r8, r0
 	add	r4, r4, r8
 	ldrh	r1, [r5, #0x24]
@@ -5645,7 +5642,7 @@ Fishing11:
 	mov	r0, #0x8
 	and	r0, r0, r1
 	cmp	r0, #0
-	beq	.L653	@cond_branch
+	beq	.L652	@cond_branch
 	ldrb	r0, [r7, #0x5]
 	lsl	r1, r0, #0x3
 	add	r1, r1, r0
@@ -5655,8 +5652,8 @@ Fishing11:
 	mov	r1, #0x0
 	mov	r2, #0x0
 	bl	SetSurfBlob_PlayerOffset
-.L653:
-	ldr	r2, .L657+0x4
+.L652:
+	ldr	r2, .L656+0x4
 	ldrb	r1, [r7, #0x4]
 	lsl	r0, r1, #0x4
 	add	r0, r0, r1
@@ -5675,20 +5672,20 @@ Fishing11:
 	ldrh	r0, [r5, #0xa]
 	add	r0, r0, #0x1
 	strh	r0, [r5, #0xa]
-	b	.L654
-.L658:
-	.align	2, 0
+	b	.L653
 .L657:
+	.align	2, 0
+.L656:
 	.word	gPlayerAvatar
 	.word	gSprites
 	.word	gObjectEvents
-.L651:
+.L650:
 	mov	r1, #0xa
 	ldrsh	r0, [r5, r1]
 	cmp	r0, #0
-	beq	.L654	@cond_branch
-.L656:
-	ldr	r1, .L659
+	beq	.L653	@cond_branch
+.L655:
+	ldr	r1, .L658
 	mov	r0, #0x0
 	strb	r0, [r1, #0x6]
 	bl	UnlockPlayerFieldControls
@@ -5696,21 +5693,21 @@ Fishing11:
 	lsl	r0, r0, #0x18
 	lsr	r0, r0, #0x18
 	bl	FishingWildEncounter
-	ldr	r0, .L659+0x4
+	ldr	r0, .L658+0x4
 	bl	FindTaskIdByFunc
 	lsl	r0, r0, #0x18
 	lsr	r0, r0, #0x18
 	bl	DestroyTask
-.L654:
+.L653:
 	mov	r0, #0x0
 	pop	{r3}
 	mov	r8, r3
 	pop	{r4, r5, r6, r7}
 	pop	{r1}
 	bx	r1
-.L660:
-	.align	2, 0
 .L659:
+	.align	2, 0
+.L658:
 	.word	gPlayerAvatar
 	.word	Task_Fishing
 .Lfe161:
@@ -5722,12 +5719,12 @@ Fishing12:
 	push	{r4, r5, r6, lr}
 	add	sp, sp, #-0x10
 	add	r6, r0, #0
-	ldr	r4, .L662
+	ldr	r4, .L661
 	ldrb	r1, [r4, #0x4]
 	lsl	r0, r1, #0x4
 	add	r0, r0, r1
 	lsl	r0, r0, #0x2
-	ldr	r5, .L662+0x4
+	ldr	r5, .L661+0x4
 	add	r0, r0, r5
 	bl	AlignFishingAnimationFrames
 	ldrb	r0, [r4, #0x4]
@@ -5747,7 +5744,7 @@ Fishing12:
 	mov	r0, #0x0
 	mov	r1, #0x11
 	bl	FillWindowPixelBuffer
-	ldr	r2, .L662+0x8
+	ldr	r2, .L661+0x8
 	mov	r0, #0x0
 	str	r0, [sp]
 	mov	r0, #0x2
@@ -5767,9 +5764,9 @@ Fishing12:
 	pop	{r4, r5, r6}
 	pop	{r1}
 	bx	r1
-.L663:
-	.align	2, 0
 .L662:
+	.align	2, 0
+.L661:
 	.word	gPlayerAvatar
 	.word	gSprites
 	.word	gText_NotEvenANibble
@@ -5782,12 +5779,12 @@ Fishing13:
 	push	{r4, r5, r6, lr}
 	add	sp, sp, #-0x10
 	add	r6, r0, #0
-	ldr	r4, .L665
+	ldr	r4, .L664
 	ldrb	r1, [r4, #0x4]
 	lsl	r0, r1, #0x4
 	add	r0, r0, r1
 	lsl	r0, r0, #0x2
-	ldr	r5, .L665+0x4
+	ldr	r5, .L664+0x4
 	add	r0, r0, r5
 	bl	AlignFishingAnimationFrames
 	ldrb	r0, [r4, #0x4]
@@ -5804,7 +5801,7 @@ Fishing13:
 	lsr	r1, r1, #0x18
 	add	r0, r4, #0
 	bl	StartSpriteAnim
-	ldr	r2, .L665+0x8
+	ldr	r2, .L664+0x8
 	mov	r0, #0x0
 	str	r0, [sp]
 	mov	r0, #0x2
@@ -5825,9 +5822,9 @@ Fishing13:
 	pop	{r4, r5, r6}
 	pop	{r1}
 	bx	r1
-.L666:
-	.align	2, 0
 .L665:
+	.align	2, 0
+.L664:
 	.word	gPlayerAvatar
 	.word	gSprites
 	.word	gText_ItGotAway
@@ -5839,12 +5836,12 @@ Fishing13:
 Fishing14:
 	push	{r4, lr}
 	add	r4, r0, #0
-	ldr	r0, .L668
+	ldr	r0, .L667
 	ldrb	r1, [r0, #0x4]
 	lsl	r0, r1, #0x4
 	add	r0, r0, r1
 	lsl	r0, r0, #0x2
-	ldr	r1, .L668+0x4
+	ldr	r1, .L667+0x4
 	add	r0, r0, r1
 	bl	AlignFishingAnimationFrames
 	ldrh	r0, [r4, #0x8]
@@ -5854,9 +5851,9 @@ Fishing14:
 	pop	{r4}
 	pop	{r1}
 	bx	r1
-.L669:
-	.align	2, 0
 .L668:
+	.align	2, 0
+.L667:
 	.word	gPlayerAvatar
 	.word	gSprites
 .Lfe164:
@@ -5869,12 +5866,12 @@ Fishing15:
 	mov	r7, r8
 	push	{r7}
 	add	r6, r0, #0
-	ldr	r5, .L673
+	ldr	r5, .L672
 	ldrb	r1, [r5, #0x4]
 	lsl	r0, r1, #0x4
 	add	r0, r0, r1
 	lsl	r0, r0, #0x2
-	ldr	r7, .L673+0x4
+	ldr	r7, .L672+0x4
 	add	r0, r0, r7
 	bl	AlignFishingAnimationFrames
 	ldrb	r1, [r5, #0x4]
@@ -5886,12 +5883,12 @@ Fishing15:
 	ldrb	r0, [r0]
 	lsl	r0, r0, #0x1b
 	cmp	r0, #0
-	bge	.L671	@cond_branch
+	bge	.L670	@cond_branch
 	ldrb	r0, [r5, #0x5]
 	lsl	r4, r0, #0x3
 	add	r4, r4, r0
 	lsl	r4, r4, #0x2
-	ldr	r0, .L673+0x8
+	ldr	r0, .L672+0x8
 	mov	r8, r0
 	add	r4, r4, r8
 	ldrh	r1, [r6, #0x24]
@@ -5907,7 +5904,7 @@ Fishing15:
 	mov	r0, #0x8
 	and	r0, r0, r1
 	cmp	r0, #0
-	beq	.L672	@cond_branch
+	beq	.L671	@cond_branch
 	ldrb	r0, [r5, #0x5]
 	lsl	r1, r0, #0x3
 	add	r1, r1, r0
@@ -5917,7 +5914,7 @@ Fishing15:
 	mov	r1, #0x0
 	mov	r2, #0x0
 	bl	SetSurfBlob_PlayerOffset
-.L672:
+.L671:
 	ldrb	r1, [r5, #0x4]
 	lsl	r0, r1, #0x4
 	add	r0, r0, r1
@@ -5934,16 +5931,16 @@ Fishing15:
 	ldrh	r0, [r6, #0x8]
 	add	r0, r0, #0x1
 	strh	r0, [r6, #0x8]
-.L671:
+.L670:
 	mov	r0, #0x0
 	pop	{r3}
 	mov	r8, r3
 	pop	{r4, r5, r6, r7}
 	pop	{r1}
 	bx	r1
-.L674:
-	.align	2, 0
 .L673:
+	.align	2, 0
+.L672:
 	.word	gPlayerAvatar
 	.word	gSprites
 	.word	gObjectEvents
@@ -5960,26 +5957,26 @@ Fishing16:
 	lsl	r0, r0, #0x10
 	lsr	r1, r0, #0x10
 	cmp	r1, #0
-	bne	.L676	@cond_branch
-	ldr	r0, .L677
+	bne	.L675	@cond_branch
+	ldr	r0, .L676
 	strb	r1, [r0, #0x6]
 	bl	UnlockPlayerFieldControls
 	bl	UnfreezeObjectEvents
 	mov	r0, #0x0
 	mov	r1, #0x1
 	bl	ClearDialogWindowAndFrame
-	ldr	r0, .L677+0x4
+	ldr	r0, .L676+0x4
 	bl	FindTaskIdByFunc
 	lsl	r0, r0, #0x18
 	lsr	r0, r0, #0x18
 	bl	DestroyTask
-.L676:
+.L675:
 	mov	r0, #0x0
 	pop	{r1}
 	bx	r1
-.L678:
-	.align	2, 0
 .L677:
+	.align	2, 0
+.L676:
 	.word	gPlayerAvatar
 	.word	Task_Fishing
 .Lfe166:
@@ -6013,7 +6010,7 @@ AlignFishingAnimationFrames:
 	mov	r7, #0x1
 	neg	r7, r7
 	cmp	r0, r7
-	beq	.L688	@cond_branch
+	beq	.L687	@cond_branch
 	add	r3, r4, #0
 	add	r3, r3, #0x2c
 	ldrb	r2, [r3]
@@ -6037,12 +6034,12 @@ AlignFishingAnimationFrames:
 	mov	r1, #0x0
 	ldrsh	r0, [r0, r1]
 	cmp	r0, r7
-	bne	.L681	@cond_branch
-.L688:
+	bne	.L680	@cond_branch
+.L687:
 	sub	r0, r5, #0x1
 	lsl	r0, r0, #0x18
 	lsr	r5, r0, #0x18
-.L681:
+.L680:
 	add	r0, r4, #0
 	add	r0, r0, #0x2a
 	ldrb	r0, [r0]
@@ -6057,38 +6054,38 @@ AlignFishingAnimationFrames:
 	lsl	r0, r0, #0x18
 	lsr	r0, r0, #0x18
 	cmp	r0, #0x2
-	bhi	.L683	@cond_branch
+	bhi	.L682	@cond_branch
 	mov	r0, #0x8
 	strh	r0, [r4, #0x24]
 	bl	GetPlayerFacingDirection
 	lsl	r0, r0, #0x18
 	lsr	r0, r0, #0x18
 	cmp	r0, #0x3
-	bne	.L683	@cond_branch
-	ldr	r0, .L689
+	bne	.L682	@cond_branch
+	ldr	r0, .L688
 	strh	r0, [r4, #0x24]
-.L683:
+.L682:
 	cmp	r5, #0x5
-	bne	.L685	@cond_branch
-	ldr	r0, .L689
+	bne	.L684	@cond_branch
+	ldr	r0, .L688
 	strh	r0, [r4, #0x26]
-.L685:
+.L684:
 	add	r0, r5, #0
 	sub	r0, r0, #0xa
 	lsl	r0, r0, #0x18
 	lsr	r0, r0, #0x18
 	cmp	r0, #0x1
-	bhi	.L686	@cond_branch
+	bhi	.L685	@cond_branch
 	mov	r0, #0x8
 	strh	r0, [r4, #0x26]
-.L686:
-	ldr	r3, .L689+0x4
+.L685:
+	ldr	r3, .L688+0x4
 	ldrb	r1, [r3]
 	mov	r0, #0x8
 	and	r0, r0, r1
 	cmp	r0, #0
-	beq	.L687	@cond_branch
-	ldr	r2, .L689+0x8
+	beq	.L686	@cond_branch
+	ldr	r2, .L688+0x8
 	ldrb	r1, [r3, #0x5]
 	lsl	r0, r1, #0x3
 	add	r0, r0, r1
@@ -6099,13 +6096,13 @@ AlignFishingAnimationFrames:
 	ldrsh	r2, [r4, r1]
 	mov	r1, #0x1
 	bl	SetSurfBlob_PlayerOffset
-.L687:
+.L686:
 	pop	{r4, r5, r6, r7}
 	pop	{r0}
 	bx	r0
-.L690:
-	.align	2, 0
 .L689:
+	.align	2, 0
+.L688:
 	.word	0xfff8
 	.word	gPlayerAvatar
 	.word	gObjectEvents
@@ -6127,7 +6124,7 @@ sTeleportFacingDirectionSequence:
 	.thumb_func
 StartTeleportWarpOutPlayerAnim:
 	push	{r4, lr}
-	ldr	r4, .L692
+	ldr	r4, .L691
 	add	r0, r4, #0
 	mov	r1, #0x0
 	bl	CreateTask
@@ -6137,9 +6134,9 @@ StartTeleportWarpOutPlayerAnim:
 	pop	{r4}
 	pop	{r0}
 	bx	r0
-.L693:
-	.align	2, 0
 .L692:
+	.align	2, 0
+.L691:
 	.word	Task_TeleportWarpOutPlayerAnim
 .Lfe168:
 	.size	 StartTeleportWarpOutPlayerAnim,.Lfe168-StartTeleportWarpOutPlayerAnim
@@ -6149,15 +6146,15 @@ StartTeleportWarpOutPlayerAnim:
 	.thumb_func
 WaitTeleportWarpOutPlayerAnim:
 	push	{lr}
-	ldr	r0, .L695
+	ldr	r0, .L694
 	bl	FuncIsActiveTask
 	lsl	r0, r0, #0x18
 	lsr	r0, r0, #0x18
 	pop	{r1}
 	bx	r1
-.L696:
-	.align	2, 0
 .L695:
+	.align	2, 0
+.L694:
 	.word	Task_TeleportWarpOutPlayerAnim
 .Lfe169:
 	.size	 WaitTeleportWarpOutPlayerAnim,.Lfe169-WaitTeleportWarpOutPlayerAnim
@@ -6166,12 +6163,12 @@ WaitTeleportWarpOutPlayerAnim:
 	.type	 SavePlayerFacingDirectionForTeleport,function
 	.thumb_func
 SavePlayerFacingDirectionForTeleport:
-	ldr	r1, .L698
+	ldr	r1, .L697
 	strb	r0, [r1]
 	bx	lr
-.L699:
-	.align	2, 0
 .L698:
+	.align	2, 0
+.L697:
 	.word	sTeleportSavedFacingDirection
 .Lfe170:
 	.size	 SavePlayerFacingDirectionForTeleport,.Lfe170-SavePlayerFacingDirectionForTeleport
@@ -6180,17 +6177,17 @@ SavePlayerFacingDirectionForTeleport:
 	.thumb_func
 GetTeleportSavedFacingDirection:
 	push	{lr}
-	ldr	r1, .L704
+	ldr	r1, .L703
 	ldrb	r0, [r1]
 	cmp	r0, #0
-	bne	.L703	@cond_branch
+	bne	.L702	@cond_branch
 	mov	r0, #0x1
-.L703:
+.L702:
 	pop	{r1}
 	bx	r1
-.L705:
-	.align	2, 0
 .L704:
+	.align	2, 0
+.L703:
 	.word	sTeleportSavedFacingDirection
 .Lfe171:
 	.size	 GetTeleportSavedFacingDirection,.Lfe171-GetTeleportSavedFacingDirection
@@ -6204,50 +6201,50 @@ Task_TeleportWarpOutPlayerAnim:
 	lsl	r0, r0, #0x18
 	lsr	r0, r0, #0x18
 	add	r2, r0, #0
-	ldr	r0, .L716
+	ldr	r0, .L715
 	ldrb	r1, [r0, #0x5]
 	lsl	r0, r1, #0x3
 	add	r0, r0, r1
 	lsl	r0, r0, #0x2
-	ldr	r1, .L716+0x4
+	ldr	r1, .L715+0x4
 	add	r4, r0, r1
 	ldrb	r1, [r4, #0x4]
 	lsl	r0, r1, #0x4
 	add	r0, r0, r1
 	lsl	r0, r0, #0x2
-	ldr	r1, .L716+0x8
+	ldr	r1, .L715+0x8
 	add	r7, r0, r1
 	lsl	r0, r2, #0x2
 	add	r0, r0, r2
 	lsl	r0, r0, #0x3
-	ldr	r1, .L716+0xc
+	ldr	r1, .L715+0xc
 	add	r5, r0, r1
 	mov	r0, #0x0
 	ldrsh	r6, [r5, r0]
 	cmp	r6, #0x1
-	beq	.L710	@cond_branch
+	beq	.L709	@cond_branch
 	cmp	r6, #0x1
-	bgt	.L715	@cond_branch
+	bgt	.L714	@cond_branch
 	cmp	r6, #0
-	beq	.L708	@cond_branch
-	b	.L706
-.L717:
-	.align	2, 0
+	beq	.L707	@cond_branch
+	b	.L705
 .L716:
+	.align	2, 0
+.L715:
 	.word	gPlayerAvatar
 	.word	gObjectEvents
 	.word	gSprites
 	.word	gTasks+0x8
-.L715:
+.L714:
 	cmp	r6, #0x2
-	beq	.L712	@cond_branch
-	b	.L706
-.L708:
+	beq	.L711	@cond_branch
+	b	.L705
+.L707:
 	add	r0, r4, #0
 	bl	ObjectEventClearHeldMovementIfFinished
 	lsl	r0, r0, #0x18
 	cmp	r0, #0
-	beq	.L706	@cond_branch
+	beq	.L705	@cond_branch
 	ldrb	r0, [r4, #0x18]
 	lsl	r0, r0, #0x1c
 	lsr	r0, r0, #0x1c
@@ -6286,7 +6283,7 @@ Task_TeleportWarpOutPlayerAnim:
 	ldrh	r0, [r5]
 	add	r0, r0, #0x1
 	strh	r0, [r5]
-.L710:
+.L709:
 	add	r1, r5, #0x2
 	add	r0, r4, #0
 	bl	TeleportAnim_RotatePlayer
@@ -6301,26 +6298,26 @@ Task_TeleportWarpOutPlayerAnim:
 	strh	r0, [r7, #0x22]
 	mov	r2, #0x22
 	ldrsh	r1, [r7, r2]
-	ldr	r0, .L718
+	ldr	r0, .L717
 	mov	r2, #0x0
 	ldrsh	r0, [r0, r2]
 	add	r1, r1, r0
 	mov	r0, #0x20
 	neg	r0, r0
 	cmp	r1, r0
-	bge	.L706	@cond_branch
+	bge	.L705	@cond_branch
 	ldrh	r0, [r5]
 	add	r0, r0, #0x1
 	strh	r0, [r5]
-	b	.L706
-.L719:
-	.align	2, 0
+	b	.L705
 .L718:
+	.align	2, 0
+.L717:
 	.word	gTotalCameraPixelOffsetY
-.L712:
+.L711:
 	add	r0, r2, #0
 	bl	DestroyTask
-.L706:
+.L705:
 	pop	{r3}
 	mov	r8, r3
 	pop	{r4, r5, r6, r7}
@@ -6334,7 +6331,7 @@ Task_TeleportWarpOutPlayerAnim:
 	.thumb_func
 StartTeleportInPlayerAnim:
 	push	{r4, lr}
-	ldr	r4, .L721
+	ldr	r4, .L720
 	add	r0, r4, #0
 	mov	r1, #0x0
 	bl	CreateTask
@@ -6344,9 +6341,9 @@ StartTeleportInPlayerAnim:
 	pop	{r4}
 	pop	{r0}
 	bx	r0
-.L722:
-	.align	2, 0
 .L721:
+	.align	2, 0
+.L720:
 	.word	Task_TeleportWarpInPlayerAnim
 .Lfe173:
 	.size	 StartTeleportInPlayerAnim,.Lfe173-StartTeleportInPlayerAnim
@@ -6356,15 +6353,15 @@ StartTeleportInPlayerAnim:
 	.thumb_func
 WaitTeleportInPlayerAnim:
 	push	{lr}
-	ldr	r0, .L724
+	ldr	r0, .L723
 	bl	FuncIsActiveTask
 	lsl	r0, r0, #0x18
 	lsr	r0, r0, #0x18
 	pop	{r1}
 	bx	r1
-.L725:
-	.align	2, 0
 .L724:
+	.align	2, 0
+.L723:
 	.word	Task_TeleportWarpInPlayerAnim
 .Lfe174:
 	.size	 WaitTeleportInPlayerAnim,.Lfe174-WaitTeleportInPlayerAnim
@@ -6379,53 +6376,53 @@ Task_TeleportWarpInPlayerAnim:
 	lsl	r0, r0, #0x18
 	lsr	r0, r0, #0x18
 	mov	r8, r0
-	ldr	r0, .L740
+	ldr	r0, .L739
 	ldrb	r1, [r0, #0x5]
 	lsl	r0, r1, #0x3
 	add	r0, r0, r1
 	lsl	r0, r0, #0x2
-	ldr	r1, .L740+0x4
+	ldr	r1, .L739+0x4
 	add	r4, r0, r1
 	ldrb	r1, [r4, #0x4]
 	lsl	r0, r1, #0x4
 	add	r0, r0, r1
 	lsl	r0, r0, #0x2
-	ldr	r1, .L740+0x8
+	ldr	r1, .L739+0x8
 	add	r7, r0, r1
 	mov	r1, r8
 	lsl	r0, r1, #0x2
 	add	r0, r0, r8
 	lsl	r0, r0, #0x3
-	ldr	r1, .L740+0xc
+	ldr	r1, .L739+0xc
 	add	r5, r0, r1
 	mov	r2, #0x0
 	ldrsh	r6, [r5, r2]
 	cmp	r6, #0x1
-	beq	.L729	@cond_branch
-	cmp	r6, #0x1
-	bgt	.L738	@cond_branch
-	cmp	r6, #0
 	beq	.L728	@cond_branch
-	b	.L727
-.L741:
-	.align	2, 0
+	cmp	r6, #0x1
+	bgt	.L737	@cond_branch
+	cmp	r6, #0
+	beq	.L727	@cond_branch
+	b	.L726
 .L740:
+	.align	2, 0
+.L739:
 	.word	gPlayerAvatar
 	.word	gObjectEvents
 	.word	gSprites
 	.word	gTasks+0x8
-.L738:
+.L737:
 	cmp	r6, #0x2
-	beq	.L732	@cond_branch
+	beq	.L731	@cond_branch
 	cmp	r6, #0x3
-	beq	.L734	@cond_branch
-	b	.L727
-.L728:
+	beq	.L733	@cond_branch
+	b	.L726
+.L727:
 	bl	GetTeleportSavedFacingDirection
 	lsl	r0, r0, #0x18
 	lsr	r0, r0, #0x18
 	strh	r0, [r5, #0xa]
-	ldr	r1, .L742
+	ldr	r1, .L741
 	mov	r3, #0xa
 	ldrsh	r0, [r5, r3]
 	add	r0, r0, r1
@@ -6481,7 +6478,7 @@ Task_TeleportWarpInPlayerAnim:
 	ldrh	r0, [r5]
 	add	r0, r0, #0x1
 	strh	r0, [r5]
-.L729:
+.L728:
 	add	r1, r5, #0x2
 	add	r0, r4, #0
 	bl	TeleportAnim_RotatePlayer
@@ -6494,10 +6491,10 @@ Task_TeleportWarpInPlayerAnim:
 	lsl	r0, r0, #0x10
 	asr	r0, r0, #0x10
 	cmp	r0, #0x3
-	bgt	.L730	@cond_branch
+	bgt	.L729	@cond_branch
 	mov	r0, #0x4
 	strh	r0, [r5, #0x4]
-.L730:
+.L729:
 	ldrh	r0, [r5, #0x6]
 	lsl	r0, r0, #0x10
 	asr	r0, r0, #0x14
@@ -6506,16 +6503,16 @@ Task_TeleportWarpInPlayerAnim:
 	mov	r3, #0x8
 	ldrsh	r1, [r5, r3]
 	cmp	r0, r1
-	blt	.L727	@cond_branch
+	blt	.L726	@cond_branch
 	strh	r2, [r7, #0x22]
 	mov	r0, #0x0
 	strh	r0, [r5, #0x10]
-	b	.L739
-.L743:
-	.align	2, 0
+	b	.L738
 .L742:
+	.align	2, 0
+.L741:
 	.word	sTeleportFacingDirectionSequence
-.L732:
+.L731:
 	add	r1, r5, #0x2
 	add	r0, r4, #0
 	bl	TeleportAnim_RotatePlayer
@@ -6525,13 +6522,13 @@ Task_TeleportWarpInPlayerAnim:
 	lsl	r0, r0, #0x10
 	asr	r0, r0, #0x10
 	cmp	r0, #0x8
-	ble	.L727	@cond_branch
-.L739:
+	ble	.L726	@cond_branch
+.L738:
 	ldrh	r0, [r5]
 	add	r0, r0, #0x1
 	strh	r0, [r5]
-	b	.L727
-.L734:
+	b	.L726
+.L733:
 	mov	r0, #0xa
 	ldrsh	r6, [r5, r0]
 	add	r1, r5, #0x2
@@ -6540,7 +6537,7 @@ Task_TeleportWarpInPlayerAnim:
 	lsl	r0, r0, #0x18
 	lsr	r0, r0, #0x18
 	cmp	r6, r0
-	bne	.L727	@cond_branch
+	bne	.L726	@cond_branch
 	ldrb	r1, [r4, #0x3]
 	mov	r0, #0x5
 	neg	r0, r0
@@ -6563,7 +6560,7 @@ Task_TeleportWarpInPlayerAnim:
 	bl	CameraObjectReset1
 	mov	r0, r8
 	bl	DestroyTask
-.L727:
+.L726:
 	pop	{r3, r4}
 	mov	r8, r3
 	mov	r9, r4
@@ -6583,20 +6580,20 @@ TeleportAnim_RotatePlayer:
 	mov	r2, #0x0
 	ldrsh	r0, [r6, r2]
 	cmp	r0, #0x7
-	bgt	.L745	@cond_branch
+	bgt	.L744	@cond_branch
 	add	r0, r1, #0x1
 	strh	r0, [r6]
 	lsl	r0, r0, #0x10
 	asr	r0, r0, #0x10
 	cmp	r0, #0x7
-	ble	.L746	@cond_branch
-.L745:
+	ble	.L745	@cond_branch
+.L744:
 	add	r0, r5, #0
 	bl	ObjectEventCheckHeldMovementStatus
 	lsl	r0, r0, #0x18
 	cmp	r0, #0
-	beq	.L746	@cond_branch
-	ldr	r4, .L750
+	beq	.L745	@cond_branch
+	ldr	r4, .L749
 	ldrb	r0, [r5, #0x18]
 	lsl	r0, r0, #0x1c
 	lsr	r0, r0, #0x1c
@@ -6615,16 +6612,16 @@ TeleportAnim_RotatePlayer:
 	lsr	r0, r0, #0x1c
 	add	r0, r0, r4
 	ldrb	r0, [r0]
-	b	.L749
-.L751:
-	.align	2, 0
+	b	.L748
 .L750:
+	.align	2, 0
+.L749:
 	.word	sTeleportFacingDirectionSequence
-.L746:
+.L745:
 	ldrb	r0, [r5, #0x18]
 	lsl	r0, r0, #0x1c
 	lsr	r0, r0, #0x1c
-.L749:
+.L748:
 	pop	{r4, r5, r6}
 	pop	{r1}
 	bx	r1
