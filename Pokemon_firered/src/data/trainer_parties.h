@@ -180,8 +180,10 @@ static const struct TrainerMonNoItemCustomMoves sParty_YoungsterDan[] = {
     {
         .iv = 100,
         .lvl = 21,
-        .species = SPECIES_MEWTWO,
-        .moves = {MOVE_CRUNCH, MOVE_GROWL, MOVE_SCRATCH, MOVE_FURY_SWIPES},
+        // .species = SPECIES_MEWTWO,
+        // .moves = {MOVE_CRUNCH, MOVE_GROWL, MOVE_SCRATCH, MOVE_FURY_SWIPES},
+        .species = SPECIES_DODUO,
+        .moves = {MOVE_SCRATCH, MOVE_DOOM_DESIRE},
     },
 };
 
