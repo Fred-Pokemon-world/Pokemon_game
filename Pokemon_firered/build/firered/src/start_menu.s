@@ -217,24 +217,10 @@ AppendToStartMenuItems:
 	.thumb_func
 SetUpStartMenu_NormalField:
 	push	{lr}
-	ldr	r0, .L22
-	bl	FlagGet
-	lsl	r0, r0, #0x18
-	lsr	r0, r0, #0x18
-	cmp	r0, #0x1
-	bne	.L20	@cond_branch
 	mov	r0, #0x0
 	bl	AppendToStartMenuItems
-.L20:
-	ldr	r0, .L22+0x4
-	bl	FlagGet
-	lsl	r0, r0, #0x18
-	lsr	r0, r0, #0x18
-	cmp	r0, #0x1
-	bne	.L21	@cond_branch
 	mov	r0, #0x1
 	bl	AppendToStartMenuItems
-.L21:
 	mov	r0, #0x2
 	bl	AppendToStartMenuItems
 	mov	r0, #0x3
@@ -247,11 +233,6 @@ SetUpStartMenu_NormalField:
 	bl	AppendToStartMenuItems
 	pop	{r0}
 	bx	r0
-.L23:
-	.align	2, 0
-.L22:
-	.word	0x829
-	.word	0x828
 .Lfe4:
 	.size	 SetUpStartMenu_NormalField,.Lfe4-SetUpStartMenu_NormalField
 	.align	2, 0
@@ -321,8 +302,8 @@ SetUpStartMenu_UnionRoom:
 DrawSafariZoneStatsWindow:
 	push	{r4, r5, lr}
 	add	sp, sp, #-0xc
-	ldr	r4, .L28
-	ldr	r0, .L28+0x4
+	ldr	r4, .L24
+	ldr	r0, .L24+0x4
 	bl	AddWindow
 	strb	r0, [r4]
 	ldrb	r0, [r4]
@@ -330,26 +311,26 @@ DrawSafariZoneStatsWindow:
 	ldrb	r0, [r4]
 	mov	r1, #0x0
 	bl	DrawStdWindowFrame
-	ldr	r0, .L28+0x8
-	ldr	r1, .L28+0xc
+	ldr	r0, .L24+0x8
+	ldr	r1, .L24+0xc
 	ldrh	r1, [r1]
 	mov	r2, #0x1
 	mov	r3, #0x3
 	bl	ConvertIntToDecimalStringN
-	ldr	r0, .L28+0x10
+	ldr	r0, .L24+0x10
 	mov	r1, #0x96
 	lsl	r1, r1, #0x2
 	mov	r2, #0x1
 	mov	r3, #0x3
 	bl	ConvertIntToDecimalStringN
-	ldr	r0, .L28+0x14
-	ldr	r1, .L28+0x18
+	ldr	r0, .L24+0x14
+	ldr	r1, .L24+0x18
 	ldrb	r1, [r1]
 	mov	r2, #0x1
 	mov	r3, #0x2
 	bl	ConvertIntToDecimalStringN
-	ldr	r5, .L28+0x1c
-	ldr	r1, .L28+0x20
+	ldr	r5, .L24+0x1c
+	ldr	r1, .L24+0x20
 	add	r0, r5, #0
 	bl	StringExpandPlaceholders
 	ldrb	r0, [r4]
@@ -370,9 +351,9 @@ DrawSafariZoneStatsWindow:
 	pop	{r4, r5}
 	pop	{r0}
 	bx	r0
-.L29:
+.L25:
 	.align	2, 0
-.L28:
+.L24:
 	.word	sSafariZoneStatsWindowId
 	.word	sSafariZoneStatsWindowTemplate
 	.word	gStringVar1
@@ -391,8 +372,8 @@ DestroySafariZoneStatsWindow:
 	push	{r4, lr}
 	bl	GetSafariZoneFlag
 	cmp	r0, #0
-	beq	.L31	@cond_branch
-	ldr	r4, .L32
+	beq	.L27	@cond_branch
+	ldr	r4, .L28
 	ldrb	r0, [r4]
 	mov	r1, #0x0
 	bl	ClearStdWindowAndFrameToTransparent
@@ -401,13 +382,13 @@ DestroySafariZoneStatsWindow:
 	bl	CopyWindowToVram
 	ldrb	r0, [r4]
 	bl	RemoveWindow
-.L31:
+.L27:
 	pop	{r4}
 	pop	{r0}
 	bx	r0
-.L33:
+.L29:
 	.align	2, 0
-.L32:
+.L28:
 	.word	sSafariZoneStatsWindowId
 .Lfe9:
 	.size	 DestroySafariZoneStatsWindow,.Lfe9-DestroySafariZoneStatsWindow
@@ -429,22 +410,22 @@ PrintStartMenuItems:
 	asr	r0, r0, #24
 	lsl	r0, r0, #0x10
 	lsr	r2, r0, #0x10
-	ldr	r0, .L45
+	ldr	r0, .L41
 	mov	sl, r0
-	ldr	r1, .L45+0x4
+	ldr	r1, .L41+0x4
 	mov	r9, r1
-.L35:
-	ldr	r1, .L45+0x8
+.L31:
+	ldr	r1, .L41+0x8
 	lsl	r0, r2, #0x10
 	asr	r5, r0, #0x10
 	add	r4, r5, r1
 	ldrb	r1, [r4]
 	add	r7, r0, #0
 	cmp	r1, #0x3
-	beq	.L39	@cond_branch
+	beq	.L35	@cond_branch
 	cmp	r1, #0x8
-	bne	.L38	@cond_branch
-.L39:
+	bne	.L34	@cond_branch
+.L35:
 	bl	GetStartMenuWindowId
 	lsl	r0, r0, #0x18
 	lsr	r0, r0, #0x18
@@ -458,14 +439,14 @@ PrintStartMenuItems:
 	lsr	r3, r3, #0x10
 	mov	r2, #0x8
 	bl	Menu_PrintFormatIntlPlayerName
-	b	.L40
-.L46:
+	b	.L36
+.L42:
 	.align	2, 0
-.L45:
+.L41:
 	.word	sStartMenuActionTable
 	.word	gStringVar4
 	.word	sStartMenuOrder
-.L38:
+.L34:
 	ldrb	r0, [r4]
 	lsl	r0, r0, #0x3
 	add	r0, r0, sl
@@ -488,34 +469,34 @@ PrintStartMenuItems:
 	mov	r2, r9
 	mov	r3, #0x8
 	bl	AddTextPrinterParameterized
-.L40:
+.L36:
 	mov	r0, #0x80
 	lsl	r0, r0, #0x9
 	add	r1, r7, r0
 	lsr	r2, r1, #0x10
 	asr	r1, r1, #0x10
-	ldr	r0, .L47
+	ldr	r0, .L43
 	ldrb	r0, [r0]
 	cmp	r1, r0
-	bge	.L37	@cond_branch
+	bge	.L33	@cond_branch
 	sub	r0, r6, #0x1
 	lsl	r0, r0, #0x18
 	lsr	r6, r0, #0x18
 	cmp	r6, #0
-	bne	.L35	@cond_branch
+	bne	.L31	@cond_branch
 	mov	r1, r8
 	strb	r2, [r1]
 	mov	r0, #0x0
-	b	.L44
-.L48:
+	b	.L40
+.L44:
 	.align	2, 0
-.L47:
+.L43:
 	.word	sNumStartMenuItems
-.L37:
+.L33:
 	mov	r0, r8
 	strb	r2, [r0]
 	mov	r0, #0x1
-.L44:
+.L40:
 	add	sp, sp, #0xc
 	pop	{r3, r4, r5}
 	mov	r8, r3
@@ -532,103 +513,103 @@ PrintStartMenuItems:
 DoDrawStartMenu:
 	push	{r4, lr}
 	add	sp, sp, #-0xc
-	ldr	r0, .L64
+	ldr	r0, .L60
 	mov	r1, #0x0
 	ldrsb	r1, [r0, r1]
 	add	r2, r0, #0
 	cmp	r1, #0x5
-	bls	.LCB470
-	b	.L50	@long jump
-.LCB470:
+	bls	.LCB443
+	b	.L46	@long jump
+.LCB443:
 	lsl	r0, r1, #0x2
-	ldr	r1, .L64+0x4
+	ldr	r1, .L60+0x4
 	add	r0, r0, r1
 	ldr	r0, [r0]
 	mov	pc, r0
-.L65:
-	.align	2, 0
-.L64:
-	.word	sDrawStartMenuState
-	.word	.L60
-	.align	2, 0
+.L61:
 	.align	2, 0
 .L60:
-	.word	.L51
-	.word	.L52
-	.word	.L53
-	.word	.L54
+	.word	sDrawStartMenuState
 	.word	.L56
-	.word	.L58
-.L51:
+	.align	2, 0
+	.align	2, 0
+.L56:
+	.word	.L47
+	.word	.L48
+	.word	.L49
+	.word	.L50
+	.word	.L52
+	.word	.L54
+.L47:
 	ldrb	r0, [r2]
 	add	r0, r0, #0x1
 	strb	r0, [r2]
-	b	.L50
-.L52:
+	b	.L46
+.L48:
 	bl	SetUpStartMenu
-	ldr	r1, .L66
-	b	.L63
-.L67:
+	ldr	r1, .L62
+	b	.L59
+.L63:
 	.align	2, 0
-.L66:
+.L62:
 	.word	sDrawStartMenuState
-.L53:
+.L49:
 	bl	LoadStdWindowFrameGfx
-	ldr	r0, .L68
+	ldr	r0, .L64
 	ldrb	r0, [r0]
 	bl	CreateStartMenuWindow
 	lsl	r0, r0, #0x18
 	lsr	r0, r0, #0x18
 	mov	r1, #0x0
 	bl	DrawStdWindowFrame
-	ldr	r1, .L68+0x4
-	b	.L63
-.L69:
+	ldr	r1, .L64+0x4
+	b	.L59
+.L65:
 	.align	2, 0
-.L68:
+.L64:
 	.word	sNumStartMenuItems
 	.word	sDrawStartMenuState
-.L54:
+.L50:
 	bl	GetSafariZoneFlag
 	cmp	r0, #0
-	beq	.L55	@cond_branch
+	beq	.L51	@cond_branch
 	bl	DrawSafariZoneStatsWindow
-.L55:
-	ldr	r1, .L70
-	b	.L63
-.L71:
+.L51:
+	ldr	r1, .L66
+	b	.L59
+.L67:
 	.align	2, 0
-.L70:
+.L66:
 	.word	sDrawStartMenuState
-.L56:
-	ldr	r4, .L72
+.L52:
+	ldr	r4, .L68
 	add	r0, r4, #0
 	mov	r1, #0x2
 	bl	PrintStartMenuItems
 	lsl	r0, r0, #0x18
 	asr	r0, r0, #0x18
 	cmp	r0, #0x1
-	bne	.L50	@cond_branch
+	bne	.L46	@cond_branch
 	sub	r1, r4, #0x1
-.L63:
+.L59:
 	ldrb	r0, [r1]
 	add	r0, r0, #0x1
 	strb	r0, [r1]
-	b	.L50
-.L73:
+	b	.L46
+.L69:
 	.align	2, 0
-.L72:
+.L68:
 	.word	sDrawStartMenuState+0x1
-.L58:
+.L54:
 	bl	GetStartMenuWindowId
 	lsl	r0, r0, #0x18
 	lsr	r0, r0, #0x18
 	mov	r1, #0xf
 	str	r1, [sp]
-	ldr	r1, .L74
+	ldr	r1, .L70
 	ldrb	r1, [r1]
 	str	r1, [sp, #0x4]
-	ldr	r4, .L74+0x4
+	ldr	r4, .L70+0x4
 	ldrb	r1, [r4]
 	str	r1, [sp, #0x8]
 	mov	r1, #0x2
@@ -639,17 +620,17 @@ DoDrawStartMenu:
 	bl	MenuHelpers_IsLinkActive
 	lsl	r0, r0, #0x18
 	cmp	r0, #0
-	bne	.L59	@cond_branch
+	bne	.L55	@cond_branch
 	bl	InUnionRoom
 	cmp	r0, #0x1
-	beq	.L59	@cond_branch
-	ldr	r0, .L74+0x8
+	beq	.L55	@cond_branch
+	ldr	r0, .L70+0x8
 	ldr	r0, [r0]
 	ldrb	r0, [r0, #0x13]
 	cmp	r0, #0
-	bne	.L59	@cond_branch
-	ldr	r2, .L74+0xc
-	ldr	r1, .L74+0x10
+	bne	.L55	@cond_branch
+	ldr	r2, .L70+0xc
+	ldr	r1, .L70+0x10
 	ldrb	r0, [r4]
 	add	r0, r0, r1
 	ldrb	r0, [r0]
@@ -657,25 +638,25 @@ DoDrawStartMenu:
 	add	r0, r0, r2
 	ldr	r0, [r0]
 	bl	DrawHelpMessageWindowWithText
-.L59:
+.L55:
 	bl	GetStartMenuWindowId
 	lsl	r0, r0, #0x18
 	lsr	r0, r0, #0x18
 	mov	r1, #0x1
 	bl	CopyWindowToVram
 	mov	r0, #0x1
-	b	.L62
-.L75:
+	b	.L58
+.L71:
 	.align	2, 0
-.L74:
+.L70:
 	.word	sNumStartMenuItems
 	.word	sStartMenuCursorPos
 	.word	gSaveBlock2Ptr
 	.word	sStartMenuDescPointers
 	.word	sStartMenuOrder
-.L50:
+.L46:
 	mov	r0, #0x0
-.L62:
+.L58:
 	add	sp, sp, #0xc
 	pop	{r4}
 	pop	{r1}
@@ -687,20 +668,20 @@ DoDrawStartMenu:
 	.thumb_func
 DrawStartMenuInOneGo:
 	push	{lr}
-	ldr	r1, .L81
+	ldr	r1, .L77
 	mov	r0, #0x0
 	strb	r0, [r1]
 	strb	r0, [r1, #0x1]
-.L77:
+.L73:
 	bl	DoDrawStartMenu
 	lsl	r0, r0, #0x18
 	cmp	r0, #0
-	beq	.L77	@cond_branch
+	beq	.L73	@cond_branch
 	pop	{r0}
 	bx	r0
-.L82:
+.L78:
 	.align	2, 0
-.L81:
+.L77:
 	.word	sDrawStartMenuState
 .Lfe12:
 	.size	 DrawStartMenuInOneGo,.Lfe12-DrawStartMenuInOneGo
@@ -715,10 +696,10 @@ task50_startmenu:
 	lsl	r0, r0, #0x18
 	asr	r0, r0, #0x18
 	cmp	r0, #0x1
-	bne	.L84	@cond_branch
+	bne	.L80	@cond_branch
 	add	r0, r4, #0
 	bl	SwitchTaskToFollowupFunc
-.L84:
+.L80:
 	pop	{r4}
 	pop	{r0}
 	bx	r0
@@ -730,11 +711,11 @@ task50_startmenu:
 OpenStartMenuWithFollowupFunc:
 	push	{r4, r5, lr}
 	add	r5, r0, #0
-	ldr	r1, .L86
+	ldr	r1, .L82
 	mov	r0, #0x0
 	strb	r0, [r1]
 	strb	r0, [r1, #0x1]
-	ldr	r4, .L86+0x4
+	ldr	r4, .L82+0x4
 	add	r0, r4, #0
 	mov	r1, #0x50
 	bl	CreateTask
@@ -746,9 +727,9 @@ OpenStartMenuWithFollowupFunc:
 	pop	{r4, r5}
 	pop	{r0}
 	bx	r0
-.L87:
+.L83:
 	.align	2, 0
-.L86:
+.L82:
 	.word	sDrawStartMenuState
 	.word	task50_startmenu
 .Lfe14:
@@ -761,13 +742,13 @@ FieldCB2_DrawStartMenu:
 	bl	DoDrawStartMenu
 	lsl	r0, r0, #0x18
 	cmp	r0, #0
-	beq	.L89	@cond_branch
+	beq	.L85	@cond_branch
 	bl	FadeTransition_FadeInOnReturnToStartMenu
 	mov	r0, #0x1
-	b	.L90
-.L89:
+	b	.L86
+.L85:
 	mov	r0, #0x0
-.L90:
+.L86:
 	pop	{r1}
 	bx	r1
 .Lfe15:
@@ -777,17 +758,17 @@ FieldCB2_DrawStartMenu:
 	.type	 SetUpReturnToStartMenu,function
 	.thumb_func
 SetUpReturnToStartMenu:
-	ldr	r1, .L92
+	ldr	r1, .L88
 	mov	r0, #0x0
 	strb	r0, [r1]
 	strb	r0, [r1, #0x1]
-	ldr	r1, .L92+0x4
-	ldr	r0, .L92+0x8
+	ldr	r1, .L88+0x4
+	ldr	r0, .L88+0x8
 	str	r0, [r1]
 	bx	lr
-.L93:
+.L89:
 	.align	2, 0
-.L92:
+.L88:
 	.word	sDrawStartMenuState
 	.word	gFieldCallback2
 	.word	FieldCB2_DrawStartMenu
@@ -804,54 +785,54 @@ Task_StartMenuHandleInput:
 	lsl	r0, r5, #0x2
 	add	r0, r0, r5
 	lsl	r0, r0, #0x3
-	ldr	r1, .L102
+	ldr	r1, .L98
 	add	r4, r0, r1
 	mov	r1, #0x0
 	ldrsh	r0, [r4, r1]
 	cmp	r0, #0
-	beq	.L96	@cond_branch
+	beq	.L92	@cond_branch
 	cmp	r0, #0x1
-	beq	.L98	@cond_branch
-	b	.L95
-.L103:
+	beq	.L94	@cond_branch
+	b	.L91
+.L99:
 	.align	2, 0
-.L102:
+.L98:
 	.word	gTasks+0x8
-.L96:
+.L92:
 	bl	InUnionRoom
 	cmp	r0, #0x1
-	bne	.L97	@cond_branch
+	bne	.L93	@cond_branch
 	bl	SetUsingUnionRoomStartMenu
-.L97:
-	ldr	r1, .L104
-	ldr	r0, .L104+0x4
+.L93:
+	ldr	r1, .L100
+	ldr	r0, .L100+0x4
 	str	r0, [r1]
 	ldrh	r0, [r4]
 	add	r0, r0, #0x1
 	strh	r0, [r4]
-	b	.L95
-.L105:
+	b	.L91
+.L101:
 	.align	2, 0
-.L104:
+.L100:
 	.word	sStartMenuCallback
 	.word	StartCB_HandleInput
-.L98:
-	ldr	r0, .L106
+.L94:
+	ldr	r0, .L102
 	ldr	r0, [r0]
 	bl	_call_via_r0
 	lsl	r0, r0, #0x18
 	lsr	r0, r0, #0x18
 	cmp	r0, #0x1
-	bne	.L95	@cond_branch
+	bne	.L91	@cond_branch
 	add	r0, r5, #0
 	bl	DestroyTask
-.L95:
+.L91:
 	pop	{r4, r5}
 	pop	{r0}
 	bx	r0
-.L107:
+.L103:
 	.align	2, 0
-.L106:
+.L102:
 	.word	sStartMenuCallback
 .Lfe17:
 	.size	 Task_StartMenuHandleInput,.Lfe17-Task_StartMenuHandleInput
@@ -863,19 +844,19 @@ ShowStartMenu:
 	push	{lr}
 	bl	IsUpdateLinkStateCBActive
 	cmp	r0, #0
-	bne	.L109	@cond_branch
+	bne	.L105	@cond_branch
 	bl	FreezeObjectEvents
 	bl	HandleEnforcedLookDirectionOnPlayerStopMoving
 	bl	StopPlayerAvatar
-.L109:
-	ldr	r0, .L110
+.L105:
+	ldr	r0, .L106
 	bl	OpenStartMenuWithFollowupFunc
 	bl	LockPlayerFieldControls
 	pop	{r0}
 	bx	r0
-.L111:
+.L107:
 	.align	2, 0
-.L110:
+.L106:
 	.word	Task_StartMenuHandleInput
 .Lfe18:
 	.size	 ShowStartMenu,.Lfe18-ShowStartMenu
@@ -884,33 +865,33 @@ ShowStartMenu:
 	.thumb_func
 StartCB_HandleInput:
 	push	{r4, lr}
-	ldr	r0, .L123
+	ldr	r0, .L119
 	ldrh	r1, [r0, #0x2e]
 	mov	r0, #0x40
 	and	r0, r0, r1
 	cmp	r0, #0
-	beq	.L113	@cond_branch
+	beq	.L109	@cond_branch
 	mov	r0, #0x5
 	bl	PlaySE
 	mov	r0, #0x1
 	neg	r0, r0
 	bl	Menu_MoveCursor
-	ldr	r4, .L123+0x4
+	ldr	r4, .L119+0x4
 	strb	r0, [r4]
 	bl	MenuHelpers_IsLinkActive
 	lsl	r0, r0, #0x18
 	cmp	r0, #0
-	bne	.L113	@cond_branch
+	bne	.L109	@cond_branch
 	bl	InUnionRoom
 	cmp	r0, #0x1
-	beq	.L113	@cond_branch
-	ldr	r0, .L123+0x8
+	beq	.L109	@cond_branch
+	ldr	r0, .L119+0x8
 	ldr	r0, [r0]
 	ldrb	r0, [r0, #0x13]
 	cmp	r0, #0
-	bne	.L113	@cond_branch
-	ldr	r2, .L123+0xc
-	ldr	r1, .L123+0x10
+	bne	.L109	@cond_branch
+	ldr	r2, .L119+0xc
+	ldr	r1, .L119+0x10
 	ldrb	r0, [r4]
 	add	r0, r0, r1
 	ldrb	r0, [r0]
@@ -919,33 +900,33 @@ StartCB_HandleInput:
 	ldr	r0, [r0]
 	mov	r1, #0x2
 	bl	PrintTextOnHelpMessageWindow
-.L113:
-	ldr	r0, .L123
+.L109:
+	ldr	r0, .L119
 	ldrh	r1, [r0, #0x2e]
 	mov	r0, #0x80
 	and	r0, r0, r1
 	cmp	r0, #0
-	beq	.L115	@cond_branch
+	beq	.L111	@cond_branch
 	mov	r0, #0x5
 	bl	PlaySE
 	mov	r0, #0x1
 	bl	Menu_MoveCursor
-	ldr	r4, .L123+0x4
+	ldr	r4, .L119+0x4
 	strb	r0, [r4]
 	bl	MenuHelpers_IsLinkActive
 	lsl	r0, r0, #0x18
 	cmp	r0, #0
-	bne	.L115	@cond_branch
+	bne	.L111	@cond_branch
 	bl	InUnionRoom
 	cmp	r0, #0x1
-	beq	.L115	@cond_branch
-	ldr	r0, .L123+0x8
+	beq	.L111	@cond_branch
+	ldr	r0, .L119+0x8
 	ldr	r0, [r0]
 	ldrb	r0, [r0, #0x13]
 	cmp	r0, #0
-	bne	.L115	@cond_branch
-	ldr	r2, .L123+0xc
-	ldr	r1, .L123+0x10
+	bne	.L111	@cond_branch
+	ldr	r2, .L119+0xc
+	ldr	r1, .L119+0x10
 	ldrb	r0, [r4]
 	add	r0, r0, r1
 	ldrb	r0, [r0]
@@ -954,23 +935,23 @@ StartCB_HandleInput:
 	ldr	r0, [r0]
 	mov	r1, #0x2
 	bl	PrintTextOnHelpMessageWindow
-.L115:
-	ldr	r0, .L123
+.L111:
+	ldr	r0, .L119
 	ldrh	r1, [r0, #0x2e]
 	mov	r0, #0x1
 	and	r0, r0, r1
 	cmp	r0, #0
-	beq	.L117	@cond_branch
+	beq	.L113	@cond_branch
 	mov	r0, #0x5
 	bl	PlaySE
 	bl	StartMenuPokedexSanityCheck
 	lsl	r0, r0, #0x18
 	cmp	r0, #0
-	beq	.L122	@cond_branch
-	ldr	r3, .L123+0x14
-	ldr	r1, .L123+0x18
-	ldr	r2, .L123+0x10
-	ldr	r0, .L123+0x4
+	beq	.L118	@cond_branch
+	ldr	r3, .L119+0x14
+	ldr	r1, .L119+0x18
+	ldr	r2, .L119+0x10
+	ldr	r0, .L119+0x4
 	ldrb	r0, [r0]
 	add	r0, r0, r2
 	ldrb	r0, [r0]
@@ -980,12 +961,12 @@ StartCB_HandleInput:
 	ldr	r0, [r0]
 	str	r0, [r3]
 	bl	StartMenu_FadeScreenIfLeavingOverworld
-.L122:
+.L118:
 	mov	r0, #0x0
-	b	.L120
-.L124:
+	b	.L116
+.L120:
 	.align	2, 0
-.L123:
+.L119:
 	.word	gMain
 	.word	sStartMenuCursorPos
 	.word	gSaveBlock2Ptr
@@ -993,16 +974,16 @@ StartCB_HandleInput:
 	.word	sStartMenuOrder
 	.word	sStartMenuCallback
 	.word	sStartMenuActionTable
-.L117:
+.L113:
 	mov	r0, #0xa
 	and	r0, r0, r1
 	cmp	r0, #0
-	beq	.L122	@cond_branch
+	beq	.L118	@cond_branch
 	bl	DestroySafariZoneStatsWindow
 	bl	DestroyHelpMessageWindow_
 	bl	CloseStartMenu
 	mov	r0, #0x1
-.L120:
+.L116:
 	pop	{r4}
 	pop	{r1}
 	bx	r1
@@ -1013,27 +994,27 @@ StartCB_HandleInput:
 	.thumb_func
 StartMenu_FadeScreenIfLeavingOverworld:
 	push	{lr}
-	ldr	r0, .L127
+	ldr	r0, .L123
 	ldr	r1, [r0]
-	ldr	r0, .L127+0x4
+	ldr	r0, .L123+0x4
 	cmp	r1, r0
-	beq	.L126	@cond_branch
-	ldr	r0, .L127+0x8
+	beq	.L122	@cond_branch
+	ldr	r0, .L123+0x8
 	cmp	r1, r0
-	beq	.L126	@cond_branch
-	ldr	r0, .L127+0xc
+	beq	.L122	@cond_branch
+	ldr	r0, .L123+0xc
 	cmp	r1, r0
-	beq	.L126	@cond_branch
+	beq	.L122	@cond_branch
 	bl	StopPokemonLeagueLightingEffectTask
 	mov	r0, #0x1
 	mov	r1, #0x0
 	bl	FadeScreen
-.L126:
+.L122:
 	pop	{r0}
 	bx	r0
-.L128:
+.L124:
 	.align	2, 0
-.L127:
+.L123:
 	.word	sStartMenuCallback
 	.word	StartMenuSaveCallback
 	.word	StartMenuExitCallback
@@ -1045,9 +1026,9 @@ StartMenu_FadeScreenIfLeavingOverworld:
 	.thumb_func
 StartMenuPokedexSanityCheck:
 	push	{lr}
-	ldr	r1, .L132
-	ldr	r2, .L132+0x4
-	ldr	r0, .L132+0x8
+	ldr	r1, .L128
+	ldr	r2, .L128+0x4
+	ldr	r0, .L128+0x8
 	ldrb	r0, [r0]
 	add	r0, r0, r2
 	ldrb	r0, [r0]
@@ -1055,26 +1036,26 @@ StartMenuPokedexSanityCheck:
 	add	r1, r1, #0x4
 	add	r0, r0, r1
 	ldr	r1, [r0]
-	ldr	r0, .L132+0xc
+	ldr	r0, .L128+0xc
 	cmp	r1, r0
-	bne	.L130	@cond_branch
+	bne	.L126	@cond_branch
 	mov	r0, #0x0
 	bl	GetNationalPokedexCount
 	lsl	r0, r0, #0x10
 	cmp	r0, #0
-	bne	.L130	@cond_branch
+	bne	.L126	@cond_branch
 	mov	r0, #0x0
-	b	.L131
-.L133:
+	b	.L127
+.L129:
 	.align	2, 0
-.L132:
+.L128:
 	.word	sStartMenuActionTable
 	.word	sStartMenuOrder
 	.word	sStartMenuCursorPos
 	.word	StartMenuPokedexCallback
-.L130:
+.L126:
 	mov	r0, #0x1
-.L131:
+.L127:
 	pop	{r1}
 	bx	r1
 .Lfe21:
@@ -1084,33 +1065,33 @@ StartMenuPokedexSanityCheck:
 	.thumb_func
 StartMenuPokedexCallback:
 	push	{lr}
-	ldr	r0, .L137
+	ldr	r0, .L133
 	ldrb	r1, [r0, #0x7]
 	mov	r0, #0x80
 	and	r0, r0, r1
 	cmp	r0, #0
-	beq	.L135	@cond_branch
+	beq	.L131	@cond_branch
 	mov	r0, #0x0
-	b	.L136
-.L138:
+	b	.L132
+.L134:
 	.align	2, 0
-.L137:
+.L133:
 	.word	gPaletteFade
-.L135:
+.L131:
 	mov	r0, #0x29
 	bl	IncrementGameStat
 	bl	PlayRainStoppingSoundEffect
 	bl	DestroySafariZoneStatsWindow
 	bl	CleanupOverworldWindowsAndTilemaps
-	ldr	r0, .L139
+	ldr	r0, .L135
 	bl	SetMainCallback2
 	mov	r0, #0x1
-.L136:
+.L132:
 	pop	{r1}
 	bx	r1
-.L140:
+.L136:
 	.align	2, 0
-.L139:
+.L135:
 	.word	CB2_OpenPokedexFromStartMenu
 .Lfe22:
 	.size	 StartMenuPokedexCallback,.Lfe22-StartMenuPokedexCallback
@@ -1119,31 +1100,31 @@ StartMenuPokedexCallback:
 	.thumb_func
 StartMenuPokemonCallback:
 	push	{lr}
-	ldr	r0, .L144
+	ldr	r0, .L140
 	ldrb	r1, [r0, #0x7]
 	mov	r0, #0x80
 	and	r0, r0, r1
 	cmp	r0, #0
-	beq	.L142	@cond_branch
+	beq	.L138	@cond_branch
 	mov	r0, #0x0
-	b	.L143
-.L145:
+	b	.L139
+.L141:
 	.align	2, 0
-.L144:
+.L140:
 	.word	gPaletteFade
-.L142:
+.L138:
 	bl	PlayRainStoppingSoundEffect
 	bl	DestroySafariZoneStatsWindow
 	bl	CleanupOverworldWindowsAndTilemaps
-	ldr	r0, .L146
+	ldr	r0, .L142
 	bl	SetMainCallback2
 	mov	r0, #0x1
-.L143:
+.L139:
 	pop	{r1}
 	bx	r1
-.L147:
+.L143:
 	.align	2, 0
-.L146:
+.L142:
 	.word	CB2_PartyMenuFromStartMenu
 .Lfe23:
 	.size	 StartMenuPokemonCallback,.Lfe23-StartMenuPokemonCallback
@@ -1152,31 +1133,31 @@ StartMenuPokemonCallback:
 	.thumb_func
 StartMenuBagCallback:
 	push	{lr}
-	ldr	r0, .L151
+	ldr	r0, .L147
 	ldrb	r1, [r0, #0x7]
 	mov	r0, #0x80
 	and	r0, r0, r1
 	cmp	r0, #0
-	beq	.L149	@cond_branch
+	beq	.L145	@cond_branch
 	mov	r0, #0x0
-	b	.L150
-.L152:
+	b	.L146
+.L148:
 	.align	2, 0
-.L151:
+.L147:
 	.word	gPaletteFade
-.L149:
+.L145:
 	bl	PlayRainStoppingSoundEffect
 	bl	DestroySafariZoneStatsWindow
 	bl	CleanupOverworldWindowsAndTilemaps
-	ldr	r0, .L153
+	ldr	r0, .L149
 	bl	SetMainCallback2
 	mov	r0, #0x1
-.L150:
+.L146:
 	pop	{r1}
 	bx	r1
-.L154:
+.L150:
 	.align	2, 0
-.L153:
+.L149:
 	.word	CB2_BagMenuFromStartMenu
 .Lfe24:
 	.size	 StartMenuBagCallback,.Lfe24-StartMenuBagCallback
@@ -1185,31 +1166,31 @@ StartMenuBagCallback:
 	.thumb_func
 StartMenuPlayerCallback:
 	push	{lr}
-	ldr	r0, .L158
+	ldr	r0, .L154
 	ldrb	r1, [r0, #0x7]
 	mov	r0, #0x80
 	and	r0, r0, r1
 	cmp	r0, #0
-	beq	.L156	@cond_branch
+	beq	.L152	@cond_branch
 	mov	r0, #0x0
-	b	.L157
-.L159:
+	b	.L153
+.L155:
 	.align	2, 0
-.L158:
+.L154:
 	.word	gPaletteFade
-.L156:
+.L152:
 	bl	PlayRainStoppingSoundEffect
 	bl	DestroySafariZoneStatsWindow
 	bl	CleanupOverworldWindowsAndTilemaps
-	ldr	r0, .L160
+	ldr	r0, .L156
 	bl	ShowPlayerTrainerCard
 	mov	r0, #0x1
-.L157:
+.L153:
 	pop	{r1}
 	bx	r1
-.L161:
+.L157:
 	.align	2, 0
-.L160:
+.L156:
 	.word	CB2_ReturnToFieldWithOpenMenu
 .Lfe25:
 	.size	 StartMenuPlayerCallback,.Lfe25-StartMenuPlayerCallback
@@ -1217,14 +1198,14 @@ StartMenuPlayerCallback:
 	.type	 StartMenuSaveCallback,function
 	.thumb_func
 StartMenuSaveCallback:
-	ldr	r1, .L163
-	ldr	r0, .L163+0x4
+	ldr	r1, .L159
+	ldr	r0, .L159+0x4
 	str	r0, [r1]
 	mov	r0, #0x0
 	bx	lr
-.L164:
+.L160:
 	.align	2, 0
-.L163:
+.L159:
 	.word	sStartMenuCallback
 	.word	StartCB_Save1
 .Lfe26:
@@ -1234,34 +1215,34 @@ StartMenuSaveCallback:
 	.thumb_func
 StartMenuOptionCallback:
 	push	{lr}
-	ldr	r0, .L168
+	ldr	r0, .L164
 	ldrb	r1, [r0, #0x7]
 	mov	r0, #0x80
 	and	r0, r0, r1
 	cmp	r0, #0
-	beq	.L166	@cond_branch
+	beq	.L162	@cond_branch
 	mov	r0, #0x0
-	b	.L167
-.L169:
+	b	.L163
+.L165:
 	.align	2, 0
-.L168:
+.L164:
 	.word	gPaletteFade
-.L166:
+.L162:
 	bl	PlayRainStoppingSoundEffect
 	bl	DestroySafariZoneStatsWindow
 	bl	CleanupOverworldWindowsAndTilemaps
-	ldr	r0, .L170
+	ldr	r0, .L166
 	bl	SetMainCallback2
-	ldr	r1, .L170+0x4
-	ldr	r0, .L170+0x8
+	ldr	r1, .L166+0x4
+	ldr	r0, .L166+0x8
 	str	r0, [r1, #0x8]
 	mov	r0, #0x1
-.L167:
+.L163:
 	pop	{r1}
 	bx	r1
-.L171:
+.L167:
 	.align	2, 0
-.L170:
+.L166:
 	.word	CB2_OptionsMenuFromStartMenu
 	.word	gMain
 	.word	CB2_ReturnToFieldWithOpenMenu
@@ -1299,32 +1280,32 @@ StartMenuSafariZoneRetireCallback:
 	.thumb_func
 StartMenuLinkPlayerCallback:
 	push	{lr}
-	ldr	r0, .L177
+	ldr	r0, .L173
 	ldrb	r1, [r0, #0x7]
 	mov	r0, #0x80
 	and	r0, r0, r1
 	cmp	r0, #0
-	beq	.L175	@cond_branch
+	beq	.L171	@cond_branch
 	mov	r0, #0x0
-	b	.L176
-.L178:
+	b	.L172
+.L174:
 	.align	2, 0
-.L177:
+.L173:
 	.word	gPaletteFade
-.L175:
+.L171:
 	bl	PlayRainStoppingSoundEffect
 	bl	CleanupOverworldWindowsAndTilemaps
-	ldr	r0, .L179
+	ldr	r0, .L175
 	ldrb	r0, [r0]
-	ldr	r1, .L179+0x4
+	ldr	r1, .L175+0x4
 	bl	ShowTrainerCardInLink
 	mov	r0, #0x1
-.L176:
+.L172:
 	pop	{r1}
 	bx	r1
-.L180:
+.L176:
 	.align	2, 0
-.L179:
+.L175:
 	.word	gLocalLinkPlayerId
 	.word	CB2_ReturnToFieldWithOpenMenu
 .Lfe30:
@@ -1338,15 +1319,15 @@ StartCB_Save1:
 	mov	r0, #0xc
 	bl	SetHelpContext
 	bl	StartMenu_PrepareForSave
-	ldr	r1, .L182
-	ldr	r0, .L182+0x4
+	ldr	r1, .L178
+	ldr	r0, .L178+0x4
 	str	r0, [r1]
 	mov	r0, #0x0
 	pop	{r1}
 	bx	r1
-.L183:
+.L179:
 	.align	2, 0
-.L182:
+.L178:
 	.word	sStartMenuCallback
 	.word	StartCB_Save2
 .Lfe31:
@@ -1360,30 +1341,30 @@ StartCB_Save2:
 	lsl	r0, r0, #0x18
 	lsr	r0, r0, #0x18
 	cmp	r0, #0x1
-	beq	.L189	@cond_branch
+	beq	.L185	@cond_branch
 	cmp	r0, #0x1
-	ble	.L185	@cond_branch
+	ble	.L181	@cond_branch
 	cmp	r0, #0x2
-	beq	.L188	@cond_branch
+	beq	.L184	@cond_branch
 	cmp	r0, #0x3
-	beq	.L189	@cond_branch
-	b	.L185
-.L188:
+	beq	.L185	@cond_branch
+	b	.L181
+.L184:
 	mov	r0, #0x0
 	mov	r1, #0x0
 	bl	ClearDialogWindowAndFrameToTransparent
 	bl	DrawStartMenuInOneGo
 	bl	RestoreHelpContext
-	ldr	r1, .L194
-	ldr	r0, .L194+0x4
+	ldr	r1, .L190
+	ldr	r0, .L190+0x4
 	str	r0, [r1]
-	b	.L185
-.L195:
+	b	.L181
+.L191:
 	.align	2, 0
-.L194:
+.L190:
 	.word	sStartMenuCallback
 	.word	StartCB_HandleInput
-.L189:
+.L185:
 	mov	r0, #0x0
 	mov	r1, #0x1
 	bl	ClearDialogWindowAndFrameToTransparent
@@ -1391,10 +1372,10 @@ StartCB_Save2:
 	bl	UnlockPlayerFieldControls
 	bl	RestoreHelpContext
 	mov	r0, #0x1
-	b	.L193
-.L185:
+	b	.L189
+.L181:
 	mov	r0, #0x0
-.L193:
+.L189:
 	pop	{r1}
 	bx	r1
 .Lfe32:
@@ -1405,17 +1386,17 @@ StartCB_Save2:
 StartMenu_PrepareForSave:
 	push	{lr}
 	bl	SaveMapView
-	ldr	r1, .L197
-	ldr	r0, .L197+0x4
+	ldr	r1, .L193
+	ldr	r0, .L193+0x4
 	str	r0, [r1]
-	ldr	r1, .L197+0x8
+	ldr	r1, .L193+0x8
 	mov	r0, #0x0
 	strb	r0, [r1]
 	pop	{r0}
 	bx	r0
-.L198:
+.L194:
 	.align	2, 0
-.L197:
+.L193:
 	.word	sSaveDialogCB
 	.word	SaveDialogCB_PrintAskSaveText
 	.word	sSaveDialogIsPrinting
@@ -1430,24 +1411,24 @@ RunSaveDialogCB:
 	lsl	r0, r0, #0x10
 	lsr	r0, r0, #0x10
 	cmp	r0, #0x1
-	beq	.L200	@cond_branch
-	ldr	r1, .L202
+	beq	.L196	@cond_branch
+	ldr	r1, .L198
 	mov	r0, #0x0
 	strb	r0, [r1]
-	ldr	r0, .L202+0x4
+	ldr	r0, .L198+0x4
 	ldr	r0, [r0]
 	bl	_call_via_r0
 	lsl	r0, r0, #0x18
 	lsr	r0, r0, #0x18
-	b	.L201
-.L203:
+	b	.L197
+.L199:
 	.align	2, 0
-.L202:
+.L198:
 	.word	sSaveDialogIsPrinting
 	.word	sSaveDialogCB
-.L200:
+.L196:
 	mov	r0, #0x0
-.L201:
+.L197:
 	pop	{r1}
 	bx	r1
 .Lfe34:
@@ -1462,14 +1443,14 @@ Field_AskSaveTheGame:
 	mov	r0, #0xc
 	bl	SetHelpContext
 	bl	StartMenu_PrepareForSave
-	ldr	r0, .L205
+	ldr	r0, .L201
 	mov	r1, #0x50
 	bl	CreateTask
 	pop	{r0}
 	bx	r0
-.L206:
+.L202:
 	.align	2, 0
-.L205:
+.L201:
 	.word	task50_save_game
 .Lfe35:
 	.size	 Field_AskSaveTheGame,.Lfe35-Field_AskSaveTheGame
@@ -1480,7 +1461,7 @@ PrintSaveTextWithFollowupFunc:
 	push	{r4, lr}
 	add	r2, r0, #0
 	add	r4, r1, #0
-	ldr	r0, .L208
+	ldr	r0, .L204
 	add	r1, r2, #0
 	bl	StringExpandPlaceholders
 	mov	r0, #0x0
@@ -1488,17 +1469,17 @@ PrintSaveTextWithFollowupFunc:
 	bl	LoadMessageBoxAndFrameGfx
 	mov	r0, #0x1
 	bl	AddTextPrinterForMessage
-	ldr	r1, .L208+0x4
+	ldr	r1, .L204+0x4
 	mov	r0, #0x1
 	strb	r0, [r1]
-	ldr	r0, .L208+0x8
+	ldr	r0, .L204+0x8
 	str	r4, [r0]
 	pop	{r4}
 	pop	{r0}
 	bx	r0
-.L209:
+.L205:
 	.align	2, 0
-.L208:
+.L204:
 	.word	gStringVar4
 	.word	sSaveDialogIsPrinting
 	.word	sSaveDialogCB
@@ -1515,38 +1496,38 @@ task50_save_game:
 	lsl	r0, r0, #0x18
 	lsr	r1, r0, #0x18
 	cmp	r1, #0x1
-	beq	.L215	@cond_branch
+	beq	.L211	@cond_branch
 	cmp	r1, #0x1
-	bgt	.L218	@cond_branch
+	bgt	.L214	@cond_branch
 	cmp	r1, #0
-	beq	.L210	@cond_branch
-	b	.L211
-.L218:
+	beq	.L206	@cond_branch
+	b	.L207
+.L214:
 	cmp	r1, #0x3
-	bgt	.L211	@cond_branch
-	ldr	r1, .L219
+	bgt	.L207	@cond_branch
+	ldr	r1, .L215
 	mov	r0, #0x0
 	strh	r0, [r1]
-	b	.L211
-.L220:
+	b	.L207
+.L216:
 	.align	2, 0
-.L219:
-	.word	gSpecialVar_Result
 .L215:
-	ldr	r0, .L221
-	strh	r1, [r0]
+	.word	gSpecialVar_Result
 .L211:
+	ldr	r0, .L217
+	strh	r1, [r0]
+.L207:
 	add	r0, r4, #0
 	bl	DestroyTask
 	bl	ScriptContext_Enable
 	bl	RestoreHelpContext
-.L210:
+.L206:
 	pop	{r4}
 	pop	{r0}
 	bx	r0
-.L222:
+.L218:
 	.align	2, 0
-.L221:
+.L217:
 	.word	gSpecialVar_Result
 .Lfe37:
 	.size	 task50_save_game,.Lfe37-task50_save_game
@@ -1576,13 +1557,13 @@ CloseSaveStatsWindow_:
 	.type	 SetSaveDialogDelayTo60Frames,function
 	.thumb_func
 SetSaveDialogDelayTo60Frames:
-	ldr	r1, .L226
+	ldr	r1, .L222
 	mov	r0, #0x3c
 	strb	r0, [r1]
 	bx	lr
-.L227:
+.L223:
 	.align	2, 0
-.L226:
+.L222:
 	.word	sSaveDialogDelay
 .Lfe40:
 	.size	 SetSaveDialogDelayTo60Frames,.Lfe40-SetSaveDialogDelayTo60Frames
@@ -1591,32 +1572,32 @@ SetSaveDialogDelayTo60Frames:
 	.thumb_func
 SaveDialog_Wait60FramesOrAButtonHeld:
 	push	{lr}
-	ldr	r1, .L234
+	ldr	r1, .L230
 	ldrb	r0, [r1]
 	sub	r2, r0, #0x1
 	strb	r2, [r1]
-	ldr	r0, .L234+0x4
+	ldr	r0, .L230+0x4
 	ldrh	r1, [r0, #0x2c]
 	mov	r0, #0x1
 	and	r0, r0, r1
 	cmp	r0, #0
-	bne	.L229	@cond_branch
+	bne	.L225	@cond_branch
 	lsl	r0, r2, #0x18
 	cmp	r0, #0
-	beq	.L231	@cond_branch
+	beq	.L227	@cond_branch
 	mov	r0, #0x0
-	b	.L233
-.L235:
+	b	.L229
+.L231:
 	.align	2, 0
-.L234:
+.L230:
 	.word	sSaveDialogDelay
 	.word	gMain
-.L229:
+.L225:
 	mov	r0, #0x5
 	bl	PlaySE
-.L231:
+.L227:
 	mov	r0, #0x1
-.L233:
+.L229:
 	pop	{r1}
 	bx	r1
 .Lfe41:
@@ -1626,29 +1607,29 @@ SaveDialog_Wait60FramesOrAButtonHeld:
 	.thumb_func
 SaveDialog_Wait60FramesThenCheckAButtonHeld:
 	push	{lr}
-	ldr	r1, .L243
+	ldr	r1, .L239
 	ldrb	r0, [r1]
 	cmp	r0, #0
-	bne	.L237	@cond_branch
-	ldr	r0, .L243+0x4
+	bne	.L233	@cond_branch
+	ldr	r0, .L239+0x4
 	ldrh	r1, [r0, #0x2c]
 	mov	r0, #0x1
 	and	r0, r0, r1
 	cmp	r0, #0
-	beq	.L242	@cond_branch
+	beq	.L238	@cond_branch
 	mov	r0, #0x1
-	b	.L241
-.L244:
+	b	.L237
+.L240:
 	.align	2, 0
-.L243:
+.L239:
 	.word	sSaveDialogDelay
 	.word	gMain
-.L237:
+.L233:
 	sub	r0, r0, #0x1
 	strb	r0, [r1]
-.L242:
+.L238:
 	mov	r0, #0x0
-.L241:
+.L237:
 	pop	{r1}
 	bx	r1
 .Lfe42:
@@ -1667,15 +1648,15 @@ SaveDialogCB_PrintAskSaveText:
 	mov	r0, #0x0
 	bl	DestroyHelpMessageWindow
 	bl	PrintSaveStats
-	ldr	r0, .L246
-	ldr	r1, .L246+0x4
+	ldr	r0, .L242
+	ldr	r1, .L242+0x4
 	bl	PrintSaveTextWithFollowupFunc
 	mov	r0, #0x0
 	pop	{r1}
 	bx	r1
-.L247:
+.L243:
 	.align	2, 0
-.L246:
+.L242:
 	.word	gText_WouldYouLikeToSaveTheGame
 	.word	SaveDialogCB_AskSavePrintYesNoMenu
 .Lfe43:
@@ -1686,15 +1667,15 @@ SaveDialogCB_PrintAskSaveText:
 SaveDialogCB_AskSavePrintYesNoMenu:
 	push	{lr}
 	bl	DisplayYesNoMenuDefaultYes
-	ldr	r1, .L249
-	ldr	r0, .L249+0x4
+	ldr	r1, .L245
+	ldr	r0, .L245+0x4
 	str	r0, [r1]
 	mov	r0, #0x0
 	pop	{r1}
 	bx	r1
-.L250:
+.L246:
 	.align	2, 0
-.L249:
+.L245:
 	.word	sSaveDialogCB
 	.word	SaveDialogCB_AskSaveHandleInput
 .Lfe44:
@@ -1708,60 +1689,60 @@ SaveDialogCB_AskSaveHandleInput:
 	lsl	r0, r0, #0x18
 	asr	r1, r0, #0x18
 	cmp	r1, #0
-	beq	.L253	@cond_branch
+	beq	.L249	@cond_branch
 	cmp	r1, #0
-	bgt	.L262	@cond_branch
+	bgt	.L258	@cond_branch
 	mov	r0, #0x1
 	neg	r0, r0
 	cmp	r1, r0
-	beq	.L259	@cond_branch
-	b	.L252
-.L262:
+	beq	.L255	@cond_branch
+	b	.L248
+.L258:
 	cmp	r1, #0x1
-	beq	.L259	@cond_branch
-	b	.L252
-.L253:
-	ldr	r0, .L264
+	beq	.L255	@cond_branch
+	b	.L248
+.L249:
+	ldr	r0, .L260
 	ldrh	r0, [r0]
 	cmp	r0, #0
-	beq	.L256	@cond_branch
+	beq	.L252	@cond_branch
 	cmp	r0, #0x2
-	bne	.L255	@cond_branch
-.L256:
-	ldr	r0, .L264+0x4
+	bne	.L251	@cond_branch
+.L252:
+	ldr	r0, .L260+0x4
 	ldrb	r0, [r0]
 	cmp	r0, #0
-	bne	.L254	@cond_branch
-.L255:
-	ldr	r1, .L264+0x8
-	ldr	r0, .L264+0xc
+	bne	.L250	@cond_branch
+.L251:
+	ldr	r1, .L260+0x8
+	ldr	r0, .L260+0xc
 	str	r0, [r1]
-	b	.L252
-.L265:
+	b	.L248
+.L261:
 	.align	2, 0
-.L264:
+.L260:
 	.word	gSaveFileStatus
 	.word	gDifferentSaveFile
 	.word	sSaveDialogCB
 	.word	SaveDialogCB_PrintAskOverwriteText
-.L254:
-	ldr	r1, .L266
-	ldr	r0, .L266+0x4
+.L250:
+	ldr	r1, .L262
+	ldr	r0, .L262+0x4
 	str	r0, [r1]
-	b	.L252
-.L267:
+	b	.L248
+.L263:
 	.align	2, 0
-.L266:
+.L262:
 	.word	sSaveDialogCB
 	.word	SaveDialogCB_PrintSavingDontTurnOffPower
-.L259:
+.L255:
 	bl	CloseSaveStatsWindow_
 	bl	CloseSaveMessageWindow
 	mov	r0, #0x2
-	b	.L263
-.L252:
+	b	.L259
+.L248:
 	mov	r0, #0x0
-.L263:
+.L259:
 	pop	{r1}
 	bx	r1
 .Lfe45:
@@ -1771,31 +1752,31 @@ SaveDialogCB_AskSaveHandleInput:
 	.thumb_func
 SaveDialogCB_PrintAskOverwriteText:
 	push	{lr}
-	ldr	r0, .L271
+	ldr	r0, .L267
 	ldrb	r0, [r0]
 	cmp	r0, #0x1
-	bne	.L269	@cond_branch
-	ldr	r0, .L271+0x4
-	ldr	r1, .L271+0x8
+	bne	.L265	@cond_branch
+	ldr	r0, .L267+0x4
+	ldr	r1, .L267+0x8
 	bl	PrintSaveTextWithFollowupFunc
-	b	.L270
-.L272:
+	b	.L266
+.L268:
 	.align	2, 0
-.L271:
+.L267:
 	.word	gDifferentSaveFile
 	.word	gText_DifferentGameFile
 	.word	SaveDialogCB_AskReplacePreviousFilePrintYesNoMenu
-.L269:
-	ldr	r0, .L273
-	ldr	r1, .L273+0x4
+.L265:
+	ldr	r0, .L269
+	ldr	r1, .L269+0x4
 	bl	PrintSaveTextWithFollowupFunc
-.L270:
+.L266:
 	mov	r0, #0x0
 	pop	{r1}
 	bx	r1
-.L274:
+.L270:
 	.align	2, 0
-.L273:
+.L269:
 	.word	gText_AlreadySaveFile_WouldLikeToOverwrite
 	.word	SaveDialogCB_AskOverwritePrintYesNoMenu
 .Lfe46:
@@ -1806,15 +1787,15 @@ SaveDialogCB_PrintAskOverwriteText:
 SaveDialogCB_AskOverwritePrintYesNoMenu:
 	push	{lr}
 	bl	DisplayYesNoMenuDefaultYes
-	ldr	r1, .L276
-	ldr	r0, .L276+0x4
+	ldr	r1, .L272
+	ldr	r0, .L272+0x4
 	str	r0, [r1]
 	mov	r0, #0x0
 	pop	{r1}
 	bx	r1
-.L277:
+.L273:
 	.align	2, 0
-.L276:
+.L272:
 	.word	sSaveDialogCB
 	.word	SaveDialogCB_AskOverwriteOrReplacePreviousFileHandleInput
 .Lfe47:
@@ -1825,15 +1806,15 @@ SaveDialogCB_AskOverwritePrintYesNoMenu:
 SaveDialogCB_AskReplacePreviousFilePrintYesNoMenu:
 	push	{lr}
 	bl	DisplayYesNoMenuDefaultNo
-	ldr	r1, .L279
-	ldr	r0, .L279+0x4
+	ldr	r1, .L275
+	ldr	r0, .L275+0x4
 	str	r0, [r1]
 	mov	r0, #0x0
 	pop	{r1}
 	bx	r1
-.L280:
+.L276:
 	.align	2, 0
-.L279:
+.L275:
 	.word	sSaveDialogCB
 	.word	SaveDialogCB_AskOverwriteOrReplacePreviousFileHandleInput
 .Lfe48:
@@ -1847,36 +1828,36 @@ SaveDialogCB_AskOverwriteOrReplacePreviousFileHandleInput:
 	lsl	r0, r0, #0x18
 	asr	r1, r0, #0x18
 	cmp	r1, #0
-	beq	.L283	@cond_branch
+	beq	.L279	@cond_branch
 	cmp	r1, #0
-	bgt	.L288	@cond_branch
+	bgt	.L284	@cond_branch
 	mov	r0, #0x1
 	neg	r0, r0
 	cmp	r1, r0
-	beq	.L285	@cond_branch
-	b	.L282
-.L288:
+	beq	.L281	@cond_branch
+	b	.L278
+.L284:
 	cmp	r1, #0x1
-	beq	.L285	@cond_branch
-	b	.L282
-.L283:
-	ldr	r1, .L290
-	ldr	r0, .L290+0x4
+	beq	.L281	@cond_branch
+	b	.L278
+.L279:
+	ldr	r1, .L286
+	ldr	r0, .L286+0x4
 	str	r0, [r1]
-	b	.L282
-.L291:
+	b	.L278
+.L287:
 	.align	2, 0
-.L290:
+.L286:
 	.word	sSaveDialogCB
 	.word	SaveDialogCB_PrintSavingDontTurnOffPower
-.L285:
+.L281:
 	bl	CloseSaveStatsWindow_
 	bl	CloseSaveMessageWindow
 	mov	r0, #0x2
-	b	.L289
-.L282:
+	b	.L285
+.L278:
 	mov	r0, #0x0
-.L289:
+.L285:
 	pop	{r1}
 	bx	r1
 .Lfe49:
@@ -1887,15 +1868,15 @@ SaveDialogCB_AskOverwriteOrReplacePreviousFileHandleInput:
 SaveDialogCB_PrintSavingDontTurnOffPower:
 	push	{lr}
 	bl	SaveQuestLogData
-	ldr	r0, .L293
-	ldr	r1, .L293+0x4
+	ldr	r0, .L289
+	ldr	r1, .L289+0x4
 	bl	PrintSaveTextWithFollowupFunc
 	mov	r0, #0x0
 	pop	{r1}
 	bx	r1
-.L294:
+.L290:
 	.align	2, 0
-.L293:
+.L289:
 	.word	gText_SavingDontTurnOffThePower
 	.word	SaveDialogCB_DoSave
 .Lfe50:
@@ -1907,33 +1888,33 @@ SaveDialogCB_DoSave:
 	push	{r4, lr}
 	mov	r0, #0x0
 	bl	IncrementGameStat
-	ldr	r4, .L298
+	ldr	r4, .L294
 	ldrb	r0, [r4]
 	cmp	r0, #0x1
-	bne	.L296	@cond_branch
+	bne	.L292	@cond_branch
 	mov	r0, #0x4
 	bl	TrySavingData
 	mov	r0, #0x0
 	strb	r0, [r4]
-	b	.L297
-.L299:
+	b	.L293
+.L295:
 	.align	2, 0
-.L298:
+.L294:
 	.word	gDifferentSaveFile
-.L296:
+.L292:
 	mov	r0, #0x0
 	bl	TrySavingData
-.L297:
-	ldr	r1, .L300
-	ldr	r0, .L300+0x4
+.L293:
+	ldr	r1, .L296
+	ldr	r0, .L296+0x4
 	str	r0, [r1]
 	mov	r0, #0x0
 	pop	{r4}
 	pop	{r1}
 	bx	r1
-.L301:
+.L297:
 	.align	2, 0
-.L300:
+.L296:
 	.word	sSaveDialogCB
 	.word	SaveDialogCB_PrintSaveResult
 .Lfe51:
@@ -1943,32 +1924,32 @@ SaveDialogCB_DoSave:
 	.thumb_func
 SaveDialogCB_PrintSaveResult:
 	push	{lr}
-	ldr	r0, .L305
+	ldr	r0, .L301
 	ldrh	r0, [r0]
 	cmp	r0, #0x1
-	bne	.L303	@cond_branch
-	ldr	r0, .L305+0x4
-	ldr	r1, .L305+0x8
+	bne	.L299	@cond_branch
+	ldr	r0, .L301+0x4
+	ldr	r1, .L301+0x8
 	bl	PrintSaveTextWithFollowupFunc
-	b	.L304
-.L306:
+	b	.L300
+.L302:
 	.align	2, 0
-.L305:
+.L301:
 	.word	gSaveAttemptStatus
 	.word	gText_PlayerSavedTheGame
 	.word	SaveDialogCB_WaitPrintSuccessAndPlaySE
-.L303:
-	ldr	r0, .L307
-	ldr	r1, .L307+0x4
+.L299:
+	ldr	r0, .L303
+	ldr	r1, .L303+0x4
 	bl	PrintSaveTextWithFollowupFunc
-.L304:
+.L300:
 	bl	SetSaveDialogDelayTo60Frames
 	mov	r0, #0x0
 	pop	{r1}
 	bx	r1
-.L308:
+.L304:
 	.align	2, 0
-.L307:
+.L303:
 	.word	gText_SaveError_PleaseExchangeBackupMemory
 	.word	SaveDialogCB_WaitPrintErrorAndPlaySE
 .Lfe52:
@@ -1981,19 +1962,19 @@ SaveDialogCB_WaitPrintSuccessAndPlaySE:
 	bl	RunTextPrinters_CheckPrinter0Active
 	lsl	r0, r0, #0x10
 	cmp	r0, #0
-	bne	.L310	@cond_branch
+	bne	.L306	@cond_branch
 	mov	r0, #0x30
 	bl	PlaySE
-	ldr	r1, .L311
-	ldr	r0, .L311+0x4
+	ldr	r1, .L307
+	ldr	r0, .L307+0x4
 	str	r0, [r1]
-.L310:
+.L306:
 	mov	r0, #0x0
 	pop	{r1}
 	bx	r1
-.L312:
+.L308:
 	.align	2, 0
-.L311:
+.L307:
 	.word	sSaveDialogCB
 	.word	SaveDialogCB_ReturnSuccess
 .Lfe53:
@@ -2006,17 +1987,17 @@ SaveDialogCB_ReturnSuccess:
 	bl	IsSEPlaying
 	lsl	r0, r0, #0x18
 	cmp	r0, #0
-	bne	.L314	@cond_branch
+	bne	.L310	@cond_branch
 	bl	SaveDialog_Wait60FramesOrAButtonHeld
 	lsl	r0, r0, #0x18
 	cmp	r0, #0
-	beq	.L314	@cond_branch
+	beq	.L310	@cond_branch
 	bl	CloseSaveStatsWindow_
 	mov	r0, #0x1
-	b	.L315
-.L314:
+	b	.L311
+.L310:
 	mov	r0, #0x0
-.L315:
+.L311:
 	pop	{r1}
 	bx	r1
 .Lfe54:
@@ -2029,19 +2010,19 @@ SaveDialogCB_WaitPrintErrorAndPlaySE:
 	bl	RunTextPrinters_CheckPrinter0Active
 	lsl	r0, r0, #0x10
 	cmp	r0, #0
-	bne	.L317	@cond_branch
+	bne	.L313	@cond_branch
 	mov	r0, #0x16
 	bl	PlaySE
-	ldr	r1, .L318
-	ldr	r0, .L318+0x4
+	ldr	r1, .L314
+	ldr	r0, .L314+0x4
 	str	r0, [r1]
-.L317:
+.L313:
 	mov	r0, #0x0
 	pop	{r1}
 	bx	r1
-.L319:
+.L315:
 	.align	2, 0
-.L318:
+.L314:
 	.word	sSaveDialogCB
 	.word	SaveDialogCB_ReturnError
 .Lfe55:
@@ -2054,13 +2035,13 @@ SaveDialogCB_ReturnError:
 	bl	SaveDialog_Wait60FramesThenCheckAButtonHeld
 	lsl	r0, r0, #0x18
 	cmp	r0, #0
-	beq	.L321	@cond_branch
+	beq	.L317	@cond_branch
 	bl	CloseSaveStatsWindow_
 	mov	r0, #0x3
-	b	.L322
-.L321:
+	b	.L318
+.L317:
 	mov	r0, #0x0
-.L322:
+.L318:
 	pop	{r1}
 	bx	r1
 .Lfe56:
@@ -2087,27 +2068,27 @@ DoSetUpSaveAfterLinkBattle:
 	mov	r8, r0
 	ldrb	r0, [r0]
 	cmp	r0, #0x4
-	bls	.LCB2427
-	b	.L325	@long jump
-.LCB2427:
+	bls	.LCB2400
+	b	.L321	@long jump
+.LCB2400:
 	lsl	r0, r0, #0x2
-	ldr	r1, .L339
+	ldr	r1, .L335
 	add	r0, r0, r1
 	ldr	r0, [r0]
 	mov	pc, r0
-.L340:
-	.align	2, 0
-.L339:
-	.word	.L336
-	.align	2, 0
-	.align	2, 0
 .L336:
-	.word	.L326
+	.align	2, 0
+.L335:
 	.word	.L332
-	.word	.L333
-	.word	.L334
-	.word	.L335
-.L326:
+	.align	2, 0
+	.align	2, 0
+.L332:
+	.word	.L322
+	.word	.L328
+	.word	.L329
+	.word	.L330
+	.word	.L331
+.L322:
 	mov	r0, #0x0
 	mov	r1, #0x0
 	bl	SetGpuReg
@@ -2119,11 +2100,11 @@ DoSetUpSaveAfterLinkBattle:
 	mov	r1, sp
 	mov	r0, #0x0
 	strh	r0, [r1]
-	ldr	r1, .L341
+	ldr	r1, .L337
 	mov	r0, sp
 	str	r0, [r1]
 	str	r2, [r1, #0x4]
-	ldr	r0, .L341+0x4
+	ldr	r0, .L337+0x4
 	str	r0, [r1, #0x8]
 	ldr	r0, [r1, #0x8]
 	mov	r2, #0xc0
@@ -2134,11 +2115,11 @@ DoSetUpSaveAfterLinkBattle:
 	mov	r6, #0x0
 	mov	r5, #0x80
 	lsl	r5, r5, #0x5
-	ldr	r7, .L341+0x8
+	ldr	r7, .L337+0x8
 	mov	r0, #0x81
 	lsl	r0, r0, #0x18
 	mov	ip, r0
-.L329:
+.L325:
 	strh	r6, [r4]
 	mov	r0, sp
 	str	r0, [r1]
@@ -2148,7 +2129,7 @@ DoSetUpSaveAfterLinkBattle:
 	add	r2, r2, r5
 	sub	r3, r3, r5
 	cmp	r3, r5
-	bhi	.L329	@cond_branch
+	bhi	.L325	@cond_branch
 	strh	r6, [r4]
 	mov	r0, sp
 	str	r0, [r1]
@@ -2158,39 +2139,39 @@ DoSetUpSaveAfterLinkBattle:
 	orr	r0, r0, r2
 	str	r0, [r1, #0x8]
 	ldr	r0, [r1, #0x8]
-	b	.L325
-.L342:
+	b	.L321
+.L338:
 	.align	2, 0
-.L341:
+.L337:
 	.word	0x40000d4
 	.word	-0x7efffe00
 	.word	-0x7efff800
-.L332:
+.L328:
 	bl	ResetSpriteData
 	bl	ResetTasks
 	bl	ResetPaletteFade
 	bl	ScanlineEffect_Clear
-	b	.L325
-.L333:
+	b	.L321
+.L329:
 	mov	r0, #0x0
 	bl	ResetBgsAndClearDma3BusyFlags
-	ldr	r1, .L343
+	ldr	r1, .L339
 	mov	r0, #0x0
 	mov	r2, #0x1
 	bl	InitBgsFromTemplates
-	ldr	r0, .L343+0x4
+	ldr	r0, .L339+0x4
 	bl	InitWindows
 	mov	r0, #0x0
 	mov	r1, #0x8
 	mov	r2, #0xf0
 	bl	LoadStdWindowGfx
-	b	.L325
-.L344:
+	b	.L321
+.L340:
 	.align	2, 0
-.L343:
+.L339:
 	.word	sBGTemplates_AfterLinkSaveMessage
 	.word	sWindowTemplates_AfterLinkSaveMessage
-.L334:
+.L330:
 	mov	r0, #0x0
 	bl	ShowBg
 	mov	r0, #0x1
@@ -2198,25 +2179,25 @@ DoSetUpSaveAfterLinkBattle:
 	mov	r1, #0x10
 	mov	r2, #0x0
 	bl	BlendPalettes
-	ldr	r0, .L345
+	ldr	r0, .L341
 	bl	SetVBlankCallback
 	mov	r0, #0x1
 	bl	EnableInterrupts
-	b	.L325
-.L346:
+	b	.L321
+.L342:
 	.align	2, 0
-.L345:
+.L341:
 	.word	VBlankCB_WhileSavingAfterLinkBattle
-.L335:
+.L331:
 	mov	r0, #0x1
-	b	.L338
-.L325:
+	b	.L334
+.L321:
 	mov	r1, r8
 	ldrb	r0, [r1]
 	add	r0, r0, #0x1
 	strb	r0, [r1]
 	mov	r0, #0x0
-.L338:
+.L334:
 	add	sp, sp, #0x4
 	pop	{r3}
 	mov	r8, r3
@@ -2231,21 +2212,21 @@ DoSetUpSaveAfterLinkBattle:
 	.thumb_func
 CB2_SetUpSaveAfterLinkBattle:
 	push	{lr}
-	ldr	r0, .L349
+	ldr	r0, .L345
 	bl	DoSetUpSaveAfterLinkBattle
 	cmp	r0, #0
-	beq	.L348	@cond_branch
-	ldr	r0, .L349+0x4
+	beq	.L344	@cond_branch
+	ldr	r0, .L345+0x4
 	mov	r1, #0x50
 	bl	CreateTask
-	ldr	r0, .L349+0x8
+	ldr	r0, .L345+0x8
 	bl	SetMainCallback2
-.L348:
+.L344:
 	pop	{r0}
 	bx	r0
-.L350:
+.L346:
 	.align	2, 0
-.L349:
+.L345:
 	.word	gMain+0x438
 	.word	task50_after_link_battle_save
 	.word	CB2_WhileSavingAfterLinkBattle
@@ -2273,48 +2254,48 @@ task50_after_link_battle_save:
 	lsl	r0, r4, #0x2
 	add	r0, r0, r4
 	lsl	r0, r0, #0x3
-	ldr	r1, .L370
+	ldr	r1, .L366
 	add	r5, r0, r1
-	ldr	r0, .L370+0x4
+	ldr	r0, .L366+0x4
 	ldrb	r1, [r0, #0x7]
 	mov	r0, #0x80
 	and	r0, r0, r1
 	cmp	r0, #0
-	beq	.LCB2670
-	b	.L353	@long jump
-.LCB2670:
+	beq	.LCB2643
+	b	.L349	@long jump
+.LCB2643:
 	mov	r1, #0x0
 	ldrsh	r0, [r5, r1]
 	cmp	r0, #0x6
-	bls	.LCB2674
-	b	.L353	@long jump
-.LCB2674:
+	bls	.LCB2647
+	b	.L349	@long jump
+.LCB2647:
 	lsl	r0, r0, #0x2
-	ldr	r1, .L370+0x8
+	ldr	r1, .L366+0x8
 	add	r0, r0, r1
 	ldr	r0, [r0]
 	mov	pc, r0
-.L371:
-	.align	2, 0
-.L370:
-	.word	gTasks+0x8
-	.word	gPaletteFade
-	.word	.L366
-	.align	2, 0
+.L367:
 	.align	2, 0
 .L366:
+	.word	gTasks+0x8
+	.word	gPaletteFade
+	.word	.L362
+	.align	2, 0
+	.align	2, 0
+.L362:
+	.word	.L351
+	.word	.L354
 	.word	.L355
+	.word	.L357
 	.word	.L358
 	.word	.L359
-	.word	.L361
-	.word	.L362
-	.word	.L363
-	.word	.L364
-.L355:
+	.word	.L360
+.L351:
 	mov	r0, #0x0
 	mov	r1, #0x11
 	bl	FillWindowPixelBuffer
-	ldr	r2, .L372
+	ldr	r2, .L368
 	mov	r4, #0x0
 	str	r4, [sp]
 	mov	r0, #0x2
@@ -2343,36 +2324,36 @@ task50_after_link_battle_save:
 	mov	r2, #0x10
 	mov	r3, #0x0
 	bl	BeginNormalPaletteFade
-	ldr	r0, .L372+0x4
+	ldr	r0, .L368+0x4
 	ldrb	r0, [r0]
 	cmp	r0, #0
-	beq	.L356	@cond_branch
+	beq	.L352	@cond_branch
 	bl	InUnionRoom
 	cmp	r0, #0
-	beq	.L356	@cond_branch
+	beq	.L352	@cond_branch
 	mov	r0, #0x5
-	b	.L368
-.L373:
+	b	.L364
+.L369:
 	.align	2, 0
-.L372:
+.L368:
 	.word	gText_SavingDontTurnOffThePower2
 	.word	gWirelessCommType
-.L356:
+.L352:
 	mov	r0, #0x1
-	b	.L368
-.L358:
+	b	.L364
+.L354:
 	bl	SetContinueGameWarpStatusToDynamicWarp
 	bl	WriteSaveBlock2
 	mov	r0, #0x2
-	b	.L368
-.L359:
+	b	.L364
+.L355:
 	bl	WriteSaveBlock1Sector
 	lsl	r0, r0, #0x18
 	cmp	r0, #0
-	beq	.L353	@cond_branch
+	beq	.L349	@cond_branch
 	bl	ClearContinueGameWarpStatus2
-	b	.L369
-.L361:
+	b	.L365
+.L357:
 	mov	r0, #0x1
 	neg	r0, r0
 	mov	r1, #0x0
@@ -2381,47 +2362,47 @@ task50_after_link_battle_save:
 	mov	r3, #0x10
 	bl	BeginNormalPaletteFade
 	mov	r0, #0x4
-	b	.L368
-.L362:
+	b	.L364
+.L358:
 	bl	FreeAllWindowBuffers
-	ldr	r0, .L374
+	ldr	r0, .L370
 	ldr	r0, [r0, #0x8]
 	bl	SetMainCallback2
 	add	r0, r4, #0
 	bl	DestroyTask
-	b	.L353
-.L375:
+	b	.L349
+.L371:
 	.align	2, 0
-.L374:
+.L370:
 	.word	gMain
-.L363:
-	ldr	r0, .L376
+.L359:
+	ldr	r0, .L372
 	mov	r1, #0x5
 	bl	CreateTask
 	mov	r0, #0x6
-	b	.L368
-.L377:
+	b	.L364
+.L373:
 	.align	2, 0
-.L376:
+.L372:
 	.word	Task_LinkFullSave
-.L364:
-	ldr	r0, .L378
+.L360:
+	ldr	r0, .L374
 	bl	FuncIsActiveTask
 	lsl	r0, r0, #0x18
 	cmp	r0, #0
-	bne	.L353	@cond_branch
-.L369:
+	bne	.L349	@cond_branch
+.L365:
 	mov	r0, #0x3
-.L368:
+.L364:
 	strh	r0, [r5]
-.L353:
+.L349:
 	add	sp, sp, #0x10
 	pop	{r4, r5}
 	pop	{r0}
 	bx	r0
-.L379:
+.L375:
 	.align	2, 0
-.L378:
+.L374:
 	.word	Task_LinkFullSave
 .Lfe61:
 	.size	 task50_after_link_battle_save,.Lfe61-task50_after_link_battle_save
@@ -2434,12 +2415,12 @@ PrintSaveStats:
 	mov	r6, r8
 	push	{r6, r7}
 	add	sp, sp, #-0xc
-	ldr	r5, .L382
-	ldr	r0, .L382+0x4
+	ldr	r5, .L378
+	ldr	r0, .L378+0x4
 	bl	AddWindow
 	strb	r0, [r5]
 	ldrb	r0, [r5]
-	ldr	r4, .L382+0x8
+	ldr	r4, .L378+0x8
 	add	r1, r4, #0
 	mov	r2, #0xd0
 	bl	LoadStdWindowGfx
@@ -2448,7 +2429,7 @@ PrintSaveStats:
 	add	r2, r4, #0
 	mov	r3, #0xd
 	bl	DrawStdFrameWithCustomTileAndPalette
-	ldr	r4, .L382+0xc
+	ldr	r4, .L378+0xc
 	mov	r0, #0x3
 	add	r1, r4, #0
 	mov	r2, #0x8
@@ -2465,7 +2446,7 @@ PrintSaveStats:
 	lsl	r2, r2, #0x18
 	lsr	r2, r2, #0x18
 	ldrb	r0, [r5]
-	ldr	r1, .L382+0x10
+	ldr	r1, .L378+0x10
 	str	r1, [sp]
 	str	r6, [sp, #0x4]
 	str	r4, [sp, #0x8]
@@ -2477,11 +2458,11 @@ PrintSaveStats:
 	add	r2, r6, #0
 	bl	GetStringWidth
 	ldrb	r0, [r5]
-	ldr	r1, .L382+0x14
+	ldr	r1, .L378+0x14
 	mov	r9, r1
 	str	r1, [sp]
 	str	r6, [sp, #0x4]
-	ldr	r1, .L382+0x18
+	ldr	r1, .L378+0x18
 	str	r1, [sp, #0x8]
 	mov	r1, #0x0
 	mov	r2, #0x2
@@ -2500,7 +2481,7 @@ PrintSaveStats:
 	mov	r1, r9
 	str	r1, [sp]
 	str	r6, [sp, #0x4]
-	ldr	r1, .L382+0x1c
+	ldr	r1, .L378+0x1c
 	str	r1, [sp, #0x8]
 	mov	r1, #0x0
 	mov	r2, #0x2
@@ -2511,7 +2492,7 @@ PrintSaveStats:
 	mov	r2, #0x2
 	bl	SaveStatToString
 	ldrb	r0, [r5]
-	ldr	r1, .L382+0x20
+	ldr	r1, .L378+0x20
 	mov	r8, r1
 	str	r1, [sp]
 	str	r6, [sp, #0x4]
@@ -2521,17 +2502,17 @@ PrintSaveStats:
 	mov	r3, #0x1c
 	bl	AddTextPrinterParameterized3
 	mov	r7, #0x2a
-	ldr	r0, .L382+0x24
+	ldr	r0, .L378+0x24
 	bl	FlagGet
 	lsl	r0, r0, #0x18
 	lsr	r0, r0, #0x18
 	cmp	r0, #0x1
-	bne	.L381	@cond_branch
+	bne	.L377	@cond_branch
 	ldrb	r0, [r5]
 	mov	r1, r9
 	str	r1, [sp]
 	str	r6, [sp, #0x4]
-	ldr	r1, .L382+0x28
+	ldr	r1, .L378+0x28
 	str	r1, [sp, #0x8]
 	mov	r1, #0x0
 	mov	r2, #0x2
@@ -2551,12 +2532,12 @@ PrintSaveStats:
 	mov	r3, #0x2a
 	bl	AddTextPrinterParameterized3
 	mov	r7, #0x38
-.L381:
+.L377:
 	ldrb	r0, [r5]
 	mov	r1, r9
 	str	r1, [sp]
 	str	r6, [sp, #0x4]
-	ldr	r1, .L382+0x2c
+	ldr	r1, .L378+0x2c
 	str	r1, [sp, #0x8]
 	mov	r1, #0x0
 	mov	r2, #0x2
@@ -2585,9 +2566,9 @@ PrintSaveStats:
 	pop	{r4, r5, r6, r7}
 	pop	{r0}
 	bx	r0
-.L383:
+.L379:
 	.align	2, 0
-.L382:
+.L378:
 	.word	sSaveStatsWindowId
 	.word	sSaveStatsWindowTemplate
 	.word	0x21d
@@ -2607,7 +2588,7 @@ PrintSaveStats:
 	.thumb_func
 CloseSaveStatsWindow:
 	push	{r4, lr}
-	ldr	r4, .L385
+	ldr	r4, .L381
 	ldrb	r0, [r4]
 	mov	r1, #0x0
 	bl	ClearStdWindowAndFrame
@@ -2616,9 +2597,9 @@ CloseSaveStatsWindow:
 	pop	{r4}
 	pop	{r0}
 	bx	r0
-.L386:
+.L382:
 	.align	2, 0
-.L385:
+.L381:
 	.word	sSaveStatsWindowId
 .Lfe63:
 	.size	 CloseSaveStatsWindow,.Lfe63-CloseSaveStatsWindow

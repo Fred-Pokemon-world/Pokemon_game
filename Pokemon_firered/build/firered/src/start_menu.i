@@ -9856,10 +9856,10 @@ static void AppendToStartMenuItems(u8 newEntry)
 
 static void SetUpStartMenu_NormalField(void)
 {
-    if (FlagGet(((((0x4FF + 1) + 768 - 1) + 1) + 0x29)) == 1)
-        AppendToStartMenuItems(STARTMENU_POKEDEX);
-    if (FlagGet(((((0x4FF + 1) + 768 - 1) + 1) + 0x28)) == 1)
-        AppendToStartMenuItems(STARTMENU_POKEMON);
+
+    AppendToStartMenuItems(STARTMENU_POKEDEX);
+
+    AppendToStartMenuItems(STARTMENU_POKEMON);
     AppendToStartMenuItems(STARTMENU_BAG);
     AppendToStartMenuItems(STARTMENU_PLAYER);
     AppendToStartMenuItems(STARTMENU_SAVE);
