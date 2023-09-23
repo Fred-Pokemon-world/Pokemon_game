@@ -1050,7 +1050,7 @@ const struct Trainer gTrainers[] = {
         .items = {},
         .doubleBattle = FALSE,
         .aiFlags = AI_SCRIPT_CHECK_BAD_MOVE,
-        .party = NO_ITEM_DEFAULT_MOVES(sParty_BugCatcherColton),
+        .party = NO_ITEM_CUSTOM_MOVES(sParty_BugCatcherColton),
     },
     [TRAINER_BUG_CATCHER_GREG] = {
         .trainerClass = TRAINER_CLASS_BUG_CATCHER,
@@ -1110,7 +1110,7 @@ const struct Trainer gTrainers[] = {
         .items = {},
         .doubleBattle = TRUE,
         .aiFlags = AI_SCRIPT_CHECK_BAD_MOVE,
-        .party = NO_ITEM_DEFAULT_MOVES(sParty_BugCatcherKeigo),
+        .party = NO_ITEM_CUSTOM_MOVES(sParty_BugCatcherKeigo),
     },
     [TRAINER_BUG_CATCHER_ELIJAH] = {
         .trainerClass = TRAINER_CLASS_BUG_CATCHER,

@@ -17526,22 +17526,14 @@ static const struct TrainerMonNoItemDefaultMoves sParty_BugCatcherSammy[] = {
     },
 };
 
-static const struct TrainerMonNoItemDefaultMoves sParty_BugCatcherColton[] = {
+static const struct TrainerMonNoItemCustomMoves sParty_BugCatcherColton[] = {
     {
         .iv = 0,
         .lvl = 10,
-        .species = 10,
+        .species = 42,
+        .moves = {74, 48},
     },
-    {
-        .iv = 0,
-        .lvl = 10,
-        .species = 13,
-    },
-    {
-        .iv = 0,
-        .lvl = 10,
-        .species = 10,
-    },
+
 };
 
 static const struct TrainerMonNoItemDefaultMoves sParty_BugCatcherGreg[] = {
@@ -17634,16 +17626,12 @@ static const struct TrainerMonNoItemDefaultMoves sParty_BugCatcherCale[] = {
     },
 };
 
-static const struct TrainerMonNoItemDefaultMoves sParty_BugCatcherKeigo[] = {
+static const struct TrainerMonNoItemCustomMoves sParty_BugCatcherKeigo[] = {
     {
         .iv = 0,
         .lvl = 16,
-        .species = 13,
-    },
-    {
-        .iv = 0,
-        .lvl = 16,
-        .species = 13,
+        .species = 42,
+        .moves = {10, 353},
     },
 };
 
@@ -29236,7 +29224,7 @@ const struct Trainer gTrainers[] = {
         .items = {},
         .doubleBattle = 0,
         .aiFlags = (1 << 0),
-        .party = { .NoItemDefaultMoves = sParty_BugCatcherColton }, .partySize = (sizeof(sParty_BugCatcherColton) / sizeof((sParty_BugCatcherColton)[0])), .partyFlags = 0,
+        .party = { .NoItemCustomMoves = sParty_BugCatcherColton }, .partySize = (sizeof(sParty_BugCatcherColton) / sizeof((sParty_BugCatcherColton)[0])), .partyFlags = (1 << 0),
     },
     [106] = {
         .trainerClass = 58,
@@ -29296,7 +29284,7 @@ const struct Trainer gTrainers[] = {
         .items = {},
         .doubleBattle = 1,
         .aiFlags = (1 << 0),
-        .party = { .NoItemDefaultMoves = sParty_BugCatcherKeigo }, .partySize = (sizeof(sParty_BugCatcherKeigo) / sizeof((sParty_BugCatcherKeigo)[0])), .partyFlags = 0,
+        .party = { .NoItemCustomMoves = sParty_BugCatcherKeigo }, .partySize = (sizeof(sParty_BugCatcherKeigo) / sizeof((sParty_BugCatcherKeigo)[0])), .partyFlags = (1 << 0),
     },
     [112] = {
         .trainerClass = 58,
@@ -36086,7 +36074,7 @@ const u8 gMoveNames[355][12 + 1] = {
     [45] = _("GROWL"),
     [46] = _("ROAR"),
     [47] = _("SING"),
-    [48] = _("SUPERSONIC"),
+    [48] = _("PRACTICE"),
     [49] = _("SONICBOOM"),
     [50] = _("DISABLE"),
     [51] = _("ACID"),
