@@ -170,8 +170,8 @@ gPikachuIntro_Text_Page3::
 gOakSpeech_Text_WelcomeToTheWorld::
     .string "Hello, Annabelle!\n"
     .string "Glad to meet you!\p"
-    .string "I believe you already received your \n"
-    .string "mission message from your phone\p!"
+    .string "I believe you already received your\n"
+    .string "mission message from your phone \p"
     .string "Welcome to the world of POKéMON!\n"
     .string "My name is Kannazuki.\p"
 
@@ -219,6 +219,4 @@ gOakSpeech_Text_RememberRivalsName::
 gOakSpeech_Text_LetsGo::
     .string "{PLAYER}!\p"
     .string "Your very own POKéMON legend is\n"
-    .string "about to unfold!\p"
-    .string "A world of dreams and adventures\n"
-    .string "with POKéMON awaits! Let's go!$"
+    .string "about to unfold!$"

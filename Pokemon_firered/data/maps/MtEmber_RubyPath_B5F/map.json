@@ -28,6 +28,34 @@
       "trainer_sight_or_berry_tree_id": "0",
       "script": "MtEmber_RubyPath_B5F_EventScript_Ruby",
       "flag": "FLAG_HIDE_RUBY"
+    },
+    {
+      "type": "object",
+      "graphics_id": "OBJ_EVENT_GFX_FOSSIL",
+      "x": 6,
+      "y": 4,
+      "elevation": 3,
+      "movement_type": "MOVEMENT_TYPE_FACE_UP",
+      "movement_range_x": 1,
+      "movement_range_y": 1,
+      "trainer_type": "TRAINER_TYPE_NONE",
+      "trainer_sight_or_berry_tree_id": "0",
+      "script": "0x0",
+      "flag": "FLAG_HIDE_OAK_IN_PALLET_TOWN"
+    },
+    {
+      "type": "object",
+      "graphics_id": "OBJ_EVENT_GFX_DAISY",
+      "x": 11,
+      "y": 7,
+      "elevation": 3,
+      "movement_type": "MOVEMENT_TYPE_FACE_UP",
+      "movement_range_x": 1,
+      "movement_range_y": 1,
+      "trainer_type": "TRAINER_TYPE_NONE",
+      "trainer_sight_or_berry_tree_id": "0",
+      "script": "0x0",
+      "flag": "FLAG_HIDE_Daisy"
     }
   ],
   "warp_events": [
@@ -35,12 +63,47 @@
       "x": 11,
       "y": 7,
       "elevation": 3,
-      "dest_map": "MAP_MT_EMBER_RUBY_PATH_B4F",
-      "dest_warp_id": "0"
+      "dest_map": "MAP_PALLET_TOWN",
+      "dest_warp_id": "2"
     }
   ],
   "coord_events": [
-
+    {
+      "type": "trigger",
+      "x": 8,
+      "y": 7,
+      "elevation": 0,
+      "var": "VAR_TEMP_0",
+      "var_value": "0",
+      "script": "MtEmber_RubyPath_B5F_EventScript_TriggerLeft"
+    },
+    {
+      "type": "trigger",
+      "x": 7,
+      "y": 6,
+      "elevation": 0,
+      "var": "VAR_TEMP_0",
+      "var_value": "0",
+      "script": "MtEmber_RubyPath_B5F_EventScript_TriggerUp"
+    },
+    {
+      "type": "trigger",
+      "x": 7,
+      "y": 8,
+      "elevation": 0,
+      "var": "VAR_TEMP_0",
+      "var_value": "0",
+      "script": "MtEmber_RubyPath_B5F_EventScript_TriggerDown"
+    },
+    {
+      "type": "trigger",
+      "x": 6,
+      "y": 7,
+      "elevation": 0,
+      "var": "VAR_TEMP_0",
+      "var_value": "0",
+      "script": "MtEmber_RubyPath_B5F_EventScript_TriggerUp"
+    }
   ],
   "bg_events": [
     {

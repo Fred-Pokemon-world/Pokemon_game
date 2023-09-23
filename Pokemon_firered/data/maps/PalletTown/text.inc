@@ -2,6 +2,11 @@ PalletTown_Text_OakDontGoOut::
     .string "OAK: Hey! Wait!\n"
     .string "Don't go out!$"
 
+PalletTown_Text_Daisy1::
+    .string "Stella: Hey! Wait!\n"
+    .string "Don't touch the comet!$"
+
+
 PalletTown_Text_OakGrassUnsafeNeedMon::
     .string "OAK: It's unsafe!\n"
     .string "Wild POKéMON live in tall grass!\p"
@@ -9,6 +14,16 @@ PalletTown_Text_OakGrassUnsafeNeedMon::
     .string "your protection.\p"
     .string "I know!\n"
     .string "Here, come with me!$"
+
+PalletTown_Text_Daisy2::
+    .string "This stone is from moon\n"
+    .string "It is a moonstone\p"
+    .string "But it looks like a special \n"
+    .string "moonstone.\p"
+    .string "It is from another world\n"
+    .string "Where everything is reversed.\p"
+    .string "Do you want to come with me\n"
+    .string "To this new world?$"
 
 PalletTown_Text_RaisingMonsToo::
     .string "I'm raising POKéMON, too.\p"

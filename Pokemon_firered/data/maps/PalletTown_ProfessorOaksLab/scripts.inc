@@ -1091,8 +1091,9 @@ PalletTown_ProfessorOaksLab_EventScript_jigglypuff::
 	lock
 	faceplayer
 	givemon SPECIES_JIGGLYPUFF, 50
-	msgbox PalletTown_ProfessorOaksLab_Text_ThoseArePokeBalls
+	msgbox PalletTown_ProfessorOaksLab_Text_Jigglypuff
 	release
+	removeobject VAR_LAST_TALKED
 	end
 
 

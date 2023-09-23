@@ -236,6 +236,11 @@ PalletTown_ProfessorOaksLab_Text_ThoseArePokeBalls::
     .string "Those are POKé BALLS.\n"
     .string "They contain POKéMON!$"
 
+PalletTown_ProfessorOaksLab_Text_Jigglypuff::
+    .string "Hi Anna, you are finally here.\n"
+    .string "Let's go to the cave together\p"
+    .string "I will protect you.$"
+
 PalletTown_ProfessorOaksLab_Text_OaksLastMon::
     .string "That's PROF. OAK's last POKéMON.$"
 
