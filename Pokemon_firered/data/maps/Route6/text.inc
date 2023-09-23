@@ -22,15 +22,15 @@ Route6_Text_NancyPostBattle::
     .string "Whisper…$"
 
 Route6_Text_KeigoIntro::
-    .string "There aren't many bugs out here.$"
+    .string "I know the secret of the comet…\n"
+    .string "I won’t let you pass!$"
 
 Route6_Text_KeigoDefeat::
-    .string "No!\n"
-    .string "You're kidding!$"
+    .string "You can have the comet,\n"
+    .string "but I’ll see you again soon!$"
 
 Route6_Text_KeigoPostBattle::
-    .string "I like bugs, so I'm going back to\n"
-    .string "VIRIDIAN FOREST.$"
+    .string "I once had a promise…$"
 
 Route6_Text_JeffIntro::
     .string "Huh?\n"

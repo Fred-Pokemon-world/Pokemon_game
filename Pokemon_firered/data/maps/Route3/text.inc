@@ -6,14 +6,13 @@ Route3_Text_TunnelFromCeruleanTiring::
 
 Route3_Text_ColtonIntro::
     .string "Hey!\n"
-    .string "I saw you in VIRIDIAN FOREST!$"
+    .string "I will stop you here!$"
 
 Route3_Text_ColtonDefeat::
-    .string "You beat me again!$"
+    .string "You shall pass, but never forget the cold you have been through.$"
 
 Route3_Text_ColtonPostBattle::
-    .string "There are other kinds of POKéMON\n"
-    .string "than the ones you find in forests.$"
+    .string "Find him.$"
 
 Route3_Text_BenIntro::
     .string "Hi!\n"
