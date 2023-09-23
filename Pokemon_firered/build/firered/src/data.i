@@ -17643,11 +17643,6 @@ static const struct TrainerMonNoItemDefaultMoves sParty_BugCatcherKeigo[] = {
     {
         .iv = 0,
         .lvl = 16,
-        .species = 10,
-    },
-    {
-        .iv = 0,
-        .lvl = 16,
         .species = 13,
     },
 };
@@ -27697,18 +27692,8 @@ static const struct TrainerMonNoItemCustomMoves sParty_CoolCoupleLexNya2[] = {
 static const struct TrainerMonNoItemDefaultMoves sParty_BugCatcherColton2[] = {
     {
         .iv = 20,
-        .lvl = 19,
-        .species = 11,
-    },
-    {
-        .iv = 20,
-        .lvl = 19,
-        .species = 13,
-    },
-    {
-        .iv = 20,
-        .lvl = 19,
-        .species = 11,
+        .lvl = 40,
+        .species = 84,
     },
 };
 
@@ -29246,8 +29231,8 @@ const struct Trainer gTrainers[] = {
     [105] = {
         .trainerClass = 58,
         .encounterMusic_gender = 0,
-        .trainerPic = 83,
-        .trainerName = _("COLTON"),
+        .trainerPic = 55,
+        .trainerName = _("Samuel"),
         .items = {},
         .doubleBattle = 0,
         .aiFlags = (1 << 0),
@@ -29304,12 +29289,12 @@ const struct Trainer gTrainers[] = {
         .party = { .NoItemDefaultMoves = sParty_BugCatcherCale }, .partySize = (sizeof(sParty_BugCatcherCale) / sizeof((sParty_BugCatcherCale)[0])), .partyFlags = 0,
     },
     [111] = {
-        .trainerClass = 58,
+        .trainerClass = 40,
         .encounterMusic_gender = 0,
-        .trainerPic = 83,
+        .trainerPic = 52,
         .trainerName = _("KEIGO"),
         .items = {},
-        .doubleBattle = 0,
+        .doubleBattle = 1,
         .aiFlags = (1 << 0),
         .party = { .NoItemDefaultMoves = sParty_BugCatcherKeigo }, .partySize = (sizeof(sParty_BugCatcherKeigo) / sizeof((sParty_BugCatcherKeigo)[0])), .partyFlags = 0,
     },
@@ -36406,7 +36391,8 @@ const u8 gMoveNames[355][12 + 1] = {
     [350] = _("ROCK BLAST"),
     [351] = _("SHOCK WAVE"),
     [352] = _("WATER PULSE"),
-    [353] = _("DOOM DESIRE"),
+
+    [353] = _("A PROMISE"),
     [354] = _("PSYCHO BOOST")
 };
 # 306 "src/data.c" 2

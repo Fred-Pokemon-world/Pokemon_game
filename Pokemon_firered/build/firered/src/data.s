@@ -12159,14 +12159,9 @@ sParty_BugCatcherKeigo:
 	.short	0x0
 	.byte	0x10
 	.space	1
-	.short	0xa
-	.space	2
-	.short	0x0
-	.byte	0x10
-	.space	1
 	.short	0xd
 	.space	2
-	.size	 sParty_BugCatcherKeigo,24
+	.size	 sParty_BugCatcherKeigo,16
 	.align	2, 0
 	.type	 sParty_BugCatcherElijah,object
 sParty_BugCatcherElijah:
@@ -23947,21 +23942,11 @@ sParty_CoolCoupleLexNya2:
 	.type	 sParty_BugCatcherColton2,object
 sParty_BugCatcherColton2:
 	.short	0x14
-	.byte	0x13
+	.byte	0x28
 	.space	1
-	.short	0xb
+	.short	0x54
 	.space	2
-	.short	0x14
-	.byte	0x13
-	.space	1
-	.short	0xd
-	.space	2
-	.short	0x14
-	.byte	0x13
-	.space	1
-	.short	0xb
-	.space	2
-	.size	 sParty_BugCatcherColton2,24
+	.size	 sParty_BugCatcherColton2,8
 	.align	2, 0
 	.type	 sParty_BugCatcherColton3,object
 sParty_BugCatcherColton3:
@@ -27075,13 +27060,13 @@ gTrainers:
 	.byte	0x0
 	.byte	0x3a
 	.byte	0x0
-	.byte	0x53
-	.byte	0xbd
-	.byte	0xc9
-	.byte	0xc6
-	.byte	0xce
-	.byte	0xc9
-	.byte	0xc8
+	.byte	0x37
+	.byte	0xcd
+	.byte	0xd5
+	.byte	0xe1
+	.byte	0xe9
+	.byte	0xd9
+	.byte	0xe0
 	.byte	0xff
 	.space	5
 	.space	8
@@ -27179,9 +27164,9 @@ gTrainers:
 	.space	3
 	.word	sParty_BugCatcherCale
 	.byte	0x0
-	.byte	0x3a
+	.byte	0x28
 	.byte	0x0
-	.byte	0x53
+	.byte	0x34
 	.byte	0xc5
 	.byte	0xbf
 	.byte	0xc3
@@ -27190,10 +27175,10 @@ gTrainers:
 	.byte	0xff
 	.space	6
 	.space	8
-	.byte	0x0
+	.byte	0x1
 	.space	3
 	.word	0x1
-	.byte	0x3
+	.byte	0x2
 	.space	3
 	.word	sParty_BugCatcherKeigo
 	.byte	0x0
@@ -38545,7 +38530,7 @@ gTrainers:
 	.byte	0x0
 	.space	3
 	.word	0x1
-	.byte	0x3
+	.byte	0x1
 	.space	3
 	.word	sParty_BugCatcherColton2
 	.byte	0x0
@@ -46219,19 +46204,17 @@ gMoveNames:
 	.byte	0xbf
 	.byte	0xff
 	.space	1
-	.byte	0xbe
-	.byte	0xc9
+	.byte	0xbb
+	.byte	0x0
+	.byte	0xca
+	.byte	0xcc
 	.byte	0xc9
 	.byte	0xc7
-	.byte	0x0
-	.byte	0xbe
-	.byte	0xbf
-	.byte	0xcd
 	.byte	0xc3
-	.byte	0xcc
+	.byte	0xcd
 	.byte	0xbf
 	.byte	0xff
-	.space	1
+	.space	3
 	.byte	0xca
 	.byte	0xcd
 	.byte	0xd3

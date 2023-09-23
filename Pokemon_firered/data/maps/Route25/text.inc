@@ -12,18 +12,18 @@ Route25_Text_JoeyPostBattle::
     .string "POKéMON of different types.$"
 
 Route25_Text_DanIntro::
-    .string "NB is so worried.\n"
+    .string "NB is very worried.\n"
     .string "I won't let you get closer!$"
     ; .string "the S.S. ANNE at VERMILION CITY.$"
 
 Route25_Text_DanDefeat::
-    .string "Wait. Are you going for the\n"
-    .string "meteo?\p"
-    .string "We are counting on you!$"
+    .string "Wait, are you here to help?\n"
+    .string "Pulled out the comet stone\p"
+    .string "Please help NB!$"
 
 Route25_Text_DanPostBattle::
-    .string "Go forward! Go for your\n"
-    .string "adventure and responsibility!$"
+    .string "You are so strong\n"
+    .string "Remind me of a monster called Sprite$"
 
 Route25_Text_FlintIntro::
     .string "I'm a cool guy.\n"
