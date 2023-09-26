@@ -139,7 +139,6 @@ var startLetter = hashTags.charAt(0);
 
 if (hashTags.length > 0) {
   console.log(`[PLAYER] Current game: ${gameName} [${hashTags}]`);
-  document.title = `${gameName}`;
 
   // Add notification
 
