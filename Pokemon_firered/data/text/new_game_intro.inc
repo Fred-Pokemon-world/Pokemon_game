@@ -160,9 +160,24 @@ gOakSpeech_Text_AskPlayerGender::
     .string "Or are you a girl?$"
 
 gPikachuIntro_Text_Page1::
-    .string "$"
+    .string "Hi GYW:\n"
+    .string "This Lajixiaoyouxi\n"
+    .string "As I promised before\n"
+    .string "was meant to be a huge surprise\n"
+    .string "before purpose\n"
+    .string "But I somehow messed it up\n"
+    .string "But still,"
+    .string "I hope you can enjoy it\n"
+    .string "-- Oct \p$"
 gPikachuIntro_Text_Page2::
-    .string "$"
+    .string "Hi Renomi,\n"
+    .string "You get a mission impossible\n "
+    .string "To complete,\n"
+    .string "This mission is caused\n"
+    .string "By the Evil Dr. Kannatsuki\n"
+    .string "I hope you can complete this mission\n"
+    .string "And beat him up\p$"
+
 
 gPikachuIntro_Text_Page3::
     .string "$"
