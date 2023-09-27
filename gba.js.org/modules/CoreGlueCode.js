@@ -11,7 +11,7 @@
 
 var games = {
   // "binary-id": "Game Name",
-  pokefirered: "Fred's love", // override this
+  pokefirered: "a pokemon game", // override this
   advancewars: "Advance Wars",
   advancewars2: "Advance Wars 2",
   aladdin: "Aladdin",
@@ -139,12 +139,11 @@ var startLetter = hashTags.charAt(0);
 
 if (hashTags.length > 0) {
   console.log(`[PLAYER] Current game: ${gameName} [${hashTags}]`);
-  document.title = `${gameName} on GBA Online`;
 
   // Add notification
 
   var t = document.createElement("p");
-  t.innerHTML = 'Loaded "' + gameName + '"';
+  t.innerHTML = 'Loaded "' + gameName + '", press Play to start playing';
   t.id = "loadedGameMsg";
   document.body.appendChild(t);
 
@@ -153,8 +152,8 @@ if (hashTags.length > 0) {
     $("#loadedGameMsg").fadeOut();
     setTimeout(function () {
       $("#loadedGameMsg").remove();
-    }, 3000);
-  }, 3000);
+    }, 4000);
+  }, 4000);
 } else {
   document.title = defaultTitle;
   console.log("No game is currently loaded!");

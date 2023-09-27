@@ -12145,14 +12145,22 @@ sParty_BugCatcherCale:
 	.type	 sParty_BugCatcherKeigo,object
 sParty_BugCatcherKeigo:
 	.short	0x0
-	.byte	0x10
+	.byte	0x14
 	.space	1
-	.short	0x2a
+	.short	0x43
+	.short	0x15
+	.short	0x21
+	.space	4
+	.space	2
+	.short	0x0
+	.byte	0x14
+	.space	1
+	.short	0x44
 	.short	0xa
 	.short	0x161
 	.space	4
 	.space	2
-	.size	 sParty_BugCatcherKeigo,16
+	.size	 sParty_BugCatcherKeigo,32
 	.align	2, 0
 	.type	 sParty_BugCatcherElijah,object
 sParty_BugCatcherElijah:
@@ -27169,7 +27177,7 @@ gTrainers:
 	.byte	0x1
 	.space	3
 	.word	0x1
-	.byte	0x1
+	.byte	0x2
 	.space	3
 	.word	sParty_BugCatcherKeigo
 	.byte	0x0
