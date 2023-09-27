@@ -12038,7 +12038,7 @@ sParty_BugCatcherSammy:
 	.type	 sParty_BugCatcherColton,object
 sParty_BugCatcherColton:
 	.short	0x0
-	.byte	0xa
+	.byte	0x28
 	.space	1
 	.short	0x2a
 	.short	0x4a
@@ -12145,7 +12145,7 @@ sParty_BugCatcherCale:
 	.type	 sParty_BugCatcherKeigo,object
 sParty_BugCatcherKeigo:
 	.short	0x0
-	.byte	0x14
+	.byte	0x28
 	.space	1
 	.short	0x43
 	.short	0x15
@@ -12153,7 +12153,7 @@ sParty_BugCatcherKeigo:
 	.space	4
 	.space	2
 	.short	0x0
-	.byte	0x14
+	.byte	0x28
 	.space	1
 	.short	0x44
 	.short	0xa

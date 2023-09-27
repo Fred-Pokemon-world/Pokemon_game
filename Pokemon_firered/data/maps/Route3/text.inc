@@ -9,7 +9,9 @@ Route3_Text_ColtonIntro::
     .string "I will stop you here!$"
 
 Route3_Text_ColtonDefeat::
-    .string "You shall pass, but never forget the cold you have been through.$"
+    .string "You shall pass, \n"
+    .string "but the stronger Adam will help me\p"
+    .string "stop you$"
 
 Route3_Text_ColtonPostBattle::
     .string "Find him.$"

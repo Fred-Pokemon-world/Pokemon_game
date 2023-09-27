@@ -313,7 +313,7 @@ static const struct TrainerMonNoItemDefaultMoves sParty_BugCatcherSammy[] = {
 static const struct TrainerMonNoItemCustomMoves sParty_BugCatcherColton[] = {
     {
         .iv = 0,
-        .lvl = 10,
+        .lvl = 40,
         .species = SPECIES_GOLBAT,
         .moves = {MOVE_GROWTH, MOVE_SUPERSONIC},
     },
@@ -413,13 +413,13 @@ static const struct TrainerMonNoItemDefaultMoves sParty_BugCatcherCale[] = {
 static const struct TrainerMonNoItemCustomMoves sParty_BugCatcherKeigo[] = {
     {
         .iv = 0,
-        .lvl = 20,
+        .lvl = 40,
         .species = SPECIES_MACHOKE,
         .moves = {MOVE_SLAM, MOVE_TACKLE},
     },
     {
         .iv = 0,
-        .lvl = 20,
+        .lvl = 40,
         .species = SPECIES_MACHAMP,
         .moves = {MOVE_SCRATCH, MOVE_DOOM_DESIRE},
     },
