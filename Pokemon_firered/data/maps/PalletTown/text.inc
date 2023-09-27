@@ -4,7 +4,9 @@ PalletTown_Text_OakDontGoOut::
 
 PalletTown_Text_Daisy1::
     .string "Stella: Hey! Wait!\n"
-    .string "Don't touch the comet!$"
+    .string "Don't touch the comet!\p"
+    .string "Ive been waiting\n"
+    .string "I am Stella the guadian of realms\p"
 
 
 PalletTown_Text_OakGrassUnsafeNeedMon::
@@ -16,14 +18,15 @@ PalletTown_Text_OakGrassUnsafeNeedMon::
     .string "Here, come with me!$"
 
 PalletTown_Text_Daisy2::
-    .string "This stone is from moon\n"
-    .string "It is a moonstone\p"
-    .string "But it looks like a special \n"
-    .string "moonstone.\p"
-    .string "It is from another world\n"
+    .string "This comet is no ordinary stone\n"
+    .string "It is a special moonstone\p"
+    .string "a portal to another world..\n"
     .string "Where everything is reversed.\p"
-    .string "Do you want to come with me\n"
-    .string "To this new world?$"
+    .string "Anna, you have come far and faced\n"
+    .string "numerous challenges\p"
+    .string "Do you want to acquare this Moonstone\n"
+    .string "and step into a world beyond"
+    .string "Understanding? $"
 
 PalletTown_Text_RaisingMonsToo::
     .string "I'm raising POKéMON, too.\p"

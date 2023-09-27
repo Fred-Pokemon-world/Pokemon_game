@@ -168,29 +168,39 @@ gPikachuIntro_Text_Page3::
     .string "$"
 
 gOakSpeech_Text_WelcomeToTheWorld::
-    .string "Hello, Annabelle!\n"
-    .string "Glad to meet you!\p"
+    .string "Ah, Annabelle!\n"
+    .string "I've been expecting you\p"
     .string "I believe you already received your\n"
     .string "mission message from your phone \p"
     .string "Welcome to the world of POKéMON!\n"
-    .string "My name is Kannazuki.\p"
+    .string "My name is Prof. Oak!.\p"
+    .string "People call me the Pokemon Professor. $"
 
 gOakSpeech_Text_ThisWorld::
-    .string "This world…$"
+    .string "This world is inhabited by creatures\n"
+    .string "we call Pokemon! \p"
+    .string "Some people play with them \n"
+    .string "Some battle with them.\p"
+    .string "But we, we study them $"
 
 gOakSpeech_Text_IsInhabitedFarAndWide::
-    .string "…is intruded by a comet stone,\n"
-    .string "And POKéMONs are generally worried.\p$"
+    .string "Recenly, a mysterious comet invaded our \n"
+    .string "Pokemon world\p$"
+    .string "Brining with it this peculiar stone\n"
+    .string "in the cave next to the town\p"
+    .string "Its unlike anything we've ever seen$"
+
 
 gOakSpeech_Text_IStudyPokemon::
     .string "Jigglypuff will accompany you\n"
     .string "to find the comet, \n"
     .string "and investigate its true purposes\p"
+    .string "its crucial we uncover the secrets of this comet$"
 
 
 gOakSpeech_Text_TellMeALittleAboutYourself::
-    .string "But first, tell me a little about\n"
-    .string "yourself.\p$"
+    .string "Anna, Im entrusting you and Jigglypuff\n"
+    .string "To investiaget this enigma!$"
 
 gOakSpeech_Text_YourNameWhatIsIt::
     .string "Let's begin with your name.\n"
@@ -218,5 +228,9 @@ gOakSpeech_Text_RememberRivalsName::
 
 gOakSpeech_Text_LetsGo::
     .string "{PLAYER}!\p"
-    .string "Your very own POKéMON legend is\n"
-    .string "about to unfold!$"
+    .string "Rememeber, your jorney will be long\n"
+    .string "And full of challenges\p"
+    .string "Never lose sight of yur mission\n"
+    .string "And always believe in your Pokemon!\p"
+    .string "Good luck, Anna and Jigglypuff!\n"
+    .string "we are all counting on you!$"
